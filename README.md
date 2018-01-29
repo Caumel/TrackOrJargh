@@ -1,4 +1,6 @@
 # TrackOrJargh
+
+
 #### Authors:
 - Óscar Soto Sánchez o.sotos@alumnos.urjc.es [OscarSotoSanchez](https://github.com/OscarSotoSanchez)
 - Alfonso Casanova Muñoz a.casanovam@alumnos.urjc.es [fonyc](https://github.com/fonyc)
@@ -40,18 +42,21 @@
 | Books_lists               | Joins lists and books                             |
 
 
+### Advanced features
+Reccomended content algorythm.
+Searching by tags and genders.
 
 
 ### Graphics
 Global rating of the content.
 
-### Advanced technology functions
+
+### Advanced technology features
 
 Verification email sent when an new user signs up in the site.
 Pdf generation on user's demand with a list of the viewed content.
 Interactive comments on each content page where you can reply another users comments.
 Linked to on demand video streaming services (like Netflix, HBO, etc).
 Google account login.
-Reccomended content algorythm.
 
 
