@@ -44,6 +44,7 @@
 
 ### Advanced features
 Reccomended content algorythm.
+
 Searching by tags and genders.
 
 
@@ -54,9 +55,9 @@ Global rating of the content.
 ### Advanced technology features
 
 Verification email sent when an new user signs up in the site.
+
 Pdf generation on user's demand with a list of the viewed content.
-Interactive comments on each content page where you can reply another users comments.
-Linked to on demand video streaming services (like Netflix, HBO, etc).
+
 Google account login.
 
 
