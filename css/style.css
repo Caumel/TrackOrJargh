@@ -598,16 +598,16 @@ body.mobile-nav-active #mobile-nav-toggle {
   margin-bottom: 0;
 }
 
-/* About Us Section
+/* Interactions Section
 --------------------------------*/
-#about {
+#interactions {
   background: url("../img/about-bg.jpg") center top no-repeat fixed;
   background-size: cover;
   padding: 60px 0 40px 0;
   position: relative;
 }
 
-#about::before {
+#interactions::before {
   content: '';
   position: absolute;
   left: 0;
@@ -618,27 +618,27 @@ body.mobile-nav-active #mobile-nav-toggle {
   z-index: 9;
 }
 
-#about .container {
+#interactions .container {
   position: relative;
   z-index: 10;
 }
 
-#about .about-col {
+#interactions .interactions-col {
   background: #fff;
   border-radius: 0 0 4px 4px;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
   margin-bottom: 20px;
 }
 
-#about .about-col .img {
+#interactions .interactions-col .img {
   position: relative;
 }
 
-#about .about-col .img img {
+#interactions .interactions-col .img img {
   border-radius: 4px 4px 0 0;
 }
 
-#about .about-col .icon {
+#interactions .interactions-col .icon {
   width: 64px;
   height: 64px;
   padding-top: 8px;
@@ -653,22 +653,22 @@ body.mobile-nav-active #mobile-nav-toggle {
   transition: 0.3s;
 }
 
-#about .about-col i {
+#interactions .interactions-col i {
   font-size: 36px;
   line-height: 1;
   color: #fff;
   transition: 0.3s;
 }
 
-#about .about-col:hover .icon {
+#interactions .interactions-col:hover .icon {
   background-color: #fff;
 }
 
-#about .about-col:hover i {
+#interactions .interactions-col:hover i {
   color: #18d26e;
 }
 
-#about .about-col h2 {
+#interactions .interactions-col h2 {
   color: #000;
   text-align: center;
   font-weight: 700;
@@ -677,15 +677,15 @@ body.mobile-nav-active #mobile-nav-toggle {
   margin: 40px 0 12px 0;
 }
 
-#about .about-col h2 a {
+#interactions .interactions-col h2 a {
   color: #000;
 }
 
-#about .about-col h2 a:hover {
+#interactions .interactions-col h2 a:hover {
   color: #18d26e;
 }
 
-#about .about-col p {
+#interactions .interactions-col p {
   font-size: 14px;
   line-height: 24px;
   color: #333;
