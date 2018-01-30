@@ -177,7 +177,7 @@ h1, h2, h3, h4, h5, h6 {
 #intro h2 {
   color: #fff;
   margin-bottom: 30px;
-  margin-left: 20%;
+  margin-left: auto;
   font-size: 35px;
   font-weight: 200;
 }
@@ -188,8 +188,8 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 #intro p {
-  width: 80%;
-  margin: -10px auto 0 auto;
+  width:100%;
+  margin: auto 50% auto auto;
   color: #fff;
 }
 
