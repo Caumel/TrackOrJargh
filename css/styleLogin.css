@@ -11,3 +11,32 @@
   position: relative !important;
   background-color: black !important;
 }
+
+
+/*-------------------------------------------------------------------
+#Login/Registrar
+----------------------------------------------------------------------*/
+
+#loginHeader{
+    background-color: black;
+    margin-top: 2.5%;
+}
+
+#login{
+    margin-top: 2.5%;
+}
+
+#register{
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+}
+
+#botonPass{
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+#botonReg{
+    margin-left: 37%;
+    margin-right: 37%;
+}
