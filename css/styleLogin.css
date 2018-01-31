@@ -1,9 +1,4 @@
-/*
-  Theme Name: BizPage
-  Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
-  Author: BootstrapMade.com
-  License: https://bootstrapmade.com/license/
-*/
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -16,7 +11,10 @@
 /*-------------------------------------------------------------------
 #Login/Registrar
 ----------------------------------------------------------------------*/
-
+#loginRegister{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
 #loginHeader{
     background-color: black;
     margin-top: 2.5%;
@@ -31,12 +29,44 @@
     margin-bottom: 2.5%;
 }
 
-#botonPass{
-    margin-left: 35%;
-    margin-right: 35%;
+#buttonLog{
+    margin-bottom: 1%;
+    
 }
 
-#botonReg{
+#log{
     margin-left: 37%;
     margin-right: 37%;
 }
+
+#buttonLog {
+	background-color:#18d26e;
+	color: #fff;
+    font-family: "Montserrat", sans-serif;
+	font-weight: 700;
+	border-color: #18d26e;
+}
+
+#buttonLog:hover {
+    color: #18d26e;
+    background-color: #fff;
+}
+
+#reg{
+    margin-left: 37%;
+    margin-right: 37%;
+}
+
+#buttonReg{
+    background-color:#18d26e;
+	color: #fff;
+    font-family: "Montserrat", sans-serif;
+	font-weight: 700;
+	border-color: #18d26e;
+}
+
+#buttonReg:hover {
+    color: #18d26e;
+    background-color: #fff;
+}
+

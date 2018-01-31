@@ -73,7 +73,7 @@
     <section id="loginRegister">
         <div class="container">
             <div class="form-control text-center" id="loginHeader">
-                <span><a href="#">Login/Registrar</a>   </span>
+                <span><a href="#">Login/Registrarse</a>   </span>
             </div>
         </div>
         <!-- Log-in div start hare-->
@@ -89,27 +89,28 @@
                             <div class="form-group">
                                 <input type="password" name="passwordL" id="passwordL" tabindex="2" class="form-control" placeholder="Contraseña">
                             </div>
+                            <div id="log" class="form-group">
+								<div class="row">
+                                    <input type="submit" name="login-submit" id="buttonLog" tabindex="4" class=" form-control btn btn-login" value="Iniciar sesion">
+								</div>
+                            </div>
                             <div class="form-group text-center">
                                 <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
                                 <label for="remember"> Recordarme</label>
                             </div>
-                            <div id="botonPass" class="form-group">
-                                <div class="row">
-                                        <div class="form-control text-center">
-                                            <a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">He olvidado la Contraseña</a>
-                                        </div>
-                                </div>
-                            </div>
+                            <div class=" text-center">
+                                <a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">He olvidado la contraseña</a>
+                            </div>       
                         </form>
                     </div>
                 </div> 
             </div><!-- /Login -->
         
-        
+        <!--Register div's start's hare-->
         <div id="register">
             <div class="container">
                 <div class="form-control text-center">
-                    <samp>Registrarse</samp>
+                    <span>Registrarse</span>
                     <form id="register-form" action="https://phpoll.com/register/process" method="post" role="form" style="display: block;">
                         <div class="form-group">
                             <input type="text" name="userR" id="userR" tabindex="1" class="form-control" placeholder="Nombre de Usuario" value="">
@@ -123,21 +124,17 @@
                         <div class="form-group">
                             <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirmar Contraseña">
                         </div>
-                        <div id="botonReg" class="form-group">
+                        <div id=reg class="form-group">
                             <div class="row">
-                               
-                                    <div class="form-control text-center">
-                                        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Registrerse">
-                                    </div>
-                                
+								<input type="submit" name="register-submit" id="buttonReg" tabindex="4" class="active form-center form-control btn btn-register" value="Registrarse">
                             </div>
-                        </div>
+				        </div>
                     </form>
                 </div>
             </div>
         </div>
-        
-    </section>
+        <!--Register finished-->
+    </section><!--login/ Register is finished-->
   
     
 
