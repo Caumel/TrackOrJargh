@@ -29,6 +29,17 @@
     color: #18d26e;
 }
 
+#search-bar {
+    position: absolute;
+    width: 20%;
+    margin-left: 40%;
+    margin-right: 40%;
+    z-index: 98;
+}
+
+.nav-menu {
+    top: -50px !important;
+}
 
 
 /* Interactions Section
