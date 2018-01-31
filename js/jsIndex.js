@@ -1,6 +1,8 @@
 jQuery(document).ready(function( $ ) {
     $('.search').click(function(){
-        $('html, body').animate({scrollTop : 0},1500, 'easeInOutExpo');
+        $('#search-bar').css("visibility", "visible");
+        $('.search').hide();
+        
         return false;
     });
 });    
