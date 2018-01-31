@@ -35,6 +35,7 @@
     margin-left: 40%;
     margin-right: 40%;
     z-index: 98;
+    visibility: hidden;
 }
 
 .nav-menu {
