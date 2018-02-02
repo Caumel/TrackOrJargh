@@ -11,7 +11,7 @@
 }
 
 
-.carousel-starts{
+.carousel-starts {
     position: absolute;
     right: 0;
     bottom: 10px;
@@ -30,7 +30,7 @@
     color: #18d26e;
 }
 
-.message-icon{
+.message-icon {
     font-size: xx-large;
     color: #111;
     text-transform: uppercase;
@@ -38,5 +38,27 @@
     font-weight: 700;
     position: relative;
     padding-bottom: 15px;
+}
+
+.box-comment{
+    padding-bottom: 2%;
+    border-bottom-style: solid; 
+    border-bottom-width: 1px;   
+}
+
+.profile-comment {
+    float: left;
+}
+
+.starts-comment {
+    float: right;
+}
+
+.starts-comment i{
+    font-size: xx-large !important;
+}
+
+.comment {
+    clear: left;
 }
 
