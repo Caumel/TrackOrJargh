@@ -274,11 +274,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu ul {
+<<<<<<< HEAD
     position: absolute;
     display: none;
     top: 100%;
     left: 0;
     z-index: 99;
+=======
+  position: absolute;
+  display: none;
+  top: -100%;
+  left: 0;
+  z-index: 99;
+>>>>>>> 99702e3efe60fdbc948ee4c779d7be8f061dc7f5
 }
 
 .nav-menu li {
