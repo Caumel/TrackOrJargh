@@ -27,6 +27,11 @@
         <!-- Main Stylesheet File -->
         <link href="css/style.css" rel="stylesheet">
         <link href="css/styleContent.css" rel="stylesheet">
+        
+        <!-- Start Rating-->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+        
 
         <!-- =======================================================
           Theme Name: BizPage
@@ -136,6 +141,18 @@
             </section><!-- #services -->
             
             <!--==========================
+            Call To Action Section
+            ============================-->
+            <section id="call-to-action" class="wow fadeIn">
+                <div class="container text-center prueba">
+                    <h3>Puntua la película</h3>
+                    <div class="starts">
+                        <span id="rateYo"></span>
+                    </div>
+                </div>
+            </section><!-- #call-to-action -->
+            
+            <!--==========================
               Contact Section
             ============================-->
             <section id="contact" class="section-bg wow fadeInUp">
@@ -203,7 +220,6 @@
 
               </div>
             </section><!-- #contact -->
-
         </main>
 
         <!--==========================
@@ -299,6 +315,18 @@
 
         <!-- Template Main Javascript File -->
         <script src="js/main.js"></script>
+        
+        <!-- Start Rating -->
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+        
+        <script>
+            $("#rateYo").rateYo({
+                rating    : 1.6,
+                spacing   : "5px",
+                ratedFill : "#18d26e"
+            });
+        </script>
 
     </body>
 </html>

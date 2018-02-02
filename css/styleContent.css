@@ -40,6 +40,17 @@
     padding-bottom: 15px;
 }
 
+#call-to-action {
+    background: url(../img/Guardianes2.jpg) fixed center center, rgba(0, 0, 0, 0.7) !important;
+    background-size: cover !important;
+	background-blend-mode: darken, normal !important;
+}
+
+.starts{
+    position: absolute;
+    left: calc(50% - 6em);
+}
+
 .box-comment{
     padding-bottom: 2%;
     border-bottom-style: solid; 
