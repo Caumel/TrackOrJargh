@@ -9,14 +9,44 @@
     background-color: black;
 }
 
+
+
+
+
+
+/* interactive slide menu
+--------------------------------*/
+
 #v-pills-tab{
-    margin-right: 80%;
     background-color: black;
+    flex: 1;
     margin-top: 1%;
     margin-left: 1%;
     margin-bottom: 1%;
+    max-width: 200px;
 }
 
 #v-pills-tabContent{
-     margin-left: 20%;
+  flex: 1;
+  margin-top: 1%;
+}
+.pitorrina{
+  display: flex;
+  width: 100%;
+}
+
+#CreateList i {
+    font-size: 20px;
+    line-height: 1;
+    color: #18d26e;
+    transition: 0.3s;
+}
+
+#CreateList i:hover {
+    color: black;
+    transition: 0.3s;
+}
+
+#CreateList{
+    margin-bottom: %;
 }
