@@ -75,11 +75,31 @@
 
 /* Portfolio Section
 --------------------------------*/
+#portfolio .portfolio-item figure {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  overflow: hidden !important;
+  height: 190px !important;
+  position: relative !important;
+  border-radius: 4px 4px 0 0 !important;
+  margin: 0 !important;
+}
+#portfolio .portfolio-item figure:hover {
+  opacity: 0.8;
+  transition: 0.5s;
+}
+
+#portfolio .portfolio-item figure .textPortfolio{
+    color: rgba(0,0,0,0);
+}
 #portfolio .portfolio-item figure:hover .textPortfolio {
     text-align: center;
-    position: absolute;
-    top: 45%;
-    left: 0;
+    position: relative;
+    top: 10%;
+    bottom: 10%;
+    height: 100%;
     width: 100%;
     color:white;
+    transition: 0.5s;
 }
