@@ -42,34 +42,36 @@
     Header
   ============================-->
   <header id="header">
-    <div class="container-fluid">
+            <div class="container-fluid">
 
-      <div id="logo" class="pull-left">
-        <h1><a href="#intro" class="scrollto">TrackOrJargh</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
-      </div>
+                <div id="logo" class="pull-left">
+                    <h1><a href="#intro" class="scrollto">TrackOrJargh</a></h1>
+                    <!-- Uncomment below if you prefer to use an image logo -->
+                    <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+                </div>
 
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li class="menu-active"><a href="#intro">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#team">Team</a></li>
-          <li class="menu-has-children"><a href="">Drop Down</a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-              <li><a href="#">Drop Down 5</a></li>
-            </ul>
-          </li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav><!-- #nav-menu-container -->
-    </div>
-  </header><!-- #header -->
+                <div class="icon search" ><i class="ion-ios-search-strong text-center" ></i> </div>
+                <input type="text" name="user" id="search-bar" tabindex="1" class="form-control" placeholder="Busca tus películas, series o libros..." value="">
+
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="menu-active"><a href="#intro">Inicio</a></li>
+                        <li><a href="contentList.html">Películas</a></li>
+                        <li><a href="contentList.html">Series</a></li>
+                        <li><a href="contentList.html">Libros</a></li>
+                        <li class="menu-has-children"><a href="">Usuario</a>
+                            <ul>
+                                <li><a href="userProfile.html">Perfil</a></li>
+                                <li><a href="#">Mis listas</a></li>
+                                <li><a href="#">Ajustes</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="contentProfile.html">PagContenido</a></li>
+                    </ul>
+                </nav><!-- #nav-menu-container -->
+            </div>
+        </header><!-- #header -->
 
  
     
@@ -109,7 +111,13 @@ slide menu
       </div>
     </div>
     <div class="tab-pane fade" id="v-pills-Account" role="tabpanel" aria-labelledby="v-pills-Account-tab">¿Qué es poesía? ¿Y tú me lo preguntas?</div>
-    <div class="tab-pane fade" id="v-pills-Report" role="tabpanel" aria-labelledby="v-pills-report-tab">Poesía eres tú</div>
+    <div class="tab-pane fade" id="v-pills-Report" role="tabpanel" aria-labelledby="v-pills-report-tab">
+        <div class="text-center" id="header-Report"><span><a class="h5">Reportar error</a></span></div>
+        <div id="report-form">
+            <input type="text" name="report-title" id="report-title" tabindex="1" class="form-control form-report" placeholder="Error a reportar" value="">
+            <textarea name="report-description" id="report-title" tabindex="1" class="form-control form-report" placeholder="Descripción del error" value=""></textarea>
+        </div>
+      </div>
   </div>    
     
 </div>        
@@ -121,73 +129,48 @@ slide menu
     Footer
   ============================-->
   <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
+                <div class="footer-top">
+                    <div class="container">
+                        <div class="row">
 
-          <div class="col-lg-3 col-md-6 footer-info">
-            <h3>TrackOrJargh</h3>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
-          </div>
+                            <div class="col-lg-4 col-md-6 footer-info">
+                                <h3>TrackOrJargh</h3>
+                                <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
+                            </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
+                            <div class="col-lg-3 col-md-6 footer-links">
+                                <h4>Nos puedes encontrar en</h4>
+                                <div class="social-links">
+                                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                                    <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                                    <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                                    <a href="https://github.com/krate95/TrackOrJargh" class="github"><i class="fa fa-github"></i></a>
+                                </div>
+                            </div>
 
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
-            <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
-            </p>
+                            <div class="col-lg-3 col-md-6 footer-contact">
+                                <h4>Contacto</h4>
+                                <p>
+                                    <strong>Email:</strong><br>
+                                    j.elvira@alumnos.urjc.es<br>
+                                    o.sotos@alumnos.urjc.es<br>
+                                    hs.dhanoya@alumnos.urjc.es<br>
+                                    a.casanovam@alumnos.urjc.es<br>
+                                    pm.garrido@alumnos.urjc.es<br>
+                                    <strong>Phone:</strong> +34 695 247 ???<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-            </div>
-
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit"  value="Subscribe">
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong>BizPage</strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=BizPage
-        -->
-        Best <a href="https://bootstrapmade.com/">Bootstrap Templates</a> by BootstrapMade
-      </div>
-    </div>
-  </footer><!-- #footer -->
+                <div class="container">
+                    <div class="copyright">
+                        &copy; Copyright <strong>Los subnormales estos SA</strong>. All Rights Reserved
+                    </div>
+                </div>
+            </footer><!-- #footer -->
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 

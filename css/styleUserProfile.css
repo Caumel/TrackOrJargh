@@ -18,6 +18,7 @@
 --------------------------------*/
 
 #v-pills-tab{
+    border-radius: 4px 4px 4px 4px;
     background-color: black;
     flex: 1;
     margin-top: 1%;
@@ -49,4 +50,27 @@
 
 #CreateList{
     margin-bottom: %;
+}
+
+.pitorrina {
+    border-radius: 4px 4px 4px 4px;
+}
+
+#v-pills-Report {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#header-Report {
+    color: #18d26e;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    background-color: black;
+    border-radius: 4px 4px 4px 4px;
+}
+
+.form-report {
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
