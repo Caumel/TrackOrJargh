@@ -49,10 +49,10 @@
     transition: 0.3s;
 }
 
-#CreateList{
+#MyLists {
     margin-top: 1%;
     margin-left: 1%;
-    margin-right: 100px;
+    width: auto;
 }
 
 #v-pills-Report {
@@ -100,4 +100,8 @@
 
 #v-pills-MyLists{
     margin-bottom: 10%;
+}
+
+#v-pills-MyLists .container {
+    width: 50%;
 }
