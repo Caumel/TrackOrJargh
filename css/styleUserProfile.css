@@ -34,6 +34,7 @@
 .pitorrina{
   display: flex;
   width: 100%;
+  border-radius: 4px 4px 4px 4px;
 }
 
 #CreateList i {
@@ -54,12 +55,18 @@
     margin-right: 100px;
 }
 
-.pitorrina {
-    border-radius: 4px 4px 4px 4px;
-}
-
 #v-pills-Report {
     margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10%;
+}
+
+#v-pills-Report span {
+    padding-left: 10%;
+}
+
+#v-pills-Report button {
+    float: right;
     margin-right: 10%;
 }
 
@@ -75,6 +82,8 @@
     width: 60%;
     margin-left: 20%;
     margin-right: 20%;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 #NombreDatosPersonales{
@@ -83,4 +92,12 @@
 
 #NewList{
   
+}
+
+#v-pills-PersonalData {
+    margin-bottom: 100px;
+}
+
+#v-pills-MyLists{
+    margin-bottom: 10%;
 }
