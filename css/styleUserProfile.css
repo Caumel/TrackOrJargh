@@ -49,7 +49,9 @@
 }
 
 #CreateList{
-    margin-bottom: %;
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 100px;
 }
 
 .pitorrina {
@@ -73,4 +75,12 @@
     width: 60%;
     margin-left: 20%;
     margin-right: 20%;
+}
+
+#NombreDatosPersonales{
+  margin-left: 5%;
+}
+
+#NewList{
+  
 }
