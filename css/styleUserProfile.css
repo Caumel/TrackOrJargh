@@ -10,57 +10,6 @@
 #v-pills-tab{
     border-radius: 4px 4px 4px 4px;
     background-color: black;
-<<<<<<< HEAD
-=======
-    flex: 1;
-    margin-top: 1%;
-    margin-left: 1%;
-    margin-bottom: 1%;
-    max-width: 200px;
-}
-
-#v-pills-tabContent{
-  flex: 1;
-  margin-top: 1%;
-}
-.pitorrina{
-  display: flex;
-  width: 100%;
-  border-radius: 4px 4px 4px 4px;
-}
-
-#CreateList i {
-    font-size: 20px;
-    line-height: 1;
-    color: #18d26e;
-    transition: 0.3s;
-}
-
-#CreateList i:hover {
-    color: black;
-    transition: 0.3s;
-}
-
-#MyLists {
-    margin-top: 1%;
-    margin-left: 1%;
-    width: auto;
-}
-
-#v-pills-Report {
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-bottom: 10%;
-}
-
-#v-pills-Report span {
-    padding-left: 10%;
-}
-
-#v-pills-Report button {
-    float: right;
-    margin-right: 10%;
->>>>>>> 034fb710861ba7ee7b6b59e73596874924c83cab
 }
 
 #header-Report {
@@ -70,34 +19,3 @@
     background-color: black;
     border-radius: 4px 4px 4px 4px;
 }
-<<<<<<< HEAD
-=======
-
-.form-report {
-    width: 60%;
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-top: 1%;
-    margin-bottom: 1%;
-}
-
-#NombreDatosPersonales{
-  margin-left: 5%;
-}
-
-#NewList{
-  
-}
-
-#v-pills-PersonalData {
-    margin-bottom: 100px;
-}
-
-#v-pills-MyLists{
-    margin-bottom: 10%;
-}
-
-#v-pills-MyLists .container {
-    width: 50%;
-}
->>>>>>> 034fb710861ba7ee7b6b59e73596874924c83cab
