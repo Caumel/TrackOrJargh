@@ -18,3 +18,19 @@
     font-weight: 700;
     background-color: black;
     border-radius: 4px 4px 4px 4px;
+
+}
+
+.form-report {
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+#NombreDatosPersonales{
+  margin-left: 5%;
+}
+
+#NewList{
+  
+}
