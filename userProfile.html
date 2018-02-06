@@ -91,54 +91,30 @@
                         </div>
                     </div>
 
-                    <div class="tab-content col-lg-9" id="v-pills-tabContent"> 
-                        <div class="tab-pane fade show active" id="v-pills-PersonalData" role="tabpanel" aria-labelledby="v-pills-PersonalData-tab">
-                            <div id="CreateList" class="container form-control" >
-                                <div class="text-center" id="header-Report">
-                                    <a class="MyListsTitle">Datos personales</a>
+                    <div class="tab-content col-lg-9" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active border rounded p-3" id="v-pills-PersonalData" role="tabpanel" aria-labelledby="v-pills-PersonalData-tab">
+                            <form>
+                                <img src="img/userFoto.jpg" class="rounded-circle float-left" alt="Imagen de perfil">
+                                <div class="form-group">
+                                    <label for="userName">Nombre de usuario</label>
+                                    <input type="text" class="form-control" id="userName" placeholder="Nombre de usuario" readonly>
                                 </div>
-                                <div>
-                                    <a id="NombreDatosPersonales">Nombre</a>
+                                <div class="form-group">
+                                    <label for="email">Correo electrónico</label>
+                                    <input type="email" class="form-control" id="email" placeholder="name@example.com">
                                 </div>
-                                <div>
-                                    <a id="NombreDatosPersonales">Apellidos</a>
+                                <div class="form-group">
+                                    <label for="password">Contraseña</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Contraseña">
                                 </div>
-                                <div>
-                                    <a id="NombreDatosPersonales">Domicilio</a>
+                                <div class="form-group">
+                                    <label for="accountType">Tipo de cuenta</label>
+                                    <input type="text" class="form-control" id="accountType" placeholder="Usuario" readonly>
                                 </div>
-                                <div>
-                                    <a id="NombreDatosPersonales">Telefono contacto</a>
-                                </div>
-                                <div>
-                                    <a id="NombreDatosPersonales">Nombre de Cuenta</a>
-                                </div>
-                                <div>
-                                    <a id="NombreDatosPersonales">Rango Cuenta</a>
-                                </div>
-
-                            </div>
+                            </form>
                         </div>
-
-                        <div class="tab-pane fade" id="v-pills-MyLists" role="tabpanel" aria-labelledby="v-pills-MyLists-tab">
-                            <div id="MyLists" class="container form-control" >
-
-                                <div class="text-center " id="header-Report">
-                                    <a class="MyListsTitle">Mis Listas</a>
-                                </div>
-
-                                <div id="CreateList">
-                                    <a id="NewList">Nueva Lista <i class="ion-plus-circled"></i></a> 
-                                    <div id="CreateList">
-                                        Aqui tiene que ir el carrusel
-                                    </div>
-                                    <div id="CreateList">
-                                        <a id="CreatedLists">Lista 1<i class="ion-trash-a"></i> <i class="ion-edit"></i></a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
+                        
+                        
                         <div class="tab-pane fade" id="v-pills-Account" role="tabpanel" aria-labelledby="v-pills-Account-tab">
                             <div id="account" class="container form-control">
                                 <span><a id="IdAccount" class="text-center">Mi cuenta</a></span>
@@ -173,12 +149,32 @@
                             </div>
                         </div>
 
+
+                        <div class="tab-pane fade" id="v-pills-MyLists" role="tabpanel" aria-labelledby="v-pills-MyLists-tab">
+                            <div id="MyLists" class="container form-control" >
+
+                                <div class="text-center " id="header-Report">
+                                    <a class="MyListsTitle">Mis Listas</a>
+                                </div>
+
+                                <div id="CreateList">
+                                    <a id="NewList">Nueva Lista <i class="ion-plus-circled"></i></a> 
+                                    <div id="CreateList">
+                                        Aqui tiene que ir el carrusel
+                                    </div>
+                                    <div id="CreateList">
+                                        <a id="CreatedLists">Lista 1<i class="ion-trash-a"></i> <i class="ion-edit"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                         <div class="tab-pane fade" id="v-pills-Report" role="tabpanel" aria-labelledby="v-pills-report-tab">
                             <div id="report" class="container form-control">
                                 <div class="text-center" id="header-Report">
                                     <a class="h5">Reportar error</a>
                                 </div>
-                                
+
                                 <div id="report-form">
                                     <span>Asunto:</span>
                                     <input type="text" name="report-title" id="report-title" tabindex="1" class="form-control form-report" placeholder="Error a reportar" value="">
