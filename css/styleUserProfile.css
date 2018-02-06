@@ -1,66 +1,11 @@
-/*
-  Theme Name: BizPage
-  Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
-  Author: Alfonso C
-  License: https://bootstrapmade.com/license/
-*/
 #header{
-    position: relative;
     background-color: black;
 }
 
-
-
-
-
-
-/* interactive slide menu
---------------------------------*/
 
 #v-pills-tab{
     border-radius: 4px 4px 4px 4px;
     background-color: black;
-    flex: 1;
-    margin-top: 1%;
-    margin-left: 1%;
-    margin-bottom: 1%;
-    max-width: 200px;
-}
-
-#v-pills-tabContent{
-  flex: 1;
-  margin-top: 1%;
-}
-.pitorrina{
-  display: flex;
-  width: 100%;
-}
-
-#CreateList i {
-    font-size: 20px;
-    line-height: 1;
-    color: #18d26e;
-    transition: 0.3s;
-}
-
-#CreateList i:hover {
-    color: black;
-    transition: 0.3s;
-}
-
-#CreateList{
-    margin-top: 1%;
-    margin-left: 1%;
-    margin-right: 100px;
-}
-
-.pitorrina {
-    border-radius: 4px 4px 4px 4px;
-}
-
-#v-pills-Report {
-    margin-left: 10%;
-    margin-right: 10%;
 }
 
 #header-Report {
