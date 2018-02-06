@@ -82,6 +82,7 @@
             <div id="login">
                 <div class="container">
                     <div class="form-control text-center">
+                        <!-- Log-In segment -->
                         <span>Log-in</span>
 
                         <form id="login-form" action="https://phpoll.com/login/process" method="post" role="form" style="display: block;">
@@ -119,9 +120,39 @@
                         </div>
                         <div class="form-group">
                             <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email" value="">
+                        
+                        <!-- Register segment -->
+                        <div class="card-header" role="tab" id="register">
+                          <h5 class="mb-0">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseRegt" aria-expanded="false" aria-controls="collapseRegt">
+                              Regitrarse
+                            </a>
+                          </h5>
                         </div>
                         <div class="form-group">
                             <input type="password" name="passwordR" id="passwordR" tabindex="2" class="form-control" placeholder="Contraseña">
+                        <div id="collapseRegt" class="collapse" role="tabpanel" aria-expanded="false" aria-labelledby="register">
+                            <div class="card-block">
+                                <form id="register-form" action="https://phpoll.com/register/process" method="post" role="form" style="display: block;">
+                                    <div class="form-group">
+                                        <input type="text" name="userR" id="userR" tabindex="1" class="form-control" placeholder="Nombre de Usuario" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="passwordR" id="passwordR" tabindex="2" class="form-control" placeholder="Contraseña">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirmar Contraseña">
+                                    </div>
+                                    <div id=reg class="form-group">
+                                        <div class="row">
+                                            <input type="submit" name="register-submit" id="buttonReg" tabindex="4" class="active form-center form-control btn btn-register" value="Registrarse">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>                            
                         </div>
                         <div class="form-group">
                             <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirmar Contraseña">
@@ -136,6 +167,10 @@
             </div>
         </div>
         <!--Register finished-->
+                        
+                    </div>
+                </div> 
+            </div><!-- Login/Register -->
     </section><!--login/ Register is finished-->
   
     
