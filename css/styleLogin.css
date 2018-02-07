@@ -36,11 +36,6 @@
     
 }
 
-#log{
-    margin-left: 37%;
-    margin-right: 37%;
-}
-
 #buttonLog {
 	background-color:#18d26e;
 	color: #fff;
@@ -52,11 +47,6 @@
 #buttonLog:hover {
     color: #18d26e;
     background-color: #fff;
-}
-
-#reg{
-    margin-left: 37%;
-    margin-right: 37%;
 }
 
 #buttonReg{
