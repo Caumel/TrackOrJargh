@@ -138,3 +138,30 @@
     padding: 0 20px 20px 20px;
 }
 
+#NotificationButton {
+  background-color: #18d26e;
+  border-color: #18d26e;
+  text-emphasis: white;
+  
+  
+}
+
+#NotificationButton:hover {
+    color: #18d26e;
+    background-color: #fff;
+}
+
+#MessageButton {
+  background-color: #18d26e;
+  border-color: #18d26e;
+
+  
+}
+
+
+#MessageButton:hover {
+    color: #18d26e;
+    background-color: #fff;
+}
+
+
