@@ -142,6 +142,7 @@
   background-color: #18d26e;
   border-color: #18d26e;
   text-emphasis: white;
+  margin-bottom: 3%;
   
   
 }
@@ -154,6 +155,7 @@
 #messageButton {
   background-color: #18d26e;
   border-color: #18d26e;
+  margin-bottom: 3%;
 }
 
 
@@ -163,3 +165,6 @@
 }
 
 
+.card{                          /* taking off borders on every card, more specically, in the menu collapse of messages and notifications */ 
+  border: none !important;
+}
