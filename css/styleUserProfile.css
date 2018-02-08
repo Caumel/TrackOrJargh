@@ -54,6 +54,12 @@
     width: 6em;
 }
 
+.h2 {
+    font-family: "Montserrat", sans-serif;
+	background-color: black;
+	color: #18d26e;
+}
+
 
 /* Hover image */
 
