@@ -6,25 +6,13 @@ jQuery(document).ready(function( $ ) {
         return false;
     });
   
-  
+    
+    
+    $("#notificationButton").click(function(){
+        $("#hideNotification").toggle();
+    });
 
-
-$(document).ready(function(){
-    $("NotificationButton").click(function(){
-        $("HideNotification").toggle();
+    $("#messageButton").click(function(){
+      $("#hideMessages").toggle();
     });
 });
-
-  $(document).ready(function(){
-    $("MessageButton").click(function(){
-        $("HideMessages").toggle();
-    });
-});
-
-
-
-  
-  
-});
-
-
