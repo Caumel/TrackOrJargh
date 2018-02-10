@@ -5,4 +5,14 @@ jQuery(document).ready(function( $ ) {
         
         return false;
     });
-});    
+  
+    
+    
+    $("#notificationButton").click(function(){
+        $("#hideNotification").toggle();
+    });
+
+    $("#messageButton").click(function(){
+      $("#hideMessages").toggle();
+    });
+});

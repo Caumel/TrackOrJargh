@@ -138,3 +138,33 @@
     padding: 0 20px 20px 20px;
 }
 
+#notificationButton {
+  background-color: #18d26e;
+  border-color: #18d26e;
+  text-emphasis: white;
+  margin-bottom: 3%;
+  
+  
+}
+
+#notificationButton:hover {
+    color: #18d26e;
+    background-color: #fff;
+}
+
+#messageButton {
+  background-color: #18d26e;
+  border-color: #18d26e;
+  margin-bottom: 3%;
+}
+
+
+#messageButton:hover {
+    color: #18d26e;
+    background-color: #fff;
+}
+
+
+.card{                          /* taking off borders on every card, more specically, in the menu collapse of messages and notifications */ 
+  border: none !important;
+}
