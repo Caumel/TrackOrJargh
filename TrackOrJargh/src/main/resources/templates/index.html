@@ -83,16 +83,17 @@
                     <ol class="carousel-indicators"></ol>
 
                     <div class="carousel-inner" role="listbox">
-
-                        <div class="carousel-item active" style="background-image: url(' /img/intro-carousel/1.jpg');">
+                        {{#slide}}
+                        <div class="carousel-item active" style="background-image: url('{{imagen}}');">
                             <div class="carousel-container">
                                 <div class="carousel-content">
-                                    <h2>TrackOrJargh</h2>
-                                    <p>TrackOrJArgh es un sitio web destinado al seguimiento de películas, series y libros, una manera de tener organizado el contenido que estás siguiendo.</p>
-                                    <a href="#featured-services" class="btn-get-started scrollto">Conócenos</a>
+                                    <h2>{{title}}</h2>
+                                    <p>{{content}}</p>
+                                    <a href="{{link}}" class="btn-get-started scrollto">{{button}}</a>
                                 </div>
                             </div>
                         </div>
+                        {{/slide}}
 
                         <div class="carousel-item" style="background-image: url(' /img/carousel-index/pelicula.jpg');">
                             <div class="carousel-container">

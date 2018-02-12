@@ -11,4 +11,28 @@ public class PageController {
 		
 		return "index";
 	}
+	
+	@RequestMapping("/contentList")
+	public String serveList(Model model) {
+		
+		return "contentList";
+	}
+	
+	@RequestMapping("/contentProfile")
+	public String serveProfile(Model model) {
+		
+		return "contentProfile";
+	}
+	
+	@RequestMapping("/userProfile")
+	public String serveUserProfile(Model model) {
+		
+		return "userProfile";
+	}
+	
+	@RequestMapping("/login")
+	public String serveLogin(Model model) {
+		
+		return "login";
+	}
 }
