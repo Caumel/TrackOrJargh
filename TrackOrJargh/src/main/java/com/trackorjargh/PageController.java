@@ -1,45 +1,41 @@
 package com.trackorjargh;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PageController {
-	@Autowired
-	private Slide slide;
-	private List<Slide> slides = new ArrayList<Slide>();
+
+	private List<Slide> slides = new ArrayList<>();
+	private List<Film> films = new ArrayList<>();
 	
-	public void initialize() {
-		Slide slide1 = new Slide();
-		Slide slide2 = new Slide();
-		Slide slide3 = new Slide();
-		Slide slide4 = new Slide();
-		slides.add(slide1);
-		for (Slide x : slides) {
-			x.setTitle("TrackOrJargh");
-			x.setContent("TrackOrJargh es una web para compartir opiniones sobre tu contenido favorito.");
-			x.setImage("img/carousel-index/serie.jpg");
-			x.setButton("Conócenos!");
-			x.setLink("#");
-			x.setActive(" ");
-		}
-		slides.get(0).setActive("active");
+	public PageController() {	
+		slides.add(new Slide("TrackOrJargh", "TrackOrJargh es una web para compartir opiniones sobre tu contenido favorito.", "img/carousel-index/serie.jpg", "#", " ", ""));
+		slides.add(new Slide("TrackOrJargh", "TrackOrJargh es una web para compartir opiniones sobre tu contenido favorito.", "img/carousel-index/serie.jpg", "#", " ", ""));
+		
+		films.add(new Film(1, "Guardianes de la Galaxia 2", "Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...", "img/Guardianes2.jpg", 2017));
+		films.add(new Film(2, "El Instante Más Oscuro", "Gran Bretaña, Segunda Guerra Mundial. Pocos días después\n de convertirse en Primer Ministro, Winston Churchill (Gary Oldman) debe tomar una difícil decisión. En pleno avance de las tropas nazis por toda Europa Occidental...", "img/portfolio/ElInstanteMasOscuro.jpg", 2010));
 	}
-	
+
 	@RequestMapping("/")
-	public String serveIndex(Model model) {
+	public String serveIndex(Model model) {		
+		
+		slides.get(0).setPositionList(true);
 		model.addAttribute("slide", slides);
+		
 		return "index";
 	}
 	
 	@RequestMapping("/contentList")
 	public String serveList(Model model) {
+		
+		films.get(0).setPositionList(true);
+		model.addAttribute("filmsCarousel", films);
+		model.addAttribute("films", films);
 		
 		return "contentList";
 	}

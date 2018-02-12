@@ -1,10 +1,22 @@
 package com.trackorjargh;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Slide {
-	private String title, content, image, button, link, active;
+	private String title;
+	private String content;
+	private String image;
+	private String button;
+	private String link;
+	private String active;
+	private boolean positionList;
+
+	public Slide(String title, String content, String image, String button, String link, String active) {
+		this.title = title;
+		this.content = content;
+		this.image = image;
+		this.button = button;
+		this.link = link;
+		this.active = active;
+	}
 
 	public String getActive() {
 		return active;
@@ -53,7 +65,12 @@ public class Slide {
 	public void setLink(String link) {
 		this.link = link;
 	}
-	
-	
-	
+
+	public boolean isPositionList() {
+		return positionList;
+	}
+
+	public void setPositionList(boolean positionList) {
+		this.positionList = positionList;
+	}
 }

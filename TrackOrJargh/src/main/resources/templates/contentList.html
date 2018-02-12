@@ -54,39 +54,17 @@
 				<ol class="carousel-indicators"></ol>
 
 				<div class="carousel-inner" role="listbox">
-
-					<div class="carousel-item active"
-						style="background-image: url('img/portfolio/ElInstanteMasOscuro.jpg');">
-						<div class="carousel-container">
-							<div class="carousel-content">
-								<h2>El Instante Más Oscuro</h2>
-								<p>Gran Bretaña, Segunda Guerra Mundial. Pocos días después
-									de convertirse en Primer Ministro, Winston Churchill (Gary
-									Oldman) debe tomar una difícil decisión. En pleno avance de las
-									tropas nazis por toda Europa Occidental...</p>
+					{{#filmsCarousel}}
+						<div class="carousel-item {{#positionList}}active{{/positionList}}"
+							style="background-image: url('{{image}}');">
+							<div class="carousel-container">
+								<div class="carousel-content">
+									<h2>{{name}}</h2>
+									<p>{{synopsis}}</p>
+								</div>
 							</div>
 						</div>
-					</div>
-
-					<div class="carousel-item"
-						style="background-image: url('img/intro-carousel/2.jpg');">
-						<div class="carousel-container">
-							<div class="carousel-content">
-								<h2>Película 2</h2>
-								<p>Sitio donde se supone que tiene que haber una sinopsis</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="carousel-item"
-						style="background-image: url('img/intro-carousel/3.jpg');">
-						<div class="carousel-container">
-							<div class="carousel-content">
-								<h2>Película 3</h2>
-								<p>Sitio donde se supone que tiene que haber una sinopsis</p>
-							</div>
-						</div>
-					</div>
+					{{/filmsCarousel}}
 				</div>
 
 				<a class="carousel-control-prev" href="#introCarousel" role="button"
@@ -120,179 +98,23 @@
 			</div>
 
 			<div class="row portfolio-container">
-
-				<div
-					class="col-lg-3 col-md-3 portfolio-item filter-app wow fadeInUp">
-					<div class="portfolio-wrap">
-						<figure style="background-image: url('img/Guardianes2.jpg');">
-							<p class="textPortfolio">Guardianes de la Galaxia Vol. 2
-								continúa las aventuras del equipo a medida que viajan cruzando
-								los confines del cosmos. Los Guardianes tendrán que luchar para
-								mantener su recién...</p>
-						</figure>
-
-						<div class="portfolio-info">
-							<h4>
-								<a href="contentProfile.html">Guardianes de la Galaxia 2</a>
-							</h4>
-							<p>2017</p>
+				{{#films}}
+					<div class="col-lg-3 col-md-3 portfolio-item filter-app wow fadeInUp">
+						<div class="portfolio-wrap">
+							<figure style="background-image: url('{{image}}');">
+								<p class="textPortfolio">{{synopsis}}</p>
+							</figure>
+	
+							<div class="portfolio-info">
+								<h4>
+									<a href="contentProfile.html">{{name}}</a>
+								</h4>
+								<p>{{year}}</p>
+							</div>
 						</div>
 					</div>
-				</div>
-
-				<div
-					class="col-lg-3 col-md-3 portfolio-item filter-web wow fadeInUp"
-					data-wow-delay="0.1s">
-					<div class="portfolio-wrap">
-						<figure style="background-image: url('img/portfolio/300.jpeg');">
-							<p class="textPortfolio">Guardianes de la Galaxia Vol. 2
-								continúa las aventuras del equipo a medida que viajan cruzando
-								los confines del cosmos. Los Guardianes tendrán que luchar para
-								mantener su recién...</p>
-						</figure>
-
-						<div class="portfolio-info">
-							<h4>
-								<a href="#">Pelicula 2</a>
-							</h4>
-							<p>Año</p>
-						</div>
-					</div>
-				</div>
-
-				<div
-					class="col-lg-3 col-md-3 portfolio-item filter-app wow fadeInUp"
-					data-wow-delay="0.2s">
-					<div class="portfolio-wrap">
-						<figure style="background-image: url('img/portfolio/300.jpeg');">
-							<p class="textPortfolio">Espartano Leónidas (Gerard Butler) y
-								sus 300 guerreros espartanos que pelearon a muerte contra el
-								"Dios-Rey" Persa Jerjes I...</p>
-						</figure>
-
-						<div class="portfolio-info">
-							<h4>
-								<a href="#">Pelicula 3</a>
-							</h4>
-							<p>Año</p>
-						</div>
-					</div>
-				</div>
-
-				<div
-					class="col-lg-3 col-md-3 portfolio-item filter-card wow fadeInUp">
-					<div class="portfolio-wrap">
-						<figure style="background-image: url('img/portfolio/300.jpeg');">
-							<p class="textPortfolio">Espartano Leónidas (Gerard Butler) y
-								sus 300 guerreros espartanos que pelearon a muerte contra el
-								"Dios-Rey" Persa Jerjes I...</p>
-						</figure>
-
-						<div class="portfolio-info">
-							<h4>
-								<a href="#">Pelicula 4</a>
-							</h4>
-							<p>Año</p>
-						</div>
-					</div>
-				</div>
-
-				<div
-					class="col-lg-3 col-md-3 portfolio-item filter-web wow fadeInUp"
-					data-wow-delay="0.1s">
-					<div class="portfolio-wrap">
-						<figure style="background-image: url('img/Guardianes2.jpg');">
-							<p class="textPortfolio">Espartano Leónidas (Gerard Butler) y
-								sus 300 guerreros espartanos que pelearon a muerte contra el
-								"Dios-Rey" Persa Jerjes I...</p>
-						</figure>
-
-						<div class="portfolio-info">
-							<h4>
-								<a href="contentProfile.html">Pelicula 5</a>
-							</h4>
-							<p>Año</p>
-						</div>
-					</div>
-				</div>
-
-				<div
-					class="col-lg-3 col-md-3 portfolio-item filter-app wow fadeInUp"
-					data-wow-delay="0.2s">
-					<div class="portfolio-wrap">
-						<figure style="background-image: url('img/portfolio/300.jpeg');">
-							<p class="textPortfolio">Espartano Leónidas (Gerard Butler) y
-								sus 300 guerreros espartanos que pelearon a muerte contra el
-								"Dios-Rey" Persa Jerjes I...</p>
-						</figure>
-
-						<div class="portfolio-info">
-							<h4>
-								<a href="#">Pelicula 6</a>
-							</h4>
-							<p>Año</p>
-						</div>
-					</div>
-				</div>
-
-				<div
-					class="col-lg-3 col-md-3 portfolio-item filter-card wow fadeInUp">
-					<div class="portfolio-wrap">
-						<figure style="background-image: url('img/portfolio/300.jpeg');">
-							<p class="textPortfolio">Espartano Leónidas (Gerard Butler) y
-								sus 300 guerreros espartanos que pelearon a muerte contra el
-								"Dios-Rey" Persa Jerjes I...</p>
-						</figure>
-
-						<div class="portfolio-info">
-							<h4>
-								<a href="#">Pelicula 7</a>
-							</h4>
-							<p>Año</p>
-						</div>
-					</div>
-				</div>
-
-				<div
-					class="col-lg-3 col-md-3 portfolio-item filter-card wow fadeInUp"
-					data-wow-delay="0.1s">
-					<div class="portfolio-wrap">
-						<figure style="background-image: url('img/portfolio/300.jpeg');">
-							<p class="textPortfolio">Espartano Leónidas (Gerard Butler) y
-								sus 300 guerreros espartanos que pelearon a muerte contra el
-								"Dios-Rey" Persa Jerjes I...</p>
-						</figure>
-
-						<div class="portfolio-info">
-							<h4>
-								<a href="#">Pelicula 8</a>
-							</h4>
-							<p>Año</p>
-						</div>
-					</div>
-				</div>
-
-				<div
-					class="col-lg-3 col-md-3 portfolio-item filter-web wow fadeInUp"
-					data-wow-delay="0.2s">
-					<div class="portfolio-wrap">
-						<figure style="background-image: url('img/portfolio/300.jpeg');">
-							<p class="textPortfolio">Espartano Leónidas (Gerard Butler) y
-								sus 300 guerreros espartanos que pelearon a muerte contra el
-								"Dios-Rey" Persa Jerjes I...</p>
-						</figure>
-
-						<div class="portfolio-info">
-							<h4>
-								<a href="#">Pelicula 9</a>
-							</h4>
-							<p>Año</p>
-						</div>
-					</div>
-				</div>
-
+				{{/films}}
 			</div>
-
 		</div>
 	</section>
 	</main>
