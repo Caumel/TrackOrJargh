@@ -1,14 +1,39 @@
 package com.trackorjargh;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PageController {
+	@Autowired
+	private Slide slide;
+	private List<Slide> slides;
+	
+	public void initialize() {
+		Slide slide1 = new Slide();
+		Slide slide2 = new Slide();
+		Slide slide3 = new Slide();
+		Slide slide4 = new Slide();
+		slides = Arrays.asList(slide1, slide2, slide3, slide4);
+		for (Slide x : slides) {
+			x.setTitle("TrackOrJargh");
+			x.setContent("TrackOrJargh es una web para compartir opiniones sobre tu contenido favorito.");
+			x.setImage("img/carousel-index/serie.jpg");
+			x.setButton("Conócenos!");
+			x.setLink("#");
+			x.setActive(" ");
+		}
+		slide1.setActive("active");		
+	}
+	
 	@RequestMapping("/")
 	public String serveIndex(Model model) {
-		
+		model.addAttribute("slide", slides);
 		return "index";
 	}
 	
