@@ -1,5 +1,6 @@
 package com.trackorjargh;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
 	@Autowired
 	private Slide slide;
-	private List<Slide> slides;
+	private List<Slide> slides = new ArrayList<Slide>();
 	
 	public void initialize() {
 		Slide slide1 = new Slide();
 		Slide slide2 = new Slide();
 		Slide slide3 = new Slide();
 		Slide slide4 = new Slide();
-		slides = Arrays.asList(slide1, slide2, slide3, slide4);
+		slides.add(slide1);
 		for (Slide x : slides) {
 			x.setTitle("TrackOrJargh");
 			x.setContent("TrackOrJargh es una web para compartir opiniones sobre tu contenido favorito.");
@@ -28,7 +29,7 @@ public class PageController {
 			x.setLink("#");
 			x.setActive(" ");
 		}
-		slide1.setActive("active");		
+		slides.get(0).setActive("active");
 	}
 	
 	@RequestMapping("/")
