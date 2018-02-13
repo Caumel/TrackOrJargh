@@ -6,7 +6,7 @@ public class Film {
 	private String synopsis;	
 	private String image;
 	private int year;
-	private boolean positionList;
+	private boolean firstInList;
 	
 	public Film(Integer id, String name, String synopsis, String image, int year) {
 		this.id = id;
@@ -58,11 +58,11 @@ public class Film {
 	}
 
 	public boolean isPositionList() {
-		return positionList;
+		return firstInList;
 	}
 
-	public void setPositionList(boolean positionList) {
-		this.positionList = positionList;
+	public void setFirstInList(boolean isFirst) {
+		this.firstInList = isFirst;
 	}
 	
 }

@@ -24,7 +24,7 @@ public class PageController {
 	@RequestMapping("/")
 	public String serveIndex(Model model) {		
 		
-		slides.get(0).setPositionList(true);
+		slides.get(0).setFirstInList(true);
 		model.addAttribute("slide", slides);
 		
 		return "index";
@@ -33,7 +33,7 @@ public class PageController {
 	@RequestMapping("/contentList")
 	public String serveList(Model model) {
 		
-		films.get(0).setPositionList(true);
+		films.get(0).setFirstInList(true);
 		model.addAttribute("filmsCarousel", films);
 		model.addAttribute("films", films);
 		

@@ -7,7 +7,7 @@ public class Slide {
 	private String button;
 	private String link;
 	private String active;
-	private boolean positionList;
+	private boolean firstInList;
 
 	public Slide(String title, String content, String image, String button, String link, String active) {
 		this.title = title;
@@ -67,10 +67,10 @@ public class Slide {
 	}
 
 	public boolean isPositionList() {
-		return positionList;
+		return firstInList;
 	}
 
-	public void setPositionList(boolean positionList) {
-		this.positionList = positionList;
+	public void setFirstInList(boolean isFirst) {
+		this.firstInList = isFirst;
 	}
 }
