@@ -60,18 +60,11 @@
 
 				<div class="carousel-inner" role="listbox">
 					<div class="carousel-item active"
-						style="background-image: url('img/Guardianes2.jpg');">
+						style="background-image: url('{{film.image}}');">
 						<div class="carousel-container">
 							<div class="carousel-content">
 								<h2>Sinopsis</h2>
-								<p>Continúan las aventuras del equipo en su travesía por los
-									confines del cosmos. Los Guardianes deberán luchar para
-									mantener unida a su nueva familia mientras intentan resolver el
-									misterio de los verdaderos orígenes de Peter Quill. Viejos
-									rivales se convertirán en nuevos aliados, y queridos personajes
-									de los cómics clásicos acudirán en ayuda de nuestros héroes a
-									medida que el universo cinematográfico de Marvel continúa
-									expandiéndose.</p>
+								<p>{{film.synopsis}}</p>
 							</div>
 						</div>
 					</div>
@@ -96,7 +89,7 @@
 			<div class="text-center videoYoutube" style="width: 100%;"
 				data-wow-duration="1.4s">
 				<iframe style="width: 100%; height: 400px;"
-					src="https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0"
+					src="{{film.trailer}}"
 					frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 			</div>
 
@@ -107,9 +100,9 @@
 						<i class="ion-ios-color-wand-outline"></i>
 					</div>
 					<h4 class="title">
-						<a href="">Director</a>
+						<a href="">Director/es</a>
 					</h4>
-					<p class="description">James Gunn</p>
+					<p class="description">{{#directors}}{{.}}{{/directors}}</p>
 				</div>
 				<div class="col-lg-6 col-md-6 box wow bounceInUp"
 					data-wow-duration="1.4s">
@@ -119,10 +112,7 @@
 					<h4 class="title">
 						<a href="">Actores</a>
 					</h4>
-					<p class="description">Protagonistas, Chris Pratt, Zoe Saldana,
-						Bradley Cooper, Dave Bautista, Vin Diesel, Michael Rooker, Karen
-						Gillan, Pom Klementieff, Elizabeth Debicki, Chris Sullivan, Sean
-						Gunn, Sylvester Stallone, Kurt Russell.</p>
+					<p class="description">{{#actors}}{{.}}{{/actors}}</p>
 				</div>
 			</div>
 

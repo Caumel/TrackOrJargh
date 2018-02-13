@@ -20,10 +20,10 @@ public class PageController {
 		slides.add(new Slide("TrackOrJargh", "TrackOrJargh es una web para compartir opiniones sobre tu contenido favorito.", "img/carousel-index/serie.jpg", "#", " ", ""));
 		slides.add(new Slide("TrackOrJargh", "TrackOrJargh es una web para compartir opiniones sobre tu contenido favorito.", "img/carousel-index/serie.jpg", "#", " ", ""));
 		
-		films.add(new Film(1, "Guardianes de la Galaxia 2", "Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...", "img/Guardianes2.jpg", 2017));
-		films.add(new Film(2, "El Instante Más Oscuro", "Gran Bretaña, Segunda Guerra Mundial. Pocos días después\n de convertirse en Primer Ministro, Winston Churchill (Gary Oldman) debe tomar una difícil decisión. En pleno avance de las tropas nazis por toda Europa Occidental...", "img/portfolio/ElInstanteMasOscuro.jpg", 2010));
+		films.add(new Film(1, "Guardianes de la Galaxia 2", "Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...", "img/Guardianes2.jpg", 2017, true, "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0", 1.6, null, null, null));
+		films.add(new Film(2, "El Instante Más Oscuro", "Gran Bretaña, Segunda Guerra Mundial. Pocos días después\n de convertirse en Primer Ministro, Winston Churchill (Gary Oldman) debe tomar una difícil decisión. En pleno avance de las tropas nazis por toda Europa Occidental...", "img/portfolio/ElInstanteMasOscuro.jpg", 2010, true, "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0", 1.6, null, null, null));
 		
-		contents.add(new Film(2, "El Instante Más Oscuro", "Gran Bretaña, Segunda Guerra Mundial. Pocos días después\n de convertirse en Primer Ministro, Winston Churchill (Gary Oldman) debe tomar una difícil decisión. En pleno avance de las tropas nazis por toda Europa Occidental...", "img/portfolio/ElInstanteMasOscuro.jpg", 2010));
+		contents.add(new Film(1, "Guardianes de la Galaxia 2", "Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...", "img/Guardianes2.jpg", 2017, true, "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0", 1.6, null, null, null));
 		
 		list.add(new ListContent("lista", true, contents));
 		
@@ -51,6 +51,7 @@ public class PageController {
 	
 	@RequestMapping("/contentProfile")
 	public String serveProfile(Model model) {
+		model.addAttribute("film", new Film(1, "Guardianes de la Galaxia 2", "Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...", "img/Guardianes2.jpg", 2017, true, "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0", 1.6, null, null, null));
 		
 		return "contentProfile";
 	}
