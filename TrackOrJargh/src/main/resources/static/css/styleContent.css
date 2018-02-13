@@ -102,3 +102,27 @@
     color: #18d26e;
     background-color: transparent;
 }
+
+/* Episode section */
+
+#v-pills-tab{
+    border-radius: 4px 4px 4px 4px;
+    background-color: #f7f7f7;
+}
+
+.form-report {
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: black;
+    background-color: #18d26e;
+}
+
+.btn-link {
+    font-weight: 400;
+    color: #18d26e;
+    background-color: transparent;
+}
