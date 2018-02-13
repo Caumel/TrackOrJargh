@@ -1,6 +1,6 @@
 package com.trackorjargh;
 
-public class Film {
+public class Film implements Content{
 	private Integer id;
 	private String name;
 	private String synopsis;	

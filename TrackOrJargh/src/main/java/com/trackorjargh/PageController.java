@@ -12,6 +12,9 @@ public class PageController {
 
 	private List<Slide> slides = new ArrayList<>();
 	private List<Film> films = new ArrayList<>();
+	private User user;
+	private List<ListContent> list = new ArrayList<>();
+	private List<Content> contents = new ArrayList<>();
 	
 	public PageController() {	
 		slides.add(new Slide("TrackOrJargh", "TrackOrJargh es una web para compartir opiniones sobre tu contenido favorito.", "img/carousel-index/serie.jpg", "#", " ", ""));
@@ -19,6 +22,12 @@ public class PageController {
 		
 		films.add(new Film(1, "Guardianes de la Galaxia 2", "Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...", "img/Guardianes2.jpg", 2017));
 		films.add(new Film(2, "El Instante Más Oscuro", "Gran Bretaña, Segunda Guerra Mundial. Pocos días después\n de convertirse en Primer Ministro, Winston Churchill (Gary Oldman) debe tomar una difícil decisión. En pleno avance de las tropas nazis por toda Europa Occidental...", "img/portfolio/ElInstanteMasOscuro.jpg", 2010));
+		
+		contents.add(new Film(2, "El Instante Más Oscuro", "Gran Bretaña, Segunda Guerra Mundial. Pocos días después\n de convertirse en Primer Ministro, Winston Churchill (Gary Oldman) debe tomar una difícil decisión. En pleno avance de las tropas nazis por toda Europa Occidental...", "img/portfolio/ElInstanteMasOscuro.jpg", 2010));
+		
+		list.add(new ListContent("lista", true, contents));
+		
+		user = new User(1, "Oscar", "1234", "mail@mail.com", list, "img/userFoto.jpg");
 	}
 
 	@RequestMapping("/")
@@ -48,6 +57,8 @@ public class PageController {
 	
 	@RequestMapping("/userProfile")
 	public String serveUserProfile(Model model) {
+		model.addAttribute("user", user);
+		model.addAttribute("lists", user.getLists());
 		
 		return "userProfile";
 	}
