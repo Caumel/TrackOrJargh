@@ -1,4 +1,4 @@
-package com.trackorjargh;
+package com.trackorjargh.Controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,12 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.trackorjargh.Class.Content;
+import com.trackorjargh.Class.Film;
+import com.trackorjargh.Class.ListContent;
+import com.trackorjargh.Class.Slide;
+import com.trackorjargh.Class.User;
 
 @Controller
 public class PageController {

@@ -1,4 +1,4 @@
-package com.trackorjargh;
+package com.trackorjargh.Class;
 
 public class Slide {
 	private String title;

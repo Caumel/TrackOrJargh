@@ -1,4 +1,4 @@
-package com.trackorjargh;
+package com.trackorjargh.Class;
 
 import java.util.List;
 

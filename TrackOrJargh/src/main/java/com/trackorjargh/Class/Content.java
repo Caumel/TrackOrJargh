@@ -1,4 +1,4 @@
-package com.trackorjargh;
+package com.trackorjargh.Class;
 
 public interface Content {
 	public String name = null;
