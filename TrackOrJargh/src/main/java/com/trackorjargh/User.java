@@ -9,6 +9,7 @@ public class User {
 	private String email;
 	private List<ListContent> lists;
 	private String image;
+	private String type;
 	
 	public User() {
 		this.id = null;
@@ -17,15 +18,17 @@ public class User {
 		this.email = null;
 		this.lists = null;
 		this.image = null;
+		this.type = null;
 	}
 	
-	public User(Integer id, String nickname, String password, String email, List<ListContent> lists, String image) {
+	public User(Integer id, String nickname, String password, String email, List<ListContent> lists, String image, String type) {
 		this.id = id;
 		this.nickname = nickname;
 		this.password = password;
 		this.email = email;
 		this.lists = lists;
 		this.image = image;
+		this.type = type;
 	}
 
 	public Integer getId() {
@@ -74,5 +77,14 @@ public class User {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}	
+	
 }
