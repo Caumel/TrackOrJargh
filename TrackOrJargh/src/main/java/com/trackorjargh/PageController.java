@@ -27,7 +27,7 @@ public class PageController {
 		
 		list.add(new ListContent("lista", true, contents));
 		
-		user = new User(1, "Oscar", "1234", "mail@mail.com", list, "img/userFoto.jpg");
+		user = new User(1, "Oscar", "1234", "mail@mail.com", list, "img/userFoto.jpg", "User");
 	}
 
 	@RequestMapping("/")
