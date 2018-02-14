@@ -7,25 +7,25 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class PointsShow {
+public class PointFilm {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@OneToOne
-	private Show show;
+	private Film film;
 	
 	@OneToOne
 	private User user;
 	
 	private Long points;
 
-	public PointsShow() {
+	public PointFilm() {
 	}
 
-	public PointsShow(Show show, User user, Long points) {
-		this.show = show;
+	public PointFilm(Film film, User user, Long points) {
+		this.film = film;
 		this.user = user;
 		this.points = points;
 	}
@@ -38,12 +38,12 @@ public class PointsShow {
 		this.id = id;
 	}
 
-	public Show getShow() {
-		return show;
+	public Film getFilm() {
+		return film;
 	}
 
-	public void setShow(Show show) {
-		this.show = show;
+	public void setFilm(Film film) {
+		this.film = film;
 	}
 
 	public User getUser() {

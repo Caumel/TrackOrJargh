@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class PointsBook {
+public class PointBook {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,10 +21,10 @@ public class PointsBook {
 	
 	private Long points;
 
-	public PointsBook() {
+	public PointBook() {
 	}
 
-	public PointsBook(Book book, User user, Long points) {
+	public PointBook(Book book, User user, Long points) {
 		this.book = book;
 		this.user = user;
 		this.points = points;
