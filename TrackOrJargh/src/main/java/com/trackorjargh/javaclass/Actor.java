@@ -1,4 +1,4 @@
-package com.trackorjargh.Class;
+package com.trackorjargh.javaclass;
 
 import java.util.List;
 
@@ -9,14 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Director {
+public class Actor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private String name;
 	private String lastName;
-	private Integer birthDay;
+	private Integer birthDay;	
 	
 	@ManyToMany
 	private List<Film> films;
@@ -24,10 +24,10 @@ public class Director {
 	@ManyToMany
 	private List<Film> shows;
 
-	public Director() {
+	public Actor() {
 	}
 
-	public Director(Long id, String name, String lastName, Integer birthDay, List<Film> films, List<Film> shows) {
+	public Actor(Long id, String name, String lastName, Integer birthDay, List<Film> films, List<Film> shows) {
 		this.id = id;
 		this.name = name;
 		this.lastName = lastName;

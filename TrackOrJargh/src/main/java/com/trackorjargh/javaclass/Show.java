@@ -1,4 +1,4 @@
-package com.trackorjargh.Class;
+package com.trackorjargh.javaclass;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Book {
+public class Show {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -17,26 +17,30 @@ public class Book {
 	private String name;
 	private String synopsis;	
 	private String image;
+	private String trailer;
 	private int year;
 	private boolean firstInList;
-	private double points;
-
+	
 	@ManyToMany
-	private List<Author> authors;
+	private List<Actor> actors;
+	
+	@ManyToMany
+	private List<Director> directors;
 
-	public Book() {
+	public Show() {
 	}
 
-	public Book(Long id, String name, String synopsis, String image, int year, boolean firstInList, double points,
-			List<Author> authors) {
+	public Show(Long id, String name, String synopsis, String image, String trailer, int year, boolean firstInList,
+			List<Actor> actors, List<Director> directors) {
 		this.id = id;
 		this.name = name;
 		this.synopsis = synopsis;
 		this.image = image;
+		this.trailer = trailer;
 		this.year = year;
 		this.firstInList = firstInList;
-		this.points = points;
-		this.authors = authors;
+		this.actors = actors;
+		this.directors = directors;
 	}
 
 	public Long getId() {
@@ -71,6 +75,14 @@ public class Book {
 		this.image = image;
 	}
 
+	public String getTrailer() {
+		return trailer;
+	}
+
+	public void setTrailer(String trailer) {
+		this.trailer = trailer;
+	}
+
 	public int getYear() {
 		return year;
 	}
@@ -87,19 +99,19 @@ public class Book {
 		this.firstInList = firstInList;
 	}
 
-	public double getPoints() {
-		return points;
+	public List<Actor> getActors() {
+		return actors;
 	}
 
-	public void setPoints(double points) {
-		this.points = points;
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
 	}
 
-	public List<Author> getAuthors() {
-		return authors;
+	public List<Director> getDirectors() {
+		return directors;
 	}
 
-	public void setAuthors(List<Author> authors) {
-		this.authors = authors;
+	public void setDirectors(List<Director> directors) {
+		this.directors = directors;
 	}
 }

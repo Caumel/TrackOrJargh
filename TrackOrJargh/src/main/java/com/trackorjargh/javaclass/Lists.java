@@ -1,4 +1,4 @@
-package com.trackorjargh.Class;
+package com.trackorjargh.javaclass;
 
 import java.util.List;
 import javax.persistence.Entity;

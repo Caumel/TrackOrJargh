@@ -1,4 +1,4 @@
-package com.trackorjargh.Class;
+package com.trackorjargh.javaclass;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,28 +7,28 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class CommentBook {
+public class PointsShow {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@OneToOne
-	private Book book;
+	private Show show;
 	
 	@OneToOne
 	private User user;
 	
-	private String comment;
+	private Long points;
 
-	public CommentBook() {
+	public PointsShow() {
 	}
 
-	public CommentBook(Long id, Book book, User user, String comment) {
+	public PointsShow(Long id, Show show, User user, Long points) {
 		this.id = id;
-		this.book = book;
+		this.show = show;
 		this.user = user;
-		this.comment = comment;
+		this.points = points;
 	}
 
 	public Long getId() {
@@ -39,12 +39,12 @@ public class CommentBook {
 		this.id = id;
 	}
 
-	public Book getBook() {
-		return book;
+	public Show getShow() {
+		return show;
 	}
 
-	public void setBook(Book book) {
-		this.book = book;
+	public void setShow(Show show) {
+		this.show = show;
 	}
 
 	public User getUser() {
@@ -55,11 +55,11 @@ public class CommentBook {
 		this.user = user;
 	}
 
-	public String getComment() {
-		return comment;
+	public Long getPoints() {
+		return points;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setPoints(Long points) {
+		this.points = points;
 	}
 }

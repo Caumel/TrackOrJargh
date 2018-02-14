@@ -1,4 +1,4 @@
-package com.trackorjargh.Class;
+package com.trackorjargh.javaclass;
 
 import java.util.List;
 
@@ -9,7 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Show {
+public class Film{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -27,10 +28,10 @@ public class Show {
 	@ManyToMany
 	private List<Director> directors;
 
-	public Show() {
+	public Film() {
 	}
 
-	public Show(Long id, String name, String synopsis, String image, String trailer, int year, boolean firstInList,
+	public Film(Long id, String name, String synopsis, String image, String trailer, int year, boolean firstInList,
 			List<Actor> actors, List<Director> directors) {
 		this.id = id;
 		this.name = name;

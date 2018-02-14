@@ -1,4 +1,4 @@
-package com.trackorjargh.Class;
+package com.trackorjargh.javaclass;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,26 +7,26 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class CommentShow {
+public class CommentFilm {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@OneToOne
-	private Show show;
+	private Film film;
 	
 	@OneToOne
 	private User user;
 	
 	private String comment;
 
-	public CommentShow() {
+	public CommentFilm() {
 	}
 
-	public CommentShow(Long id, Show show, User user, String comment) {
+	public CommentFilm(Long id, Film film, User user, String comment) {
 		this.id = id;
-		this.show = show;
+		this.film = film;
 		this.user = user;
 		this.comment = comment;
 	}
@@ -39,12 +39,12 @@ public class CommentShow {
 		this.id = id;
 	}
 
-	public Show getShow() {
-		return show;
+	public Film getFilm() {
+		return film;
 	}
 
-	public void setShow(Show show) {
-		this.show = show;
+	public void setFilm(Film film) {
+		this.film = film;
 	}
 
 	public User getUser() {
@@ -62,4 +62,6 @@ public class CommentShow {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
+	
 }
