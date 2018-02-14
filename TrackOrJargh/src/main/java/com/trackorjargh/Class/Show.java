@@ -9,8 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Film{
-	
+public class Show {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -28,10 +27,10 @@ public class Film{
 	@ManyToMany
 	private List<Director> directors;
 
-	public Film() {
+	public Show() {
 	}
 
-	public Film(Long id, String name, String synopsis, String image, String trailer, int year, boolean firstInList,
+	public Show(Long id, String name, String synopsis, String image, String trailer, int year, boolean firstInList,
 			List<Actor> actors, List<Director> directors) {
 		this.id = id;
 		this.name = name;

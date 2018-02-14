@@ -9,8 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Film{
-	
+public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -18,30 +17,26 @@ public class Film{
 	private String name;
 	private String synopsis;	
 	private String image;
-	private String trailer;
 	private int year;
 	private boolean firstInList;
-	
-	@ManyToMany
-	private List<Actor> actors;
-	
-	@ManyToMany
-	private List<Director> directors;
+	private double points;
 
-	public Film() {
+	@ManyToMany
+	private List<Author> authors;
+
+	public Book() {
 	}
 
-	public Film(Long id, String name, String synopsis, String image, String trailer, int year, boolean firstInList,
-			List<Actor> actors, List<Director> directors) {
+	public Book(Long id, String name, String synopsis, String image, int year, boolean firstInList, double points,
+			List<Author> authors) {
 		this.id = id;
 		this.name = name;
 		this.synopsis = synopsis;
 		this.image = image;
-		this.trailer = trailer;
 		this.year = year;
 		this.firstInList = firstInList;
-		this.actors = actors;
-		this.directors = directors;
+		this.points = points;
+		this.authors = authors;
 	}
 
 	public Long getId() {
@@ -76,14 +71,6 @@ public class Film{
 		this.image = image;
 	}
 
-	public String getTrailer() {
-		return trailer;
-	}
-
-	public void setTrailer(String trailer) {
-		this.trailer = trailer;
-	}
-
 	public int getYear() {
 		return year;
 	}
@@ -100,19 +87,19 @@ public class Film{
 		this.firstInList = firstInList;
 	}
 
-	public List<Actor> getActors() {
-		return actors;
+	public double getPoints() {
+		return points;
 	}
 
-	public void setActors(List<Actor> actors) {
-		this.actors = actors;
+	public void setPoints(double points) {
+		this.points = points;
 	}
 
-	public List<Director> getDirectors() {
-		return directors;
+	public List<Author> getAuthors() {
+		return authors;
 	}
 
-	public void setDirectors(List<Director> directors) {
-		this.directors = directors;
+	public void setAuthors(List<Author> authors) {
+		this.authors = authors;
 	}
 }

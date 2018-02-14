@@ -1,41 +1,45 @@
 package com.trackorjargh.Class;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
 public class User {
-	private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
 	private String nickname;
 	private String password;
 	private String email;
-	private List<ListContent> lists;
 	private String image;
 	private String type;
 	
+	@OneToMany
+	private List<Lists> lists;
+
 	public User() {
-		this.id = null;
-		this.nickname = null;
-		this.password = null;
-		this.email = null;
-		this.lists = null;
-		this.image = null;
-		this.type = null;
 	}
-	
-	public User(Integer id, String nickname, String password, String email, List<ListContent> lists, String image, String type) {
+
+	public User(Long id, String nickname, String password, String email, String image, String type, List<Lists> lists) {
 		this.id = id;
 		this.nickname = nickname;
 		this.password = password;
 		this.email = email;
-		this.lists = lists;
 		this.image = image;
 		this.type = type;
+		this.lists = lists;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -63,14 +67,6 @@ public class User {
 		this.email = email;
 	}
 
-	public List<ListContent> getLists() {
-		return lists;
-	}
-
-	public void setLists(List<ListContent> lists) {
-		this.lists = lists;
-	}
-
 	public String getImage() {
 		return image;
 	}
@@ -85,6 +81,13 @@ public class User {
 
 	public void setType(String type) {
 		this.type = type;
-	}	
-	
+	}
+
+	public List<Lists> getLists() {
+		return lists;
+	}
+
+	public void setLists(List<Lists> lists) {
+		this.lists = lists;
+	}
 }
