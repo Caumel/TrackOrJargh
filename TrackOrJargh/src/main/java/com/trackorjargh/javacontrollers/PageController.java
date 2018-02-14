@@ -8,8 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.trackorjargh.javaclass.Actor;
+import com.trackorjargh.javaclass.Author;
+import com.trackorjargh.javaclass.Book;
+import com.trackorjargh.javaclass.Director;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javarepository.ActorRepository;
+import com.trackorjargh.javarepository.AuthorRepository;
+import com.trackorjargh.javarepository.BookRepository;
+import com.trackorjargh.javarepository.DirectorRepository;
 import com.trackorjargh.javarepository.FilmRepository;
 
 @Controller
@@ -19,6 +25,12 @@ public class PageController {
 	private FilmRepository filmRepository;
 	@Autowired
 	private ActorRepository actorRepository;
+	@Autowired
+	private DirectorRepository directorRepository;
+	@Autowired
+	private AuthorRepository authorRepository;
+	@Autowired
+	private BookRepository bookRepository;
 	
 	
 	@PostConstruct
@@ -26,10 +38,20 @@ public class PageController {
 		Actor a1 = new Actor("Chiss", "Patt", 1979);
 		actorRepository.save(a1);
 		
+		Director d1 = new Director("James", "Gunn", 1970);
+		directorRepository.save(d1);
+		
 		Film f1 = new Film("Guardianes de la Galaxia 2", "Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...", "img/Guardianes2.jpg", "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0", 2017);
 		f1.getActors().add(a1);
-		
+		f1.getDirectors().add(d1);
 		filmRepository.save(f1);
+		
+		Author au1 = new Author("Suzanne", "Collins", 1964);
+		authorRepository.save(au1);
+		
+		Book b1 = new Book("Los Juegos del Hambre", "Los juegos del hambre se desarrolla en un país llamado Panem, lo que es en realidad una civilización postapocalíptica ubicada en lo que antes era América del Norte.", "", 2008);
+		b1.getAuthors().add(au1);
+		bookRepository.save(b1);
 	}
 
 	@RequestMapping("/")

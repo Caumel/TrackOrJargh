@@ -24,11 +24,10 @@ public class Author {
 	public Author() {
 	}
 
-	public Author(String name, String lastName, Integer birthDay, List<Book> books) {
+	public Author(String name, String lastName, Integer birthDay) {
 		this.name = name;
 		this.lastName = lastName;
 		this.birthDay = birthDay;
-		this.books = books;
 	}
 
 	public Long getId() {

@@ -18,21 +18,19 @@ public class Director {
 	private String lastName;
 	private Integer birthDay;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="directors")
 	private List<Film> films;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="directors")
 	private List<Film> shows;
 
 	public Director() {
 	}
 
-	public Director(String name, String lastName, Integer birthDay, List<Film> films, List<Film> shows) {
+	public Director(String name, String lastName, Integer birthDay) {
 		this.name = name;
 		this.lastName = lastName;
 		this.birthDay = birthDay;
-		this.films = films;
-		this.shows = shows;
 	}
 
 	public Long getId() {
