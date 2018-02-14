@@ -24,8 +24,7 @@ public class PointsShow {
 	public PointsShow() {
 	}
 
-	public PointsShow(Long id, Show show, User user, Long points) {
-		this.id = id;
+	public PointsShow(Show show, User user, Long points) {
 		this.show = show;
 		this.user = user;
 		this.points = points;

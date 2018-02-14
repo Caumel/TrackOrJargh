@@ -27,8 +27,7 @@ public class Director {
 	public Director() {
 	}
 
-	public Director(Long id, String name, String lastName, Integer birthDay, List<Film> films, List<Film> shows) {
-		this.id = id;
+	public Director(String name, String lastName, Integer birthDay, List<Film> films, List<Film> shows) {
 		this.name = name;
 		this.lastName = lastName;
 		this.birthDay = birthDay;

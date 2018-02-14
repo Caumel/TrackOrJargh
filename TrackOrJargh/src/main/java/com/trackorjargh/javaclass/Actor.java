@@ -1,5 +1,6 @@
 package com.trackorjargh.javaclass;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,22 +19,19 @@ public class Actor {
 	private String lastName;
 	private Integer birthDay;	
 	
-	@ManyToMany
-	private List<Film> films;
+	@ManyToMany(mappedBy="actors")
+	private List<Film> films = new LinkedList<>();
 	
-	@ManyToMany
-	private List<Film> shows;
+	@ManyToMany(mappedBy="actors")
+	private List<Film> shows = new LinkedList<>();
 
 	public Actor() {
 	}
 
-	public Actor(Long id, String name, String lastName, Integer birthDay, List<Film> films, List<Film> shows) {
-		this.id = id;
+	public Actor(String name, String lastName, Integer birthDay) {
 		this.name = name;
 		this.lastName = lastName;
 		this.birthDay = birthDay;
-		this.films = films;
-		this.shows = shows;
 	}
 
 	public Long getId() {

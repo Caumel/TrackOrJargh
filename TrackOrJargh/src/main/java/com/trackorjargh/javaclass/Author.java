@@ -18,14 +18,13 @@ public class Author {
 	private String lastName;
 	private Integer birthDay;	
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="authors")
 	private List<Book> books;
 
 	public Author() {
 	}
 
-	public Author(Long id, String name, String lastName, Integer birthDay, List<Book> books) {
-		this.id = id;
+	public Author(String name, String lastName, Integer birthDay, List<Book> books) {
 		this.name = name;
 		this.lastName = lastName;
 		this.birthDay = birthDay;

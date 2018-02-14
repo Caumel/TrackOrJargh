@@ -1,40 +1,35 @@
 package com.trackorjargh.javacontrollers;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.trackorjargh.javaclass.Actor;
 import com.trackorjargh.javaclass.Film;
-import com.trackorjargh.javaclass.Lists;
-import com.trackorjargh.javaclass.User;
+import com.trackorjargh.javarepository.ActorRepository;
+import com.trackorjargh.javarepository.FilmRepository;
 
 @Controller
 public class PageController {
 
-	/*
-	private List<Slide> slides = new ArrayList<>();
-	private List<Film> films = new ArrayList<>();
-	private User user;
-	private List<ListContent> list = new ArrayList<>();
-	private List<Content> contents = new ArrayList<>();*/
+	@Autowired
+	private FilmRepository filmRepository;
+	@Autowired
+	private ActorRepository actorRepository;
 	
-	public PageController() {	
-		/*
-		slides.add(new Slide("TrackOrJargh", "TrackOrJargh es una web para compartir opiniones sobre tu contenido favorito.", "img/carousel-index/serie.jpg", "#", " ", ""));
-		slides.add(new Slide("TrackOrJargh", "TrackOrJargh es una web para compartir opiniones sobre tu contenido favorito.", "img/carousel-index/serie.jpg", "#", " ", ""));
+	
+	@PostConstruct
+	public void init() {
+		Actor a1 = new Actor("Chiss", "Patt", 1979);
+		actorRepository.save(a1);
 		
-		films.add(new Film(1, "Guardianes de la Galaxia 2", "Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...", "img/Guardianes2.jpg", 2017, true, "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0", 1.6, null, null, null));
-		films.add(new Film(2, "El Instante Más Oscuro", "Gran Bretaña, Segunda Guerra Mundial. Pocos días después\n de convertirse en Primer Ministro, Winston Churchill (Gary Oldman) debe tomar una difícil decisión. En pleno avance de las tropas nazis por toda Europa Occidental...", "img/portfolio/ElInstanteMasOscuro.jpg", 2010, true, "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0", 1.6, null, null, null));
+		Film f1 = new Film("Guardianes de la Galaxia 2", "Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...", "img/Guardianes2.jpg", "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0", 2017);
+		f1.getActors().add(a1);
 		
-		contents.add(new Film(1, "Guardianes de la Galaxia 2", "Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...", "img/Guardianes2.jpg", 2017, true, "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0", 1.6, null, null, null));
-		
-		list.add(new ListContent("lista", true, contents));
-		
-		user = new User(1, "Oscar", "1234", "mail@mail.com", list, "img/userFoto.jpg", "User");
-		*/
+		filmRepository.save(f1);
 	}
 
 	@RequestMapping("/")

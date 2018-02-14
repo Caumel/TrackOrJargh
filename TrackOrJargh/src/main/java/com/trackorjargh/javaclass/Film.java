@@ -1,5 +1,6 @@
 package com.trackorjargh.javaclass;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -23,25 +24,20 @@ public class Film{
 	private boolean firstInList;
 	
 	@ManyToMany
-	private List<Actor> actors;
+	private List<Actor> actors = new LinkedList<>();
 	
 	@ManyToMany
-	private List<Director> directors;
+	private List<Director> directors = new LinkedList<>();
 
 	public Film() {
 	}
 
-	public Film(Long id, String name, String synopsis, String image, String trailer, int year, boolean firstInList,
-			List<Actor> actors, List<Director> directors) {
-		this.id = id;
+	public Film(String name, String synopsis, String image, String trailer, int year) {
 		this.name = name;
 		this.synopsis = synopsis;
 		this.image = image;
 		this.trailer = trailer;
 		this.year = year;
-		this.firstInList = firstInList;
-		this.actors = actors;
-		this.directors = directors;
 	}
 
 	public Long getId() {

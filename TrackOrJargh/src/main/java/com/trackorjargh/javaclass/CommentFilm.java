@@ -24,8 +24,7 @@ public class CommentFilm {
 	public CommentFilm() {
 	}
 
-	public CommentFilm(Long id, Film film, User user, String comment) {
-		this.id = id;
+	public CommentFilm(Film film, User user, String comment) {
 		this.film = film;
 		this.user = user;
 		this.comment = comment;

@@ -1,5 +1,6 @@
 package com.trackorjargh.javaclass;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -19,24 +20,18 @@ public class Book {
 	private String image;
 	private int year;
 	private boolean firstInList;
-	private double points;
 
 	@ManyToMany
-	private List<Author> authors;
+	private List<Author> authors = new LinkedList<>();
 
 	public Book() {
 	}
 
-	public Book(Long id, String name, String synopsis, String image, int year, boolean firstInList, double points,
-			List<Author> authors) {
-		this.id = id;
+	public Book(String name, String synopsis, String image, int year) {
 		this.name = name;
 		this.synopsis = synopsis;
 		this.image = image;
 		this.year = year;
-		this.firstInList = firstInList;
-		this.points = points;
-		this.authors = authors;
 	}
 
 	public Long getId() {
@@ -85,14 +80,6 @@ public class Book {
 
 	public void setFirstInList(boolean firstInList) {
 		this.firstInList = firstInList;
-	}
-
-	public double getPoints() {
-		return points;
-	}
-
-	public void setPoints(double points) {
-		this.points = points;
 	}
 
 	public List<Author> getAuthors() {

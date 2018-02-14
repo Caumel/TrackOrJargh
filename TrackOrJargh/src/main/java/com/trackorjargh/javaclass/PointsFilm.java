@@ -24,8 +24,7 @@ public class PointsFilm {
 	public PointsFilm() {
 	}
 
-	public PointsFilm(Long id, Film film, User user, Long points) {
-		this.id = id;
+	public PointsFilm(Film film, User user, Long points) {
 		this.film = film;
 		this.user = user;
 		this.points = points;

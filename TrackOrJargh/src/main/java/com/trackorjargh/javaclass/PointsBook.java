@@ -24,8 +24,7 @@ public class PointsBook {
 	public PointsBook() {
 	}
 
-	public PointsBook(Long id, Book book, User user, Long points) {
-		this.id = id;
+	public PointsBook(Book book, User user, Long points) {
 		this.book = book;
 		this.user = user;
 		this.points = points;

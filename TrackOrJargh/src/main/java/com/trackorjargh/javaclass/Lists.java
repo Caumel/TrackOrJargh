@@ -27,8 +27,7 @@ public class Lists {
 	public Lists() {
 	}
 
-	public Lists(Long id, String name, List<Film> fimls, List<Show> shows, List<Book> books) {
-		this.id = id;
+	public Lists(String name, List<Film> fimls, List<Show> shows, List<Book> books) {
 		this.name = name;
 		this.fimls = fimls;
 		this.shows = shows;

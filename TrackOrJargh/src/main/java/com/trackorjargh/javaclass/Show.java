@@ -30,9 +30,8 @@ public class Show {
 	public Show() {
 	}
 
-	public Show(Long id, String name, String synopsis, String image, String trailer, int year, boolean firstInList,
+	public Show(String name, String synopsis, String image, String trailer, int year, boolean firstInList,
 			List<Actor> actors, List<Director> directors) {
-		this.id = id;
 		this.name = name;
 		this.synopsis = synopsis;
 		this.image = image;

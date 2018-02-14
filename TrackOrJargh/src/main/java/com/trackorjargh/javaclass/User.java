@@ -25,8 +25,7 @@ public class User {
 	public User() {
 	}
 
-	public User(Long id, String nickname, String password, String email, String image, String type, List<Lists> lists) {
-		this.id = id;
+	public User(String nickname, String password, String email, String image, String type, List<Lists> lists) {
 		this.nickname = nickname;
 		this.password = password;
 		this.email = email;
