@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Show {
@@ -27,6 +29,18 @@ public class Show {
 	
 	@ManyToMany
 	private List<Director> directors = new LinkedList<>();
+	
+	@ManyToMany
+	private List<Gender> genders = new LinkedList<>();
+	
+	@OneToMany
+	private List<Season> seasons = new LinkedList<>();
+	
+	@OneToOne(mappedBy="show")
+	private CommentShow commentShow;
+	
+	@OneToOne(mappedBy="show")
+	private PointShow pointShow;
 
 	public Show() {
 	}
@@ -109,5 +123,37 @@ public class Show {
 
 	public void setDirectors(List<Director> directors) {
 		this.directors = directors;
+	}
+
+	public List<Gender> getGenders() {
+		return genders;
+	}
+
+	public void setGenders(List<Gender> genders) {
+		this.genders = genders;
+	}
+
+	public List<Season> getSeasons() {
+		return seasons;
+	}
+
+	public void setSeasons(List<Season> seasons) {
+		this.seasons = seasons;
+	}
+
+	public CommentShow getCommentShow() {
+		return commentShow;
+	}
+
+	public void setCommentShow(CommentShow commentShow) {
+		this.commentShow = commentShow;
+	}
+
+	public PointShow getPointShow() {
+		return pointShow;
+	}
+
+	public void setPointShow(PointShow pointShow) {
+		this.pointShow = pointShow;
 	}
 }

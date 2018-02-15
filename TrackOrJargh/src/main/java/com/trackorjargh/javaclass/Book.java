@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Book {
@@ -23,6 +24,15 @@ public class Book {
 
 	@ManyToMany
 	private List<Author> authors = new LinkedList<>();
+	
+	@ManyToMany
+	private List<Gender> genders = new LinkedList<>();
+	
+	@OneToOne(mappedBy="book")
+	private CommentBook commentBook;
+	
+	@OneToOne(mappedBy="book")
+	private PointBook pointBook;
 
 	public Book() {
 	}
@@ -88,5 +98,29 @@ public class Book {
 
 	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
+	}
+
+	public List<Gender> getGenders() {
+		return genders;
+	}
+
+	public void setGenders(List<Gender> genders) {
+		this.genders = genders;
+	}
+
+	public CommentBook getCommentBook() {
+		return commentBook;
+	}
+
+	public void setCommentBook(CommentBook commentBook) {
+		this.commentBook = commentBook;
+	}
+
+	public PointBook getPointBook() {
+		return pointBook;
+	}
+
+	public void setPointBook(PointBook pointBook) {
+		this.pointBook = pointBook;
 	}
 }

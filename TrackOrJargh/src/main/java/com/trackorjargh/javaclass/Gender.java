@@ -1,5 +1,6 @@
 package com.trackorjargh.javaclass;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,28 +10,28 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Director {
+public class Gender {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private String name;
-	private String lastName;
-	private Integer birthDay;
 	
-	@ManyToMany(mappedBy="directors")
-	private List<Film> films;
+	@ManyToMany(mappedBy="genders")
+	private List<Film> films = new LinkedList<>();
 	
-	@ManyToMany(mappedBy="directors")
-	private List<Show> shows;
-
-	public Director() {
+	@ManyToMany(mappedBy="genders")
+	private List<Show> shows = new LinkedList<>();
+	
+	@ManyToMany(mappedBy="genders")
+	private List<Book> books = new LinkedList<>();
+	
+	public Gender() {
 	}
 
-	public Director(String name, String lastName, Integer birthDay) {
+	public Gender(String name) {
 		this.name = name;
-		this.lastName = lastName;
-		this.birthDay = birthDay;
 	}
 
 	public Long getId() {
@@ -49,22 +50,6 @@ public class Director {
 		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public Integer getBirthDay() {
-		return birthDay;
-	}
-
-	public void setBirthDay(Integer birthDay) {
-		this.birthDay = birthDay;
-	}
-
 	public List<Film> getFilms() {
 		return films;
 	}
@@ -79,5 +64,13 @@ public class Director {
 
 	public void setShows(List<Show> shows) {
 		this.shows = shows;
+	}
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
 }

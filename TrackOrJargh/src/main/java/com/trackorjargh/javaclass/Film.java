@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Film{
@@ -28,6 +29,15 @@ public class Film{
 	
 	@ManyToMany
 	private List<Director> directors = new LinkedList<>();
+	
+	@ManyToMany
+	private List<Gender> genders = new LinkedList<>();
+	
+	@OneToOne(mappedBy="film")
+	private CommentFilm commentFilm;
+	
+	@OneToOne(mappedBy="film")
+	private PointFilm pointFilm;
 
 	public Film() {
 	}
@@ -110,5 +120,29 @@ public class Film{
 
 	public void setDirectors(List<Director> directors) {
 		this.directors = directors;
+	}
+
+	public List<Gender> getGenders() {
+		return genders;
+	}
+
+	public void setGenders(List<Gender> genders) {
+		this.genders = genders;
+	}
+
+	public CommentFilm getCommentFilm() {
+		return commentFilm;
+	}
+
+	public void setCommentFilm(CommentFilm commentFilm) {
+		this.commentFilm = commentFilm;
+	}
+
+	public PointFilm getPointFilm() {
+		return pointFilm;
+	}
+
+	public void setPointFilm(PointFilm pointFilm) {
+		this.pointFilm = pointFilm;
 	}
 }

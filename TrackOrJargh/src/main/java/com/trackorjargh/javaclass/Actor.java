@@ -23,7 +23,7 @@ public class Actor {
 	private List<Film> films = new LinkedList<>();
 	
 	@ManyToMany(mappedBy="actors")
-	private List<Film> shows = new LinkedList<>();
+	private List<Show> shows = new LinkedList<>();
 
 	public Actor() {
 	}
@@ -74,11 +74,11 @@ public class Actor {
 		this.films = films;
 	}
 
-	public List<Film> getShows() {
+	public List<Show> getShows() {
 		return shows;
 	}
 
-	public void setShows(List<Film> shows) {
+	public void setShows(List<Show> shows) {
 		this.shows = shows;
 	}
 }
