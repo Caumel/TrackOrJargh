@@ -36,6 +36,9 @@ public class Show {
 	@OneToMany
 	private List<Season> seasons = new LinkedList<>();
 	
+	@ManyToMany(mappedBy="shows")
+	private List<Lists> lists = new LinkedList<>();
+	
 	@OneToOne(mappedBy="show")
 	private CommentShow commentShow;
 	
@@ -139,6 +142,14 @@ public class Show {
 
 	public void setSeasons(List<Season> seasons) {
 		this.seasons = seasons;
+	}
+
+	public List<Lists> getLists() {
+		return lists;
+	}
+
+	public void setLists(List<Lists> lists) {
+		this.lists = lists;
 	}
 
 	public CommentShow getCommentShow() {

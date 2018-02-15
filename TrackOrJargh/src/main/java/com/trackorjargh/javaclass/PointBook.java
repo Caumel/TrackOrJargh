@@ -24,9 +24,7 @@ public class PointBook {
 	public PointBook() {
 	}
 
-	public PointBook(Book book, User user, Long points) {
-		this.book = book;
-		this.user = user;
+	public PointBook(Long points) {
 		this.points = points;
 	}
 

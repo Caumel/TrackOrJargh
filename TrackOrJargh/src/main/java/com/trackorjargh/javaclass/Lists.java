@@ -1,11 +1,12 @@
 package com.trackorjargh.javaclass;
 
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Lists {
@@ -15,23 +16,20 @@ public class Lists {
 	
 	private String name;
 	
-	@OneToMany
-	private List<Film> fimls;
+	@ManyToMany
+	private List<Film> films = new LinkedList<>();
 	
-	@OneToMany
-	private List<Show> shows;
+	@ManyToMany
+	private List<Show> shows = new LinkedList<>();
 	
-	@OneToMany
-	private List<Book> books;
+	@ManyToMany
+	private List<Book> books = new LinkedList<>();
 
 	public Lists() {
 	}
 
-	public Lists(String name, List<Film> fimls, List<Show> shows, List<Book> books) {
+	public Lists(String name) {
 		this.name = name;
-		this.fimls = fimls;
-		this.shows = shows;
-		this.books = books;
 	}
 
 	public Long getId() {
@@ -51,11 +49,11 @@ public class Lists {
 	}
 
 	public List<Film> getFimls() {
-		return fimls;
+		return films;
 	}
 
-	public void setFimls(List<Film> fimls) {
-		this.fimls = fimls;
+	public void setFimls(List<Film> films) {
+		this.films = films;
 	}
 
 	public List<Show> getShows() {

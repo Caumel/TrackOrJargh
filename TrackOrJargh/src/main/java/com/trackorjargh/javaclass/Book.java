@@ -28,6 +28,9 @@ public class Book {
 	@ManyToMany
 	private List<Gender> genders = new LinkedList<>();
 	
+	@ManyToMany(mappedBy="books")
+	private List<Lists> lists = new LinkedList<>();
+	
 	@OneToOne(mappedBy="book")
 	private CommentBook commentBook;
 	
@@ -106,6 +109,14 @@ public class Book {
 
 	public void setGenders(List<Gender> genders) {
 		this.genders = genders;
+	}
+
+	public List<Lists> getLists() {
+		return lists;
+	}
+
+	public void setLists(List<Lists> lists) {
+		this.lists = lists;
 	}
 
 	public CommentBook getCommentBook() {

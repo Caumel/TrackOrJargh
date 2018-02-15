@@ -24,9 +24,7 @@ public class CommentFilm {
 	public CommentFilm() {
 	}
 
-	public CommentFilm(Film film, User user, String comment) {
-		this.film = film;
-		this.user = user;
+	public CommentFilm(String comment) {
 		this.comment = comment;
 	}
 

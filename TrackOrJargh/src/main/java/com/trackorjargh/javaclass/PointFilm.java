@@ -24,9 +24,7 @@ public class PointFilm {
 	public PointFilm() {
 	}
 
-	public PointFilm(Film film, User user, Long points) {
-		this.film = film;
-		this.user = user;
+	public PointFilm(Long points) {
 		this.points = points;
 	}
 

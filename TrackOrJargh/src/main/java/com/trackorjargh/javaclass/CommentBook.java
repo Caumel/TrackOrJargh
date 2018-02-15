@@ -24,9 +24,7 @@ public class CommentBook {
 	public CommentBook() {
 	}
 
-	public CommentBook(Book book, User user, String comment) {
-		this.book = book;
-		this.user = user;
+	public CommentBook(String comment) {
 		this.comment = comment;
 	}
 

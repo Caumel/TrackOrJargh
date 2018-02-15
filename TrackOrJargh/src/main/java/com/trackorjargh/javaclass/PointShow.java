@@ -24,9 +24,7 @@ public class PointShow {
 	public PointShow() {
 	}
 
-	public PointShow(Show show, User user, Long points) {
-		this.show = show;
-		this.user = user;
+	public PointShow(Long points) {
 		this.points = points;
 	}
 

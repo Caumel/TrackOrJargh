@@ -33,6 +33,9 @@ public class Film{
 	@ManyToMany
 	private List<Gender> genders = new LinkedList<>();
 	
+	@ManyToMany(mappedBy="films")
+	private List<Lists> lists = new LinkedList<>();
+	
 	@OneToOne(mappedBy="film")
 	private CommentFilm commentFilm;
 	
@@ -128,6 +131,14 @@ public class Film{
 
 	public void setGenders(List<Gender> genders) {
 		this.genders = genders;
+	}
+
+	public List<Lists> getLists() {
+		return lists;
+	}
+
+	public void setLists(List<Lists> lists) {
+		this.lists = lists;
 	}
 
 	public CommentFilm getCommentFilm() {

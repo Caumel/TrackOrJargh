@@ -24,9 +24,7 @@ public class CommentShow {
 	public CommentShow() {
 	}
 
-	public CommentShow(Show show, User user, String comment) {
-		this.show = show;
-		this.user = user;
+	public CommentShow(String comment) {
 		this.comment = comment;
 	}
 
