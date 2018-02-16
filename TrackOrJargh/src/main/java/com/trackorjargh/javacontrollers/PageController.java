@@ -43,6 +43,8 @@ import com.trackorjargh.javarepository.SeasonRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
 
+import antlr.collections.List;
+
 @Controller
 public class PageController {
 
@@ -176,7 +178,8 @@ public class PageController {
 	}
 
 	@RequestMapping("/")
-	public String serveIndex(Model model) {		
+	public String serveIndex(Model model) {	
+		
 		
 		//slides.get(0).setFirstInList(true);
 		//model.addAttribute("slide", slides);
@@ -184,20 +187,39 @@ public class PageController {
 		return "index";
 	}
 	
-	@RequestMapping("/contentList")
-	public String serveList(Model model) {
+	@RequestMapping("/libros")
+	public String serverBookList(Model model) {
+		model.addAttribute("content", bookRepository.findAll());
+		//content.get(0).setFirstInList(true);
+		//model.addAttribute("contentCarousel", content);
+		//model.addAttribute("book", content);
 		
-		//films.get(0).setFirstInList(true);
-		//model.addAttribute("filmsCarousel", films);
-		//model.addAttribute("films", films);
+		return "contentList";
+	}
+	
+	@RequestMapping("/series")
+	public String serverShowList(Model model) {
+		model.addAttribute("shows", showRepository.findAll());
+		//shows.get(0).setFirstInList(true);
+		//model.addAttribute("showCarousel", shows);
+		//model.addAttribute("show", shows);
+		
+		return "contentList";
+	}
+	
+	@RequestMapping("/peliculas")
+	public String serveFilmList(Model model) {
+		model.addAttribute("content", filmRepository.findAll());
+		//content.get(0).setFirstInList(true);
+		//model.addAttribute("contentCarousel", content);
+		//model.addAttribute("films", content);
 		
 		return "contentList";
 	}
 	
 	@RequestMapping("/contentProfile/{id}")
 	public String serveProfile(Model model, @PathVariable Long id) {
-		Film filmReturn = filmRepository.findById(id);
-		model.addAttribute("film", filmReturn);
+		model.addAttribute("film", filmRepository.findById(id));
 		
 		return "contentProfile";
 	}
