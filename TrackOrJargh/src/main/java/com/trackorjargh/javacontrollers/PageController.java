@@ -87,6 +87,8 @@ public class PageController {
 		//Test Data User
 		User u1 = new User("Oscar", "1234", "oscarmola@gmail.com", "", "Usuario");
 		userRepository.save(u1);
+		User users = new User("Óscar", "1234", "oscarmola@gmail.com", "", "Usuario");
+		userRepository.save(users);
 		
 		//Test Data Actor
 		Actor a1 = new Actor("Chiss", "Patt", 1979);
@@ -117,6 +119,9 @@ public class PageController {
 		b1.getGenders().add(g1);
 		bookRepository.save(b1);
 		
+		Book b2 = new Book("Los Juegos del Hambre 2", "Los juegos del hambre se desarrolla en un país llamado Panem, lo que es en realidad una civilización postapocalíptica ubicada en lo que antes era América del Norte.", "", 2008);
+		bookRepository.save(b2);
+		
 		//Test Data Episodie
 		Episode ep1 = new Episode("Episodio 1");
 		episodeRepository.save(ep1);
@@ -141,55 +146,75 @@ public class PageController {
 		//Test Data Comment Film
 		CommentFilm cf1 = new CommentFilm("Esta pelicula es muy buena");
 		cf1.setFilm(f1);
+		cf1.setUser(users);
 		commentFilmRepository.save(cf1);
 		
 		//Test Data Comment Show
 		CommentShow cs1 = new CommentShow("Esta serie es muy buena");
 		cs1.setShow(sh1);
 		cs1.setUser(u1);
+		cs1.setUser(users);
 		commentShowRepository.save(cs1);
 		
 		//Test Data Comment Book
 		CommentBook cb1 = new CommentBook("Este libro es muy bueno");
 		cb1.setBook(b1);
 		cb1.setUser(u1);
+		cb1.setUser(users);
 		commentBookRepository.save(cb1);
 		
 		//Test Data Point Film
 		PointFilm pf1 = new PointFilm((long) 5);
 		pf1.setFilm(f1);
 		pf1.setUser(u1);
+		pf1.setUser(users);
 		pointFilmRepository.save(pf1);
 		
 		//Test Data Point Show
 		PointShow ps1 = new PointShow((long) 5);
 		ps1.setShow(sh1);
 		ps1.setUser(u1);
+		ps1.setUser(users);
 		pointShowRepository.save(ps1);
 		
 		//Test Data Point Book
 		PointBook pb1 = new PointBook((long) 5);
 		pb1.setBook(b1);
 		pb1.setUser(u1);
+		pb1.setUser(users);
 		pointBookRepository.save(pb1);
 	}
 
 	@RequestMapping("/")
 	public String serveIndex(Model model) {
+	public String serveIndex(Model model) {	
+		model.addAttribute("lastBook", bookRepository.findById(bookRepository.findLastId()));
+		model.addAttribute("lastFilm", filmRepository.findById(filmRepository.findLastId()));
+		model.addAttribute("lastShow", showRepository.findById(showRepository.findLastId()));		
 		//slides.get(0).setFirstInList(true);
 		//model.addAttribute("slide", slides);
 		
 		return "index";
 	}
 	
-	@RequestMapping("/libros")
-	public String serverBookList(Model model) {
-		model.addAttribute("content", bookRepository.findAll());
+	@RequestMapping("/series")
+	public String serveShowList(Model model) {
+		model.addAttribute("showList", showRepository.findAll());
+		//films.get(0).setFirstInList(true);
+		//model.addAttribute("filmsCarousel", films);
+		//model.addAttribute("films", films);
+		
 		return "contentList";
 	}
 	@RequestMapping("/series")
 		public String serverShowList(Model model) {
 		model.addAttribute("shows", showRepository.findAll());
+	@RequestMapping("/libros")
+	public String serveBookList(Model model) {
+		model.addAttribute("content", bookRepository.findAll());
+		//films.get(0).setFirstInList(true);
+		//model.addAttribute("filmsCarousel", films);
+		//model.addAttribute("films", films);
 		return "contentList";
 	}
 	@RequestMapping("/peliculas")
@@ -202,12 +227,25 @@ public class PageController {
 		return "contentList";
 	}
 	
-	@RequestMapping("/contentProfile/{id}")
-	public String serveProfile(Model model, @PathVariable Long id) {
+	@RequestMapping("/peliculas/{name}")
+	public String serveFilmProfile(Model model, @PathVariable String name) {
+		model.addAttribute("film", filmRepository.findByName(name));
 		
 		return "contentProfile";
 	}
 	
+	@RequestMapping("/series/{name}")
+	public String serveShowProfile(Model model, @PathVariable String name) {
+		model.addAttribute("show", showRepository.findByName(name));
+		
+		return "contentProfile";
+	}
+	
+	@RequestMapping("/libro/{name}")
+	public String serveProfile(Model model, @PathVariable String name) {
+		model.addAttribute("book", bookRepository.findByName(name));
+		return "contentProfile";
+	}
 	@RequestMapping("/miperfil/{nickname}")
 	public String serveUserProfile(Model model, @PathVariable String nickname) {
 		User user = userRepository.findByName(nickname);
@@ -215,6 +253,19 @@ public class PageController {
 		return "userProfile";
 	}
 	
+	@RequestMapping("/guardarLogin")
+	public void guardarLogin(Model model, User user) {
+		
+	}
+	
+	@RequestMapping("/guardarRegister")
+	public void guardarRegister(Model model, User user) {
+
+		model.addAttribute(user);
+				
+	}
+	
+	@RequestMapping("/serveLogin")
 	public String serveLogin(Model model) {
 		
 		
