@@ -7,7 +7,5 @@ import com.trackorjargh.javaclass.User;
 public interface UserRepository extends JpaRepository<User, Long>{
 	
 	User findByName(String nickname);
-
-	User findBynickname(String nickname);
 	
 }

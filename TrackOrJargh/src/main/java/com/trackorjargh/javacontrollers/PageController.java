@@ -89,10 +89,6 @@ public class PageController {
 		userRepository.save(u1);
 		User users = new User("Óscar", "1234", "oscarmola@gmail.com", "", "Usuario");
 		userRepository.save(users);
-		User users = new User("Óscar", "1234", "oscarmola@gmail.com", "", "Usuario");
-		userRepository.save(users);
-		User u1 = new User("Oscar", "1234", "oscarmola@gmail.com", "", "Usuario");
-		userRepository.save(u1);
 		
 		//Test Data Actor
 		Actor a1 = new Actor("Chiss", "Patt", 1979);
@@ -190,14 +186,9 @@ public class PageController {
 	}
 
 	@RequestMapping("/")
-	public String serveIndex(Model model) {
 	public String serveIndex(Model model) {	
-		model.addAttribute("lastBook", bookRepository.findById(bookRepository.findLastId()));
 		model.addAttribute("lastFilm", filmRepository.findById(filmRepository.findLastId()));
-		model.addAttribute("lastShow", showRepository.findById(showRepository.findLastId()));		
-		//slides.get(0).setFirstInList(true);
-		//model.addAttribute("slide", slides);
-		
+		model.addAttribute("lastShow", showRepository.findById(showRepository.findLastId()));	
 		return "index";
 	}
 	
@@ -207,23 +198,28 @@ public class PageController {
 		//films.get(0).setFirstInList(true);
 		//model.addAttribute("filmsCarousel", films);
 		//model.addAttribute("films", films);
-		
 		return "contentList";
 	}
-	@RequestMapping("/series")
-		public String serverShowList(Model model) {
-		model.addAttribute("shows", showRepository.findAll());
+	
 	@RequestMapping("/libros")
 	public String serveBookList(Model model) {
 		model.addAttribute("content", bookRepository.findAll());
-		//films.get(0).setFirstInList(true);
-		//model.addAttribute("filmsCarousel", films);
-		//model.addAttribute("films", films);
 		return "contentList";
 	}
+	
 	@RequestMapping("/peliculas")
 	public String serveFilmList(Model model) {
 		model.addAttribute("content", filmRepository.findAll());
+		//films.get(0).setFirstInList(true);
+		//model.addAttribute("filmsCarousel", films);
+		//model.addAttribute("films", films);
+		
+		return "contentList";
+	}
+	
+	@RequestMapping("/contentList")
+	public String serveList(Model model) {
+		
 		//films.get(0).setFirstInList(true);
 		//model.addAttribute("filmsCarousel", films);
 		//model.addAttribute("films", films);
