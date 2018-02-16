@@ -85,6 +85,8 @@ public class PageController {
 	@PostConstruct
 	public void init() {
 		//Test Data User
+		User users = new User("Óscar", "1234", "oscarmola@gmail.com", "", "Usuario");
+		userRepository.save(users);
 		
 		//Test Data Actor
 		Actor a1 = new Actor("Chiss", "Patt", 1979);
@@ -114,6 +116,9 @@ public class PageController {
 		b1.getAuthors().add(au1);
 		b1.getGenders().add(g1);
 		bookRepository.save(b1);
+		
+		Book b2 = new Book("Los Juegos del Hambre 2", "Los juegos del hambre se desarrolla en un país llamado Panem, lo que es en realidad una civilización postapocalíptica ubicada en lo que antes era América del Norte.", "", 2008);
+		bookRepository.save(b2);
 		
 		//Test Data Episodie
 		Episode ep1 = new Episode("Episodio 1");
