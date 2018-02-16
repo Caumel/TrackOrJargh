@@ -175,6 +175,7 @@ public class PageController {
 	}
 
 	@RequestMapping("/")
+	public String serveIndex(Model model) {
 		//slides.get(0).setFirstInList(true);
 		//model.addAttribute("slide", slides);
 		
@@ -187,6 +188,7 @@ public class PageController {
 		return "contentList";
 	}
 	@RequestMapping("/series")
+		public String serverShowList(Model model) {
 		model.addAttribute("shows", showRepository.findAll());
 		return "contentList";
 	}
@@ -206,6 +208,7 @@ public class PageController {
 		return "contentProfile";
 	}
 	
+	@RequestMapping("/miperfil/{nickname}")
 	public String serveUserProfile(Model model, @PathVariable String nickname) {
 		User user = userRepository.findByName(nickname);
 		model.addAttribute("user", user);
