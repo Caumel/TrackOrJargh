@@ -89,6 +89,10 @@ public class PageController {
 		userRepository.save(u1);
 		User users = new User("Óscar", "1234", "oscarmola@gmail.com", "", "Usuario");
 		userRepository.save(users);
+		User users = new User("Óscar", "1234", "oscarmola@gmail.com", "", "Usuario");
+		userRepository.save(users);
+		User u1 = new User("Oscar", "1234", "oscarmola@gmail.com", "", "Usuario");
+		userRepository.save(u1);
 		
 		//Test Data Actor
 		Actor a1 = new Actor("Chiss", "Patt", 1979);
