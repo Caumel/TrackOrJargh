@@ -85,8 +85,14 @@ public class PageController {
 	@PostConstruct
 	public void init() {
 		//Test Data User
+<<<<<<< HEAD
 		User users = new User("Óscar", "1234", "oscarmola@gmail.com", "", "Usuario");
 		userRepository.save(users);
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 8696be9e1f208627cb1e593adec614df392e8370
+>>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
 		
 		//Test Data Actor
 		Actor a1 = new Actor("Chiss", "Patt", 1979);
@@ -144,52 +150,75 @@ public class PageController {
 		//Test Data Comment Film
 		CommentFilm cf1 = new CommentFilm("Esta pelicula es muy buena");
 		cf1.setFilm(f1);
+<<<<<<< HEAD
 		cf1.setUser(users);
+=======
+>>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
 		commentFilmRepository.save(cf1);
 		
 		//Test Data Comment Show
 		CommentShow cs1 = new CommentShow("Esta serie es muy buena");
 		cs1.setShow(sh1);
+<<<<<<< HEAD
+=======
+>>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
 		cs1.setUser(users);
 		commentShowRepository.save(cs1);
 		
 		//Test Data Comment Book
 		CommentBook cb1 = new CommentBook("Este libro es muy bueno");
 		cb1.setBook(b1);
+<<<<<<< HEAD
+=======
+>>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
 		cb1.setUser(users);
 		commentBookRepository.save(cb1);
 		
 		//Test Data Point Film
 		PointFilm pf1 = new PointFilm((long) 5);
 		pf1.setFilm(f1);
+<<<<<<< HEAD
+=======
+>>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
 		pf1.setUser(users);
 		pointFilmRepository.save(pf1);
 		
 		//Test Data Point Show
 		PointShow ps1 = new PointShow((long) 5);
 		ps1.setShow(sh1);
+<<<<<<< HEAD
+=======
+>>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
 		ps1.setUser(users);
 		pointShowRepository.save(ps1);
 		
 		//Test Data Point Book
 		PointBook pb1 = new PointBook((long) 5);
 		pb1.setBook(b1);
+<<<<<<< HEAD
+=======
+>>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
 		pb1.setUser(users);
 		pointBookRepository.save(pb1);
 		
 	}
 
 	@RequestMapping("/")
+<<<<<<< HEAD
 	public String serveIndex(Model model) {	
 		model.addAttribute("lastBook", bookRepository.findById(bookRepository.findLastId()));
 		model.addAttribute("lastFilm", filmRepository.findById(filmRepository.findLastId()));
 		model.addAttribute("lastShow", showRepository.findById(showRepository.findLastId()));		
+=======
+		
+>>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
 		//slides.get(0).setFirstInList(true);
 		//model.addAttribute("slide", slides);
 		
 		return "index";
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("/series")
 	public String serveShowList(Model model) {
 		model.addAttribute("showList", showRepository.findAll());
@@ -206,16 +235,18 @@ public class PageController {
 		//films.get(0).setFirstInList(true);
 		//model.addAttribute("filmsCarousel", films);
 		//model.addAttribute("films", films);
+=======
+>>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
 		
 		return "contentList";
 	}
-	
 	@RequestMapping("/peliculas")
 	public String serveFilmList(Model model) {
 		model.addAttribute("content", filmRepository.findAll());
 		//films.get(0).setFirstInList(true);
 		//model.addAttribute("filmsCarousel", films);
 		//model.addAttribute("films", films);
+<<<<<<< HEAD
 		
 		return "contentList";
 	}
@@ -226,10 +257,13 @@ public class PageController {
 		//films.get(0).setFirstInList(true);
 		//model.addAttribute("filmsCarousel", films);
 		//model.addAttribute("films", films);
+=======
+>>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
 		
 		return "contentList";
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("/peliculas/{name}")
 	public String serveFilmProfile(Model model, @PathVariable String name) {
 		model.addAttribute("film", filmRepository.findByName(name));
@@ -247,18 +281,16 @@ public class PageController {
 	@RequestMapping("/libro/{name}")
 	public String serveProfile(Model model, @PathVariable String name) {
 		model.addAttribute("book", bookRepository.findByName(name));
+=======
+>>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
 		
 		return "contentProfile";
 	}
 	
-	@RequestMapping("/userProfile")
-	public String serveUserProfile(Model model) {
-		//model.addAttribute("user", user);
-		//model.addAttribute("lists", user.getLists());
-		
 		return "userProfile";
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("/guardarLogin")
 	public void guardarLogin(Model model, User user) {
 		
@@ -272,6 +304,8 @@ public class PageController {
 	}
 	
 	@RequestMapping("/serveLogin")
+=======
+>>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
 	public String serveLogin(Model model) {
 		
 		
