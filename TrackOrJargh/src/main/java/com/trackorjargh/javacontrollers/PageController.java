@@ -5,6 +5,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.trackorjargh.javaclass.Actor;
@@ -193,9 +194,10 @@ public class PageController {
 		return "contentList";
 	}
 	
-	@RequestMapping("/contentProfile")
-	public String serveProfile(Model model) {
-		//model.addAttribute("film", new Film(1, "Guardianes de la Galaxia 2", "Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...", "img/Guardianes2.jpg", 2017, true, "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0", 1.6, null, null, null));
+	@RequestMapping("/contentProfile/{id}")
+	public String serveProfile(Model model, @PathVariable Long id) {
+		Film filmReturn = filmRepository.findById(id);
+		model.addAttribute("film", filmReturn);
 		
 		return "contentProfile";
 	}
