@@ -91,8 +91,9 @@ public class PageController {
 =======
 <<<<<<< HEAD
 =======
->>>>>>> 8696be9e1f208627cb1e593adec614df392e8370
 >>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
+		User u1 = new User("Oscar", "1234", "oscarmola@gmail.com", "", "Usuario");
+		userRepository.save(u1);
 		
 		//Test Data Actor
 		Actor a1 = new Actor("Chiss", "Patt", 1979);
@@ -153,15 +154,12 @@ public class PageController {
 <<<<<<< HEAD
 		cf1.setUser(users);
 =======
->>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
 		commentFilmRepository.save(cf1);
 		
 		//Test Data Comment Show
 		CommentShow cs1 = new CommentShow("Esta serie es muy buena");
 		cs1.setShow(sh1);
-<<<<<<< HEAD
-=======
->>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
+		cs1.setUser(u1);
 		cs1.setUser(users);
 		commentShowRepository.save(cs1);
 		
@@ -170,7 +168,7 @@ public class PageController {
 		cb1.setBook(b1);
 <<<<<<< HEAD
 =======
->>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
+		cb1.setUser(u1);
 		cb1.setUser(users);
 		commentBookRepository.save(cb1);
 		
@@ -180,6 +178,7 @@ public class PageController {
 <<<<<<< HEAD
 =======
 >>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
+		pf1.setUser(u1);
 		pf1.setUser(users);
 		pointFilmRepository.save(pf1);
 		
@@ -189,6 +188,7 @@ public class PageController {
 <<<<<<< HEAD
 =======
 >>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
+		ps1.setUser(u1);
 		ps1.setUser(users);
 		pointShowRepository.save(ps1);
 		
@@ -198,6 +198,7 @@ public class PageController {
 <<<<<<< HEAD
 =======
 >>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
+		pb1.setUser(u1);
 		pb1.setUser(users);
 		pointBookRepository.save(pb1);
 		
@@ -238,8 +239,10 @@ public class PageController {
 =======
 >>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
 		
+	
 		return "contentList";
 	}
+	
 	@RequestMapping("/peliculas")
 	public String serveFilmList(Model model) {
 		model.addAttribute("content", filmRepository.findAll());
@@ -287,6 +290,10 @@ public class PageController {
 		return "contentProfile";
 	}
 	
+	@RequestMapping("/userProfile/{nickname}")
+	public String serveUserProfile(Model model, @PathVariable String nickname) {
+		User user = userRepository.findByName(nickname);
+		model.addAttribute("user", user);
 		return "userProfile";
 	}
 	
@@ -306,6 +313,7 @@ public class PageController {
 	@RequestMapping("/serveLogin")
 =======
 >>>>>>> c570bd216781ad90fbc6e0ca3ef1a5690338ef12
+
 	public String serveLogin(Model model) {
 		
 		
