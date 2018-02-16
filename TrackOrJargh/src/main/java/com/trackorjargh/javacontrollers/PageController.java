@@ -87,7 +87,7 @@ public class PageController {
 	@PostConstruct
 	public void init() {
 		//Test Data User
-		User u1 = new User("Óscar", "1234", "oscarmola@gmail.com", "", "Usuario");
+		User u1 = new User("Oscar", "1234", "oscarmola@gmail.com", "", "Usuario");
 		userRepository.save(u1);
 		
 		//Test Data Actor
@@ -224,11 +224,10 @@ public class PageController {
 		return "contentProfile";
 	}
 	
-	@RequestMapping("/userProfile")
-	public String serveUserProfile(Model model) {
-		//model.addAttribute("user", user);
-		//model.addAttribute("lists", user.getLists());
-		
+	@RequestMapping("/userProfile/{nickname}")
+	public String serveUserProfile(Model model, @PathVariable String nickname) {
+		User user = userRepository.findByName(nickname);
+		model.addAttribute("user", user);
 		return "userProfile";
 	}
 	
