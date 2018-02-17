@@ -3,6 +3,7 @@ package com.trackorjargh.javacontrollers;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -114,7 +115,7 @@ public class PageController {
 		filmRepository.save(f1);
 		
 		for(int x=3; x <= 100; x++) {
-			f1 = new Film("Guardianes de la Galaxia " + x, "Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...", "img/Guardianes2.jpg", "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0", 2017);
+			f1 = new Film("Guardianes de la Galaxia " + x, "Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...", "/img/Guardianes2.jpg", "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0", 2017);
 			f1.getActors().add(a1);
 			f1.getDirectors().add(d1);
 			f1.getGenders().add(g1);
@@ -122,13 +123,17 @@ public class PageController {
 		}
 	
 		//Test Data Book
-		Book b1 = new Book("Los Juegos del Hambre", "Los juegos del hambre se desarrolla en un país llamado Panem, lo que es en realidad una civilización postapocalíptica ubicada en lo que antes era América del Norte.", "", 2008);
+		Book b1 = new Book("Los Juegos del Hambre", "Los juegos del hambre se desarrolla en un país llamado Panem, lo que es en realidad una civilización postapocalíptica ubicada en lo que antes era América del Norte.", "/img/los_juegos_del_hambre.jpg", 2008);
 		b1.getAuthors().add(au1);
 		b1.getGenders().add(g1);
 		bookRepository.save(b1);
 		
-		Book b2 = new Book("Los Juegos del Hambre 2", "Los juegos del hambre se desarrolla en un país llamado Panem, lo que es en realidad una civilización postapocalíptica ubicada en lo que antes era América del Norte.", "", 2008);
-		bookRepository.save(b2);
+		for(int x=2; x <= 100; x++) {
+			b1 = new Book("Los Juegos del Hambre", "Los juegos del hambre se desarrolla en un país llamado Panem, lo que es en realidad una civilización postapocalíptica ubicada en lo que antes era América del Norte.", "/img/los_juegos_del_hambre.jpg", 2008);
+			b1.getAuthors().add(au1);
+			b1.getGenders().add(g1);
+			bookRepository.save(b1);
+		}
 		
 		//Test Data Episodie
 		Episode ep1 = new Episode("Episodio 1");
@@ -140,9 +145,14 @@ public class PageController {
 		seasonRepository.save(s1);
 		
 		//Test Data Show
-		Show sh1 = new Show("The Big Bang Theory", "La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.", "", "", 2007);
+		Show sh1 = new Show("The Big Bang Theory", "La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.", "/img/the_big_bang_theroy.jpg", "", 2007);
 		sh1.getSeasons().add(s1);
 		showRepository.save(sh1);
+		
+		for(int x=2; x <= 100; x++) {
+			sh1 = new Show("The Big Bang Theory " + x, "La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.", "/img/the_big_bang_theroy.jpg", "", 2007);
+			showRepository.save(sh1);
+		}
 		
 		//Test Data Lists
 		Lists l1 = new Lists("Mi Lista Molona");
@@ -200,38 +210,23 @@ public class PageController {
 		return "index";
 	}
 	
+	@RequestMapping("/peliculas")
+	public String serveFilmList(Model model) {
+		model.addAttribute("content", filmRepository.findAll(new PageRequest(0, 10)));
+		
+		return "contentList";
+	}
+	
 	@RequestMapping("/series")
 	public String serveShowList(Model model) {
-		model.addAttribute("showList", showRepository.findAll());
-		//films.get(0).setFirstInList(true);
-		//model.addAttribute("filmsCarousel", films);
-		//model.addAttribute("films", films);
+		model.addAttribute("content", showRepository.findAll(new PageRequest(0, 10)));
+
 		return "contentList";
 	}
 	
 	@RequestMapping("/libros")
 	public String serveBookList(Model model) {
-		model.addAttribute("content", bookRepository.findAll());
-		return "contentList";
-	}
-	
-	@RequestMapping("/peliculas")
-	public String serveFilmList(Model model) {
-		model.addAttribute("content", filmRepository.findAll());
-		//films.get(0).setFirstInList(true);
-		//model.addAttribute("filmsCarousel", films);
-		//model.addAttribute("films", films);
-		
-		return "contentList";
-	}
-	
-	@RequestMapping("/contentList")
-	public String serveList(Model model) {
-		
-		//films.get(0).setFirstInList(true);
-		//model.addAttribute("filmsCarousel", films);
-		//model.addAttribute("films", films);
-		
+		model.addAttribute("content", bookRepository.findAll(new PageRequest(0, 10)));
 		return "contentList";
 	}
 	
