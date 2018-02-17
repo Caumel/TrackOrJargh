@@ -112,6 +112,14 @@ public class PageController {
 		f1.getDirectors().add(d1);
 		f1.getGenders().add(g1);
 		filmRepository.save(f1);
+		
+		for(int x=3; x <= 100; x++) {
+			f1 = new Film("Guardianes de la Galaxia " + x, "Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...", "img/Guardianes2.jpg", "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0", 2017);
+			f1.getActors().add(a1);
+			f1.getDirectors().add(d1);
+			f1.getGenders().add(g1);
+			filmRepository.save(f1);
+		}
 	
 		//Test Data Book
 		Book b1 = new Book("Los Juegos del Hambre", "Los juegos del hambre se desarrolla en un país llamado Panem, lo que es en realidad una civilización postapocalíptica ubicada en lo que antes era América del Norte.", "", 2008);

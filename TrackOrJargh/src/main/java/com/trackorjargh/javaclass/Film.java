@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Film{
 	
@@ -17,10 +19,17 @@ public class Film{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	public interface Basico {}
+	
+	@JsonView(Basico.class)
 	private String name;
-	private String synopsis;	
+	@JsonView(Basico.class)
+	private String synopsis;
+	@JsonView(Basico.class)
 	private String image;
+	@JsonView(Basico.class)
 	private String trailer;
+	@JsonView(Basico.class)
 	private int year;
 	private boolean firstInList;
 	
