@@ -83,8 +83,8 @@ public class DatabaseInformationLoader {
 		// Test Data User
 		User u1 = new User("Oscar", "1234", "oscarmola@gmail.com", "", "Usuario");
 		userRepository.save(u1);
-		User users = new User("Óscar", "1234", "oscarmola@gmail.com", "", "Usuario");
-		userRepository.save(users);
+		User u2 = new User("Jesus", "1234", "jesusmola@gmail.com", "", "Usuario");
+		userRepository.save(u2);
 
 		// Test Data Actor
 		Actor a1 = new Actor("Chiss", "Patt", 1979);
@@ -173,42 +173,37 @@ public class DatabaseInformationLoader {
 		// Test Data Comment Film
 		CommentFilm cf1 = new CommentFilm("Esta pelicula es muy buena");
 		cf1.setFilm(f1);
-		cf1.setUser(users);
+		cf1.setUser(u1);
 		commentFilmRepository.save(cf1);
 
 		// Test Data Comment Show
 		CommentShow cs1 = new CommentShow("Esta serie es muy buena");
 		cs1.setShow(sh1);
 		cs1.setUser(u1);
-		cs1.setUser(users);
 		commentShowRepository.save(cs1);
 
 		// Test Data Comment Book
 		CommentBook cb1 = new CommentBook("Este libro es muy bueno");
 		cb1.setBook(b1);
 		cb1.setUser(u1);
-		cb1.setUser(users);
 		commentBookRepository.save(cb1);
 
 		// Test Data Point Film
 		PointFilm pf1 = new PointFilm((long) 5);
 		pf1.setFilm(f1);
 		pf1.setUser(u1);
-		pf1.setUser(users);
 		pointFilmRepository.save(pf1);
 
 		// Test Data Point Show
 		PointShow ps1 = new PointShow((long) 5);
 		ps1.setShow(sh1);
 		ps1.setUser(u1);
-		ps1.setUser(users);
 		pointShowRepository.save(ps1);
 
 		// Test Data Point Book
 		PointBook pb1 = new PointBook((long) 5);
 		pb1.setBook(b1);
 		pb1.setUser(u1);
-		pb1.setUser(users);
 		pointBookRepository.save(pb1);
 	}
 }
