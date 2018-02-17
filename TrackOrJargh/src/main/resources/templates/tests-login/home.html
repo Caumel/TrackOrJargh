@@ -5,12 +5,11 @@
 	<p>This is a private page</p>
 	
 	{{#admin}}
-	<a href="/admin">Admin Page</a>
+	<a href="/tests-login/admin">Admin Page</a>
 	{{/admin}}
 	
-	<form action="/logout" method="post">
+	<form action="/tests-login/logout" method="post">
 		<input type="submit" value="Sign Out" />
-		<input type="hidden" name="_csrf" value="{{token}}"/>
 	</form>
 </body>
 </html>

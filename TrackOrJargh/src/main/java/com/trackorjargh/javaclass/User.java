@@ -54,8 +54,8 @@ public class User {
 	public User() {
 	}
 
-	public User(String nickname, String password, String email, String image, String... roles) {
-		this.name = nickname;
+	public User(String name, String password, String email, String image, String... roles) {
+		this.name = name;
 		this.password = new BCryptPasswordEncoder().encode(password);
 		this.email = email;
 		this.image = image;
@@ -70,12 +70,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getNickname() {
+	public String getName() {
 		return name;
 	}
 
-	public void setNickname(String nickname) {
-		this.name = nickname;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPassword() {

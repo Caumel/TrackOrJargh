@@ -16,14 +16,17 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		// Public pages
-		http.authorizeRequests().antMatchers("/**").permitAll();
+		//http.authorizeRequests().antMatchers("/**").permitAll();
 
 		// Public Resources
-		http.authorizeRequests().antMatchers("/css/**", "/img/**", "/js/**", "/lib/**").permitAll();
+		//http.authorizeRequests().antMatchers("/css/**", "/img/**", "/js/**", "/lib/**").permitAll();
 
 		// Private pages (all other pages)
-		http.authorizeRequests().anyRequest().authenticated();
-
+		//http.authorizeRequests().anyRequest().authenticated();
+		
+        http.authorizeRequests().antMatchers("/tests-login/home").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/tests-login/admin").hasAnyRole("ADMIN");
+		
 		// Login form
 		http.formLogin().loginPage("/tests-login/login");
 		http.formLogin().usernameParameter("username");
@@ -32,11 +35,10 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 		http.formLogin().failureUrl("/tests-login/loginerror");
 
 		// Logout
-		http.logout().logoutUrl("/logout");
-		http.logout().logoutSuccessUrl("/");
+		http.logout().logoutUrl("/tests-login/logout");
+		http.logout().logoutSuccessUrl("/tests-login");
 
 		//Test with h2-database
-		http.authorizeRequests().antMatchers("/h2-console/**").permitAll();
 		http.headers().frameOptions().disable();
 		http.csrf().disable();
 	}
