@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.Film;
+import com.trackorjargh.javaclass.Show;
 import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.FilmRepository;
 import com.trackorjargh.javarepository.ShowRepository;
@@ -25,8 +27,20 @@ public class ApiRestController {
 
 	
 	@RequestMapping(value = "/rest/peliculas", method = RequestMethod.GET)
-	@JsonView(Film.Basico.class)
-	public Page<Film> getLibros(Pageable page) {
+	@JsonView(Film.BasicInformation.class)
+	public Page<Film> getPeliculas(Pageable page) {
 		return filmRepository.findAll(page);
+	}
+	
+	@RequestMapping(value = "/rest/libros", method = RequestMethod.GET)
+	@JsonView(Book.BasicInformation.class)
+	public Page<Book> getLibros(Pageable page) {
+		return bookRepository.findAll(page);
+	}
+	
+	@RequestMapping(value = "/rest/series", method = RequestMethod.GET)
+	@JsonView(Show.BasicInformation.class)
+	public Page<Show> getSeries(Pageable page) {
+		return showRepository.findAll(page);
 	}
 }

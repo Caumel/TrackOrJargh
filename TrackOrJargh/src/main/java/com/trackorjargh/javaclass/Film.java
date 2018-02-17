@@ -19,17 +19,17 @@ public class Film{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	public interface Basico {}
+	public interface BasicInformation {}
 	
-	@JsonView(Basico.class)
+	@JsonView(BasicInformation.class)
 	private String name;
-	@JsonView(Basico.class)
+	@JsonView(BasicInformation.class)
 	private String synopsis;
-	@JsonView(Basico.class)
+	@JsonView(BasicInformation.class)
 	private String image;
-	@JsonView(Basico.class)
+	@JsonView(BasicInformation.class)
 	private String trailer;
-	@JsonView(Basico.class)
+	@JsonView(BasicInformation.class)
 	private int year;
 	private boolean firstInList;
 	
