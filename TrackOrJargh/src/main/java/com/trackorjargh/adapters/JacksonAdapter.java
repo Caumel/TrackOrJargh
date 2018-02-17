@@ -37,24 +37,24 @@ public class JacksonAdapter extends WebMvcConfigurerAdapter {
                 .disable(MapperFeature.DEFAULT_VIEW_INCLUSION)
                 .setSerializationInclusion(Include.NON_EMPTY);
         jsonGen.writeStartObject();
+        jsonGen.writeFieldName("content");
+        jsonGen.writeRawValue(om.writerWithView(serializerProvider.getActiveView())
+                .writeValueAsString(page.getContent()));
+        jsonGen.writeFieldName("last");
+        jsonGen.writeBoolean(page.isLast());
+        jsonGen.writeFieldName("totalElements");
+        jsonGen.writeNumber(page.getTotalElements());
+        jsonGen.writeFieldName("totalPages");
+        jsonGen.writeNumber(page.getTotalPages());
         jsonGen.writeFieldName("size");
         jsonGen.writeNumber(page.getSize());
         jsonGen.writeFieldName("number");
         jsonGen.writeNumber(page.getNumber());
-        jsonGen.writeFieldName("totalElements");
-        jsonGen.writeNumber(page.getTotalElements());
-        jsonGen.writeFieldName("last");
-        jsonGen.writeBoolean(page.isLast());
-        jsonGen.writeFieldName("totalPages");
-        jsonGen.writeNumber(page.getTotalPages());
         jsonGen.writeObjectField("sort", page.getSort());
         jsonGen.writeFieldName("first");
         jsonGen.writeBoolean(page.isFirst());
         jsonGen.writeFieldName("numberOfElements");
         jsonGen.writeNumber(page.getNumberOfElements());
-        jsonGen.writeFieldName("content");
-        jsonGen.writeRawValue(om.writerWithView(serializerProvider.getActiveView())
-                .writeValueAsString(page.getContent()));
         jsonGen.writeEndObject();
     }
 
