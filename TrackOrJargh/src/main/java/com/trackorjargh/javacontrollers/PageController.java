@@ -87,21 +87,27 @@ public class PageController {
 
 	@RequestMapping("/pelicula/{name}")
 	public String serveFilmProfile(Model model, @PathVariable String name) {
-		model.addAttribute("film", filmRepository.findByName(name));
+		model.addAttribute("content", filmRepository.findByName(name));
+		model.addAttribute("typeContent", "la película");
 
 		return "contentProfile";
 	}
 
 	@RequestMapping("/serie/{name}")
 	public String serveShowProfile(Model model, @PathVariable String name) {
-		model.addAttribute("show", showRepository.findByName(name));
+		model.addAttribute("content", showRepository.findByName(name));
+		model.addAttribute("typeContent", "la serie");
+		model.addAttribute("episodeSection", true);
 
 		return "contentProfile";
 	}
 
 	@RequestMapping("/libro/{name}")
 	public String serveProfile(Model model, @PathVariable String name) {
-		model.addAttribute("book", bookRepository.findByName(name));
+		model.addAttribute("content", bookRepository.findByName(name));
+		model.addAttribute("typeContent", "el libro");
+		model.addAttribute("isBook", true);
+		
 		return "contentProfile";
 	}
 

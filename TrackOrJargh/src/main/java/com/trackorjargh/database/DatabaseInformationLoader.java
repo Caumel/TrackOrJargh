@@ -152,14 +152,14 @@ public class DatabaseInformationLoader {
 		// Test Data Show
 		Show sh1 = new Show("The Big Bang Theory",
 				"La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.",
-				"/img/the_big_bang_theroy.jpg", "", 2007);
+				"/img/the_big_bang_theroy.jpg", "https://www.youtube.com/embed/_uQXxvZ3afQ", 2007);
 		sh1.getSeasons().add(s1);
 		showRepository.save(sh1);
 
 		for (int x = 2; x <= 100; x++) {
 			sh1 = new Show("The Big Bang Theory " + x,
 					"La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.",
-					"/img/the_big_bang_theroy.jpg", "", 2007);
+					"/img/the_big_bang_theroy.jpg", "https://www.youtube.com/embed/_uQXxvZ3afQ", 2007);
 			showRepository.save(sh1);
 		}
 

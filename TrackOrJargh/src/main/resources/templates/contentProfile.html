@@ -60,11 +60,11 @@
 
 				<div class="carousel-inner" role="listbox">
 					<div class="carousel-item active"
-						style="background-image: url('{{film.image}}');">
+						style="background-image: url('{{content.image}}');">
 						<div class="carousel-container">
 							<div class="carousel-content">
 								<h2>Sinopsis</h2>
-								<p>{{film.synopsis}}</p>
+								<p>{{content.synopsis}}</p>
 							</div>
 						</div>
 					</div>
@@ -86,13 +86,16 @@
 				</h3>
 			</header>
 
+			{{^isBook}}
 			<div class="text-center videoYoutube" style="width: 100%;"
 				data-wow-duration="1.4s">
 				<iframe style="width: 100%; height: 400px;"
-					src="{{film.trailer}}"
+					src="{{content.trailer}}"
 					frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 			</div>
-
+			{{/isBook}}
+			
+			{{^isBook}}
 			<div class="row">
 				<div class="col-lg-6 col-md-6 box wow bounceInUp"
 					data-wow-duration="1.4s">
@@ -115,6 +118,22 @@
 					<p class="description">{{#actors}}{{.}}{{/actors}}</p>
 				</div>
 			</div>
+			{{/isBook}}
+			
+			{{#isBook}}
+			<div class="row">
+				<div class="col-lg-6 col-md-6 box wow bounceInUp"
+					data-wow-duration="1.4s">
+					<div class="icon">
+						<i class="ion-ios-paper-outline"></i>
+					</div>
+					<h4 class="title">
+						<a href="">Autores</a>
+					</h4>
+					<p class="description">{{#authors}}{{.}}{{/authors}}</p>
+				</div>
+			</div>
+			{{/isBook}}
 
 		</div>
 	</section>
@@ -123,7 +142,7 @@
             ============================-->
 	<section id="call-to-action" class="wow fadeIn">
 		<div class="container text-center prueba">
-			<h3>Puntua la película</h3>
+			<h3>Puntua {{typeContent}}</h3>
 			<div class="starts">
 				<span id="rateYo"></span>
 			</div>
@@ -133,7 +152,8 @@
 	<!--==========================
             Episodes Section
     ============================-->
-
+	
+	{{#episodeSection}}
 	<section class="mt-5" id="episodes">
 		<div class="container">
 
@@ -238,6 +258,7 @@
 
 		</div>
 	</section>
+	{{/episodeSection}}
 
 
 	<!-- #call-to-action --> <!--==========================
