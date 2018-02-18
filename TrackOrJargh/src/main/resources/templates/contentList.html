@@ -96,8 +96,9 @@
 					</ul>
 				</div>
 			</div>
-
-			<div class="row portfolio-container">
+			
+			<!-- Clase abajo: portfolio-container -->
+			<div id="elements" class="row ">
 				{{#content}}
 					<div class="col-lg-3 col-md-3 portfolio-item filter-app wow fadeInUp">
 						<div class="portfolio-wrap">
@@ -115,6 +116,8 @@
 					</div>
 				{{/content}}
 			</div>
+			
+			<center><button id="moreContent">Mas</button></center>
 		</div>
 	</section>
 	</main>
@@ -141,5 +144,12 @@
 	<script src="/contactform/contactform.js"></script>
 	<!-- Template Main Javascript File -->
 	<script src="/js/main.js"></script>
+	<!-- ContentList JS -->
+	<script src="/js/contentList.js"></script>
+	
+	<script>
+		var typePage = "{{typePage}}";
+	</script>
+	
 </body>
 </html>

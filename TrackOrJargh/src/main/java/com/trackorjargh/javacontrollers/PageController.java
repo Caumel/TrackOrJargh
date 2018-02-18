@@ -36,6 +36,7 @@ public class PageController {
 	@RequestMapping("/peliculas")
 	public String serveFilmList(Model model) {
 		model.addAttribute("content", filmRepository.findAll(new PageRequest(0, 10)));
+		model.addAttribute("typePage", "peliculas");
 		
 		return "contentList";
 	}
@@ -43,6 +44,7 @@ public class PageController {
 	@RequestMapping("/series")
 	public String serveShowList(Model model) {
 		model.addAttribute("content", showRepository.findAll(new PageRequest(0, 10)));
+		model.addAttribute("typePage", "series");
 
 		return "contentList";
 	}
@@ -50,6 +52,8 @@ public class PageController {
 	@RequestMapping("/libros")
 	public String serveBookList(Model model) {
 		model.addAttribute("content", bookRepository.findAll(new PageRequest(0, 10)));
+		model.addAttribute("typePage", "libros");
+		
 		return "contentList";
 	}
 	
