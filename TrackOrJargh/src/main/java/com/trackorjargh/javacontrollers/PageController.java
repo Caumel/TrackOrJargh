@@ -41,6 +41,8 @@ public class PageController {
 		listGeneric.get(0).setFirstInList(true);
 
 		model.addAttribute("contentCarousel", listGeneric);
+		model.addAttribute("indexActive", true);
+		
 		return "index";
 	}
 
@@ -51,6 +53,7 @@ public class PageController {
 
 		model.addAttribute("content", filmRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "peliculas");
+		model.addAttribute("filmsActive", true);
 		model.addAttribute("contentCarousel", films);
 
 		return "contentList";
@@ -63,6 +66,7 @@ public class PageController {
 
 		model.addAttribute("content", showRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "series");
+		model.addAttribute("showsActive", true);
 		model.addAttribute("contentCarousel", shows);
 
 		return "contentList";
@@ -75,6 +79,7 @@ public class PageController {
 
 		model.addAttribute("content", bookRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "libros");
+		model.addAttribute("booksActive", true);
 		model.addAttribute("contentCarousel", books);
 
 		return "contentList";
