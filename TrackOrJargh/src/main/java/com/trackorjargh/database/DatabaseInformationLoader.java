@@ -140,7 +140,7 @@ public class DatabaseInformationLoader {
 			bookRepository.save(b1);
 		}
 
-		// Test Data Episodie
+		// Test Data Episode
 		Episode ep1 = new Episode("Episodio 1");
 		episodeRepository.save(ep1);
 
