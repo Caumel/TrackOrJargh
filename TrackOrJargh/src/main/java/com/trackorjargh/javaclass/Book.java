@@ -10,15 +10,23 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	public interface BasicInformation {}
+	
+	@JsonView(BasicInformation.class)
 	private String name;
+	@JsonView(BasicInformation.class)
 	private String synopsis;	
+	@JsonView(BasicInformation.class)
 	private String image;
+	@JsonView(BasicInformation.class)
 	private int year;
 	private boolean firstInList;
 

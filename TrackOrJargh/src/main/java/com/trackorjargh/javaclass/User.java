@@ -1,13 +1,20 @@
 package com.trackorjargh.javaclass;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class User {
@@ -19,7 +26,9 @@ public class User {
 	private String password;
 	private String email;
 	private String image;
-	private String type;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> roles;
 	
 	@OneToMany
 	private List<Lists> lists = new LinkedList<>();
@@ -45,12 +54,12 @@ public class User {
 	public User() {
 	}
 
-	public User(String nickname, String password, String email, String image, String type) {
-		this.name = nickname;
-		this.password = password;
+	public User(String name, String password, String email, String image, String... roles) {
+		this.name = name;
+		this.password = new BCryptPasswordEncoder().encode(password);
 		this.email = email;
 		this.image = image;
-		this.type = type;
+		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
 
 	public Long getId() {
@@ -61,12 +70,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getNickname() {
+	public String getName() {
 		return name;
 	}
 
-	public void setNickname(String nickname) {
-		this.name = nickname;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPassword() {
@@ -91,14 +100,6 @@ public class User {
 
 	public void setImage(String image) {
 		this.image = image;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public List<Lists> getLists() {
@@ -155,5 +156,13 @@ public class User {
 
 	public void setPointShow(PointShow pointShow) {
 		this.pointShow = pointShow;
+	}
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 }
