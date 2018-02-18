@@ -22,7 +22,7 @@ function loadContent() {
 			request++;
 			
 			if(request == totalPages){
-				alert("Borrar boton");
+				$("#moreContent").remove();
 			}
 		});
 	}
