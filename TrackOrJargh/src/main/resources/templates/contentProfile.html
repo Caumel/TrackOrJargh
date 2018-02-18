@@ -105,7 +105,7 @@
 					<h4 class="title">
 						<a href="">Director/es</a>
 					</h4>
-					<p class="description">{{#directors}}{{.}}{{/directors}}</p>
+					<p class="description">{{#directors}}{{name}}{{/directors}}</p>
 				</div>
 				<div class="col-lg-6 col-md-6 box wow bounceInUp"
 					data-wow-duration="1.4s">
@@ -115,7 +115,7 @@
 					<h4 class="title">
 						<a href="">Actores</a>
 					</h4>
-					<p class="description">{{#actors}}{{.}}{{/actors}}</p>
+					<p class="description">{{#actors}}{{name}}{{/actors}}</p>
 				</div>
 			</div>
 			{{/isBook}}
@@ -130,7 +130,7 @@
 					<h4 class="title">
 						<a href="">Autores</a>
 					</h4>
-					<p class="description">{{#authors}}{{.}}{{/authors}}</p>
+					<p class="description">{{#authors}}{{name}}{{/authors}}</p>
 				</div>
 			</div>
 			{{/isBook}}
