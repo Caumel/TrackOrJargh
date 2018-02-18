@@ -14,6 +14,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.UserRepository;
 
@@ -22,27 +23,36 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private UserComponent userComponent;
 
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 
-		User user = userRepository.findByName(auth.getName());
+		String username = auth.getName();
+		String password = (String) auth.getCredentials();
+
+		User user = userRepository.findByName(username);
 
 		if (user == null) {
 			throw new BadCredentialsException("User not found");
 		}
 
-		String password = (String) auth.getCredentials();
 		if (!new BCryptPasswordEncoder().matches(password, user.getPassword())) {
+
 			throw new BadCredentialsException("Wrong password");
-		}
+		} else {
 
-		List<GrantedAuthority> roles = new ArrayList<>();
-		for (String role : user.getRoles()) {
-			roles.add(new SimpleGrantedAuthority(role));
-		}
+			userComponent.setLoggedUser(user);
 
-		return new UsernamePasswordAuthenticationToken(user.getName(), password, roles);
+			List<GrantedAuthority> roles = new ArrayList<>();
+			for (String role : user.getRoles()) {
+				roles.add(new SimpleGrantedAuthority(role));
+			}
+
+			return new UsernamePasswordAuthenticationToken(username, password, roles);
+		}
 	}
 
 	@Override
