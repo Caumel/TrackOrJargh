@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -42,11 +42,11 @@ public class Book implements InterfaceMainItem{
 	@ManyToMany(mappedBy="books")
 	private List<Lists> lists = new LinkedList<>();
 	
-	@OneToOne(mappedBy="book")
-	private CommentBook commentBook;
+	@OneToMany(mappedBy="book")
+	private List<CommentBook> commentsBook = new LinkedList<>();
 	
-	@OneToOne(mappedBy="book")
-	private PointBook pointBook;
+	@OneToMany(mappedBy="book")
+	private List<PointBook> pointsBook = new LinkedList<>();
 
 	public Book() {
 	}
@@ -130,19 +130,27 @@ public class Book implements InterfaceMainItem{
 		this.lists = lists;
 	}
 
-	public CommentBook getCommentBook() {
-		return commentBook;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setCommentBook(CommentBook commentBook) {
-		this.commentBook = commentBook;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
-	public PointBook getPointBook() {
-		return pointBook;
+	public List<CommentBook> getCommentsBook() {
+		return commentsBook;
 	}
 
-	public void setPointBook(PointBook pointBook) {
-		this.pointBook = pointBook;
+	public void setCommentsBook(List<CommentBook> commentsBook) {
+		this.commentsBook = commentsBook;
+	}
+
+	public List<PointBook> getPointsBook() {
+		return pointsBook;
+	}
+
+	public void setPointsBook(List<PointBook> pointsBook) {
+		this.pointsBook = pointsBook;
 	}
 }

@@ -1,5 +1,6 @@
 package com.trackorjargh.javaclass;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -51,11 +51,11 @@ public class Show implements InterfaceMainItem{
 	@ManyToMany(mappedBy="shows")
 	private List<Lists> lists = new LinkedList<>();
 	
-	@OneToOne(mappedBy="show")
-	private CommentShow commentShow;
+	@OneToMany(mappedBy="show")
+	private List<CommentShow> commentsShow = new ArrayList<>();
 	
-	@OneToOne(mappedBy="show")
-	private PointShow pointShow;
+	@OneToMany(mappedBy="show")
+	private List<PointShow> pointsShow = new ArrayList<>(); 
 
 	public Show() {
 	}
@@ -164,19 +164,27 @@ public class Show implements InterfaceMainItem{
 		this.lists = lists;
 	}
 
-	public CommentShow getCommentShow() {
-		return commentShow;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setCommentShow(CommentShow commentShow) {
-		this.commentShow = commentShow;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
-	public PointShow getPointShow() {
-		return pointShow;
+	public List<CommentShow> getCommentsShow() {
+		return commentsShow;
 	}
 
-	public void setPointShow(PointShow pointShow) {
-		this.pointShow = pointShow;
+	public void setCommentsShow(List<CommentShow> commentsShow) {
+		this.commentsShow = commentsShow;
+	}
+
+	public List<PointShow> getPointsShow() {
+		return pointsShow;
+	}
+
+	public void setPointsShow(List<PointShow> pointsShow) {
+		this.pointsShow = pointsShow;
 	}
 }

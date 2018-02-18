@@ -112,6 +112,7 @@ public class DatabaseInformationLoader {
 		f1.getGenders().add(g1);
 		filmRepository.save(f1);
 
+		CommentFilm cAux;
 		for (int x = 3; x <= 100; x++) {
 			f1 = new Film("Guardianes de la Galaxia " + x,
 					"Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...",
@@ -121,6 +122,11 @@ public class DatabaseInformationLoader {
 			f1.getDirectors().add(d1);
 			f1.getGenders().add(g1);
 			filmRepository.save(f1);
+			
+			cAux = new CommentFilm("Esta pelicula es muy buena");
+			cAux.setFilm(f1);
+			cAux.setUser(u1);
+			commentFilmRepository.save(cAux);
 		}
 
 		// Test Data Book
@@ -174,7 +180,7 @@ public class DatabaseInformationLoader {
 		CommentFilm cf1 = new CommentFilm("Esta pelicula es muy buena");
 		cf1.setFilm(f1);
 		cf1.setUser(u1);
-		commentFilmRepository.save(cf1);
+		//commentFilmRepository.save(cf1);
 
 		// Test Data Comment Show
 		CommentShow cs1 = new CommentShow("Esta serie es muy buena");
