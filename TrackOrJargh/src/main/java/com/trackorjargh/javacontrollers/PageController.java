@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.InterfaceMainItem;
@@ -31,6 +32,10 @@ public class PageController {
 	private UserRepository userRepository;
 	@Autowired
 	private ShowRepository showRepository;
+	
+	
+	@Autowired
+	private UserComponent userComponent; //Information of the user logged
 
 	@RequestMapping("/")
 	public String serveIndex(Model model) {
