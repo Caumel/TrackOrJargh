@@ -10,6 +10,6 @@ public interface FilmRepository extends JpaRepository<Film, Long>{
 	Film findByName(String name);
 	Film findById(Long id);
 	
-	@Query(value="Select max(id) from Book", nativeQuery=true)
+	@Query(value="Select max(id) from Film", nativeQuery=true)
 	Long findLastId();
 }

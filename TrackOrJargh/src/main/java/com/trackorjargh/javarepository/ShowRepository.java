@@ -7,7 +7,7 @@ import com.trackorjargh.javaclass.Show;
 
 public interface ShowRepository extends JpaRepository<Show, Long>{
 	
-	@Query(value="Select max(id) from Book", nativeQuery=true)
+	@Query(value="Select max(id) from Show", nativeQuery=true)
 	Long findLastId();
 	
 	Show findById(Long id);
