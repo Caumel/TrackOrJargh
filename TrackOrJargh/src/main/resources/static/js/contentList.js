@@ -19,7 +19,7 @@ function loadContent() {
 								+ '<p class="textPortfolio">' + item.synopsis
 								+ '</p>' + '</figure>'
 								+ '<div class="portfolio-info">' + '<h4>'
-								+ '<a href="contentProfile.html">' + item.name
+								+ '<a href="' + item.url + item.name + '">' + item.name
 								+ '</a>' + '</h4>' + '<p>' + item.year + '</p>'
 								+ '</div>' + '</div>' + '</div>');
 			});

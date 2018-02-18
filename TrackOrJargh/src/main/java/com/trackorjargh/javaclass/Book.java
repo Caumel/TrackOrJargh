@@ -18,7 +18,8 @@ public class Book implements InterfaceMainItem{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	static final String url = "/libro/";
+	@JsonView(BasicInformation.class)
+	private String url = "/libro/";
 	
 	public interface BasicInformation {}
 	

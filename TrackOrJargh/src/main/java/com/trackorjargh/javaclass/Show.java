@@ -19,7 +19,8 @@ public class Show implements InterfaceMainItem{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	static final String url = "/serie/";
+	@JsonView(BasicInformation.class)
+	private String url = "/serie/";
 	
 	public interface BasicInformation {}
 	
