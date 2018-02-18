@@ -197,7 +197,6 @@ public class PageController {
 		model.addAttribute("showList", showRepository.findAll());
 		//films.get(0).setFirstInList(true);
 		//model.addAttribute("filmsCarousel", films);
-		//model.addAttribute("films", films);
 		//model.addAttribute("films", films);g
 		return "contentList";
 	}
