@@ -48,6 +48,10 @@ public class PageController {
 		model.addAttribute("contentCarousel", listGeneric);
 		model.addAttribute("indexActive", true);
 		
+		if(userComponent.isLoggedUser()) {
+			model.addAttribute("userLogged", userComponent.getLoggedUser());		
+		}
+		
 		return "index";
 	}
 
@@ -145,9 +149,13 @@ public class PageController {
 
 	}
 
-	@RequestMapping("/serveLogin")
+	@RequestMapping("/login")
 	public String serveLogin(Model model) {
-
 		return "login";
+	}
+	
+	@RequestMapping("/loginerror")
+	public String serveLoginError(Model model) {
+		return "loginerror";
 	}
 }

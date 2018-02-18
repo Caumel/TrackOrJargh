@@ -24,19 +24,19 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 		// Private pages (all other pages)
 		//http.authorizeRequests().anyRequest().authenticated();
 		
-        http.authorizeRequests().antMatchers("/tests-login/home").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/tests-login/admin").hasAnyRole("ADMIN");
+        //http.authorizeRequests().antMatchers("/tests-login/home").hasAnyRole("USER");
+        //http.authorizeRequests().antMatchers("/tests-login/admin").hasAnyRole("ADMIN");
 		
 		// Login form
-		http.formLogin().loginPage("/tests-login/login");
+		http.formLogin().loginPage("/login");
 		http.formLogin().usernameParameter("username");
 		http.formLogin().passwordParameter("password");
-		http.formLogin().defaultSuccessUrl("/tests-login/home");
-		http.formLogin().failureUrl("/tests-login/loginerror");
+		http.formLogin().defaultSuccessUrl("/");
+		http.formLogin().failureUrl("/loginerror");
 
 		// Logout
-		http.logout().logoutUrl("/tests-login/logout");
-		http.logout().logoutSuccessUrl("/tests-login");
+		http.logout().logoutUrl("/logout");
+		http.logout().logoutSuccessUrl("/");
 
 		//Test with h2-database
 		http.headers().frameOptions().disable();
