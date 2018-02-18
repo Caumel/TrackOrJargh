@@ -19,6 +19,8 @@ public class Film implements InterfaceMainItem{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	static final String url = "/pelicula/";
+	
 	public interface BasicInformation {}
 	
 	@JsonView(BasicInformation.class)
@@ -165,4 +167,6 @@ public class Film implements InterfaceMainItem{
 	public void setPointFilm(PointFilm pointFilm) {
 		this.pointFilm = pointFilm;
 	}
+	
+	
 }

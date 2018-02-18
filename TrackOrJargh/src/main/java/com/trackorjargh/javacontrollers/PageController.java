@@ -80,14 +80,14 @@ public class PageController {
 		return "contentList";
 	}
 
-	@RequestMapping("/peliculas/{name}")
+	@RequestMapping("/pelicula/{name}")
 	public String serveFilmProfile(Model model, @PathVariable String name) {
 		model.addAttribute("film", filmRepository.findByName(name));
 
 		return "contentProfile";
 	}
 
-	@RequestMapping("/series/{name}")
+	@RequestMapping("/serie/{name}")
 	public String serveShowProfile(Model model, @PathVariable String name) {
 		model.addAttribute("show", showRepository.findByName(name));
 
