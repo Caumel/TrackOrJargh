@@ -43,16 +43,9 @@ public class PageController {
 	
 	@RequestMapping("/series")
 	public String serveShowList(Model model) {
-<<<<<<< HEAD
-		model.addAttribute("showList", showRepository.findAll());
-		//films.get(0).setFirstInList(true);
-		//model.addAttribute("filmsCarousel", films);
-		//model.addAttribute("films", films);g
-=======
 		model.addAttribute("content", showRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "series");
 
->>>>>>> dbe058ebc680f82f41b28d641b5edacaccfef29d
 		return "contentList";
 	}
 	
