@@ -132,7 +132,7 @@ public class DatabaseInformationLoader {
 		bookRepository.save(b1);
 
 		for (int x = 2; x <= 100; x++) {
-			b1 = new Book("Los Juegos del Hambre",
+			b1 = new Book("Los Juegos del Hambre " + x,
 					"Los juegos del hambre se desarrolla en un país llamado Panem, lo que es en realidad una civilización postapocalíptica ubicada en lo que antes era América del Norte.",
 					"/img/los_juegos_del_hambre.jpg", 2008);
 			b1.getAuthors().add(au1);

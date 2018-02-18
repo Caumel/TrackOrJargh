@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.Show;
 
 public interface ShowRepository extends JpaRepository<Show, Long>{
@@ -15,7 +14,7 @@ public interface ShowRepository extends JpaRepository<Show, Long>{
 
 	// SELECT TOP 10 * FROM FILM ORDER BY ID DESC
 	@Query(value = "Select top ?1 * from Show order by id desc", nativeQuery = true)
-	List<Book> findByLastAdded(int additions);
+	List<Show> findByLastAdded(int additions);
 	
 	Show findById(Long id);
 	Show findByName(String name);

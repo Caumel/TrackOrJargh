@@ -1,6 +1,8 @@
 package com.trackorjargh.javacontrollers;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.trackorjargh.javaclass.Book;
+import com.trackorjargh.javaclass.Film;
+import com.trackorjargh.javaclass.Show;
 import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.FilmRepository;
@@ -35,24 +40,37 @@ public class PageController {
 	
 	@RequestMapping("/peliculas")
 	public String serveFilmList(Model model) {
+		List<Film> films = filmRepository.findByLastAdded(5);
+		films.get(0).setFirstInList(true);
+		
 		model.addAttribute("content", filmRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "peliculas");
+		model.addAttribute("contentCarousel", films);
+		
 		
 		return "contentList";
 	}
 	
 	@RequestMapping("/series")
 	public String serveShowList(Model model) {
+		List<Show> shows = showRepository.findByLastAdded(5);
+		shows.get(0).setFirstInList(true);
+		
 		model.addAttribute("content", showRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "series");
+		model.addAttribute("contentCarousel", shows);
 
 		return "contentList";
 	}
 	
 	@RequestMapping("/libros")
 	public String serveBookList(Model model) {
+		List<Book> books = bookRepository.findByLastAdded(5);
+		books.get(0).setFirstInList(true);
+		
 		model.addAttribute("content", bookRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "libros");
+		model.addAttribute("contentCarousel", books);
 		
 		return "contentList";
 	}
