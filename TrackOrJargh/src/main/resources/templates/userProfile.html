@@ -162,35 +162,37 @@
 							<div class="text-center" id="header-Report">
 								<a class="h5">Administración</a>
 							</div>
-							<ul class="nav nav-tabs">
+							<ul class="nav nav-tabs" id="adminTab" role="tablist">
 								<li class="nav-item"><a class="nav-link active"
-									href="#pills-users">Usuarios</a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="#pills-films">Películas</a></li>
-								<li class="nav-item"><a class="nav-link" href="#">Series</a>
-								</li>
-								<li class="nav-item"><a class="nav-link disabled" href="#">Libros</a>
-								</li>
+									id="users-tab" data-toggle="tab" href="#users" role="tab"
+									aria-controls="users" aria-selected="true">Usuarios</a></li>
+								<li class="nav-item"><a class="nav-link" id="films-tab"
+									data-toggle="tab" href="#films" role="tab"
+									aria-controls="films" aria-selected="false">Películas</a></li>
+								<li class="nav-item"><a class="nav-link" id="shows-tab"
+									data-toggle="tab" href="#shows" role="tab"
+									aria-controls="shows" aria-selected="false">Series</a></li>
+								<li class="nav-item"><a class="nav-link" id="books-tab"
+									data-toggle="tab" href="#books" role="tab"
+									aria-controls="books" aria-selected="false">Libros</a></li>
 							</ul>
-							<div class="tab-content" id="tabs-navContent">
-								<div class="tab-pane fade show active" id="pills-users"
-									role="tabpanel" aria-labelledby="pills-users-tab">
+							<div class="tab-content" id="adminTabContent">
+								<div class="tab-pane fade show active" id="users" role="tabpanel"
+									aria-labelledby="users-tab">
 									<form>
 										<div class="form-group pt-3">
-											<label for="userName">Nombre de usuario</label> <input
-												type="text" class="form-control" id="userName"
-												placeholder="{{user.name}}" readonly> <label
+											<label for="userName">Usuario a modificar:</label> <input
+												type="text" class="form-control" id="targetUser"
+												placeholder="Usuario a modificar" > <label
 												for="email">Correo electrónico</label> <input type="email"
-												class="form-control" id="email"
-												placeholder="Correo electrónico" value="{{user.email}}">
+												class="form-control" id="targetEmail"
+												placeholder="Correo electrónico" value="">
 											<label for="deleteUser">Eliminar usuario</label> <input
 												type="text" class="form-control" id="deleteUser"
-												placeholder="Usuario a eliminar"> <input type="text"
-												class="form-control mt-3 mb-2" id="password"
-												placeholder="Confirmar usuario"> <label
-												for="disabledSelect">Tipo de cuenta</label>
-											<fieldset disabled>
-												<select id="disabledSelect" class="form-control">
+												placeholder="Escibir usuario de nuevo para eliminar"> <label
+												for="userType">Tipo de cuenta</label>
+											<fieldset >
+												<select id="userType" class="form-control">
 													<option>Usuario</option>
 													<option>Administrador</option>
 													<option>Moderador</option>
@@ -199,10 +201,14 @@
 											<a href="" class="btn-get-started border">Enviar</a>
 										</div>
 									</form>
-								</div>
-								<div class="tab-pane fade" id="pills-films" role="tabpanel"
-									aria-labelledby="pills-films-tab">...</div>
 
+								</div>
+								<div class="tab-pane fade" id="films" role="tabpanel"
+									aria-labelledby="films-tab">...</div>
+								<div class="tab-pane fade" id="shows" role="tabpanel"
+									aria-labelledby="shows-tab">...</div>
+								<div class="tab-pane fade" id="books" role="tabpanel"
+									aria-labelledby="books-tab">...</div>
 							</div>
 
 						</div>
