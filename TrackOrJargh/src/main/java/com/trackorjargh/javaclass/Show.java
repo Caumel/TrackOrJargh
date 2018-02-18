@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
-public class Show {
+public class Show implements InterfaceMainItem{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;

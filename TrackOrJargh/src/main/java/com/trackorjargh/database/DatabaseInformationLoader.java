@@ -205,6 +205,5 @@ public class DatabaseInformationLoader {
 		pb1.setBook(b1);
 		pb1.setUser(u1);
 		pointBookRepository.save(pb1);
-
 	}
 }

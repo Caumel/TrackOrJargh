@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
-public class Film{
+public class Film implements InterfaceMainItem{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
