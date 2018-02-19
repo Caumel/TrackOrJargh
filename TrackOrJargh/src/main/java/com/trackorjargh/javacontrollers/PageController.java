@@ -162,7 +162,7 @@ public class PageController {
 	
 	@RequestMapping("/registrar")
 	public String serveRegister(Model model, HttpServletRequest request, @RequestParam String name, @RequestParam String email, @RequestParam String pass) {
-		User newUser = new User(name, pass, email, "", "ROLE_USER");
+		User newUser = new User(name, pass, email, "", false, "ROLE_USER");
 		
 		try {
 			URL url = new URL(request.getRequestURL().toString());
