@@ -198,6 +198,11 @@ public class PageController {
 		return "login";
 	}
 	
+	@RequestMapping("/olvidocontra")
+	public String forgetPass(Model model) {
+		return "recoverPass";
+	}
+	
 	@RequestMapping("/loginerror")
 	public String serveLoginError(Model model) {
 		return "loginerror";
