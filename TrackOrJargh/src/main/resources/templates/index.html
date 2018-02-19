@@ -48,18 +48,18 @@
 				<ol class="carousel-indicators"></ol>
 
 				<div class="carousel-inner" role="listbox">
-					{{#slide}}
+					{{#contentCarousel}}
 					<div class="carousel-item {{#firstInList}}active{{/firstInList}}"
 						style="background-image: url('{{image}}');">
 						<div class="carousel-container">
 							<div class="carousel-content">
-								<h2>{{title}}</h2>
-								<p>{{content}}</p>
-								<a href="{{link}}" class="btn-get-started scrollto">{{button}}</a>
+								<h2>{{name}}</h2>
+								<p>{{synopsis}}</p>
+								<a href="{{url}}{{name}}" class="btn-get-started scrollto">Ver</a>
 							</div>
 						</div>
 					</div>
-					{{/slide}}
+					{{/contentCarousel}}
 
 				</div>
 
@@ -135,7 +135,7 @@
 				<div class="col-md-6 wow fadeInUp">
 					<div class="interactions-col">
 						<div class="img">
-							<img src=" /img/about-mission.jpg" alt="" class="img-fluid">
+							<img src=" /img/notification_index.jpg" alt="" class="img-fluid">
 							<div class="icon">
 								<i class="ion-ios-bell-outline"></i>
 							</div>
@@ -146,10 +146,31 @@
 								data-target="#collapseNotification" aria-expanded="false"
 								aria-controls="collapseNotification">Notificaciones</button>
 							<div class="collapse" id="collapseNotification">
-								<div class="card card-body">Anim pariatur cliche
-									reprehenderit, enim eiusmod high life accusamus terry
-									richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-									labore wes anderson cred nesciunt sapiente ea proident.</div>
+								<div class="card card-body">
+								<table class="table">
+									  <thead>
+									    <tr>
+									      <th scope="col">Notificacion</th>
+									      <th scope="col">Asunto</th>
+									      
+									    </tr>
+									  </thead>
+									  <tbody>
+									    <tr>
+									      <th scope="row">1</th>
+									      <td>NUEVO 2x05: Black Lightning</td>
+									    </tr>
+									    <tr>
+									      <th scope="row">2</th>
+									      <td>ESDLA: 18.02.18 3er libro </td>
+									    </tr>
+									    <tr>
+									      <th scope="row">3</th>
+									      <td>Novedad: Origen </td>
+									    </tr>
+									  </tbody>
+									</table>	
+								</div>
 							</div>
 						</h2>
 						<p id="hideNotification">Lorem ipsum dolor sit amet,
@@ -162,7 +183,7 @@
 				<div class="col-md-6 wow fadeInUp" data-wow-delay="0.1s">
 					<div class="interactions-col">
 						<div class="img">
-							<img src=" /img/about-plan.jpg" alt="" class="img-fluid">
+							<img src=" /img/message_index.jpg" alt="" class="img-fluid">
 							<div class="icon">
 								<i class="ion-ios-email-outline"></i>
 							</div>
@@ -174,14 +195,35 @@
 
 							</button>
 							<div class="collapse" id="collapseMessage">
-								<div class="card card-body">ed ut perspiciatis unde omnis
-									iste natus error sit voluptatem doloremque laudantium, totam
-									rem aperiam, eaque ipsa quae ab illo inventore veritatis et
-									quasi architecto beatae vitae dicta sunt explicabo.</div>
+								<div class="card card-body">
+									<table class="table">
+										  <thead>
+										    <tr>
+										      <th scope="col">Mensaje</th>
+										      <th scope="col">Asunto</th>
+										      
+										    </tr>
+										  </thead>
+										  <tbody>
+										    <tr>
+										      <th scope="row">1</th>
+										      <td>Mira esta peli</td>
+										    </tr>
+										    <tr>
+										      <th scope="row">2</th>
+										      <td>Acabe la serie </td>
+										    </tr>
+										    <tr>
+										      <th scope="row">3</th>
+										      <td>has leido ESDLA?</td>
+										    </tr>
+										  </tbody>
+									</table>
+								</div>
 
 							</div>
 						</h2>
-						<p id="hideMessages">ed ut perspiciatis unde omnis iste natus
+						<p id="hideMessages">LALALAed ut perspiciatis unde omnis iste natus
 							error sit voluptatem doloremque laudantium, totam rem aperiam,
 							eaque ipsa quae ab illo inventore veritatis et quasi architecto
 							beatae vitae dicta sunt explicabo.</p>

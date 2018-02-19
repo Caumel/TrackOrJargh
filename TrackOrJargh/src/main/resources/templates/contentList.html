@@ -54,7 +54,7 @@
 				<ol class="carousel-indicators"></ol>
 
 				<div class="carousel-inner" role="listbox">
-					{{#filmsCarousel}}
+					{{#contentCarousel}}
 						<div class="carousel-item {{#firstInList}}active{{/firstInList}}"
 							style="background-image: url('{{image}}');">
 							<div class="carousel-container">
@@ -64,7 +64,7 @@
 								</div>
 							</div>
 						</div>
-					{{/filmsCarousel}}
+					{{/contentCarousel}}
 				</div>
 
 				<a class="carousel-control-prev" href="#introCarousel" role="button"
@@ -108,7 +108,7 @@
 	
 							<div class="portfolio-info">
 								<h4>
-									<a href="contentProfile.html">{{name}}</a>
+									<a href="{{url}}{{name}}">{{name}}</a>
 								</h4>
 								<p>{{year}}</p>
 							</div>
@@ -116,8 +116,9 @@
 					</div>
 				{{/content}}
 			</div>
-			
-			<center><button id="moreContent">Mas</button></center>
+			<div class="text-center moreContentButton">
+				<i class="fa fa-plus-circle fa-3x fa-fw" id="moreContent"></i>
+			</div>
 		</div>
 	</section>
 	</main>

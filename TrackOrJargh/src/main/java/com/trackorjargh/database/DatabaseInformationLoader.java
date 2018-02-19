@@ -105,13 +105,14 @@ public class DatabaseInformationLoader {
 		// Test Data Film
 		Film f1 = new Film("Guardianes de la Galaxia 2",
 				"Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...",
-				"img/Guardianes2.jpg", "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0",
+				"/img/Guardianes2.jpg", "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0",
 				2017);
 		f1.getActors().add(a1);
 		f1.getDirectors().add(d1);
 		f1.getGenders().add(g1);
 		filmRepository.save(f1);
 
+		CommentFilm cAux;
 		for (int x = 3; x <= 100; x++) {
 			f1 = new Film("Guardianes de la Galaxia " + x,
 					"Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...",
@@ -121,6 +122,11 @@ public class DatabaseInformationLoader {
 			f1.getDirectors().add(d1);
 			f1.getGenders().add(g1);
 			filmRepository.save(f1);
+			
+			cAux = new CommentFilm("Esta pelicula es muy buena");
+			cAux.setFilm(f1);
+			cAux.setUser(u1);
+			commentFilmRepository.save(cAux);
 		}
 
 		// Test Data Book
@@ -132,7 +138,7 @@ public class DatabaseInformationLoader {
 		bookRepository.save(b1);
 
 		for (int x = 2; x <= 100; x++) {
-			b1 = new Book("Los Juegos del Hambre",
+			b1 = new Book("Los Juegos del Hambre " + x,
 					"Los juegos del hambre se desarrolla en un país llamado Panem, lo que es en realidad una civilización postapocalíptica ubicada en lo que antes era América del Norte.",
 					"/img/los_juegos_del_hambre.jpg", 2008);
 			b1.getAuthors().add(au1);
@@ -140,7 +146,7 @@ public class DatabaseInformationLoader {
 			bookRepository.save(b1);
 		}
 
-		// Test Data Episodie
+		// Test Data Episode
 		Episode ep1 = new Episode("Episodio 1");
 		episodeRepository.save(ep1);
 
@@ -152,14 +158,14 @@ public class DatabaseInformationLoader {
 		// Test Data Show
 		Show sh1 = new Show("The Big Bang Theory",
 				"La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.",
-				"/img/the_big_bang_theroy.jpg", "", 2007);
+				"/img/the_big_bang_theroy.jpg", "https://www.youtube.com/embed/_uQXxvZ3afQ", 2007);
 		sh1.getSeasons().add(s1);
 		showRepository.save(sh1);
 
 		for (int x = 2; x <= 100; x++) {
 			sh1 = new Show("The Big Bang Theory " + x,
 					"La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.",
-					"/img/the_big_bang_theroy.jpg", "", 2007);
+					"/img/the_big_bang_theroy.jpg", "https://www.youtube.com/embed/_uQXxvZ3afQ", 2007);
 			showRepository.save(sh1);
 		}
 
@@ -174,7 +180,7 @@ public class DatabaseInformationLoader {
 		CommentFilm cf1 = new CommentFilm("Esta pelicula es muy buena");
 		cf1.setFilm(f1);
 		cf1.setUser(u1);
-		commentFilmRepository.save(cf1);
+		//commentFilmRepository.save(cf1);
 
 		// Test Data Comment Show
 		CommentShow cs1 = new CommentShow("Esta serie es muy buena");

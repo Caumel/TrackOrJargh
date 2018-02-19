@@ -17,14 +17,14 @@
 		</div>
 		<input type="text" name="user" id="search-bar" tabindex="1"
 			class="form-control"
-			placeholder="Busca tus pel�culas, series o libros..." value="">
+			placeholder="Busca tus películas, series o libros..." value="">
 
 		<nav id="nav-menu-container">
 			<ul class="nav-menu">
-				<li class="menu-active"><a href="/">Inicio</a></li>
-				<li><a href="peliculas">Películas</a></li>
-				<li><a href="series">Series</a></li>
-				<li><a href="libros">Libros</a></li>
+				<li {{#indexActive}}class="menu-active"{{/indexActive}}><a href="/">Inicio</a></li>
+				<li {{#filmsActive}}class="menu-active"{{/filmsActive}}><a href="/peliculas">Películas</a></li>
+				<li {{#showsActive}}class="menu-active"{{/showsActive}}><a href="/series">Series</a></li>
+				<li {{#booksActive}}class="menu-active"{{/booksActive}}><a href="/libros">Libros</a></li>
 				<li class="menu-has-children"><a href="">Usuario</a>
 					<ul>
 						<li><a href="miperfil">Perfil</a></li>
@@ -32,6 +32,8 @@
 						<li><a href="#">Ajustes</a></li>
 					</ul></li>
 				<li><a href="/login">Login</a></li>
+				<!-- TEST LOGGED -->
+				<li style="color:red !important;">{{#userLogged}}{{name}}{{/userLogged}}</li>
 			</ul>
 		</nav>
 		<!-- #nav-menu-container -->

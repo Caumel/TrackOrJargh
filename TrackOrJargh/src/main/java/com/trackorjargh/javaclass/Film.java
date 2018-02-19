@@ -8,16 +8,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
-public class Film{
+public class Film implements InterfaceMainItem{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@JsonView(BasicInformation.class)
+	private String url = "/pelicula/";
 	
 	public interface BasicInformation {}
 	
@@ -45,11 +48,11 @@ public class Film{
 	@ManyToMany(mappedBy="films")
 	private List<Lists> lists = new LinkedList<>();
 	
-	@OneToOne(mappedBy="film")
-	private CommentFilm commentFilm;
+	@OneToMany(mappedBy="film")
+	private List<CommentFilm> commentsFilm = new LinkedList<>();
 	
-	@OneToOne(mappedBy="film")
-	private PointFilm pointFilm;
+	@OneToMany(mappedBy="film")
+	private List<PointFilm> pointsFilm = new LinkedList<>();
 
 	public Film() {
 	}
@@ -150,19 +153,27 @@ public class Film{
 		this.lists = lists;
 	}
 
-	public CommentFilm getCommentFilm() {
-		return commentFilm;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setCommentFilm(CommentFilm commentFilm) {
-		this.commentFilm = commentFilm;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
-	public PointFilm getPointFilm() {
-		return pointFilm;
+	public List<CommentFilm> getCommentsFilm() {
+		return commentsFilm;
 	}
 
-	public void setPointFilm(PointFilm pointFilm) {
-		this.pointFilm = pointFilm;
+	public void setCommentsFilm(List<CommentFilm> commentsFilm) {
+		this.commentsFilm = commentsFilm;
+	}
+
+	public List<PointFilm> getPointsFilm() {
+		return pointsFilm;
+	}
+
+	public void setPointsFilm(List<PointFilm> pointsFilm) {
+		this.pointsFilm = pointsFilm;
 	}
 }
