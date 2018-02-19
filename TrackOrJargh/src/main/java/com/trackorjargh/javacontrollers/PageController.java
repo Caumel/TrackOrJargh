@@ -152,6 +152,13 @@ public class PageController {
 		model.addAttribute(user);
 
 	}
+	
+	@RequestMapping("/registrar")
+	public String serveRegister(Model model, @RequestParam String name, @RequestParam String email, @RequestParam String pass) {
+		userRepository.save(new User(name, pass, email, "", "ROLE_USER"));
+			
+		return "login";
+	}
 
 	@RequestMapping("/login")
 	public String serveLogin(Model model) {
