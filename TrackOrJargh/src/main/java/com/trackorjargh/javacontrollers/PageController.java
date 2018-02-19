@@ -140,12 +140,12 @@ public class PageController {
 	}
 
 	@RequestMapping("/guardarLogin")
-	public void guardarLogin(Model model, User user) {
+	public void saveLogin(Model model, User user) {
 
 	}
 
 	@RequestMapping("/guardarRegister")
-	public void guardarRegister(Model model, User user) {
+	public void saveRegister(Model model, User user) {
 
 		model.addAttribute(user);
 
