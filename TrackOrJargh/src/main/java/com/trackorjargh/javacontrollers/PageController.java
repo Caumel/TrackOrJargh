@@ -166,7 +166,7 @@ public class PageController {
 		
 		try {
 			URL url = new URL(request.getRequestURL().toString());
-			String urlRegister = "http://" + url.getHost() + ":" + url.getPort() + "/activarcorrero/" + name;
+			String urlRegister = "http://" + url.getHost() + ":" + url.getPort() + "/activarusuario/" + name;
 			
 			mailComponent.sendVerificationEmail(newUser, urlRegister);
 		}catch(MalformedURLException exception) {	
@@ -174,6 +174,22 @@ public class PageController {
 		}
 		
 		userRepository.save(newUser);
+			
+		return "login";
+	}
+	
+	@RequestMapping("/activarusuario/{name}")
+	public String activatedUser(Model model, @PathVariable String name) {
+		User user = userRepository.findByName(name);
+		
+		if(user.isActivatedUser()) {
+			model.addAttribute("errorActivatedUser", true);
+		} else {
+			user.setActivatedUser(true);
+			userRepository.save(user);
+			
+			model.addAttribute("activatedUser", true);
+		}
 			
 		return "login";
 	}
