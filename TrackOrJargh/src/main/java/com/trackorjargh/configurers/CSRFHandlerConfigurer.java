@@ -12,12 +12,10 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 @Configuration
 public class CSRFHandlerConfigurer extends WebMvcConfigurerAdapter {
-	/*
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new CSRFHandlerInterceptor());
+		//registry.addInterceptor(new CSRFHandlerInterceptor());
 	}
-	*/
 }
 
 class CSRFHandlerInterceptor extends HandlerInterceptorAdapter {

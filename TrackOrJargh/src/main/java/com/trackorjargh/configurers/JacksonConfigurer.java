@@ -19,44 +19,43 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 @Configuration
 public class JacksonConfigurer extends WebMvcConfigurerAdapter {
 
-    @Bean
-    public Jackson2ObjectMapperBuilder jacksonBuilder() {
-        return  new Jackson2ObjectMapperBuilder()
-                .failOnUnknownProperties(false)
-                .serializationInclusion(Include.NON_EMPTY)
-                .serializerByType(Page.class, new JsonPageSerializer());
+	@Bean
+	public Jackson2ObjectMapperBuilder jacksonBuilder() {
+		return new Jackson2ObjectMapperBuilder().failOnUnknownProperties(false)
+				.serializationInclusion(Include.NON_EMPTY).serializerByType(Page.class, new JsonPageSerializer());
 
-    }
+	}
 
-   public class JsonPageSerializer extends JsonSerializer{
+	@SuppressWarnings("rawtypes")
+	public class JsonPageSerializer extends JsonSerializer {
 
-	@Override
-    public void serialize(Object object, JsonGenerator jsonGen, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
-    		Page page = (Page) object;
-        ObjectMapper om=new ObjectMapper()
-                .disable(MapperFeature.DEFAULT_VIEW_INCLUSION)
-                .setSerializationInclusion(Include.NON_EMPTY);
-        jsonGen.writeStartObject();
-        jsonGen.writeFieldName("content");
-        jsonGen.writeRawValue(om.writerWithView(serializerProvider.getActiveView())
-                .writeValueAsString(page.getContent()));
-        jsonGen.writeFieldName("last");
-        jsonGen.writeBoolean(page.isLast());
-        jsonGen.writeFieldName("totalElements");
-        jsonGen.writeNumber(page.getTotalElements());
-        jsonGen.writeFieldName("totalPages");
-        jsonGen.writeNumber(page.getTotalPages());
-        jsonGen.writeFieldName("size");
-        jsonGen.writeNumber(page.getSize());
-        jsonGen.writeFieldName("number");
-        jsonGen.writeNumber(page.getNumber());
-        jsonGen.writeObjectField("sort", page.getSort());
-        jsonGen.writeFieldName("first");
-        jsonGen.writeBoolean(page.isFirst());
-        jsonGen.writeFieldName("numberOfElements");
-        jsonGen.writeNumber(page.getNumberOfElements());
-        jsonGen.writeEndObject();
-    }
+		@Override
+		public void serialize(Object object, JsonGenerator jsonGen, SerializerProvider serializerProvider)
+				throws IOException, JsonProcessingException {
+			Page page = (Page) object;
+			ObjectMapper om = new ObjectMapper().disable(MapperFeature.DEFAULT_VIEW_INCLUSION)
+					.setSerializationInclusion(Include.NON_EMPTY);
+			jsonGen.writeStartObject();
+			jsonGen.writeFieldName("content");
+			jsonGen.writeRawValue(
+					om.writerWithView(serializerProvider.getActiveView()).writeValueAsString(page.getContent()));
+			jsonGen.writeFieldName("last");
+			jsonGen.writeBoolean(page.isLast());
+			jsonGen.writeFieldName("totalElements");
+			jsonGen.writeNumber(page.getTotalElements());
+			jsonGen.writeFieldName("totalPages");
+			jsonGen.writeNumber(page.getTotalPages());
+			jsonGen.writeFieldName("size");
+			jsonGen.writeNumber(page.getSize());
+			jsonGen.writeFieldName("number");
+			jsonGen.writeNumber(page.getNumber());
+			jsonGen.writeObjectField("sort", page.getSort());
+			jsonGen.writeFieldName("first");
+			jsonGen.writeBoolean(page.isFirst());
+			jsonGen.writeFieldName("numberOfElements");
+			jsonGen.writeNumber(page.getNumberOfElements());
+			jsonGen.writeEndObject();
+		}
 
-   }
+	}
 }
