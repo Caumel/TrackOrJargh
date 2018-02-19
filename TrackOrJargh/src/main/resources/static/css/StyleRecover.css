@@ -29,5 +29,16 @@
     margin-bottom: 2.5%;
 }
 
+#buttonRecv{
+	background-color:#18d26e;
+	color: #fff;
+    font-family: "Montserrat", sans-serif;
+	font-weight: 700;
+	border-color: #18d26e;
+}
 
+#buttonRecv:hover {
+    color: #18d26e;
+    background-color: #fff;
+}
 
