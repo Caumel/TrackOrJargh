@@ -54,7 +54,7 @@ public class PageController {
 
 		model.addAttribute("contentCarousel", listGeneric);
 		model.addAttribute("indexActive", true);
-		
+
 		return "index";
 	}
 
@@ -104,7 +104,6 @@ public class PageController {
 		model.addAttribute("actors", filmRepository.findByName(name).getActors());
 		model.addAttribute("comments", filmRepository.findByName(name).getCommentsFilm());
 		model.addAttribute("typeContent", "la película");
-		
 
 		System.out.println(filmRepository.findByName(name).getCommentsFilm().size());
 		return "contentProfile";
@@ -129,22 +128,23 @@ public class PageController {
 		model.addAttribute("comments", bookRepository.findByName(name).getCommentsBook());
 		model.addAttribute("typeContent", "el libro");
 		model.addAttribute("isBook", true);
-		
+
 		return "contentProfile";
 	}
 
 	@RequestMapping("/miperfil")
-	public String serveUserProfile(Model model, @RequestParam Optional<String> emailUser, @RequestParam Optional<String> passUser, @RequestParam Optional<Boolean> sent) {
-		if(sent.isPresent()) {
-			if(emailUser.isPresent()){
+	public String serveUserProfile(Model model, @RequestParam Optional<String> emailUser,
+			@RequestParam Optional<String> passUser, @RequestParam Optional<Boolean> sent) {
+		if (sent.isPresent()) {
+			if (emailUser.isPresent()) {
 				userComponent.getLoggedUser().setEmail(emailUser.get());
 			}
-			if(!passUser.get().equals("")) {
+			if (!passUser.get().equals("")) {
 				userComponent.getLoggedUser().setPassword(passUser.get());
 			}
 			userRepository.save(userComponent.getLoggedUser());
 		}
-		
+
 		return "userProfile";
 	}
 
@@ -159,26 +159,29 @@ public class PageController {
 		model.addAttribute(user);
 
 	}
-	
+
 	@RequestMapping("/activarusuario/{name}")
 	public String activatedUser(Model model, @PathVariable String name) {
 		User user = userRepository.findByName(name);
-		
-		if(user.isActivatedUser()) {
-			model.addAttribute("errorActivatedUser", true);
-		} else {
-			user.setActivatedUser(true);
-			userRepository.save(user);
-			
-			model.addAttribute("activatedUser", true);
+
+		if (user != null) {
+			if (user.isActivatedUser()) {
+				model.addAttribute("errorActivatedUser", true);
+			} else {
+				user.setActivatedUser(true);
+				userRepository.save(user);
+
+				model.addAttribute("activatedUser", true);
+			}
 		}
-			
+
 		return "login";
 	}
 
 	@RequestMapping("/login")
 	public String serveLogin(Model model, HttpServletRequest request, @RequestParam Optional<String> name,
-			@RequestParam Optional<String> email, @RequestParam Optional<String> pass, @RequestParam Optional<Boolean> registerUser) {
+			@RequestParam Optional<String> email, @RequestParam Optional<String> pass,
+			@RequestParam Optional<Boolean> registerUser) {
 		if (registerUser.isPresent()) {
 			User newUser = new User(name.get(), pass.get(), email.get(), "", false, "ROLE_USER");
 
@@ -190,28 +193,28 @@ public class PageController {
 			} catch (MalformedURLException exception) {
 				exception.printStackTrace();
 			}
-			
+
 			model.addAttribute("registered", true);
 			userRepository.save(newUser);
 		}
 
 		return "login";
 	}
-	
+
 	@RequestMapping("/olvidocontra")
 	public String forgetPass(Model model) {
 		return "recoverPass";
 	}
-	
+
 	@RequestMapping("/loginerror")
 	public String serveLoginError(Model model) {
 		return "loginerror";
 	}
-	
+
 	@RequestMapping("/error_te")
 	public String paginaError(Model model) {
-		
+
 		return "error_template";
-		
+
 	}
 }
