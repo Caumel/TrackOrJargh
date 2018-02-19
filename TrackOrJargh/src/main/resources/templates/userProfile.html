@@ -66,7 +66,7 @@
 						aria-labelledby="v-pills-PersonalData-tab">
 						<div class="text-center rounded mb-3 h2">Mi cuenta</div>
 						{{#userLogged}}
-						<form method="post" role="form" action="/modificarUsuario"
+						<form method="post" role="form" action="/miperfil"
 							style="display: block;">
 							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 								<div class="hovereffect">
@@ -99,6 +99,7 @@
 										<option>Moderador</option>
 									</select>
 								</fieldset>
+								<input type="hidden" name="sent" value="true">
 								<input name="accountSubmit" type="submit"
 									class="btn-get-started border" value="Enviar">
 							</div>

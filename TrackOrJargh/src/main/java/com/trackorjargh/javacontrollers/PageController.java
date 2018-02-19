@@ -2,6 +2,7 @@ package com.trackorjargh.javacontrollers;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -126,15 +127,16 @@ public class PageController {
 	}
 
 	@RequestMapping("/miperfil")
-	public String serveUserProfile(Model model) {
-		return "userProfile";
-	}
-	
-	@RequestMapping("/modificarUsuario")
-	public String modifyUser(Model model, @RequestParam String emailUser, @RequestParam String passUser) {
-		userComponent.getLoggedUser().setEmail(emailUser);
-		userComponent.getLoggedUser().setPassword(passUser);
-		userRepository.save(userComponent.getLoggedUser());
+	public String serveUserProfile(Model model, @RequestParam Optional<String> emailUser, @RequestParam Optional<String> passUser, @RequestParam Optional<Boolean> sent) {
+		if(sent.isPresent()) {
+			if(emailUser.isPresent()){
+				userComponent.getLoggedUser().setEmail(emailUser.get());
+			}
+			if(!passUser.get().equals("")) {
+				userComponent.getLoggedUser().setPassword(passUser.get());
+			}
+			userRepository.save(userComponent.getLoggedUser());
+		}
 		
 		return "userProfile";
 	}
