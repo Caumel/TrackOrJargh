@@ -44,6 +44,10 @@
 				<span><a href="#">Login/Registrarse</a> </span>
 			</div>
 		</div>
+		{{#registered}}
+		<h5 class="text-center">Has consegido registrarte correctamente. A continuacion,
+			inicie sesion</h5>
+		{{/registered}}
 		<!-- Log-in div start hare-->
 		<div id="login">
 			<div class="container">
@@ -53,17 +57,17 @@
 
 					<form method="post" role="form" action="/login"
 						style="display: block;">
-							<input type="text" name="username" id="userL" tabindex="1"
-								class="form-group form-control" placeholder="Usuario" value="">
-						
-							<input type="password" name="password" id="passwordL"
-								tabindex="2" class="form-group form-control" placeholder="Contraseña">
-						
-							<div class="row form-group">
-								<input type="submit" name="login-submit" id="buttonLog"
-									tabindex="4" class="btn btn-login mx-auto form-group"
-									value="Iniciar sesion">
-							</div>
+						<input type="text" name="username" id="userL" tabindex="1"
+							class="form-group form-control" placeholder="Usuario" value="">
+
+						<input type="password" name="password" id="passwordL" tabindex="2"
+							class="form-group form-control" placeholder="Contraseña">
+
+						<div class="row form-group">
+							<input type="submit" name="login-submit" id="buttonLog"
+								tabindex="4" class="btn btn-login mx-auto form-group"
+								value="Iniciar sesion">
+						</div>
 						<div class=" text-center">
 							<a href="https://phpoll.com/recover" tabindex="5"
 								class="forgot-password">He olvidado la contraseña</a>
@@ -82,18 +86,17 @@
 					<div id="collapseRegt" class="collapse" role="tabpanel"
 						aria-expanded="false" aria-labelledby="register">
 						<div class="card-block">
-							<form method="post" id="register-form" role="form" style="display: block;" action="/registrar">
-
+							<form method="post" id="register-form" role="form"
+								style="display: block;" action="/register">
 								<input type="text" name="name" tabindex="2"
 									class="form-group form-control" placeholder="Nombre de Usuario"
-									value="" />
-								<input type="email" name="email"
-									tabindex="2" class="form-group form-control"
-									placeholder="Email" value="" /> 
-								<input type="password" name="pass" class="form-group form-control"
-									tabindex="2" role="form" placeholder="Contraseña" /> 
-								<input type="password" id="confirm-password"
-									tabindex="2" class="form-group form-control"
+									value="" /> <input type="email" name="email" tabindex="2"
+									class="form-group form-control" placeholder="Email" value="" />
+								<input type="password" name="pass"
+									class="form-group form-control" tabindex="2" role="form"
+									placeholder="Contraseña" /> <input type="password"
+									id="confirm-password" tabindex="2"
+									class="form-group form-control"
 									placeholder="Confirmar Contraseña" />
 
 								<div class="row form-group">

@@ -146,19 +146,13 @@ public class PageController {
 
 	}
 
-	@RequestMapping("/guardarRegister")
-	public void saveRegister(Model model, User user) {
-
-		model.addAttribute(user);
-
-	}
-	
-	@RequestMapping("/registrar")
-	public String serveRegister(Model model, @RequestParam String name, @RequestParam String email, @RequestParam String pass) {
+	@RequestMapping("/register")
+	public String saveRegister(Model model, @RequestParam String name,@RequestParam String email, @RequestParam String pass) {
 		userRepository.save(new User(name, pass, email, "", "ROLE_USER"));
-			
+		model.addAttribute("registered", true);
 		return "login";
 	}
+
 
 	@RequestMapping("/login")
 	public String serveLogin(Model model) {
