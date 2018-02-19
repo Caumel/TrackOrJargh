@@ -29,7 +29,6 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
-
 		String username = auth.getName();
 		String password = (String) auth.getCredentials();
 
@@ -38,10 +37,14 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 		if (user == null) {
 			throw new BadCredentialsException("User not found");
 		}
+		
+		if(!user.isActivatedUser()) {
+			throw new BadCredentialsException("User not activated");
+		}
 
 		if (!new BCryptPasswordEncoder().matches(password, user.getPassword())) {
 
-			throw new BadCredentialsException("Wrong password");
+			throw new BadCredentialsException("User wrong password");
 		} else {
 
 			userComponent.setLoggedUser(user);

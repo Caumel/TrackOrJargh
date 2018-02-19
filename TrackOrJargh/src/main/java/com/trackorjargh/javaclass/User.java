@@ -26,6 +26,7 @@ public class User {
 	private String password;
 	private String email;
 	private String image;
+	private boolean activatedUser;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
@@ -54,11 +55,12 @@ public class User {
 	public User() {
 	}
 
-	public User(String name, String password, String email, String image, String... roles) {
+	public User(String name, String password, String email, String image, boolean activatedUser, String... roles) {
 		this.name = name;
 		this.password = new BCryptPasswordEncoder().encode(password);
 		this.email = email;
 		this.image = image;
+		this.activatedUser = activatedUser;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
 
@@ -83,7 +85,7 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = new BCryptPasswordEncoder().encode(password);
 	}
 
 	public String getEmail() {
@@ -164,5 +166,13 @@ public class User {
 
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
+	}
+
+	public boolean isActivatedUser() {
+		return activatedUser;
+	}
+
+	public void setActivatedUser(boolean activatedUser) {
+		this.activatedUser = activatedUser;
 	}
 }

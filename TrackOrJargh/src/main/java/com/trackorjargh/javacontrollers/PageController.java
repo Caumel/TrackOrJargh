@@ -1,7 +1,12 @@
 package com.trackorjargh.javacontrollers;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -9,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.InterfaceMainItem;
@@ -19,6 +26,7 @@ import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.FilmRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
+import com.trackorjargh.mail.MailComponent;
 
 @Controller
 public class PageController {
@@ -31,6 +39,10 @@ public class PageController {
 	private UserRepository userRepository;
 	@Autowired
 	private ShowRepository showRepository;
+	@Autowired
+	private UserComponent userComponent;
+	@Autowired
+	private MailComponent mailComponent;
 
 	@RequestMapping("/")
 	public String serveIndex(Model model) {
@@ -121,27 +133,69 @@ public class PageController {
 		return "contentProfile";
 	}
 
-	@RequestMapping("/miperfil/{nickname}")
-	public String serveUserProfile(Model model, @PathVariable String nickname) {
-		User user = userRepository.findByName(nickname);
-		model.addAttribute("user", user);
+	@RequestMapping("/miperfil")
+	public String serveUserProfile(Model model, @RequestParam Optional<String> emailUser, @RequestParam Optional<String> passUser, @RequestParam Optional<Boolean> sent) {
+		if(sent.isPresent()) {
+			if(emailUser.isPresent()){
+				userComponent.getLoggedUser().setEmail(emailUser.get());
+			}
+			if(!passUser.get().equals("")) {
+				userComponent.getLoggedUser().setPassword(passUser.get());
+			}
+			userRepository.save(userComponent.getLoggedUser());
+		}
+		
 		return "userProfile";
 	}
 
 	@RequestMapping("/guardarLogin")
-	public void guardarLogin(Model model, User user) {
+	public void saveLogin(Model model, User user) {
 
 	}
 
 	@RequestMapping("/guardarRegister")
-	public void guardarRegister(Model model, User user) {
+	public void saveRegister(Model model, User user) {
 
 		model.addAttribute(user);
 
 	}
+	
+	@RequestMapping("/registrar")
+	public String serveRegister(Model model, HttpServletRequest request, @RequestParam String name, @RequestParam String email, @RequestParam String pass) {
+		User newUser = new User(name, pass, email, "", false, "ROLE_USER");
+		
+		try {
+			URL url = new URL(request.getRequestURL().toString());
+			String urlRegister = "http://" + url.getHost() + ":" + url.getPort() + "/activarusuario/" + name;
+			
+			mailComponent.sendVerificationEmail(newUser, urlRegister);
+		}catch(MalformedURLException exception) {	
+			exception.printStackTrace();
+		}
+		
+		userRepository.save(newUser);
+			
+		return "login";
+	}
+	
+	@RequestMapping("/activarusuario/{name}")
+	public String activatedUser(Model model, @PathVariable String name) {
+		User user = userRepository.findByName(name);
+		
+		if(user.isActivatedUser()) {
+			model.addAttribute("errorActivatedUser", true);
+		} else {
+			user.setActivatedUser(true);
+			userRepository.save(user);
+			
+			model.addAttribute("activatedUser", true);
+		}
+			
+		return "login";
+	}
 
 	@RequestMapping("/login")
-	public String serveLogin(Model model) {
+	public String serveLogin(Model model){	
 		return "login";
 	}
 	
