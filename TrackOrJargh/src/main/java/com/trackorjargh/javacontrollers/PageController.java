@@ -160,24 +160,6 @@ public class PageController {
 
 	}
 	
-	@RequestMapping("/registrar")
-	public String serveRegister(Model model, HttpServletRequest request, @RequestParam String name, @RequestParam String email, @RequestParam String pass) {
-		User newUser = new User(name, pass, email, "", false, "ROLE_USER");
-		
-		try {
-			URL url = new URL(request.getRequestURL().toString());
-			String urlRegister = "http://" + url.getHost() + ":" + url.getPort() + "/activarusuario/" + name;
-			
-			mailComponent.sendVerificationEmail(newUser, urlRegister);
-		}catch(MalformedURLException exception) {	
-			exception.printStackTrace();
-		}
-		
-		userRepository.save(newUser);
-			
-		return "login";
-	}
-	
 	@RequestMapping("/activarusuario/{name}")
 	public String activatedUser(Model model, @PathVariable String name) {
 		User user = userRepository.findByName(name);
@@ -195,7 +177,24 @@ public class PageController {
 	}
 
 	@RequestMapping("/login")
-	public String serveLogin(Model model){	
+	public String serveLogin(Model model, HttpServletRequest request, @RequestParam Optional<String> name,
+			@RequestParam Optional<String> email, @RequestParam Optional<String> pass, @RequestParam Optional<Boolean> registerUser) {
+		if (registerUser.isPresent()) {
+			User newUser = new User(name.get(), pass.get(), email.get(), "", false, "ROLE_USER");
+
+			try {
+				URL url = new URL(request.getRequestURL().toString());
+				String urlRegister = "http://" + url.getHost() + ":" + url.getPort() + "/activarusuario/" + name.get();
+
+				mailComponent.sendVerificationEmail(newUser, urlRegister);
+			} catch (MalformedURLException exception) {
+				exception.printStackTrace();
+			}
+			
+			model.addAttribute("registered", true);
+			userRepository.save(newUser);
+		}
+
 		return "login";
 	}
 	

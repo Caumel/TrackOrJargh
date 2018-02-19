@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		{{#registered}}
-		<h5 class="text-center">Has consegido registrarte correctamente. A continuación, active su cuenta para inicie sesión.</h5>
+		<h5 class="text-center">Has consegido registrarte correctamente. A continuación, active su cuenta para iniciar sesión.</h5>
 		{{/registered}}
 		
 		{{#activatedUser}}
@@ -63,7 +63,7 @@
 					<!-- Log-In segment -->
 					<span>Log-in</span>
 
-					<form method="post" role="form" action="/login"
+					<form method="post" role="form" action="/loginusuario"
 						style="display: block;">
 						<input type="text" name="username" id="userL" tabindex="1"
 							class="form-group form-control" placeholder="Usuario" value="">
@@ -95,7 +95,7 @@
 						aria-expanded="false" aria-labelledby="register">
 						<div class="card-block">
 							<form method="post" id="register-form" role="form"
-								style="display: block;" action="/registrar">
+								style="display: block;" action="/login">
 								<input type="text" name="name" tabindex="2"
 									class="form-group form-control" placeholder="Nombre de Usuario"
 									value="" /> <input type="email" name="email" tabindex="2"
@@ -106,6 +106,7 @@
 									id="confirm-password" tabindex="2"
 									class="form-group form-control"
 									placeholder="Confirmar Contraseña" />
+									<input type="hidden" name="registerUser" value="true"/>
 
 								<div class="row form-group">
 									<input type="submit" name="register-submit" id="buttonReg"
