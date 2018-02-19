@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.InterfaceMainItem;
@@ -31,6 +33,8 @@ public class PageController {
 	private UserRepository userRepository;
 	@Autowired
 	private ShowRepository showRepository;
+	@Autowired
+	private UserComponent userComponent;
 
 	@RequestMapping("/")
 	public String serveIndex(Model model) {
@@ -121,10 +125,17 @@ public class PageController {
 		return "contentProfile";
 	}
 
-	@RequestMapping("/miperfil/{nickname}")
-	public String serveUserProfile(Model model, @PathVariable String nickname) {
-		User user = userRepository.findByName(nickname);
-		model.addAttribute("user", user);
+	@RequestMapping("/miperfil")
+	public String serveUserProfile(Model model) {
+		return "userProfile";
+	}
+	
+	@RequestMapping("/modificarUsuario")
+	public String modifyUser(Model model, @RequestParam String emailUser, @RequestParam String passUser) {
+		userComponent.getLoggedUser().setEmail(emailUser);
+		userComponent.getLoggedUser().setPassword(passUser);
+		userRepository.save(userComponent.getLoggedUser());
+		
 		return "userProfile";
 	}
 

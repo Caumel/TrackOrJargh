@@ -83,7 +83,7 @@ public class DatabaseInformationLoader {
 		// Test Data User
 		User u1 = new User("oscar", "1234", "oscarmola@gmail.com", "", "ROLE_USER");
 		userRepository.save(u1);
-		User u2 = new User("jesus", "1234", "jesusmola@gmail.com", "", "ROLE_USER", "ROLE_ADMIN");
+		User u2 = new User("jesus", "1234", "jesusmola@gmail.com", "img/userFoto.jpg", "ROLE_USER", "ROLE_ADMIN");
 		userRepository.save(u2);
 
 		// Test Data Actor

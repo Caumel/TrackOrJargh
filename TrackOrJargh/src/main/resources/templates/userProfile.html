@@ -65,11 +65,13 @@
 						id="v-pills-PersonalData" role="tabpanel"
 						aria-labelledby="v-pills-PersonalData-tab">
 						<div class="text-center rounded mb-3 h2">Mi cuenta</div>
-						<form>
+						{{#userLogged}}
+						<form method="post" role="form" action="/modificarUsuario"
+							style="display: block;">
 							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 								<div class="hovereffect">
 									<img id="userImage" class="img-responsive rounded-circle"
-										src="img/userFoto.jpg" alt="Imagen de perfil">
+										src="{{image}}" alt="Imagen de perfil">
 									<div class="overlay rounded-circle">
 										<div class="icon">
 											<i class="ion-ios-compose-outline"></i>
@@ -81,26 +83,27 @@
 							<div class="form-group pt-3">
 								<label for="userName">Nombre de usuario</label> <input
 									type="text" class="form-control" id="userName"
-									placeholder="{{user.name}}" readonly> <label
-									for="email">Correo electrónico</label> <input type="email"
-									class="form-control" id="email"
-									placeholder="Correo electrónico" value="{{user.email}}">
-								<label for="password">Cambio de contraseña</label> <input
+									placeholder="{{name}}" readonly> <label for="email">Correo
+									electrónico</label> <input type="email" class="form-control was-validated" id="email"
+									placeholder="Correo electrónico" value="{{email}}" name="emailUser" > <label
+									for="password">Cambio de contraseña</label> <input
 									type="password" class="form-control" id="password"
-									placeholder="Nueva contraseña"> <input type="password"
-									class="form-control mt-3 mb-2" id="password"
-									placeholder="Confirmar contraseña"> <label
+									placeholder="Nueva contraseña" name="passUser" > <input type="password"
+									class="form-control mt-3 mb-2" id="confirmPass"
+									placeholder="Confirmar contraseña" name="confirmPass"> <label
 									for="disabledSelect">Tipo de cuenta</label>
 								<fieldset disabled>
 									<select id="disabledSelect" class="form-control">
 										<option>Usuario</option>
-										<option>Administrador</option>
+										<option value="Administrador" selected="selected">Administrador</option>
 										<option>Moderador</option>
 									</select>
 								</fieldset>
-								<a href="" class="btn-get-started border">Enviar</a>
+								<input name="accountSubmit" type="submit"
+									class="btn-get-started border" value="Enviar">
 							</div>
 						</form>
+						{{/userLogged}}
 					</div>
 
 					<div class="tab-pane fade" id="v-pills-MyLists" role="tabpanel"
@@ -177,34 +180,58 @@
 									aria-controls="books" aria-selected="false">Libros</a></li>
 							</ul>
 							<div class="tab-content" id="adminTabContent">
-								<div class="tab-pane fade show active" id="users" role="tabpanel"
-									aria-labelledby="users-tab">
+								<div class="tab-pane fade show active" id="users"
+									role="tabpanel" aria-labelledby="users-tab">
 									<form>
 										<div class="form-group pt-3">
 											<label for="userName">Usuario a modificar:</label> <input
 												type="text" class="form-control" id="targetUser"
-												placeholder="Usuario a modificar" > <label
+												placeholder="Usuario a modificar"> <label
 												for="email">Correo electrónico</label> <input type="email"
 												class="form-control" id="targetEmail"
-												placeholder="Correo electrónico" value="">
-											<label for="deleteUser">Eliminar usuario</label> <input
-												type="text" class="form-control" id="deleteUser"
-												placeholder="Escibir usuario de nuevo para eliminar"> <label
-												for="userType">Tipo de cuenta</label>
-											<fieldset >
+												placeholder="Correo electrónico" value=""> <label
+												for="deleteUser">Eliminar usuario</label> <input type="text"
+												class="form-control" id="deleteUser"
+												placeholder="Escibir usuario de nuevo para eliminar">
+											<label for="userType">Tipo de cuenta</label>
+											<fieldset>
+												<select id="userType" class="form-control">
+													<option>Usuario</option>
+													<option value="Administrador" selected="selected">Administrador</option>
+													<option>Moderador</option>
+												</select>
+											</fieldset>
+											<input name="filmModSubmit" type="submit"
+												class="btn-get-started border" value="Enviar">
+										</div>
+									</form>
+								</div>
+								<div class="tab-pane fade" id="films" role="tabpanel"
+									aria-labelledby="films-tab">
+									<form>
+										<div class="form-group pt-3">
+											<label for="film">Película a modificar:</label> <input
+												type="text" class="form-control" id="targetFilm"
+												placeholder="Película a modificar"> <label
+												for="email">Correo electrónico</label> <input type="email"
+												class="form-control" id="targetEmail"
+												placeholder="Correo electrónico" value=""> <label
+												for="deleteUser">Eliminar usuario</label> <input type="text"
+												class="form-control" id="deleteUser"
+												placeholder="Escibir usuario de nuevo para eliminar">
+											<label for="userType">Tipo de cuenta</label>
+											<fieldset>
 												<select id="userType" class="form-control">
 													<option>Usuario</option>
 													<option>Administrador</option>
 													<option>Moderador</option>
 												</select>
 											</fieldset>
-											<a href="" class="btn-get-started border">Enviar</a>
+											<input name="filmModSubmit" type="submit"
+												class="btn-get-started border" value="Enviar">
 										</div>
 									</form>
-
 								</div>
-								<div class="tab-pane fade" id="films" role="tabpanel"
-									aria-labelledby="films-tab">...</div>
 								<div class="tab-pane fade" id="shows" role="tabpanel"
 									aria-labelledby="shows-tab">...</div>
 								<div class="tab-pane fade" id="books" role="tabpanel"
@@ -241,6 +268,9 @@
 
 	<!-- Template Main Javascript File -->
 	<script src="/js/main.js"></script>
+	
+	<!-- Password validation Javascript -->
+	<script src="/js/passwordValidation.js"></script>
 
 </body>
 </html>
