@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import com.trackorjargh.javaclass.User;
 
 @Component
-public class MailConfigurer {
+public class MailComponent {
     @Autowired
     private JavaMailSender emailSender;
 
@@ -45,10 +45,10 @@ public class MailConfigurer {
         }
     }
     
-    public void sendVerificationEmail(User user) {
+    public void sendVerificationEmail(User user, String urlPage) {
     		String to = user.getEmail();
     		String subject = "Verificación del usuario " + user.getName() + " en TrackOrJargh";
-    		String message = "<body><p>Por favor pinche en este <a href=''>enlace</a> para poder usar todas las ventajas de TrackOrJack</p></body>";
+    		String message = "<body><p>Por favor pinche en este <a href='" + urlPage + "'>enlace</a> para poder usar todas las ventajas de TrackOrJack</p></body>";
     		
     		sendSimpleMimeMessage(to, subject, message);
     }

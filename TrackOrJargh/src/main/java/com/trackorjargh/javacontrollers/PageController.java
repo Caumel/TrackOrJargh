@@ -1,8 +1,12 @@
 package com.trackorjargh.javacontrollers;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +26,7 @@ import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.FilmRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
+import com.trackorjargh.mail.MailComponent;
 
 @Controller
 public class PageController {
@@ -36,6 +41,8 @@ public class PageController {
 	private ShowRepository showRepository;
 	@Autowired
 	private UserComponent userComponent;
+	@Autowired
+	private MailComponent mailComponent;
 
 	@RequestMapping("/")
 	public String serveIndex(Model model) {
@@ -146,16 +153,33 @@ public class PageController {
 
 	}
 
-	@RequestMapping("/register")
-	public String saveRegister(Model model, @RequestParam String name,@RequestParam String email, @RequestParam String pass) {
-		userRepository.save(new User(name, pass, email, "", "ROLE_USER"));
-		model.addAttribute("registered", true);
+	@RequestMapping("/guardarRegister")
+	public void saveRegister(Model model, User user) {
+
+		model.addAttribute(user);
+
+	}
+	
+	@RequestMapping("/registrar")
+	public String serveRegister(Model model, HttpServletRequest request, @RequestParam String name, @RequestParam String email, @RequestParam String pass) {
+		User newUser = new User(name, pass, email, "", "ROLE_USER");
+		
+		try {
+			URL url = new URL(request.getRequestURL().toString());
+			String urlRegister = "http://" + url.getHost() + ":" + url.getPort() + "/activarcorrero/" + name;
+			
+			mailComponent.sendVerificationEmail(newUser, urlRegister);
+		}catch(MalformedURLException exception) {	
+			exception.printStackTrace();
+		}
+		
+		userRepository.save(newUser);
+			
 		return "login";
 	}
 
-
 	@RequestMapping("/login")
-	public String serveLogin(Model model) {
+	public String serveLogin(Model model){	
 		return "login";
 	}
 	
