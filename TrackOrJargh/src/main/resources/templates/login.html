@@ -82,23 +82,23 @@
 					<div id="collapseRegt" class="collapse" role="tabpanel"
 						aria-expanded="false" aria-labelledby="register">
 						<div class="card-block">
-							<form id="register-form" role="form" style="display: block;">
+							<form method ="post" id="register-form" role="form" style="display: block;" action="/register">
 
-								<input type="text" name="nickname" id="userR" tabindex="1"
+								<input type="text" name="name" tabindex="2"
 									class="form-group form-control" placeholder="Nombre de Usuario"
 									value="" />
-								<input type="email" name="email" id="email"
-									tabindex="1" class="form-group form-control"
+								<input type="email" name="email"
+									tabindex="2" class="form-group form-control"
 									placeholder="Email" value="" /> 
-								<input type="password" name="password" id="passwordR" class="form-group form-control"
+								<input type="password" name="pass" class="form-group form-control"
 									tabindex="2" role="form" placeholder="Contraseña" /> 
-								<input type="password" name="password" id="confirm-password"
+								<input type="password" id="confirm-password"
 									tabindex="2" class="form-group form-control"
 									placeholder="Confirmar Contraseña" />
 
 								<div class="row form-group">
 									<input type="submit" name="register-submit" id="buttonReg"
-										tabindex="4" class="active btn btn-register mx-auto"
+										tabindex="3" class="active btn btn-register mx-auto"
 										value="Registrarse">
 								</div>
 
