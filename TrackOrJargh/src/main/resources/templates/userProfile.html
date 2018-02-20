@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <title>TrackOrJargh</title>
@@ -55,9 +55,7 @@
 							Listas</a> <a class="nav-link" id="v-pills-Report-tab"
 							data-toggle="pill" href="#v-pills-Report" role="tab"
 							aria-controls="v-pills-settings" aria-selected="false">Reportar
-							error</a> <a class="nav-link" id="v-pills-Admin-tab"
-							data-toggle="pill" href="#v-pills-Admin" role="tab"
-							aria-controls="v-pills-admin" aria-selected="false">Administración</a>
+							error</a>
 					</div>
 				</div>
 				<div class="tab-content col-lg-9" id="v-pills-tabContent">
@@ -158,87 +156,6 @@
 								</div>
 								<button type="submit" class="btn btn-primary btn-sm btn-block">Reportar</button>
 							</form>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="v-pills-Admin" role="tabpanel"
-						aria-labelledby="v-pills-admin-tab">
-						<div id="report" class="container form-control">
-							<div class="text-center" id="header-Report">
-								<a class="h5">Administración</a>
-							</div>
-							<ul class="nav nav-tabs" id="adminTab" role="tablist">
-								<li class="nav-item"><a class="nav-link active"
-									id="users-tab" data-toggle="tab" href="#users" role="tab"
-									aria-controls="users" aria-selected="true">Usuarios</a></li>
-								<li class="nav-item"><a class="nav-link" id="films-tab"
-									data-toggle="tab" href="#films" role="tab"
-									aria-controls="films" aria-selected="false">Películas</a></li>
-								<li class="nav-item"><a class="nav-link" id="shows-tab"
-									data-toggle="tab" href="#shows" role="tab"
-									aria-controls="shows" aria-selected="false">Series</a></li>
-								<li class="nav-item"><a class="nav-link" id="books-tab"
-									data-toggle="tab" href="#books" role="tab"
-									aria-controls="books" aria-selected="false">Libros</a></li>
-							</ul>
-							<div class="tab-content" id="adminTabContent">
-								<div class="tab-pane fade show active" id="users"
-									role="tabpanel" aria-labelledby="users-tab">
-									<form>
-										<div class="form-group pt-3">
-											<label for="userName">Usuario a modificar:</label> <input
-												type="text" class="form-control" id="targetUser"
-												placeholder="Usuario a modificar"> <label
-												for="email">Correo electrónico</label> <input type="email"
-												class="form-control" id="targetEmail"
-												placeholder="Correo electrónico" value=""> <label
-												for="deleteUser">Eliminar usuario</label> <input type="text"
-												class="form-control" id="deleteUser"
-												placeholder="Escibir usuario de nuevo para eliminar">
-											<label for="userType">Tipo de cuenta</label>
-											<fieldset>
-												<select id="userType" class="form-control">
-													<option>Usuario</option>
-													<option value="Administrador" selected="selected">Administrador</option>
-													<option>Moderador</option>
-												</select>
-											</fieldset>
-											<input name="filmModSubmit" type="submit"
-												class="btn-get-started border" value="Enviar">
-										</div>
-									</form>
-								</div>
-								<div class="tab-pane fade" id="films" role="tabpanel"
-									aria-labelledby="films-tab">
-									<form>
-										<div class="form-group pt-3">
-											<label for="film">Película a modificar:</label> <input
-												type="text" class="form-control" id="targetFilm"
-												placeholder="Película a modificar"> <label
-												for="email">Correo electrónico</label> <input type="email"
-												class="form-control" id="targetEmail"
-												placeholder="Correo electrónico" value=""> <label
-												for="deleteUser">Eliminar usuario</label> <input type="text"
-												class="form-control" id="deleteUser"
-												placeholder="Escibir usuario de nuevo para eliminar">
-											<label for="userType">Tipo de cuenta</label>
-											<fieldset>
-												<select id="userType" class="form-control">
-													<option>Usuario</option>
-													<option>Administrador</option>
-													<option>Moderador</option>
-												</select>
-											</fieldset>
-											<input name="filmModSubmit" type="submit"
-												class="btn-get-started border" value="Enviar">
-										</div>
-									</form>
-								</div>
-								<div class="tab-pane fade" id="shows" role="tabpanel"
-									aria-labelledby="shows-tab">...</div>
-								<div class="tab-pane fade" id="books" role="tabpanel"
-									aria-labelledby="books-tab">...</div>
-							</div>
-
 						</div>
 					</div>
 				</div>

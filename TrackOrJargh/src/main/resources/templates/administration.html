@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>TrackOrJargh</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="" name="keywords">
+<meta content="" name="description">
+<!-- Favicons -->
+<link href="/img/favicon.png" rel="icon">
+<link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700"
+	rel="stylesheet">
+<!-- Bootstrap CSS File -->
+<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Libraries CSS Files -->
+<link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/lib/animate/animate.min.css" rel="stylesheet">
+<link href="/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+<link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<!-- Main Stylesheet File -->
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/styleUserProfile.css" rel="stylesheet">
+</head>
+<body>
+	{{>header}}
+	<div id="report" class="container contents form-control">
+		<div class="text-center" id="header-Report">
+			<a class="h5">Administración</a>
+		</div>
+		<ul class="nav nav-tabs" id="adminTab" role="tablist">
+			<li class="nav-item"><a class="nav-link active" id="users-tab" data-toggle="tab"
+				href="#users" role="tab" aria-controls="users" aria-selected="true">Usuarios</a></li>
+			<li class="nav-item"><a class="nav-link" id="films-tab" data-toggle="tab" href="#films"
+				role="tab" aria-controls="films" aria-selected="false">Películas</a></li>
+			<li class="nav-item"><a class="nav-link" id="shows-tab" data-toggle="tab" href="#shows"
+				role="tab" aria-controls="shows" aria-selected="false">Series</a></li>
+			<li class="nav-item"><a class="nav-link" id="books-tab" data-toggle="tab" href="#books"
+				role="tab" aria-controls="books" aria-selected="false">Libros</a></li>
+		</ul>
+		<div class="tab-content" id="adminTabContent">
+			<div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
+				<form>
+					<div class="form-group pt-3">
+						<label for="userName">Usuario a modificar</label> 
+						<input type="text" class="form-control"	id="targetUser" placeholder="Usuario a modificar" name="name"> 
+							<label for="email">Correo electrónico</label> 
+							<input type="email" class="form-control" id="targetEmail" placeholder="Correo electrónico" value="" name="email"> 
+							<label for="deleteUser">Eliminar usuario</label> 
+							<input type="text" class="form-control" id="deleteUser"	placeholder="Escibir usuario de nuevo para eliminar" name="deleteUser> 
+							<label for="userType">Tipo de cuenta</label>
+						<fieldset>
+							<select id="userType" class="form-control" name="targetUserType">
+								<option value="Usuario">Usuario</option>
+								<option value="Moderador">Moderador</option>
+								<option value="Administrador">Administrador</option>
+							</select>
+						</fieldset>
+						<input name="administrationSubmit" type="submit" class="btn-get-started border" value="Enviar">
+					</div>
+				</form>
+			</div>
+			<div class="tab-pane fade" id="films" role="tabpanel" aria-labelledby="films-tab">
+				<form>
+					<div class="form-group pt-3">
+						<label for="film">Película a modificar:</label> <input type="text" class="form-control"
+							id="targetFilm" placeholder="Película a modificar"> <label for="email">Correo
+							electrónico</label> <input type="email" class="form-control" id="targetEmail"
+							placeholder="Correo electrónico" value=""> <label for="deleteUser">Eliminar
+							usuario</label> <input type="text" class="form-control" id="deleteUser"
+							placeholder="Escibir usuario de nuevo para eliminar"> <label for="userType">Tipo
+							de cuenta</label>
+						<fieldset>
+							<select id="userType" class="form-control">
+								<option>Usuario</option>
+								<option>Administrador</option>
+								<option>Moderador</option>
+							</select>
+						</fieldset>
+						<input name="filmModSubmit" type="submit" class="btn-get-started border" value="Enviar">
+					</div>
+				</form>
+			</div>
+			<div class="tab-pane fade" id="shows" role="tabpanel" aria-labelledby="shows-tab">...</div>
+			<div class="tab-pane fade" id="books" role="tabpanel" aria-labelledby="books-tab">...</div>
+		</div>
+	</div>
+	{{>footer}}
+	<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+	<!-- JavaScript Libraries -->
+	<script src="/lib/jquery/jquery.min.js"></script>
+	<script src="/lib/jquery/jquery-migrate.min.js"></script>
+	<script src="/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/lib/easing/easing.min.js"></script>
+	<script src="/lib/superfish/hoverIntent.js"></script>
+	<script src="/lib/superfish/superfish.min.js"></script>
+	<script src="/lib/wow/wow.min.js"></script>
+	<script src="/lib/waypoints/waypoints.min.js"></script>
+	<script src="/lib/counterup/counterup.min.js"></script>
+	<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="/lib/isotope/isotope.pkgd.min.js"></script>
+	<script src="/lib/lightbox/js/lightbox.min.js"></script>
+	<script src="/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+	<!-- Contact Form JavaScript File -->
+	<script src="/contactform/contactform.js"></script>
+	<!-- Template Main Javascript File -->
+	<script src="/js/main.js"></script>
+	<!-- Password validation Javascript -->
+	<script src="/js/adminValidator.js"></script>
+</body>
+</html>
