@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.hibernate.cache.spi.GeneralDataRegion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -178,14 +177,43 @@ public class PageController {
 			@RequestParam Optional<Boolean> registerUser) {
 		if (registerUser.isPresent()) {
 			User newUser = new User(name.get(), pass.get(), email.get(), "", false, "ROLE_USER");
-			GenerateURLPage url = new GenerateURLPage(request, newUser);
-			mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount());
+			GenerateURLPage url = new GenerateURLPage(request);
+			mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount(newUser));
 			
 			model.addAttribute("registered", true);
 			userRepository.save(newUser);
 		}
 
 		return "login";
+	}
+		
+	@RequestMapping("/cambiarcontra/{alphanumericCode}")
+	public String changePass(Model model, HttpServletRequest request, @PathVariable String alphanumericCode, @RequestParam Optional<String> pass) {
+		ForgotPassword forgotPass = forgotPasswordRepository.findBySecretAlphanumeric(alphanumericCode);
+	
+		if(forgotPass == null) {
+			model.addAttribute("wrongCode", true);
+			
+			return "recoverPass";
+		}
+		
+		User user = forgotPass.getUser();
+		
+		if(pass.isPresent()) {
+			user.setPassword(pass.get());
+			userRepository.save(user);
+			forgotPasswordRepository.delete(forgotPass);
+			
+			model.addAttribute("changedPass", true);
+			model.addAttribute("viewUser", true);
+			model.addAttribute("name", user.getName());
+			
+			return "login";
+		} else {
+			model.addAttribute("user", user);
+			
+			return "changePass";
+		}	
 	}
 
 	@RequestMapping("/olvidocontra")
@@ -194,20 +222,29 @@ public class PageController {
 			User user = userRepository.findByEmail(email.get());
 
 			if (user != null) {
+				ForgotPassword forgotPass = forgotPasswordRepository.findByUser(user);
+				if(forgotPass != null) {
+					model.addAttribute("sentEmail", true);
+					
+					return "recoverPass";
+				}
+				
 				RandomGenerate generateRandomString = new RandomGenerate();
 				ForgotPassword newForgotPass = new ForgotPassword(generateRandomString.getRandomString(12));
-				newForgotPass.getUser().add(user);
+				newForgotPass.setUser(user);
 				forgotPasswordRepository.save(newForgotPass);
 				
-				GenerateURLPage url = new GenerateURLPage(request, user);
-				mailComponent.sendChangePassEmail(user, url.generateURLChangePass());
+				GenerateURLPage url = new GenerateURLPage(request);
+				mailComponent.sendChangePassEmail(user, url.generateURLChangePass(newForgotPass));
 				
+				model.addAttribute("sentChangePass", true);
 				return "login";
 			} else {
 				model.addAttribute("wrongEmail", true);
 				return "recoverPass";
 			}
 		} else {
+			model.addAttribute("changePass", true);
 			return "recoverPass";
 		}
 	}

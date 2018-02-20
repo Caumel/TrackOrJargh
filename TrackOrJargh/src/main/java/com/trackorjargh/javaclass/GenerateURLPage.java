@@ -7,22 +7,20 @@ import javax.servlet.http.HttpServletRequest;
 
 public class GenerateURLPage {
 	private HttpServletRequest request;
-	private User user;
 	
 	public GenerateURLPage() {
 	}
 	
-	public GenerateURLPage(HttpServletRequest request, User user) {
+	public GenerateURLPage(HttpServletRequest request) {
 		this.request = request;
-		this.user = user;
 	}
 	
-	public String generateURLActivateAccount() {
+	public String generateURLActivateAccount(User user) {
 		String url = "";
 		
 		try {
 			URL urlPage = new URL(this.request.getRequestURL().toString());
-			url = urlPage.getProtocol() + "://" +  urlPage.getHost() + ":" + urlPage.getPort() + "/activarusuario/" + this.user.getName();
+			url = urlPage.getProtocol() + "://" +  urlPage.getHost() + ":" + urlPage.getPort() + "/activarusuario/" + user.getName();
 
 		} catch (MalformedURLException exception) {
 			exception.printStackTrace();
@@ -31,12 +29,12 @@ public class GenerateURLPage {
 		return url;
 	}
 	
-	public String generateURLChangePass() {
+	public String generateURLChangePass(ForgotPassword forgotPass) {
 		String url = "";
 		
 		try {
 			URL urlPage = new URL(this.request.getRequestURL().toString());
-			url = urlPage.getProtocol() + "://" +  urlPage.getHost() + ":" + urlPage.getPort() + "/cambiarcontra/" + this.user.getName();
+			url = urlPage.getProtocol() + "://" +  urlPage.getHost() + ":" + urlPage.getPort() + "/cambiarcontra/" + forgotPass.getSecretAlphanumeric();
 
 		} catch (MalformedURLException exception) {
 			exception.printStackTrace();
@@ -51,13 +49,5 @@ public class GenerateURLPage {
 
 	public void setRequest(HttpServletRequest request) {
 		this.request = request;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 }

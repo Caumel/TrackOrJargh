@@ -47,16 +47,16 @@
 					<!-- Log-In segment -->
 					<span>Nueva contraseña</span>
 
-					<form method="post" role="form" action="/olvidocontra"
+					<form method="post" role="form" action="/cambiarcontra/{{alphanumericCode}}"
 						style="display: block;">
 						
-						<input type="email" name="email" tabindex="2"
-							class="form-group form-control" placeholder="Introduca su E-mail" value="" />
+						<input type="text" tabindex="2"
+							class="form-group form-control" placeholder="Usuario" value="{{user.name}}" disabled/>
 
-						<input type="password" name="password" id="passwordL" tabindex="2"
+						<input type="password" name="pass" id="passwordL" tabindex="2"
 							class="form-group form-control" placeholder="Nueva contraseña">
 							
-						<input type="password" name="password" id="passwordL" tabindex="2"
+						<input type="password" id="passwordL" tabindex="2"
 							class="form-group form-control" placeholder="Repita la nueva contraseña">
 
 						<div class="row form-group">

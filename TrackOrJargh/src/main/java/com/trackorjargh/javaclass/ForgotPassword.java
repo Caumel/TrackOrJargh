@@ -1,13 +1,10 @@
 package com.trackorjargh.javaclass;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ForgotPassword {
@@ -15,8 +12,8 @@ public class ForgotPassword {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@OneToMany
-	private List<User> user = new LinkedList<>();
+	@OneToOne
+	private User user;
 	private String secretAlphanumeric;
 	
 	public ForgotPassword() {
@@ -34,11 +31,11 @@ public class ForgotPassword {
 		this.id = id;
 	}
 
-	public List<User> getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(List<User> user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

@@ -49,9 +49,17 @@
 					<p>El email introducido es incorrecto, vuelvalo a intentar.</p>
 					{{/wrongEmail}}
 					
-					{{^wrongEmail}}
+					{{#changePass}}
 					<p>Introduzca el email para recuperar su contraseña.</p>
-					{{/wrongEmail}}
+					{{/changePass}}
+					
+					{{#wrongCode}}
+					<p>Este usuario no ha solicitado cambio de contraseña, lo puedes solicitar aquí.</p>
+					{{/wrongCode}}
+					
+					{{#sentEmail}}
+					<p>Este usuario ya ha solicitado un cambio de contraseña. Resiva tu bandeja de entrada.</p>
+					{{/sentEmail}}
 
 					<form method="post" role="form" action="/olvidocontra"
 						style="display: block;">

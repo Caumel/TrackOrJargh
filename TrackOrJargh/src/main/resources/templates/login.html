@@ -44,6 +44,7 @@
 				<span><a href="/login">Login/Registrarse</a> </span>
 			</div>
 		</div>
+		<br/>
 		{{#registered}}
 		<h5 class="text-center">Has consegido registrarte correctamente. A continuación, active su cuenta para iniciar sesión.</h5>
 		{{/registered}}
@@ -67,6 +68,14 @@
 		{{#errorWrongPass}}
 		<h5 class="text-center">Contraseña invalida. Por favor vuelvalo a intentar.</h5>
 		{{/errorWrongPass}}
+		
+		{{#changedPass}}
+		<h5 class="text-center">Contraseña cambiada correctamente. A continuación, inicie sesión.</h5>
+		{{/changedPass}}
+		
+		{{#sentChangePass}}
+		<h5 class="text-center">Se ha enviado un correo con la información para el cambio de contraseña. Por favor revise el correo.</h5>
+		{{/sentChangePass}}
 		
 		<!-- Log-in div start hare-->
 		<div id="login">
