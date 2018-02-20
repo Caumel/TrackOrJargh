@@ -198,11 +198,4 @@ public class PageController {
 	public String serveLoginError(Model model) {
 		return "loginerror";
 	}
-
-	@RequestMapping("/error_te")
-	public String paginaError(Model model) {
-
-		return "error_template";
-
-	}
 }
