@@ -19,11 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.Film;
+import com.trackorjargh.javaclass.ForgotPassword;
 import com.trackorjargh.javaclass.InterfaceMainItem;
+import com.trackorjargh.javaclass.RandomGenerate;
 import com.trackorjargh.javaclass.Show;
 import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.FilmRepository;
+import com.trackorjargh.javarepository.ForgotPasswordRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
 import com.trackorjargh.mail.MailComponent;
@@ -43,6 +46,8 @@ public class PageController {
 	private UserComponent userComponent;
 	@Autowired
 	private MailComponent mailComponent;
+	@Autowired
+	private ForgotPasswordRepository forgotPasswordRepository;
 
 	@RequestMapping("/")
 	public String serveIndex(Model model) {
@@ -190,8 +195,24 @@ public class PageController {
 	}
 
 	@RequestMapping("/olvidocontra")
-	public String forgetPass(Model model) {
-		return "recoverPass";
+	public String forgetPass(Model model, @RequestParam Optional<String> email) {
+		if(email.isPresent()) {
+			User user = userRepository.findByEmail(email.get());
+			
+			if(user != null) {
+				RandomGenerate generateRandomString = new RandomGenerate();
+				ForgotPassword newForgotPass = new ForgotPassword(generateRandomString.getRandomString(12));
+				newForgotPass.getUser().add(user);
+				forgotPasswordRepository.save(newForgotPass);
+				
+				return "login";
+			} else {
+				model.addAttribute("wrongEmail", true);
+				return "recoverPass";
+			}
+		} else {
+			return "recoverPass";
+		}	
 	}
 
 	@RequestMapping("/error/{message}/{user}")

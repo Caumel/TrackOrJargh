@@ -45,13 +45,7 @@
 			<div class="container">
 				<div class="form-control text-center">
 					<!-- Log-In segment -->
-					{{#wrongEmail}}
-					<p>El email introducido es incorrecto, vuelvalo a intentar.</p>
-					{{/wrongEmail}}
-					
-					{{^wrongEmail}}
-					<p>Introduzca el email para recuperar su contraseña.</p>
-					{{/wrongEmail}}
+					<span>Nueva contraseña</span>
 
 					<form method="post" role="form" action="/olvidocontra"
 						style="display: block;">
@@ -59,10 +53,16 @@
 						<input type="email" name="email" tabindex="2"
 							class="form-group form-control" placeholder="Introduca su E-mail" value="" />
 
+						<input type="password" name="password" id="passwordL" tabindex="2"
+							class="form-group form-control" placeholder="Nueva contraseña">
+							
+						<input type="password" name="password" id="passwordL" tabindex="2"
+							class="form-group form-control" placeholder="Repita la nueva contraseña">
+
 						<div class="row form-group">
 							<input type="submit" name="login-submit" id="buttonRecv"
 								tabindex="4" class="btn btn-login mx-auto form-group"
-								value="Recuperar contraseña">
+								value="Cambiar contraseña">
 						</div>
 					</form>
 				</div>
