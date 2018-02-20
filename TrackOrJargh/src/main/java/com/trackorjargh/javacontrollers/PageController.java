@@ -119,6 +119,8 @@ public class PageController {
 		model.addAttribute("directors", showRepository.findByName(name).getDirectors());
 		model.addAttribute("actors", showRepository.findByName(name).getActors());
 		model.addAttribute("comments", showRepository.findByName(name).getCommentsShow());
+		model.addAttribute("firstSeason", showRepository.findByName(name).getFirstSeason());
+		model.addAttribute("listNoFirstSeason", showRepository.findByName(name).getListNoFirst());
 		model.addAttribute("typeContent", "la serie");
 		model.addAttribute("episodeSection", true);
 

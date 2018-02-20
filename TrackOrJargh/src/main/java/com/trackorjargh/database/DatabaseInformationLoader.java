@@ -147,14 +147,14 @@ public class DatabaseInformationLoader {
 		}
 
 		// Test Data Episode
-		Episode ep1 = new Episode("Episodio 1");
+		Episode ep1 = new Episode("Episodio 1","El episodio trata de...");
 		episodeRepository.save(ep1);
-
+		
 		// Test Data Season
 		Season s1 = new Season("Temporada 1");
 		s1.getEpisodes().add(ep1);
 		seasonRepository.save(s1);
-
+	
 		// Test Data Show
 		Show sh1 = new Show("The Big Bang Theory",
 				"La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.",

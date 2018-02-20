@@ -151,6 +151,17 @@ public class Show implements InterfaceMainItem{
 	public List<Season> getSeasons() {
 		return seasons;
 	}
+	
+	public Season getFirstSeason() {	
+		return this.getSeasons().get(0);
+	}
+	
+	public List<Season> getListNoFirst() {
+		List<Season> listAux = this.getSeasons();
+		listAux.remove(0);
+		
+		return listAux;
+	}
 
 	public void setSeasons(List<Season> seasons) {
 		this.seasons = seasons;

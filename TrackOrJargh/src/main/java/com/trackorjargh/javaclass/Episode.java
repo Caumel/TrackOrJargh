@@ -12,10 +12,14 @@ public class Episode {
 	private Long id;
 	
 	private String name;
+	
+	private String synopsis;
 
-	public Episode(String name) {
+	public Episode(String name, String synopsis) {
 		this.name = name;
+		this.synopsis = synopsis;
 	}
+	public Episode() {}
 
 	public Long getId() {
 		return id;
@@ -31,5 +35,13 @@ public class Episode {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getSynopsis() {
+		return synopsis;
+	}
+
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
 	}
 }
