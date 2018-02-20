@@ -56,6 +56,18 @@
 		<h5 class="text-center">Este usuario ya esta activado. Por favor inicie sesión.</h5>
 		{{/errorActivatedUser}}
 		
+		{{#errorNotActivatedUser}}
+		<h5 class="text-center">Este usuario no esta activado. Por favor revise su correo.</h5>
+		{{/errorNotActivatedUser}}
+		
+		{{#errorUser}}
+		<h5 class="text-center">El usuario introducido no existe. Por favor vuelvalo a intentar.</h5>
+		{{/errorUser}}
+		
+		{{#errorWrongPass}}
+		<h5 class="text-center">Contraseña invalida. Por favor vuelvalo a intentar.</h5>
+		{{/errorWrongPass}}
+		
 		<!-- Log-in div start hare-->
 		<div id="login">
 			<div class="container">
@@ -66,7 +78,7 @@
 					<form method="post" role="form" action="/loginusuario"
 						style="display: block;">
 						<input type="text" name="username" id="userL" tabindex="1"
-							class="form-group form-control" placeholder="Usuario" value="">
+							class="form-group form-control" placeholder="Usuario" value="{{#viewUser}}{{user}}{{/viewUser}}">
 
 						<input type="password" name="password" id="passwordL" tabindex="2"
 							class="form-group form-control" placeholder="Contraseña">

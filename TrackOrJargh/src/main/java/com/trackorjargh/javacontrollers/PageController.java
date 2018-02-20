@@ -194,8 +194,22 @@ public class PageController {
 		return "recoverPass";
 	}
 
-	@RequestMapping("/loginerror")
-	public String serveLoginError(Model model) {
-		return "loginerror";
+	@RequestMapping("/error/{message}/{user}")
+	public String serveLoginError(Model model, @PathVariable String message, @PathVariable String user) {
+		switch (message) {
+		case "noexiste":
+			model.addAttribute("errorUser", true);
+			break;
+		case "errorcontra":
+			model.addAttribute("errorWrongPass", true);
+			model.addAttribute("viewUser", true);
+			break;
+		case "noactivado":
+			model.addAttribute("errorNotActivatedUser", true);
+			model.addAttribute("viewUser", true);
+			break;
+		}
+
+		return "login";
 	}
 }
