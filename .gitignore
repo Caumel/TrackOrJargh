@@ -2,3 +2,11 @@
 .DS_Store
 /.metadata/
 /.metadata/
+.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_1.fnm
+*.fdt
+*.fdt
+*.fnm
+.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_1.fdx
+.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_1.fdx
+.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/segments_2
+.recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/segments.gen
