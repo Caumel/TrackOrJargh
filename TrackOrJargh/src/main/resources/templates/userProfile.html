@@ -82,11 +82,16 @@
 								<label for="userName">Nombre de usuario</label> <input
 									type="text" class="form-control" id="userName"
 									placeholder="{{name}}" readonly> <label for="email">Correo
-									electrónico</label> <input type="email" class="form-control was-validated" id="email"
-									placeholder="Correo electrónico" value="{{email}}" name="emailUser" > <label
-									for="password">Cambio de contraseña</label> <input
+									placeholder="{{name}}" readonly> 
+								<label for="email">Correo electrónico</label>
+								<input type="email" class="form-control was-validated" id="email"
+									placeholder="Correo electrónico" value="{{email}}" name="emailUser" >
+								<label
+									for="password">Cambio de contraseña</label> 
+								<input
 									type="password" class="form-control" id="password"
-									placeholder="Nueva contraseña" name="passUser" > <input type="password"
+									placeholder="Nueva contraseña" name="passUser" > 
+								<input type="password"
 									class="form-control mt-3 mb-2" id="confirmPass"
 									placeholder="Confirmar contraseña" name="confirmPass"> <label
 									for="disabledSelect">Tipo de cuenta</label>
@@ -97,8 +102,6 @@
 										<option>Moderador</option>
 									</select>
 								</fieldset>
-								<input type="hidden" name="sent" value="true">
-								<input name="accountSubmit" type="submit"
 									class="btn-get-started border" value="Enviar">
 							</div>
 						</form>
@@ -115,7 +118,6 @@
 
 							<div id="CreateList">
 								<a id="NewList">Nueva Lista <i class="ion-plus-circled"></i></a>
-								<div id="CreateList">Aqui tiene que ir el carrusel</div>
 
 								{{#lists}}
 								<div id="CreateList">
@@ -186,7 +188,6 @@
 
 	<!-- Template Main Javascript File -->
 	<script src="/js/main.js"></script>
-	
 	<!-- Password validation Javascript -->
 	<script src="/js/passwordValidation.js"></script>
 

@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -35,16 +34,15 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 		User user = userRepository.findByName(username);
 
 		if (user == null) {
-			throw new BadCredentialsException("User not found");
+			throw new BadCredentialsExceptionConfigurer("User not found", username);
 		}
 		
 		if(!user.isActivatedUser()) {
-			throw new BadCredentialsException("User not activated");
+			throw new BadCredentialsExceptionConfigurer("User not activated", username);
 		}
 
 		if (!new BCryptPasswordEncoder().matches(password, user.getPassword())) {
-
-			throw new BadCredentialsException("User wrong password");
+			throw new BadCredentialsExceptionConfigurer("User wrong password", username);
 		} else {
 
 			userComponent.setLoggedUser(user);

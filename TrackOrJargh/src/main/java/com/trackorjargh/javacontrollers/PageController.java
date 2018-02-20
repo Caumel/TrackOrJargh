@@ -148,18 +148,6 @@ public class PageController {
 		return "userProfile";
 	}
 
-	@RequestMapping("/guardarLogin")
-	public void saveLogin(Model model, User user) {
-
-	}
-
-	@RequestMapping("/guardarRegister")
-	public void saveRegister(Model model, User user) {
-
-		model.addAttribute(user);
-
-	}
-
 	@RequestMapping("/activarusuario/{name}")
 	public String activatedUser(Model model, @PathVariable String name) {
 		User user = userRepository.findByName(name);
@@ -206,15 +194,22 @@ public class PageController {
 		return "recoverPass";
 	}
 
-	@RequestMapping("/loginerror")
-	public String serveLoginError(Model model) {
-		return "loginerror";
-	}
+	@RequestMapping("/error/{message}/{user}")
+	public String serveLoginError(Model model, @PathVariable String message, @PathVariable String user) {
+		switch (message) {
+		case "noexiste":
+			model.addAttribute("errorUser", true);
+			break;
+		case "errorcontra":
+			model.addAttribute("errorWrongPass", true);
+			model.addAttribute("viewUser", true);
+			break;
+		case "noactivado":
+			model.addAttribute("errorNotActivatedUser", true);
+			model.addAttribute("viewUser", true);
+			break;
+		}
 
-	@RequestMapping("/error_te")
-	public String paginaError(Model model) {
-
-		return "error_template";
-
+		return "login";
 	}
 }
