@@ -148,18 +148,6 @@ public class PageController {
 		return "userProfile";
 	}
 
-	@RequestMapping("/guardarLogin")
-	public void saveLogin(Model model, User user) {
-
-	}
-
-	@RequestMapping("/guardarRegister")
-	public void saveRegister(Model model, User user) {
-
-		model.addAttribute(user);
-
-	}
-
 	@RequestMapping("/activarusuario/{name}")
 	public String activatedUser(Model model, @PathVariable String name) {
 		User user = userRepository.findByName(name);
