@@ -6,11 +6,15 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+
 @Configuration
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public UserRepositoryAuthenticationProvider authenticationProvider;
+	
+	@Autowired
+	public CustomAuthFailureHandlerConfigurer customAuthFailureHandlerConfigurer;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -32,7 +36,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 		http.formLogin().usernameParameter("username");
 		http.formLogin().passwordParameter("password");
 		http.formLogin().defaultSuccessUrl("/");
-		http.formLogin().failureUrl("/loginerror");
+		http.formLogin().failureHandler(customAuthFailureHandlerConfigurer);
 
 		// Logout
 		http.logout().logoutUrl("/logout");
