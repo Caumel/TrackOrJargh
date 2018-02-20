@@ -1,13 +1,12 @@
 package com.trackorjargh.javacontrollers;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.cache.spi.GeneralDataRegion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -20,6 +19,7 @@ import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.ForgotPassword;
+import com.trackorjargh.javaclass.GenerateURLPage;
 import com.trackorjargh.javaclass.InterfaceMainItem;
 import com.trackorjargh.javaclass.RandomGenerate;
 import com.trackorjargh.javaclass.Show;
@@ -164,6 +164,7 @@ public class PageController {
 				user.setActivatedUser(true);
 				userRepository.save(user);
 
+				model.addAttribute("viewUser", true);
 				model.addAttribute("activatedUser", true);
 			}
 		}
@@ -177,16 +178,9 @@ public class PageController {
 			@RequestParam Optional<Boolean> registerUser) {
 		if (registerUser.isPresent()) {
 			User newUser = new User(name.get(), pass.get(), email.get(), "", false, "ROLE_USER");
-
-			try {
-				URL url = new URL(request.getRequestURL().toString());
-				String urlRegister = "http://" + url.getHost() + ":" + url.getPort() + "/activarusuario/" + name.get();
-
-				mailComponent.sendVerificationEmail(newUser, urlRegister);
-			} catch (MalformedURLException exception) {
-				exception.printStackTrace();
-			}
-
+			GenerateURLPage url = new GenerateURLPage(request, newUser);
+			mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount());
+			
 			model.addAttribute("registered", true);
 			userRepository.save(newUser);
 		}
@@ -195,15 +189,18 @@ public class PageController {
 	}
 
 	@RequestMapping("/olvidocontra")
-	public String forgetPass(Model model, @RequestParam Optional<String> email) {
-		if(email.isPresent()) {
+	public String forgetPass(Model model, HttpServletRequest request, @RequestParam Optional<String> email) {
+		if (email.isPresent()) {
 			User user = userRepository.findByEmail(email.get());
-			
-			if(user != null) {
+
+			if (user != null) {
 				RandomGenerate generateRandomString = new RandomGenerate();
 				ForgotPassword newForgotPass = new ForgotPassword(generateRandomString.getRandomString(12));
 				newForgotPass.getUser().add(user);
 				forgotPasswordRepository.save(newForgotPass);
+				
+				GenerateURLPage url = new GenerateURLPage(request, user);
+				mailComponent.sendChangePassEmail(user, url.generateURLChangePass());
 				
 				return "login";
 			} else {
@@ -212,11 +209,11 @@ public class PageController {
 			}
 		} else {
 			return "recoverPass";
-		}	
+		}
 	}
 
-	@RequestMapping("/error/{message}/{user}")
-	public String serveLoginError(Model model, @PathVariable String message, @PathVariable String user) {
+	@RequestMapping("/error/{message}/{name}")
+	public String serveLoginError(Model model, @PathVariable String message, @PathVariable String name) {
 		switch (message) {
 		case "noexiste":
 			model.addAttribute("errorUser", true);
