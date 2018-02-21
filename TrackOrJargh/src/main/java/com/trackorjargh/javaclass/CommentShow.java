@@ -60,4 +60,8 @@ public class CommentShow {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+	
+	public PreparateMessageShow preparateShowMessage() {
+		return new PreparateMessageShow(this.user.getName(), this.comment);
+	}
 }

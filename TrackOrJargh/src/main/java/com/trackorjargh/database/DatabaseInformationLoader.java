@@ -180,7 +180,7 @@ public class DatabaseInformationLoader {
 		CommentFilm cf1 = new CommentFilm("Esta pelicula es muy buena");
 		cf1.setFilm(f1);
 		cf1.setUser(u1);
-		//commentFilmRepository.save(cf1);
+		commentFilmRepository.save(cf1);
 
 		// Test Data Comment Show
 		CommentShow cs1 = new CommentShow("Esta serie es muy buena");
