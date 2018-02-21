@@ -115,20 +115,32 @@
 							<div class="text-center " id="header-Report">
 								<a class="MyListsTitle">Mis Listas</a>
 							</div>
-
-							<div id="CreateList">
-								<button onclick="makeList()" href="/"><i class="ion-plus-circled"></i></button>
-								
-
-								{{#lists}}
+							<form action="/listaNueva">
 								<div id="CreateList">
-									<a id="CreatedLists">{{name}}<i class="ion-trash-a"></i> <i
-										class="ion-edit"></i></a>
+									
+									{{#visibleCarousel}}
+									<div id="CreateList">
+										<a id="CreatedLists">{{name}}<i class="ion-trash-a"></i> <i
+											class="ion-edit"></i></a>
+									</div>
+									{{/visibleCarousel}}
+									<button id="plusButton" class="btn btn-primary"
+									type="button" data-toggle="collapse"
+									data-target="#showAddList" aria-expanded="false"
+									aria-controls="showAddList"><i class="ion-plus-circled"></i></button>
+									
+									<div class="collapse" id="showAddList">
+										<input type="text" name="listName" tabindex="2"
+										class="form-group form-control" placeholder="Nombre de la lista"
+										value="" /> 	
+										<div class="row form-group">
+											<input type="submit" name="register-submit" id="buttonReg"
+												tabindex="3" class="active btn btn-register mx-auto"
+												value="Crear">
+										</div>
+									</div>
 								</div>
-								{{/lists}}
-
-							</div>
-
+							</form>
 						</div>
 					</div>
 

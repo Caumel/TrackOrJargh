@@ -164,8 +164,8 @@ public class PageController {
 	@RequestMapping("/listaNueva")
 	public String modProfile(Model model,@RequestParam String listName) {
 		listsRepository.save(new Lists(listName));
-		
-		return "redirect:/miperfil";
+		//model.addAttribute("visibleCarousel", true);
+		return "userProfile";
 	}
 
 	//@RequestMapping(/"borrarLista")
