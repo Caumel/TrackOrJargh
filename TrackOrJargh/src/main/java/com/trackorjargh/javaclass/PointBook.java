@@ -20,12 +20,12 @@ public class PointBook {
 	@OneToOne
 	private User user;
 	
-	private Long points;
+	private double points;
 
 	public PointBook() {
 	}
 
-	public PointBook(Long points) {
+	public PointBook(double points) {
 		this.points = points;
 	}
 
@@ -53,11 +53,11 @@ public class PointBook {
 		this.user = user;
 	}
 
-	public Long getPoints() {
+	public double getPoints() {
 		return points;
 	}
 
-	public void setPoints(Long points) {
+	public void setPoints(double points) {
 		this.points = points;
 	}
 }

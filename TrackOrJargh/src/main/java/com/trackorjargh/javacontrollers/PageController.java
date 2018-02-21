@@ -1,6 +1,5 @@
 package com.trackorjargh.javacontrollers;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +24,9 @@ import com.trackorjargh.javaclass.ForgotPassword;
 import com.trackorjargh.javaclass.GenerateURLPage;
 import com.trackorjargh.javaclass.InterfaceMainItem;
 import com.trackorjargh.javaclass.Lists;
+import com.trackorjargh.javaclass.PointBook;
 import com.trackorjargh.javaclass.PointFilm;
+import com.trackorjargh.javaclass.PointShow;
 import com.trackorjargh.javaclass.PreparateMessageShow;
 import com.trackorjargh.javaclass.RandomGenerate;
 import com.trackorjargh.javaclass.Show;
@@ -154,7 +155,7 @@ public class PageController {
 	public String serveFilmProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent,
 			@RequestParam Optional<String> pointsSent) {
 		Film film = filmRepository.findByName(name);
-
+		
 		if (messageSent.isPresent()) {
 			CommentFilm message = new CommentFilm(messageSent.get());
 			message.setFilm(film);
@@ -164,14 +165,15 @@ public class PageController {
 		}
 
 		if (pointsSent.isPresent()) {
-			PointFilm pointFilm = pointFilmRepository.findByUser(userComponent.getLoggedUser());
+			double points = Double.parseDouble(pointsSent.get());			
+			PointFilm pointFilm = pointFilmRepository.findByUserAndFilm(userComponent.getLoggedUser(), film);
 
 			if (pointFilm == null) {
-				pointFilm = new PointFilm(Long.parseLong(pointsSent.get().replaceAll("\"", "")));
+				pointFilm = new PointFilm(points);
 				pointFilm.setFilm(film);
 				pointFilm.setUser(userComponent.getLoggedUser());
 			} else {
-				pointFilm.setPoints(Long.parseLong(pointsSent.get().replaceAll("\"", "")));
+				pointFilm.setPoints(points);
 			}
 
 			pointFilmRepository.save(pointFilm);
@@ -186,22 +188,29 @@ public class PageController {
 		model.addAttribute("typeContent", "la película");
 		model.addAttribute("actionMessage", "/pelicula/" + name);
 
-		int points = 0;
-		List<PointFilm> listPoints = pointFilmRepository.findAll();
+		double points = 0;
+		double userPoints = 0;
+		
+		List<PointFilm> listPoints = pointFilmRepository.findByFilm(film);
 
 		if (listPoints.size() > 0) {
 			for (PointFilm pf : listPoints)
 				points += pf.getPoints();
 			points /= listPoints.size();
 		}
-
+		
+		PointFilm userPointFilm = pointFilmRepository.findByUserAndFilm(userComponent.getLoggedUser(), film);
+		if(userPointFilm != null)
+			userPoints = userPointFilm.getPoints();
+		
 		model.addAttribute("totalPoints", points);
+		model.addAttribute("userPoints", userPoints);
 
 		return "contentProfile";
 	}
 
 	@RequestMapping("/serie/{name}")
-	public String serveShowProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent) {
+	public String serveShowProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent, @RequestParam Optional<String> pointsSent) {
 		Show show = showRepository.findByName(name);
 
 		if (messageSent.isPresent()) {
@@ -210,6 +219,21 @@ public class PageController {
 			message.setUser(userComponent.getLoggedUser());
 
 			commentShowRepository.save(message);
+		}
+		
+		if (pointsSent.isPresent()) {
+			double points = Double.parseDouble(pointsSent.get());			
+			PointShow pointShow = pointShowRepository.findByUserAndShow(userComponent.getLoggedUser(), show);
+
+			if (pointShow == null) {
+				pointShow = new PointShow(points);
+				pointShow.setShow(show);
+				pointShow.setUser(userComponent.getLoggedUser());
+			} else {
+				pointShow.setPoints(points);
+			}
+
+			pointShowRepository.save(pointShow);
 		}
 
 		List<PreparateMessageShow> listMessages = new LinkedList<>();
@@ -224,14 +248,29 @@ public class PageController {
 		model.addAttribute("episodeSection", true);
 		model.addAttribute("actionMessage", "/serie/" + name);
 		
-		int points = 0;
+		double points = 0;
+		double userPoints = 0;
+		
+		List<PointShow> listPoints = pointShowRepository.findByShow(show);
+
+		if (listPoints.size() > 0) {
+			for (PointShow ph : listPoints)
+				points += ph.getPoints();
+			points /= listPoints.size();
+		}
+		
+		PointShow userPointShow = pointShowRepository.findByUserAndShow(userComponent.getLoggedUser(), show);
+		if(userPointShow != null)
+			userPoints = userPointShow.getPoints();
+		
 		model.addAttribute("totalPoints", points);
+		model.addAttribute("userPoints", userPoints);
 
 		return "contentProfile";
 	}
 
 	@RequestMapping("/libro/{name}")
-	public String serveProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent) {
+	public String serveProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent, @RequestParam Optional<String> pointsSent) {
 		Book book = bookRepository.findByName(name);
 
 		if (messageSent.isPresent()) {
@@ -240,6 +279,21 @@ public class PageController {
 			message.setUser(userComponent.getLoggedUser());
 
 			commentBookRepository.save(message);
+		}
+		
+		if (pointsSent.isPresent()) {
+			double points = Double.parseDouble(pointsSent.get());			
+			PointBook pointBook = pointBookRepository.findByUserAndBook(userComponent.getLoggedUser(), book);
+
+			if (pointBook == null) {
+				pointBook = new PointBook(points);
+				pointBook.setBook(book);
+				pointBook.setUser(userComponent.getLoggedUser());
+			} else {
+				pointBook.setPoints(points);
+			}
+
+			pointBookRepository.save(pointBook);
 		}
 
 		List<PreparateMessageShow> listMessages = new LinkedList<>();
@@ -252,9 +306,24 @@ public class PageController {
 		model.addAttribute("isBook", true);
 		model.addAttribute("actionMessage", "/libro/" + name);
 		
-		int points = 0;
-		model.addAttribute("totalPoints", points);
+		double points = 0;
+		double userPoints = 0;
+		
+		List<PointBook> listPoints = pointBookRepository.findByBook(book);
 
+		if (listPoints.size() > 0) {
+			for (PointBook pb : listPoints)
+				points += pb.getPoints();
+			points /= listPoints.size();
+		}
+		
+		PointBook userPointBook = pointBookRepository.findByUserAndBook(userComponent.getLoggedUser(), book);
+		if(userPointBook != null)
+			userPoints = userPointBook.getPoints();
+		
+		model.addAttribute("totalPoints", points);
+		model.addAttribute("userPoints", userPoints);
+		
 		return "contentProfile";
 	}
 

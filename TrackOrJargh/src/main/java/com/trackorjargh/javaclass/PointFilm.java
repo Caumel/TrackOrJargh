@@ -20,12 +20,12 @@ public class PointFilm {
 	@OneToOne
 	private User user;
 	
-	private Long points;
+	private double points;
 
 	public PointFilm() {
 	}
 
-	public PointFilm(Long points) {
+	public PointFilm(double points) {
 		this.points = points;
 	}
 
@@ -53,11 +53,11 @@ public class PointFilm {
 		this.user = user;
 	}
 
-	public Long getPoints() {
+	public double getPoints() {
 		return points;
 	}
 
-	public void setPoints(Long points) {
+	public void setPoints(double points) {
 		this.points = points;
 	}
 }
