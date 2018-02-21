@@ -242,8 +242,6 @@ public class PageController {
 
 		model.addAttribute("content", show);
 		model.addAttribute("comments", listMessages);
-		model.addAttribute("firstSeason", showRepository.findByName(name).getFirstSeason());
-		model.addAttribute("listNoFirstSeason", showRepository.findByName(name).getListNoFirst());
 		model.addAttribute("typeContent", "la serie");
 		model.addAttribute("episodeSection", true);
 		model.addAttribute("actionMessage", "/serie/" + name);
