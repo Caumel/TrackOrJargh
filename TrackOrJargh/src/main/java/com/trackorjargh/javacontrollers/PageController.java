@@ -1,5 +1,6 @@
 package com.trackorjargh.javacontrollers;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -100,7 +101,10 @@ public class PageController {
 		model.addAttribute("typePage", "peliculas");
 		model.addAttribute("filmsActive", true);
 		model.addAttribute("contentCarousel", films);
-		model.addAttribute("userList", user.getLists());
+		if (userComponent.isLoggedUser()) {
+			model.addAttribute("userList", user.getLists());
+		}
+		model.addAttribute("loggedUser", userComponent.isLoggedUser());		
 
 		return "contentList";
 	}
@@ -116,7 +120,11 @@ public class PageController {
 		model.addAttribute("typePage", "series");
 		model.addAttribute("showsActive", true);
 		model.addAttribute("contentCarousel", shows);
-		model.addAttribute("userList", user.getLists());
+		if (userComponent.isLoggedUser()) {
+			model.addAttribute("userList", user.getLists());
+		}
+		
+		model.addAttribute("loggedUser", userComponent.isLoggedUser());
 
 		return "contentList";
 	}
@@ -132,7 +140,11 @@ public class PageController {
 		model.addAttribute("typePage", "libros");
 		model.addAttribute("booksActive", true);
 		model.addAttribute("contentCarousel", books);	
-		model.addAttribute("userList", user.getLists());
+		if (userComponent.isLoggedUser()) {
+			model.addAttribute("userList", user.getLists());
+		}else
+			
+		model.addAttribute("loggedUser", userComponent.isLoggedUser());
 
 		return "contentList";
 	}
