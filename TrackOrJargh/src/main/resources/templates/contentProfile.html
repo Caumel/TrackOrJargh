@@ -276,40 +276,21 @@
 							<i class="ion-ios-person-outline"></i>
 						</div>
 						<h4 class="col-lg-20 title">
-							<a href=""><b>{{user.name}}</b></a>
+							<a href=""><b>{{name}}</b></a>
 						</h4>
 					</div>
 
-					<div class="starts-comment">
-						<i class="ion-ios-star"></i> <i class="ion-ios-star"></i> <i
-							class="ion-ios-star"></i> <i class="ion-ios-star"></i> <i
-							class="ion-ios-star"></i>
-					</div>
-
 					<div class="comment text-left">
-						<p class="description">{{comment}}</p>
-					</div>
-					<div class="text-right mt-1">
-						<p class="reporte">
-							<a href="#Comentarios">Responder</a> | <a href="">Reportar</a>
-						</p>
+						<p class="description">{{message}}</p>
 					</div>
 				</div>
 				{{/comments}}
 			</div>
 
 			<div class="form">
-				<div id="sendmessage">Tu mensaje se ha enviado correctamente.</div>
-				<div id="errormessage"></div>
-				<form action="" method="post" role="form" class="contactForm">
-					<div id="Comentarios" class="form-group">
-						<input type="text" class="form-control" name="asunto" id="subject"
-							placeholder="Asunto" data-rule="minlen:4"
-							data-msg="Por favor introduzca un asunto de almenos 8 caracteres." />
-						<div class="validation"></div>
-					</div>
+				<form action="{{actionMessage}}" method="post" role="form" class="contactForm">
 					<div class="form-group">
-						<textarea class="form-control" name="comentario" rows="5"
+						<textarea class="form-control" name="messageSent" rows="5"
 							data-rule="required" data-msg="Introduzca un comentario."
 							placeholder="Mensaje"></textarea>
 						<div class="validation"></div>

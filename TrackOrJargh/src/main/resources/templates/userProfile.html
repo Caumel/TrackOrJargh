@@ -79,9 +79,9 @@
 							</div>
 							<div class="overlay"></div>
 							<div class="form-group pt-3">
-								<label for="userName">Nombre de usuario</label> <input
+								<label for="userName">Nombre de usuario</label> 
+								<input
 									type="text" class="form-control" id="userName"
-									placeholder="{{name}}" readonly> <label for="email">Correo
 									placeholder="{{name}}" readonly> 
 								<label for="email">Correo electrónico</label>
 								<input type="email" class="form-control was-validated" id="email"
@@ -102,7 +102,7 @@
 										<option>Moderador</option>
 									</select>
 								</fieldset>
-									class="btn-get-started border" value="Enviar">
+									<input id="sendBtn" type="submit" class="btn-get-started border " value="Aceptar">
 							</div>
 						</form>
 						{{/userLogged}}
@@ -115,19 +115,32 @@
 							<div class="text-center " id="header-Report">
 								<a class="MyListsTitle">Mis Listas</a>
 							</div>
-
-							<div id="CreateList">
-								<a id="NewList">Nueva Lista <i class="ion-plus-circled"></i></a>
-
-								{{#lists}}
+							<form action="/listaNueva">
 								<div id="CreateList">
-									<a id="CreatedLists">{{name}}<i class="ion-trash-a"></i> <i
-										class="ion-edit"></i></a>
+									
+									{{#visibleCarousel}}
+									<div id="CreateList">
+										<a id="CreatedLists">{{name}}<i class="ion-trash-a"></i> <i
+											class="ion-edit"></i></a>
+									</div>
+									{{/visibleCarousel}}
+									<button id="plusButton" class="btn btn-primary"
+									type="button" data-toggle="collapse"
+									data-target="#showAddList" aria-expanded="false"
+									aria-controls="showAddList"><i class="ion-plus-circled"></i></button>
+									
+									<div class="collapse" id="showAddList">
+										<input type="text" name="listName" tabindex="2"
+										class="form-group form-control" placeholder="Nombre de la lista"
+										value="" /> 	
+										<div class="row form-group">
+											<input type="submit" name="register-submit" id="buttonReg"
+												tabindex="3" class="active btn btn-register mx-auto"
+												value="Crear">
+										</div>
+									</div>
 								</div>
-								{{/lists}}
-
-							</div>
-
+							</form>
 						</div>
 					</div>
 
