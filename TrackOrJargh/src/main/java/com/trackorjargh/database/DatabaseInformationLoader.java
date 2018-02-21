@@ -168,11 +168,7 @@ public class DatabaseInformationLoader {
 		CommentFilm cf1 = new CommentFilm("Esta pelicula es muy buena");
 		cf1.setFilm(f1);
 		cf1.setUser(u1);
-<<<<<<< HEAD
-		// commentFilmRepository.save(cf1);
-=======
 		commentFilmRepository.save(cf1);
->>>>>>> 6f2da447c24153955a71c8c0e4e4dc06828d4e63
 
 		// Test Data Comment Show
 		CommentShow cs1 = new CommentShow("Esta serie es muy buena");

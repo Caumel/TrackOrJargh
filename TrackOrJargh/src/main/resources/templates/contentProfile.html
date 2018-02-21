@@ -50,14 +50,6 @@
 			<div id="introCarousel" class="carousel  slide carousel-fade"
 				data-ride="carousel">
 
-				<ol class="carousel-starts">
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star"></i>
-					<i class="ion-ios-star-half"></i>
-					<i class="ion-ios-star-outline"></i>
-				</ol>
-
 				<div class="carousel-inner" role="listbox">
 					<div class="carousel-item active"
 						style="background-image: url('{{content.image}}');">
@@ -65,6 +57,7 @@
 							<div class="carousel-content">
 								<h2>Sinopsis</h2>
 								<p>{{content.synopsis}}</p>
+								<span class="starts" id="totalPoints"></span>
 							</div>
 						</div>
 					</div>
@@ -130,7 +123,7 @@
 					<h4 class="title">
 						<a href="">Autores</a>
 					</h4>
-					<p class="description">{{authors}}</p>
+					<p class="description"></p>
 				</div>
 			</div>
 			{{/isBook}}
@@ -145,6 +138,11 @@
 			<h3>Puntua {{typeContent}}</h3>
 			<div class="starts">
 				<span id="rateYo"></span>
+
+				<form action="{{actionMessage}}" method="POST">
+					<input type="hidden" name="pointsSent" value="0" />
+					<button>Puntua</button>
+				</form>
 			</div>
 		</div>
 	</section>
@@ -288,7 +286,8 @@
 			</div>
 
 			<div class="form">
-				<form action="{{actionMessage}}" method="post" role="form" class="contactForm">
+				<form action="{{actionMessage}}" method="post" role="form"
+					class="contactForm">
 					<div class="form-group">
 						<textarea class="form-control" name="messageSent" rows="5"
 							data-rule="required" data-msg="Introduzca un comentario."
@@ -336,9 +335,19 @@
 
 	<script>
 		$("#rateYo").rateYo({
-			rating : 1.6,
+			rating : 0,
 			spacing : "5px",
-			ratedFill : "#18d26e"
+			ratedFill : "#18d26e",
+		    onSet: function (rating, rateYoInstance) {
+		    		$('[name="pointsSent"]').val(rating);
+		    }
+		});
+		
+		$("#totalPoints").rateYo({
+			rating : {{totalPoints}},
+			spacing : "5px",
+			ratedFill : "#18d26e",
+			readOnly: true
 		});
 	</script>
 

@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,18 +16,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.javaclass.Book;
+import com.trackorjargh.javaclass.CommentBook;
+import com.trackorjargh.javaclass.CommentFilm;
+import com.trackorjargh.javaclass.CommentShow;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.ForgotPassword;
 import com.trackorjargh.javaclass.GenerateURLPage;
 import com.trackorjargh.javaclass.InterfaceMainItem;
 import com.trackorjargh.javaclass.Lists;
+import com.trackorjargh.javaclass.PointFilm;
+import com.trackorjargh.javaclass.PreparateMessageShow;
 import com.trackorjargh.javaclass.RandomGenerate;
 import com.trackorjargh.javaclass.Show;
 import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.BookRepository;
+import com.trackorjargh.javarepository.CommentBookRepository;
+import com.trackorjargh.javarepository.CommentFilmRepository;
+import com.trackorjargh.javarepository.CommentShowRepository;
 import com.trackorjargh.javarepository.FilmRepository;
 import com.trackorjargh.javarepository.ForgotPasswordRepository;
 import com.trackorjargh.javarepository.ListsRepository;
+import com.trackorjargh.javarepository.PointBookRepository;
+import com.trackorjargh.javarepository.PointFilmRepository;
+import com.trackorjargh.javarepository.PointShowRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
 import com.trackorjargh.mail.MailComponent;
@@ -44,6 +54,18 @@ public class PageController {
 	private UserRepository userRepository;
 	@Autowired
 	private ShowRepository showRepository;
+	@Autowired
+	private CommentFilmRepository commentFilmRepository;
+	@Autowired
+	private CommentShowRepository commentShowRepository;
+	@Autowired
+	private CommentBookRepository commentBookRepository;
+	@Autowired
+	private PointFilmRepository pointFilmRepository;
+	@Autowired
+	private PointShowRepository pointShowRepository;
+	@Autowired
+	private PointBookRepository pointBookRepository;
 	@Autowired
 	private UserComponent userComponent;
 	@Autowired
@@ -107,33 +129,109 @@ public class PageController {
 	}
 
 	@RequestMapping("/pelicula/{name}")
-	public String serveFilmProfile(Model model, @PathVariable String name) {
-		model.addAttribute("content", filmRepository.findByName(name));
-		model.addAttribute("comments", filmRepository.findByName(name).getCommentsFilm());
-		model.addAttribute("typeContent", "la película");
+	public String serveFilmProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent,
+			@RequestParam Optional<String> pointsSent) {
+		Film film = filmRepository.findByName(name);
 
-		System.out.println(filmRepository.findByName(name).getCommentsFilm().size());
+		if (messageSent.isPresent()) {
+			CommentFilm message = new CommentFilm(messageSent.get());
+			message.setFilm(film);
+			message.setUser(userComponent.getLoggedUser());
+
+			commentFilmRepository.save(message);
+		}
+
+		if (pointsSent.isPresent()) {
+			PointFilm pointFilm = pointFilmRepository.findByUser(userComponent.getLoggedUser());
+
+			if (pointFilm == null) {
+				pointFilm = new PointFilm(Long.parseLong(pointsSent.get().replaceAll("\"", "")));
+				pointFilm.setFilm(film);
+				pointFilm.setUser(userComponent.getLoggedUser());
+			} else {
+				pointFilm.setPoints(Long.parseLong(pointsSent.get().replaceAll("\"", "")));
+			}
+
+			pointFilmRepository.save(pointFilm);
+		}
+
+		List<PreparateMessageShow> listMessages = new LinkedList<>();
+		for (CommentFilm cf : film.getCommentsFilm())
+			listMessages.add(cf.preparateShowMessage());
+
+		model.addAttribute("content", film);
+		model.addAttribute("comments", listMessages);
+		model.addAttribute("typeContent", "la película");
+		model.addAttribute("actionMessage", "/pelicula/" + name);
+
+		int points = 0;
+		List<PointFilm> listPoints = pointFilmRepository.findAll();
+
+		if (listPoints.size() > 0) {
+			for (PointFilm pf : listPoints)
+				points += pf.getPoints();
+			points /= listPoints.size();
+		}
+
+		model.addAttribute("totalPoints", points);
+
 		return "contentProfile";
 	}
 
 	@RequestMapping("/serie/{name}")
-	public String serveShowProfile(Model model, @PathVariable String name) {
-		model.addAttribute("content", showRepository.findByName(name));
-		model.addAttribute("comments", showRepository.findByName(name).getCommentsShow());
+	public String serveShowProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent) {
+		Show show = showRepository.findByName(name);
+
+		if (messageSent.isPresent()) {
+			CommentShow message = new CommentShow(messageSent.get());
+			message.setShow(show);
+			message.setUser(userComponent.getLoggedUser());
+
+			commentShowRepository.save(message);
+		}
+
+		List<PreparateMessageShow> listMessages = new LinkedList<>();
+		for (CommentShow ch : show.getCommentsShow())
+			listMessages.add(ch.preparateShowMessage());
+
+		model.addAttribute("content", show);
+		model.addAttribute("comments", listMessages);
 		model.addAttribute("firstSeason", showRepository.findByName(name).getFirstSeason());
 		model.addAttribute("listNoFirstSeason", showRepository.findByName(name).getListNoFirst());
 		model.addAttribute("typeContent", "la serie");
 		model.addAttribute("episodeSection", true);
+		model.addAttribute("actionMessage", "/serie/" + name);
+		
+		int points = 0;
+		model.addAttribute("totalPoints", points);
 
 		return "contentProfile";
 	}
 
 	@RequestMapping("/libro/{name}")
-	public String serveProfile(Model model, @PathVariable String name) {
+	public String serveProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent) {
+		Book book = bookRepository.findByName(name);
+
+		if (messageSent.isPresent()) {
+			CommentBook message = new CommentBook(messageSent.get());
+			message.setBook(book);
+			message.setUser(userComponent.getLoggedUser());
+
+			commentBookRepository.save(message);
+		}
+
+		List<PreparateMessageShow> listMessages = new LinkedList<>();
+		for (CommentBook cb : book.getCommentsBook())
+			listMessages.add(cb.preparateShowMessage());
+
 		model.addAttribute("content", bookRepository.findByName(name));
-		model.addAttribute("comments", bookRepository.findByName(name).getCommentsBook());
+		model.addAttribute("comments", listMessages);
 		model.addAttribute("typeContent", "el libro");
 		model.addAttribute("isBook", true);
+		model.addAttribute("actionMessage", "/libro/" + name);
+		
+		int points = 0;
+		model.addAttribute("totalPoints", points);
 
 		return "contentProfile";
 	}
@@ -153,24 +251,18 @@ public class PageController {
 
 		return "userProfile";
 	}
-	
-	
-	
-	//create empty list 
+
+	// create empty list
 	@RequestMapping("/listaNueva")
-	public String modProfile(Model model,@RequestParam String listName) {
+	public String modProfile(Model model, @RequestParam String listName) {
 		listsRepository.save(new Lists(listName));
-		//model.addAttribute("visibleCarousel", true);
+		// model.addAttribute("visibleCarousel", true);
 		return "userProfile";
 	}
 
-	//@RequestMapping(/"borrarLista")
-	//public String modProfile(Model model)
-	
-	
-	
-	
-	
+	// @RequestMapping(/"borrarLista")
+	// public String modProfile(Model model)
+
 	@RequestMapping("/activarusuario/{name}")
 	public String activatedUser(Model model, @PathVariable String name) {
 		User user = userRepository.findByName(name);
@@ -287,7 +379,6 @@ public class PageController {
 
 		return "login";
 	}
-<<<<<<< HEAD
 
 	@RequestMapping("/administracion")
 	public String serveAdmin(Model model) {
@@ -322,11 +413,7 @@ public class PageController {
 	@RequestMapping("/adminPelis")
 	public String adminFilms(Model model) {
 		model.addAttribute("content", filmRepository.findByName("Guardianes de la galaxia 2"));
-		
+
 		return "redirect:/administracion";
 	}
-
-=======
-	
->>>>>>> 6f2da447c24153955a71c8c0e4e4dc06828d4e63
 }
