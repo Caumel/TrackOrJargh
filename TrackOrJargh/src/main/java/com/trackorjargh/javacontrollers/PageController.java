@@ -93,11 +93,14 @@ public class PageController {
 	public String serveFilmList(Model model) {
 		List<Film> films = filmRepository.findByLastAdded(5);
 		films.get(0).setFirstInList(true);
+		
+		User user = userComponent.getLoggedUser();
 
 		model.addAttribute("content", filmRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "peliculas");
 		model.addAttribute("filmsActive", true);
 		model.addAttribute("contentCarousel", films);
+		model.addAttribute("userList", user.getLists());
 
 		return "contentList";
 	}
@@ -106,11 +109,14 @@ public class PageController {
 	public String serveShowList(Model model) {
 		List<Show> shows = showRepository.findByLastAdded(5);
 		shows.get(0).setFirstInList(true);
+		
+		User user = userComponent.getLoggedUser();
 
 		model.addAttribute("content", showRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "series");
 		model.addAttribute("showsActive", true);
 		model.addAttribute("contentCarousel", shows);
+		model.addAttribute("userList", user.getLists());
 
 		return "contentList";
 	}
@@ -119,11 +125,14 @@ public class PageController {
 	public String serveBookList(Model model) {
 		List<Book> books = bookRepository.findByLastAdded(5);
 		books.get(0).setFirstInList(true);
+		
+		User user = userComponent.getLoggedUser();
 
 		model.addAttribute("content", bookRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "libros");
 		model.addAttribute("booksActive", true);
-		model.addAttribute("contentCarousel", books);
+		model.addAttribute("contentCarousel", books);	
+		model.addAttribute("userList", user.getLists());
 
 		return "contentList";
 	}
