@@ -60,6 +60,14 @@
 	color: #18d26e;
 }
 
+#sendBtn:hover{
+	background: #fff;
+    color: #18d26e;
+}
+
+#sendBtn{
+	color:white;
+}
 
 /* Hover image */
 

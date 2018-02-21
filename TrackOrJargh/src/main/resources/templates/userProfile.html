@@ -79,9 +79,9 @@
 							</div>
 							<div class="overlay"></div>
 							<div class="form-group pt-3">
-								<label for="userName">Nombre de usuario</label> <input
+								<label for="userName">Nombre de usuario</label> 
+								<input
 									type="text" class="form-control" id="userName"
-									placeholder="{{name}}" readonly> <label for="email">Correo
 									placeholder="{{name}}" readonly> 
 								<label for="email">Correo electrónico</label>
 								<input type="email" class="form-control was-validated" id="email"
@@ -102,7 +102,7 @@
 										<option>Moderador</option>
 									</select>
 								</fieldset>
-									class="btn-get-started border" value="Enviar">
+									<input id="sendBtn" type="submit" class="btn-get-started border " value="Aceptar">
 							</div>
 						</form>
 						{{/userLogged}}
@@ -117,7 +117,8 @@
 							</div>
 
 							<div id="CreateList">
-								<a id="NewList">Nueva Lista <i class="ion-plus-circled"></i></a>
+								<button onclick="makeList()" href="/"><i class="ion-plus-circled"></i></button>
+								
 
 								{{#lists}}
 								<div id="CreateList">

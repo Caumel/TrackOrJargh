@@ -7,4 +7,9 @@ public interface ListsRepository extends JpaRepository<Lists, Long>{
 
 		Lists findById(Long id);
 		Lists findByName(String name);
+		
+		
+
+		
+
 }
