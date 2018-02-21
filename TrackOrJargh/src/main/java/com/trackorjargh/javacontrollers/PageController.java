@@ -95,15 +95,16 @@ public class PageController {
 		List<Film> films = filmRepository.findByLastAdded(5);
 		films.get(0).setFirstInList(true);
 		
-		User user = userComponent.getLoggedUser();
+		if (userComponent.isLoggedUser()) {
+			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+			
+			model.addAttribute("userList", user.getLists());
+		}
 
 		model.addAttribute("content", filmRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "peliculas");
 		model.addAttribute("filmsActive", true);
 		model.addAttribute("contentCarousel", films);
-		if (userComponent.isLoggedUser()) {
-			model.addAttribute("userList", user.getLists());
-		}
 		model.addAttribute("loggedUser", userComponent.isLoggedUser());		
 
 		return "contentList";
@@ -114,16 +115,16 @@ public class PageController {
 		List<Show> shows = showRepository.findByLastAdded(5);
 		shows.get(0).setFirstInList(true);
 		
-		User user = userComponent.getLoggedUser();
+		if (userComponent.isLoggedUser()) {
+			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+			
+			model.addAttribute("userList", user.getLists());
+		}
 
 		model.addAttribute("content", showRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "series");
 		model.addAttribute("showsActive", true);
 		model.addAttribute("contentCarousel", shows);
-		if (userComponent.isLoggedUser()) {
-			model.addAttribute("userList", user.getLists());
-		}
-		
 		model.addAttribute("loggedUser", userComponent.isLoggedUser());
 
 		return "contentList";
@@ -134,16 +135,16 @@ public class PageController {
 		List<Book> books = bookRepository.findByLastAdded(5);
 		books.get(0).setFirstInList(true);
 		
-		User user = userComponent.getLoggedUser();
+		if (userComponent.isLoggedUser()) {
+			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+			
+			model.addAttribute("userList", user.getLists());
+		}
 
 		model.addAttribute("content", bookRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "libros");
 		model.addAttribute("booksActive", true);
 		model.addAttribute("contentCarousel", books);	
-		if (userComponent.isLoggedUser()) {
-			model.addAttribute("userList", user.getLists());
-		}else
-			
 		model.addAttribute("loggedUser", userComponent.isLoggedUser());
 
 		return "contentList";
