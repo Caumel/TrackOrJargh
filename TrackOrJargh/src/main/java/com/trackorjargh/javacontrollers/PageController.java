@@ -20,12 +20,14 @@ import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.ForgotPassword;
 import com.trackorjargh.javaclass.GenerateURLPage;
 import com.trackorjargh.javaclass.InterfaceMainItem;
+import com.trackorjargh.javaclass.Lists;
 import com.trackorjargh.javaclass.RandomGenerate;
 import com.trackorjargh.javaclass.Show;
 import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.FilmRepository;
 import com.trackorjargh.javarepository.ForgotPasswordRepository;
+import com.trackorjargh.javarepository.ListsRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
 import com.trackorjargh.mail.MailComponent;
@@ -47,6 +49,8 @@ public class PageController {
 	private MailComponent mailComponent;
 	@Autowired
 	private ForgotPasswordRepository forgotPasswordRepository;
+	@Autowired
+	private ListsRepository listsRepository;
 
 	@RequestMapping("/")
 	public String serveIndex(Model model) {
@@ -153,7 +157,24 @@ public class PageController {
 
 		return "userProfile";
 	}
+	
+	
+	
+	//create empty list 
+	@RequestMapping("/listaNueva")
+	public String modProfile(Model model,@RequestParam String listName) {
+		listsRepository.save(new Lists(listName));
+		
+		return "redirect:/miperfil";
+	}
 
+	//@RequestMapping(/"borrarLista")
+	//public String modProfile(Model model)
+	
+	
+	
+	
+	
 	@RequestMapping("/activarusuario/{name}")
 	public String activatedUser(Model model, @PathVariable String name) {
 		User user = userRepository.findByName(name);
@@ -269,4 +290,5 @@ public class PageController {
 
 		return "login";
 	}
+	
 }
