@@ -19,6 +19,9 @@ public class Show implements InterfaceMainItem{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	private String directors;
+	private String actors;
+	
 	@JsonView(BasicInformation.class)
 	private String url = "/serie/";
 	
@@ -35,12 +38,6 @@ public class Show implements InterfaceMainItem{
 	@JsonView(BasicInformation.class)
 	private int year;
 	private boolean firstInList;
-	
-	@ManyToMany
-	private List<Actor> actors = new LinkedList<>();
-	
-	@ManyToMany
-	private List<Director> directors = new LinkedList<>();
 	
 	@ManyToMany
 	private List<Gender> genders = new LinkedList<>();
@@ -60,8 +57,10 @@ public class Show implements InterfaceMainItem{
 	public Show() {
 	}
 
-	public Show(String name, String synopsis, String image, String trailer, int year) {
+	public Show(String name, String actors, String directors, String synopsis, String image, String trailer, int year) {
 		this.name = name;
+		this.actors = actors;
+		this.directors = directors;
 		this.synopsis = synopsis;
 		this.image = image;
 		this.trailer = trailer;
@@ -124,22 +123,6 @@ public class Show implements InterfaceMainItem{
 		this.firstInList = firstInList;
 	}
 
-	public List<Actor> getActors() {
-		return actors;
-	}
-
-	public void setActors(List<Actor> actors) {
-		this.actors = actors;
-	}
-
-	public List<Director> getDirectors() {
-		return directors;
-	}
-
-	public void setDirectors(List<Director> directors) {
-		this.directors = directors;
-	}
-
 	public List<Gender> getGenders() {
 		return genders;
 	}
@@ -197,5 +180,21 @@ public class Show implements InterfaceMainItem{
 
 	public void setPointsShow(List<PointShow> pointsShow) {
 		this.pointsShow = pointsShow;
+	}
+
+	public String getDirectors() {
+		return directors;
+	}
+
+	public void setDirectors(String directors) {
+		this.directors = directors;
+	}
+
+	public String getActors() {
+		return actors;
+	}
+
+	public void setActors(String actors) {
+		this.actors = actors;
 	}
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -104,8 +105,6 @@ public class PageController {
 	@RequestMapping("/pelicula/{name}")
 	public String serveFilmProfile(Model model, @PathVariable String name) {
 		model.addAttribute("content", filmRepository.findByName(name));
-		model.addAttribute("directors", filmRepository.findByName(name).getDirectors());
-		model.addAttribute("actors", filmRepository.findByName(name).getActors());
 		model.addAttribute("comments", filmRepository.findByName(name).getCommentsFilm());
 		model.addAttribute("typeContent", "la película");
 
@@ -116,8 +115,6 @@ public class PageController {
 	@RequestMapping("/serie/{name}")
 	public String serveShowProfile(Model model, @PathVariable String name) {
 		model.addAttribute("content", showRepository.findByName(name));
-		model.addAttribute("directors", showRepository.findByName(name).getDirectors());
-		model.addAttribute("actors", showRepository.findByName(name).getActors());
 		model.addAttribute("comments", showRepository.findByName(name).getCommentsShow());
 		model.addAttribute("firstSeason", showRepository.findByName(name).getFirstSeason());
 		model.addAttribute("listNoFirstSeason", showRepository.findByName(name).getListNoFirst());
@@ -130,7 +127,6 @@ public class PageController {
 	@RequestMapping("/libro/{name}")
 	public String serveProfile(Model model, @PathVariable String name) {
 		model.addAttribute("content", bookRepository.findByName(name));
-		model.addAttribute("authors", bookRepository.findByName(name).getAuthors());
 		model.addAttribute("comments", bookRepository.findByName(name).getCommentsBook());
 		model.addAttribute("typeContent", "el libro");
 		model.addAttribute("isBook", true);
@@ -181,41 +177,42 @@ public class PageController {
 			User newUser = new User(name.get(), pass.get(), email.get(), "", false, "ROLE_USER");
 			GenerateURLPage url = new GenerateURLPage(request);
 			mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount(newUser));
-			
+
 			model.addAttribute("registered", true);
 			userRepository.save(newUser);
 		}
 
 		return "login";
 	}
-		
+
 	@RequestMapping("/cambiarcontra/{alphanumericCode}")
-	public String changePass(Model model, HttpServletRequest request, @PathVariable String alphanumericCode, @RequestParam Optional<String> pass) {
+	public String changePass(Model model, HttpServletRequest request, @PathVariable String alphanumericCode,
+			@RequestParam Optional<String> pass) {
 		ForgotPassword forgotPass = forgotPasswordRepository.findBySecretAlphanumeric(alphanumericCode);
-	
-		if(forgotPass == null) {
+
+		if (forgotPass == null) {
 			model.addAttribute("wrongCode", true);
-			
+
 			return "recoverPass";
 		}
-		
+
 		User user = forgotPass.getUser();
-		
-		if(pass.isPresent()) {
+
+		if (pass.isPresent()) {
 			user.setPassword(pass.get());
 			userRepository.save(user);
 			forgotPasswordRepository.delete(forgotPass);
-			
+
 			model.addAttribute("changedPass", true);
 			model.addAttribute("viewUser", true);
 			model.addAttribute("name", user.getName());
-			
+
 			return "login";
 		} else {
 			model.addAttribute("user", user);
-			
+
 			return "changePass";
-		}	
+		}
 	}
 
 	@RequestMapping("/olvidocontra")
@@ -225,20 +222,20 @@ public class PageController {
 
 			if (user != null) {
 				ForgotPassword forgotPass = forgotPasswordRepository.findByUser(user);
-				if(forgotPass != null) {
+				if (forgotPass != null) {
 					model.addAttribute("sentEmail", true);
-					
+
 					return "recoverPass";
 				}
-				
+
 				RandomGenerate generateRandomString = new RandomGenerate();
 				ForgotPassword newForgotPass = new ForgotPassword(generateRandomString.getRandomString(12));
 				newForgotPass.setUser(user);
 				forgotPasswordRepository.save(newForgotPass);
-				
+
 				GenerateURLPage url = new GenerateURLPage(request);
 				mailComponent.sendChangePassEmail(user, url.generateURLChangePass(newForgotPass));
-				
+
 				model.addAttribute("sentChangePass", true);
 				return "login";
 			} else {
@@ -269,4 +266,42 @@ public class PageController {
 
 		return "login";
 	}
+
+	@RequestMapping("/administracion")
+	public String serveAdmin(Model model) {
+		return "administration";
+	}
+
+	@RequestMapping("/adminUsuario")
+	public String adminUser(Model model, @RequestParam String name, @RequestParam String email,
+			@RequestParam Boolean confirmDelete, @RequestParam String deleteUser, @RequestParam String userType) {
+		User user = userRepository.findByName(name);
+		if (confirmDelete) {
+			if (name.equals(deleteUser)) {
+
+			}
+		} else {
+			user.setEmail(email);
+			if (userType.equals("Usuario")) {
+				user.setRoles(new LinkedList<String>());
+				user.getRoles().add("ROLE_USER");
+			} else {
+				if (userType.equals("Moderador")) {
+					user.getRoles().add("ROLE_MODERATOR");
+				} else {
+					user.getRoles().add("ROLE_MODERATOR");
+					user.getRoles().add("ROLE_ADMINISTRATOR");
+				}
+			}
+		}
+		return "redirect:/administracion";
+	}
+
+	@RequestMapping("/adminPelis")
+	public String adminFilms(Model model) {
+		model.addAttribute("content", filmRepository.findByName("Guardianes de la galaxia 2"));
+		
+		return "redirect:/administracion";
+	}
+
 }

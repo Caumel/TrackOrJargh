@@ -19,6 +19,9 @@ public class Film implements InterfaceMainItem{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	private String directors;
+	private String actors;
+	
 	@JsonView(BasicInformation.class)
 	private String url = "/pelicula/";
 	
@@ -37,12 +40,6 @@ public class Film implements InterfaceMainItem{
 	private boolean firstInList;
 	
 	@ManyToMany
-	private List<Actor> actors = new LinkedList<>();
-	
-	@ManyToMany
-	private List<Director> directors = new LinkedList<>();
-	
-	@ManyToMany
 	private List<Gender> genders = new LinkedList<>();
 	
 	@ManyToMany(mappedBy="films")
@@ -57,8 +54,10 @@ public class Film implements InterfaceMainItem{
 	public Film() {
 	}
 
-	public Film(String name, String synopsis, String image, String trailer, int year) {
+	public Film(String name, String actors, String directors,String synopsis, String image, String trailer, int year) {
 		this.name = name;
+		this.actors = actors;
+		this.directors = directors;
 		this.synopsis = synopsis;
 		this.image = image;
 		this.trailer = trailer;
@@ -121,22 +120,6 @@ public class Film implements InterfaceMainItem{
 		this.firstInList = firstInList;
 	}
 
-	public List<Actor> getActors() {
-		return actors;
-	}
-
-	public void setActors(List<Actor> actors) {
-		this.actors = actors;
-	}
-
-	public List<Director> getDirectors() {
-		return directors;
-	}
-
-	public void setDirectors(List<Director> directors) {
-		this.directors = directors;
-	}
-
 	public List<Gender> getGenders() {
 		return genders;
 	}
@@ -175,5 +158,21 @@ public class Film implements InterfaceMainItem{
 
 	public void setPointsFilm(List<PointFilm> pointsFilm) {
 		this.pointsFilm = pointsFilm;
+	}
+
+	public String getDirectores() {
+		return directors;
+	}
+
+	public void setDirectores(String directores) {
+		this.directors = directores;
+	}
+
+	public String getActores() {
+		return actors;
+	}
+
+	public void setActores(String actores) {
+		this.actors = actores;
 	}
 }

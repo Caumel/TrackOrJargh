@@ -18,6 +18,8 @@ public class Book implements InterfaceMainItem{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	private String authors;
+	
 	@JsonView(BasicInformation.class)
 	private String url = "/libro/";
 	
@@ -32,9 +34,6 @@ public class Book implements InterfaceMainItem{
 	@JsonView(BasicInformation.class)
 	private int year;
 	private boolean firstInList;
-
-	@ManyToMany
-	private List<Author> authors = new LinkedList<>();
 	
 	@ManyToMany
 	private List<Gender> genders = new LinkedList<>();
@@ -51,8 +50,9 @@ public class Book implements InterfaceMainItem{
 	public Book() {
 	}
 
-	public Book(String name, String synopsis, String image, int year) {
+	public Book(String name, String authors, String synopsis, String image, int year) {
 		this.name = name;
+		this.authors = authors;
 		this.synopsis = synopsis;
 		this.image = image;
 		this.year = year;
@@ -106,14 +106,6 @@ public class Book implements InterfaceMainItem{
 		this.firstInList = firstInList;
 	}
 
-	public List<Author> getAuthors() {
-		return authors;
-	}
-
-	public void setAuthors(List<Author> authors) {
-		this.authors = authors;
-	}
-
 	public List<Gender> getGenders() {
 		return genders;
 	}
@@ -152,5 +144,13 @@ public class Book implements InterfaceMainItem{
 
 	public void setPointsBook(List<PointBook> pointsBook) {
 		this.pointsBook = pointsBook;
+	}
+
+	public String getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(String authors) {
+		this.authors = authors;
 	}
 }
