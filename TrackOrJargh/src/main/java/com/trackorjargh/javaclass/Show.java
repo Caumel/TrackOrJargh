@@ -42,9 +42,6 @@ public class Show implements InterfaceMainItem{
 	@ManyToMany
 	private List<Gender> genders = new LinkedList<>();
 	
-	@OneToMany
-	private List<Season> seasons = new LinkedList<>();
-	
 	@ManyToMany(mappedBy="shows")
 	private List<Lists> lists = new LinkedList<>();
 	
@@ -129,25 +126,6 @@ public class Show implements InterfaceMainItem{
 
 	public void setGenders(List<Gender> genders) {
 		this.genders = genders;
-	}
-
-	public List<Season> getSeasons() {
-		return seasons;
-	}
-	
-	public Season getFirstSeason() {	
-		return this.getSeasons().get(0);
-	}
-	
-	public List<Season> getListNoFirst() {
-		List<Season> listAux = this.getSeasons();
-		listAux.remove(0);
-		
-		return listAux;
-	}
-
-	public void setSeasons(List<Season> seasons) {
-		this.seasons = seasons;
 	}
 
 	public List<Lists> getLists() {

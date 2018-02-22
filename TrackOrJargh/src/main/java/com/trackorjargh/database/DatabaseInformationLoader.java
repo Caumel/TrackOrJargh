@@ -9,28 +9,24 @@ import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.CommentBook;
 import com.trackorjargh.javaclass.CommentFilm;
 import com.trackorjargh.javaclass.CommentShow;
-import com.trackorjargh.javaclass.Episode;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.Gender;
 import com.trackorjargh.javaclass.Lists;
 import com.trackorjargh.javaclass.PointBook;
 import com.trackorjargh.javaclass.PointFilm;
 import com.trackorjargh.javaclass.PointShow;
-import com.trackorjargh.javaclass.Season;
 import com.trackorjargh.javaclass.Show;
 import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.CommentBookRepository;
 import com.trackorjargh.javarepository.CommentFilmRepository;
 import com.trackorjargh.javarepository.CommentShowRepository;
-import com.trackorjargh.javarepository.EpisodeRepository;
 import com.trackorjargh.javarepository.FilmRepository;
 import com.trackorjargh.javarepository.GenderRepository;
 import com.trackorjargh.javarepository.ListsRepository;
 import com.trackorjargh.javarepository.PointBookRepository;
 import com.trackorjargh.javarepository.PointFilmRepository;
 import com.trackorjargh.javarepository.PointShowRepository;
-import com.trackorjargh.javarepository.SeasonRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
 
@@ -47,10 +43,6 @@ public class DatabaseInformationLoader {
 	private UserRepository userRepository;
 	@Autowired
 	private ShowRepository showRepository;
-	@Autowired
-	private SeasonRepository seasonRepository;
-	@Autowired
-	private EpisodeRepository episodeRepository;
 	@Autowired
 	private ListsRepository listsRepository;
 	@Autowired
@@ -134,20 +126,10 @@ public class DatabaseInformationLoader {
 			bookRepository.save(b1);
 		}
 
-		// Test Data Episode
-		Episode ep1 = new Episode("Episodio 1", "El episodio trata de...");
-		episodeRepository.save(ep1);
-
-		// Test Data Season
-		Season s1 = new Season("Temporada 1");
-		s1.getEpisodes().add(ep1);
-		seasonRepository.save(s1);
-
 		// Test Data Show
 		Show sh1 = new Show("The Big Bang Theory", "", "",
 				"La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.",
 				"/img/the_big_bang_theroy.jpg", "https://www.youtube.com/embed/_uQXxvZ3afQ", 2007);
-		sh1.getSeasons().add(s1);
 		showRepository.save(sh1);
 
 		for (int x = 2; x <= 100; x++) {

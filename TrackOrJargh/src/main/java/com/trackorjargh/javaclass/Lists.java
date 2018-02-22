@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Lists {
@@ -15,6 +16,9 @@ public class Lists {
 	private Long id;
 	
 	private String name;
+	
+	@ManyToOne
+	private User user;
 	
 	@ManyToMany
 	private List<Film> films = new LinkedList<>();
@@ -70,5 +74,21 @@ public class Lists {
 
 	public void setBooks(List<Book> books) {
 		this.books = books;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<Film> getFilms() {
+		return films;
+	}
+
+	public void setFilms(List<Film> films) {
+		this.films = films;
 	}
 }

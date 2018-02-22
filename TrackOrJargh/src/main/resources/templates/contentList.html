@@ -111,6 +111,19 @@
 									<a href="{{url}}{{name}}">{{name}}</a>
 								</h4>
 								<p>{{year}}</p>
+								{{#loggedUser}}
+								<div class="dropup float-left">
+  									<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  										<i class="ion-plus-round"></i>
+  									</button>
+  									<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+  										{{#userList}}
+    									<button class="dropdown-item" type="button">{{name}}</button>
+    									{{/userList}}
+    									<a href="/miperfil" class="dropdown-item">Crear lista</a>
+  									</div>
+								</div>
+								{{/loggedUser}}
 							</div>
 						</div>
 					</div>

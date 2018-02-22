@@ -106,3 +106,9 @@
 .moreContentButton{
 	color: #18d26e;
 }
+
+.btn-secondary {
+    color: #fff !important;
+    background-color: #18d26e !important;
+    border-color: #18d26e !important;
+}
