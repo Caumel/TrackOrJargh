@@ -65,13 +65,14 @@ public class DatabaseInformationLoader {
 		userRepository.save(u1);
 		User u2 = new User("jesus", "1234", "jesusmola@gmail.com", "img/userFoto.jpg", true, "ROLE_USER", "ROLE_ADMIN");
 		userRepository.save(u2);
+		User u3 = new User("alfonso", "1234", "fonycas@hotmail.com","img/Alfonso_Casanova.jpg",true,"ROLE_USER", "ROLE_ADMIN");
 
 		// Test Data Gender
 		Gender g1 = new Gender("Aventuras");
 		genderRepository.save(g1);
 		Gender g2 = new Gender("Terror");
 		genderRepository.save(g2);
-		Gender g3 = new Gender("Comedia romántica");
+		Gender g3 = new Gender("Romántica");
 		genderRepository.save(g3);
 		Gender g4 = new Gender("Comedia");
 		genderRepository.save(g4);
@@ -85,6 +86,12 @@ public class DatabaseInformationLoader {
 		genderRepository.save(g8);
 		Gender g9 = new Gender("Drama");
 		genderRepository.save(g9);
+		Gender g10 = new Gender("Ciencia ficción");
+		genderRepository.save(g10);
+		Gender g11 = new Gender("Histórica");
+		genderRepository.save(g11);
+		Gender g12 = new Gender("Musical");
+		genderRepository.save(g12);
 
 		// Test Data Film
 		Film f1 = new Film("Guardianes de la Galaxia 2",
@@ -94,7 +101,81 @@ public class DatabaseInformationLoader {
 				"/img/Guardianes2.jpg", "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0",
 				2017);
 		f1.getGenders().add(g1);
+		f1.getGenders().add(g8);
+		f1.getGenders().add(g4);
+		f1.getGenders().add(g6);
+		f1.getGenders().add(g10);
 		filmRepository.save(f1);
+		
+		Film f2 = new Film("Guardianes de la Galaxia","Chris Pratt, Zoe Saldana, Bradley Cooper, Dave Bautista, Vin Diesel, Michael Rooker, Karen Gillan, Djimon Hounsou, John C. Reilly, Glenn Close, Lee Pace, Benicio del Toro",
+				"James Gunn","Peter Quill, debe mantener una incomoda alianza con Gamora, Drax, Rocket y Groot para asegurar un artefacto que pone en peligro a toda la galaxia no caiga en las manos del temible Ronan el Acusador.",
+				"/img/Guardianes2.jpg","https://www.youtube.com/embed/dzj4P11Yr6E",2008);
+		
+		f2.getGenders().add(g1);
+		f2.getGenders().add(g8);
+		f2.getGenders().add(g4);
+		f2.getGenders().add(g6);
+		f2.getGenders().add(g10);
+		filmRepository.save(f2);
+		
+		Film f3 = new Film("Insidious", "Patrick Wilson, Rose Byrne, Barbara Hershey", "James Wan","La historia se centra en una pareja cuyo hijo inexplicablemente entra en estado de coma y se convierte en un recipiente para fantasmas en una dimensión astral que quiere habitar su cuerpo",
+				"/img/peliculas/insidious.jpg", "https://www.youtube.com/embed/FRW3K0LlsD0", 2010);
+		
+		f3.getGenders().add(g2);
+		f3.getGenders().add(g5);
+		filmRepository.save(f3);
+		
+		Film f4 = new Film("Mi gran boda Griega", "Nia Vardalos, Christina Eleusiniotis, John Corbett, Michael Constantine, Lainie Kazan, Andrea Martin"," Joel Zwick",
+				"La trama gira alrededor de Toula Portokalos, una mujer de ascendencia griego-americana, que se enamora de un chico estadounidense llamado Ian Miller. En el transcurso de la película, los protagonistas tienen que luchar por vencer las diferencias culturales",
+				"/img/peliculas/miGranBodaGriega.jpg", "https://www.youtube.com/embed/nnVMh3uDwwE", 2002);
+		
+		f4.getGenders().add(g3);
+		f4.getGenders().add(g4);
+		filmRepository.save(f4);
+		
+		Film f5 = new Film("Your name","Ryunosuke Kamiki, Mone Kamishiraishi, Masami Nagasawa,Etsuko Ichihara, Ryo Narita, Aoi Yūki","Makoto Shinkai",
+				"Aki y Mitsuha descubren un día que durante el sueño sus cuerpos se intercambian, y comienzan a comunicarse por medio de notas. A medida que consiguen superar torpemente un reto tras otro, se va creando entre los dos un vínculo que poco a poco se convierte en algo más romántico",
+				"/img/peliculas/yourName","https://www.youtube.com/embed/eHS8cPgzLsI",2017);
+		
+		f5.getGenders().add(g3);
+		f5.getGenders().add(g5);
+		f5.getGenders().add(g7);
+		f5.getGenders().add(g12);
+		filmRepository.save(f5);
+		
+		Film f6 = new Film("Gladiator","Russell Crowe, Joaquin Phoenix, Connie Nielsen, Ralf Möller, Oliver Reed, Djimon Hounsou, Derek Jacobi, John Shrapnel y Richard Harris", "Ridley Scott",
+				"Máximo Décimo Meridio, un leal general hispano del ejército de la Antigua Roma, que es traicionado por Cómodo, el ambicioso hijo del emperador, quien ha asesinado a su padre y se ha hecho con el trono. Forzado a convertirse en esclavo, Máximo triunfa como gladiador mientras anhela vengar la muerte de su familia y su emperador",
+				"/img/peliculas/gladiator", "https://www.youtube.com/embed/s6v-bUY_wS8",2000);
+		
+		
+		f6.getGenders().add(g6);
+		f6.getGenders().add(g11);
+		filmRepository.save(f6);
+		
+		
+		Film f7 = new Film("Indiana Johnes: El templo maldito","Harrison Ford, Kate Capshaw,Amrish Puri,Jonathan Ke Quan, Roshan Seth, Philip Stone, Roy Chiao","Steven Spielberg"," Indiana Jones llega accidentalmente al norte de India, donde los desesperados habitantes de un pequeño pueblo le piden ayuda para encontrar una piedra mágica que les han robado",
+				"/img/indianJohns","https://www.youtube.com/embed/jFqK5xyPQQc",1984);
+		
+		f7.getGenders().add(g1);
+		f7.getGenders().add(g6);
+		filmRepository.save(f7);
+		
+		Film f8 = new Film("Jesucristo Superstar", "Jeff Fenholt, Ben Vereen, Yvonne Elliman, Barry Dennen, Bob Bingham, Phil Jethro, Michael Jason, Dennis Buckleys, Paul Ainsley, Ted Neeley","Robert Stigwood","Famoso musical de rock, basado en una exitosa obra de Broadway, que relata la historia de Jesús de Nazaret por medio de canciones. Se vendieron millones de discos de su banda sonora en todo el mundo.",
+				"img/peliculas/jesucristo","https://www.youtube.com/embed/edTECo3gCd4", 1970);
+			
+
+		f8.getGenders().add(g11);
+		f8.getGenders().add(g12);
+		filmRepository.save(f7);
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 		CommentFilm cAux;
 		for (int x = 3; x <= 100; x++) {
