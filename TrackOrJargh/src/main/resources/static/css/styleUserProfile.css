@@ -60,15 +60,20 @@
 	color: #18d26e;
 }
 
-#sendBtn:hover{
+#acceptBtn:hover{
 	background: #fff;
     color: #18d26e;
 }
 
-#sendBtn{
+#acceptBtn{
+	margin-top: 2%;
+	font-weight: 700;
 	color:white;
+	background-color: #18d26e;
 }
 #plusButton{
+	font-weight: 700;
+	margin-top: 1.5%;
 	color:white;
 	background-color: #18d26e;
 	border-color: #18d26e;
@@ -78,6 +83,37 @@
 #plusButton:hover{
 	background: #fff;
     color: #18d26e;
+}
+
+#reportButton{
+	font-weight: 700;
+	text-align: center;
+	margin-top: 1.5%;
+	color:white;
+	background-color: #18d26e;
+	border-color: #18d26e;
+}
+
+#reportButton:hover{
+	background: #fff;
+    color: #18d26e;
+}
+
+#sendButton{
+	font-weight: 700;
+	text-align: center;
+	color:white;
+	background-color: #18d26e;
+	border-color: #18d26e;
+}
+
+#sendButton:hover{
+	background: #fff;
+    color: #18d26e;
+}
+
+#CreateList{
+	margin-top: 2%;
 }
 
 /* Hover image */

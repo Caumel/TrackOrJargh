@@ -102,7 +102,7 @@
 										<option>Moderador</option>
 									</select>
 								</fieldset>
-									<input id="sendBtn" type="submit" class="btn-get-started border " value="Aceptar">
+									<input id="acceptBtn" type="submit" class="btn btn-login  form-group form-contro mx-auto" value="Aceptar">
 							</div>
 						</form>
 						{{/userLogged}}
@@ -110,20 +110,20 @@
 
 					<div class="tab-pane fade" id="v-pills-MyLists" role="tabpanel"
 						aria-labelledby="v-pills-MyLists-tab">
-						<div id="MyLists" class="container form-control">
+						<div id="MyLists" class="container">
 
 							<div class="text-center " id="header-Report">
 								<a class="MyListsTitle">Mis Listas</a>
 							</div>
-							<form action="/listaNueva">
-								<div id="CreateList">
+							<form class="text-center" action="/listaNueva">
+								<div id=""class="form-control">
 									
 									{{#listsUser}}
-									<div id="CreateList">
-										<a id="CreatedLists">{{name}}<i class="ion-trash-a"></i> <i class="ion-edit"></i></a>
-									</div>
-									{{/listsUser}}
-									<button id="plusButton" class="btn btn-primary"
+										<div id="CreateList" class="form-control ">
+											<a id="CreatedLists">{{name}}<i class="ion-trash-a text-right"></i> <i class="ion-edit text-rigth"></i></a>
+										</div>
+										{{/listsUser}}
+									<button id="plusButton" class="btn btn-login"
 									type="button" data-toggle="collapse"
 									data-target="#showAddList" aria-expanded="false"
 									aria-controls="showAddList"><i class="ion-plus-circled"></i></button>
@@ -133,7 +133,7 @@
 										class="form-group form-control" placeholder="Nombre de la lista"
 										value="" /> 	
 										<div class="row form-group">
-											<input type="submit" name="register-submit" id="buttonReg"
+											<input type="submit" name="list-submit" id="sendButton"
 												tabindex="3" class="active btn btn-register mx-auto"
 												value="Crear">
 										</div>
@@ -150,7 +150,7 @@
 								<a class="h5">Reportar error</a>
 							</div>
 
-							<form>
+							<form >
 								<div class="form-group">
 									<label for="exampleInputEmail1">Asunto:</label> <input
 										type="email" class="form-control" id="exampleInputEmail1"
@@ -168,7 +168,7 @@
 										class="form-text text-muted">Si le ha hecho una
 										captura al error, por favor adjuntela.</small>
 								</div>
-								<button type="submit" class="btn btn-primary btn-sm btn-block">Reportar</button>
+								<button id="reportButton" type="submit" class="btn btn-primary mx-auto">Reportar</button>
 							</form>
 						</div>
 					</div>
