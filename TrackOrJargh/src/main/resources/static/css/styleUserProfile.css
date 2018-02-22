@@ -68,6 +68,17 @@
 #sendBtn{
 	color:white;
 }
+#plusButton{
+	color:white;
+	background-color: #18d26e;
+	border-color: #18d26e;
+	
+}
+
+#plusButton:hover{
+	background: #fff;
+    color: #18d26e;
+}
 
 /* Hover image */
 
