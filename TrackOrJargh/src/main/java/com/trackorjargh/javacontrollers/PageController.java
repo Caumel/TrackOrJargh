@@ -406,7 +406,9 @@ public class PageController {
 					user.getRoles().add("ROLE_ADMINISTRATOR");
 				}
 			}
+			userRepository.save(user);
 		}
+		
 		return "redirect:/administracion";
 	}
 

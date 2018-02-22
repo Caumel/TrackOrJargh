@@ -18,3 +18,4 @@
 .DS_Store
 >>>>>>> 7aa492a4905dadadf6a7b3f598581498e35287f7
 /.recommenders/
+.recommenders/caches/identified-project-coordinates.json
