@@ -2,7 +2,9 @@ package com.trackorjargh.javacontrollers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,5 +44,23 @@ public class ApiRestController {
 	@JsonView(Show.BasicInformation.class)
 	public Page<Show> getSeries(Pageable page) {
 		return showRepository.findAll(page);
+	}
+	
+	@RequestMapping(value = "/rest/busqueda/{optionSearch}/series/{name}/page", method = RequestMethod.GET)
+	@JsonView(Show.BasicInformation.class)
+	public Page<Show> getSearchSeries(Pageable page, @PathVariable String optionSearch, @PathVariable String name) {
+		return showRepository.findByNameContainingIgnoreCase(name, page);
+	}
+	
+	@RequestMapping(value = "/rest/busqueda/{optionSearch}/peliculas/{name}/page", method = RequestMethod.GET)
+	@JsonView(Film.BasicInformation.class)
+	public Page<Film> getSearchPeliculas(Pageable page, @PathVariable String optionSearch, @PathVariable String name) {
+		return filmRepository.findByNameContainingIgnoreCase(name, page);
+	}
+	
+	@RequestMapping(value = "/rest/busqueda/{optionSearch}/libros/{name}/page", method = RequestMethod.GET)
+	@JsonView(Book.BasicInformation.class)
+	public Page<Book> getSearchLibros(Pageable page, @PathVariable String optionSearch, @PathVariable String name) {
+		return bookRepository.findByNameContainingIgnoreCase(name, page);
 	}
 }
