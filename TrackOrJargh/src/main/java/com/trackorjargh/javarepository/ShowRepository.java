@@ -2,6 +2,8 @@ package com.trackorjargh.javarepository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -15,7 +17,8 @@ public interface ShowRepository extends JpaRepository<Show, Long>{
 	// SELECT TOP 10 * FROM FILM ORDER BY ID DESC
 	@Query(value = "Select top ?1 * from Show order by id desc", nativeQuery = true)
 	List<Show> findByLastAdded(int additions);
-	
+
+	Page<Show> findByNameContainingIgnoreCase(String name, Pageable pageable);	
 	Show findById(Long id);
 	Show findByName(String name);
 
