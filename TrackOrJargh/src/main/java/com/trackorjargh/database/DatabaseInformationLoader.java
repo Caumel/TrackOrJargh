@@ -98,6 +98,8 @@ public class DatabaseInformationLoader {
 		Gender g13 = new Gender("Fantasía");
 		genderRepository.save(g13);
 
+		final int maxGenders = 13;
+
 		// Test Data Film
 		Film f0 = new Film("Guardianes",
 				"Chris Pratt, Zoe Saldana, Bradley Cooper, Dave Bautista, Vin Diesel, Michael Rooker, Karen Gillan, Pom Klementieff, Elizabeth Debicki, Chris Sullivan, Sean Gunn, Sylvester Stallone, Kurt Russell",
@@ -196,7 +198,7 @@ public class DatabaseInformationLoader {
 
 		Film f9 = new Film("Star Wars La venganza de los Sith", "Hayden Christensen, Natalie Portman, Ewan McGregor",
 				"George Lucas",
-				"Último capítulo de la trilogía de precuelas de Star Wars, en el que Anakin Skywalker definitivamente se pasa al lado oscuro. En el Episodio III aparece el General Grievous, un ser implacable mitad-alien mitad-robot, el líder del ejército separatista Droid. Los Sith son los amos del lado oscuro de la Fuerza y los enemigos de los Jedi. Fueron prácticamente exterminados por los Jedi hace mil años, pero esta orden del mal sobrevivió en la clandestinidad",
+				"Último capítulo de la trilogía de precuelas de Star Wars, en el que Anakin Skywalker definitivamente se pasa al lado oscuro. En el Episodio III aparece el General Grievous, un ser implacable mitad-alien mitad-robot, el líder del ejército separatista Droid. Los Sith son los amos del lado oscuro de la Fuerza y los enemigos de los Jedi. Fueron prácticamente exterminados por los...",
 				"/img/films/starWars3.jpg", "https://www.youtube.com/embed/kqkfjBKmWc4", 2005);
 
 		f9.getGenders().add(g1);
@@ -205,7 +207,7 @@ public class DatabaseInformationLoader {
 		filmRepository.save(f9);
 
 		Film f10 = new Film("El exorcista", " Ellen Burstyn, Max von Sydow, Linda Blair", "William Friedkin",
-				"Adaptación de la novela de William Peter Blatty que se inspiró en un exorcismo real ocurrido en Washington en 1949. Regan, una niña de doce años, es víctima de fenómenos paranormales como la levitación o la manifestación de una fuerza sobrehumana. Su madre, aterrorizada, tras someter a su hija a múltiples análisis médicos que no ofrecen ningún resultado, acude a un sacerdote con estudios de psiquiatría. Éste, convencido de que el mal no es físico sino espiritual, es decir que se trata de una posesión diabólica, decide practicar un exorcismo. Seguramente la película de terror más popular de todos los tiempos.",
+				"Adaptación de la novela de William Peter Blatty que se inspiró en un exorcismo real ocurrido en Washington en 1949. Regan, una niña de doce años, es víctima de fenómenos paranormales como la levitación o la manifestación de una fuerza sobrehumana. Su madre, aterrorizada, tras someter a su hija a múltiples análisis médicos que no ofrecen ningún resultado, acude a un sacerdote ...",
 				"/img/films/theExorcist.jpg", "https://www.youtube.com/embed/HTPg9f3Win0 ", 1973);
 
 		f10.getGenders().add(g2);
@@ -244,7 +246,7 @@ public class DatabaseInformationLoader {
 		filmRepository.save(f13);
 
 		Film f14 = new Film("Capitan America", "Chris Evans, Hugo Weaving, Samuel L. Jackson", "Joe Johnston",
-				"Tras los devastadores acontecimientos acaecidos en Nueva York con Los Vengadores, Steve Rogers, alias el Capitán América, vive tranquilamente en Washington D.C. intentando adaptarse al mundo moderno. Pero cuando atacan a un colega de S.H.I.E.L.D., Steve se ve envuelto en una trama de intrigas que representa una amenaza para el mundo. Se unirá entonces a la Viuda Negra para desenmascarar a los conspiradores. Cuando por fin descubren la magnitud de la trama, se unirá a ellos el Halcón. Los tres tendrán que enfrentarse a un enemigo inesperado y extraordinario: el Soldado de Invierno.",
+				"Tras los devastadores acontecimientos acaecidos en Nueva York con Los Vengadores, Steve Rogers, alias el Capitán América, vive tranquilamente en Washington D.C. intentando adaptarse al mundo moderno. Pero cuando atacan a un colega de S.H.I.E.L.D., Steve se ve envuelto en una trama de intrigas que representa una amenaza para el mundo. Se unirá entonces a la Viuda Negra para ",
 				"/img/films/capitanAmerica.jpg", "https://www.youtube.com/embed/B5nTjpO4LZ0", 2011);
 
 		f14.getGenders().add(g1);
@@ -255,7 +257,7 @@ public class DatabaseInformationLoader {
 
 		Film f15 = new Film("Doctor Strange", "Benedict Cumberbatch, Chiwetel Ejiofor, Rachel McAdams",
 				"Scott Derrickson",
-				"La vida del Dr. Stephen Strange cambia para siempre tras un accidente automovilístico que le deja muy malheridas sus manos. Cuando la medicina tradicional falla, se ve obligado a buscar esperanza y una cura en un lugar impensable: una comunidad aislada en Nepal llamada Kamar-Taj. Rápidamente descubre que éste no es sólo un centro de recuperación, sino también la primera línea de una batalla en contra de fuerzas oscuras y ocultas empeñadas en destruir nuestra realidad. En poco tiempo, Strange, armado con sus poderes mágicos recientemente adquiridos, se ve obligado a elegir entre volver a su antigua vida de riqueza y prestigio o dejarlo todo, para defender el mundo como el mago más poderoso del planeta. Adaptación del cómic creado por Stan Lee y Steve Ditko.",
+				"La vida del Dr. Stephen Strange cambia para siempre tras un accidente automovilístico que le deja muy malheridas sus manos. Cuando la medicina tradicional falla, se ve obligado a buscar esperanza y una cura en un lugar impensable: una comunidad aislada en Nepal llamada Kamar-Taj. Rápidamente descubre que éste no es sólo un centro de recuperación, sino también la primera línea...",
 				"/img/films/drstrange.jpg", "https://www.youtube.com/embed/DYyMsYgZDJM", 2016);
 
 		f15.getGenders().add(g1);
@@ -275,7 +277,7 @@ public class DatabaseInformationLoader {
 
 		Film f17 = new Film("La naranja mecánica", " Malcolm McDowell, Patrick Magee, Michael Bates",
 				" Stanley Kubrick",
-				"Las aventuras de un joven cuyos principales intereses son la violación, la ultra-violencia, y Beethoven. Alex es el jefe de la banda de los drugos, que tienen sus propios métodos para divertirse y descargar su tremenda agresividad, ya sea dando una paliza a un mendigo o entrando en una casa para destrozar lo que hay dentro y violar a la mujer que viva allí. Sin embargo, cuando uno de estos ataques de violencia se convierte en asesinato. Alex es detenido y sometido por voluntad propia a un tratamiento innovador capaz de eliminar sus instintos violentos. La acción se sitúa en Gran Bretaña, en un futuro que no se sabe cuando es. Una de las películas más conocidas y queridas de Stanley Kubrick, basado en la novela de Anthony Burgess con el mismo nombre.",
+				"Las aventuras de un joven cuyos principales intereses son la violación, la ultra-violencia, y Beethoven. Alex es el jefe de la banda de los drugos, que tienen sus propios métodos para divertirse y descargar su tremenda agresividad, ya sea dando una paliza a un mendigo o entrando en una casa para destrozar lo que hay dentro y violar a la mujer que viva allí. Sin embargo...",
 				"/img/films/laNaranjaMecanica.jpg", "https://www.youtube.com/embed/xHFPi_3kc1U", 1971);
 
 		f17.getGenders().add(g11);
@@ -301,7 +303,7 @@ public class DatabaseInformationLoader {
 
 		Film f20 = new Film("Interestellar", " Matthew McConaughey, Anne Hathaway, Jessica Chastain",
 				"Christopher Nolan",
-				"Un grupo de astronautas se lanza al espacio para buscar un futuro para la raza humana que parece perdido en 'Interstellar'. Ahora que la Tierra se acerca poco a poco al fin de su sus días debido a una más que preocupante escasez de comida por el mal estado de las tierras. Cooper deberá elegir entre quedarse con sus hijos o liderar esta expedición, que aprovechará los descubrimientos en astrofísica para abandonar el sistema solar y encontrar un lugar libre de contaminación, donde poder empezar una nueva vida para la raza humana. Noveno largometraje del aclamado director y guionista Christopher Nolan (trilogía de 'El Caballero Oscuro') su guion está basado en las teorías del físico Kip Thorne.",
+				"Un grupo de astronautas se lanza al espacio para buscar un futuro para la raza humana que parece perdido en 'Interstellar'. Ahora que la Tierra se acerca poco a poco al fin de su sus días debido a una más que preocupante escasez de comida por el mal estado de las tierras. Cooper deberá elegir entre quedarse con sus hijos o liderar esta expedición, que aprovechará los descubrimientos...",
 				"/img/films/interestellar.jpg", "https://www.youtube.com/embed/UoSSbmD9vqc", 2014);
 
 		f20.getGenders().add(g5);
@@ -310,7 +312,7 @@ public class DatabaseInformationLoader {
 
 		Film f21 = new Film("Buscando a nemo", " Albert Brooks, Ellen DeGeneres, Alexander Gould",
 				" Andrew Stanton, Lee Unkrich",
-				"El pequeño Nemo, un pececillo hijo único que perdió a su madre antes de nacer, es muy querido y excesivamente protegido por su padre. Nemo ha sido pescado y sacadi de la gran barrera del arrecife australiano y ahora vive en una pequeña pecera en la oficina de un dentista de Sidney. El tímido padre de Nemo se embarcará en una peligrosa aventura donde conoce Dory. Juntos van al rescate de su pequeño hijo. Pero Nemo y sus nuevos amigos tienen también un astuto plan para escapar de la pecera y volver al mar.",
+				"El pequeño Nemo, un pececillo hijo único que perdió a su madre antes de nacer, es muy querido y excesivamente protegido por su padre. Nemo ha sido pescado y sacadi de la gran barrera del arrecife australiano y ahora vive en una pequeña pecera en la oficina de un dentista de Sidney. El tímido padre de Nemo se embarcará en una peligrosa aventura donde conoce Dory. Juntos vane...", 
 				"/img/films/buscandoAnemo.jpg", "https://www.youtube.com/embed/wZdpNglLbt8", 2003);
 
 		f21.getGenders().add(g1);
@@ -323,74 +325,72 @@ public class DatabaseInformationLoader {
 		c1.setFilm(f1);
 		c1.setUser(u1);
 		commentFilmRepository.save(c1);
-			
+
 		CommentFilm c2 = new CommentFilm("A mi me gustó mas la 2, pero bueno no está mal");
 		c2.setFilm(f2);
 		c2.setUser(u1);
 		commentFilmRepository.save(c2);
-		
+
 		CommentFilm c3 = new CommentFilm("Qué miedo pasé, esa noche dormí abrazado a mi osito de peluche");
 		c3.setFilm(f3);
 		c3.setUser(u1);
 		commentFilmRepository.save(c3);
-		
+
 		CommentFilm c4 = new CommentFilm("k dices tio, no es pa tanto, vaya cagueta");
 		c4.setFilm(f3);
 		c4.setUser(u2);
 		commentFilmRepository.save(c4);
-		
-		CommentFilm c5 = new CommentFilm("Esta peli la vi con mi novia, no esta mal, te ries, pero hubiera preferido esdla");
+
+		CommentFilm c5 = new CommentFilm(
+				"Esta peli la vi con mi novia, no esta mal, te ries, pero hubiera preferido esdla");
 		c5.setFilm(f4);
 		c5.setUser(u3);
 		commentFilmRepository.save(c5);
-		
+
 		CommentFilm c6 = new CommentFilm("Es que eres un poco calzonazossss!!! jajajaja ");
 		c6.setFilm(f4);
 		c6.setUser(u2);
 		commentFilmRepository.save(c6);
-		
+
 		CommentFilm c7 = new CommentFilm("¬¬");
 		c7.setFilm(f4);
 		c7.setUser(u3);
 		commentFilmRepository.save(c7);
-		
-		CommentFilm c8 = new CommentFilm("Buah, me ha encantado, me he descargado y todo la banda sonora, que por si a alguien le interesa se llaman RADWIMPS");
+
+		CommentFilm c8 = new CommentFilm(
+				"Buah, me ha encantado, me he descargado y todo la banda sonora, que por si a alguien le interesa se llaman RADWIMPS");
 		c8.setFilm(f5);
 		c8.setUser(u3);
 		commentFilmRepository.save(c8);
-		
-		CommentFilm c9 = new CommentFilm("Yo me rei mucho cuando cayó el meteorito, lo dije de broma pero al final resultó que cayó de verdad xD");
+
+		CommentFilm c9 = new CommentFilm(
+				"Yo me rei mucho cuando cayó el meteorito, lo dije de broma pero al final resultó que cayó de verdad xD");
 		c9.setFilm(f5);
 		c9.setUser(u1);
 		commentFilmRepository.save(c9);
-		
-		CommentFilm c10 = new CommentFilm("No me gustan las peliculas de gladiadiores, me parace absurdo el final y gratuito, y el emperador lo hace todo mal en fin... ");
+
+		CommentFilm c10 = new CommentFilm(
+				"No me gustan las peliculas de gladiadiores, me parace absurdo el final y gratuito, y el emperador lo hace todo mal en fin... ");
 		c10.setFilm(f6);
 		c10.setUser(u2);
 		commentFilmRepository.save(c8);
-		
-		CommentFilm c11 = new CommentFilm("Esta es la peli que hablan en Big Bang que si quitas a indiana Johnes no habria cambiado nada XDD ");
+
+		CommentFilm c11 = new CommentFilm(
+				"Esta es la peli que hablan en Big Bang que si quitas a indiana Johnes no habria cambiado nada XDD ");
 		c11.setFilm(f7);
 		c11.setUser(u3);
 		commentFilmRepository.save(c11);
-			
-		CommentFilm c12 = new CommentFilm("A mi me ha gustado, lo unico que a la iglesia no le mola mucho porque al parecer la peli acaba con la muerte de jesucristo, y da un mensaje equivocado en teoria");
+
+		CommentFilm c12 = new CommentFilm(
+				"A mi me ha gustado, lo unico que a la iglesia no le mola mucho porque al parecer la peli acaba con la muerte de jesucristo, y da un mensaje equivocado en teoria");
 		c12.setFilm(f8);
 		c12.setUser(u1);
 		commentFilmRepository.save(c12);
-		/*
+
 		CommentFilm c13 = new CommentFilm("Un poco bodrio, pero bueno, no pueden gustarme todas");
 		c13.setFilm(f9);
 		c13.setUser(u2);
 		commentFilmRepository.save(c13);
-		
-		
-		*/
-		
-		
-		
-		
-		
 
 		// Test Data Book
 		Book b1 = new Book("Los Juegos del Hambre", "",
@@ -399,28 +399,152 @@ public class DatabaseInformationLoader {
 		b1.getGenders().add(g1);
 		bookRepository.save(b1);
 
-		Book b2 = new Book("El retorno del rey","J.R.R. Tolkien", "Los ejércitos del Señor Oscuro van extendiendo cada vez más su maléfica sombra por la Tierra Media. Hombres, elfos y enanos unen sus fuerzas para presentar batalla a Sauron y sus huestes. Ajenos a estos preparativos, Frodo y Sam siguen adentrándose en el país de Mordor en su heroico viaje para destruir el Anillo de Poder en las Grietas del Destino",
+		Book b2 = new Book("El retorno del rey", "J.R.R. Tolkien",
+				"Los ejércitos del Señor Oscuro van extendiendo cada vez más su maléfica sombra por la Tierra Media. Hombres, elfos y enanos unen sus fuerzas para presentar batalla a Sauron y sus huestes. Ajenos a estos preparativos, Frodo y Sam siguen adentrándose en el país de Mordor en su heroico viaje para destruir el Anillo de Poder en las Grietas del Destino",
 				"/img/books/elRetornoDelRey.jpg", 1955);
-		
+
 		b2.getGenders().add(g1);
 		b2.getGenders().add(g13);
 		bookRepository.save(b2);
+
+		Book b3 = new Book("Graceling", "Kristin Cashore",
+				"Hay gente en estas tierras que tiene poderes extraordinarios a los que llamamos gracias. Una gracia puede tener un valor infinito o puede ser totalmente inútil. Una gracia puede hacer que alguien sea veloz como el viento, o que sea capaz de predecir el tiempo, mientras que otras sólo harán que hables al revés sin pensar o te subas a los árboles. Mi nombre es Katsa..." ,
+				"/img/books/graceling.jpg", 2008);
+
+		b3.getGenders().add(g1);
+		b3.getGenders().add(g13);
+		bookRepository.save(b3);
+
+		Book b4 = new Book("Los pilares de la Tierra", "Ken Follet",
+				"El gran maestro de la narrativa de acción y suspense nos transporta a la Edad Media, a un fascinante mundo de reyes, damas, caballeros, pugnas feudales, castillos y ciudades amuralladas. El amor y la muerte se entrecruzan vibrantemente en este magistral tapiz cuyo centro es la construcción de una catedral gótica. La historia se inicia con el ahorcamiento público de ...",
+				"/img/books/losPilaresDeLaTierra.jpg", 1989);
+
+		b4.getGenders().add(g5);
+		b4.getGenders().add(g11);
+		b4.getGenders().add(g3);
+		bookRepository.save(b4);
+
+		Book b5 = new Book("El juego de Ender", "Orson Scott",
+				"La Tierra se ve amenazada por una especie extraterrestre de insectos, seres que se comunican telepáticamente y que se consideran totalmente distintos de los humanos, a los que quieren destruir. Para vencerlos, la humanidad necesita un genio militar, y por ello se permite el nacimiento de Ender, que es el tercer hijo de una pareja en un mundo que ha limitado ...",
+				"/img/books/elJuegoDeEnder.jpg", 1985);
+
+		b5.getGenders().add(g10);
+		b5.getGenders().add(g1);
+		b5.getGenders().add(g6);
+		bookRepository.save(b5);
+
+		Book b6 = new Book("El capitan Alatriste", "Arturno Pérez Reverte",
+				"No era el hombre más honesto ni el más piadoso, pero era un hombre valiente... Con estas palabras empieza El capitán Alatriste, la historia de un soldado veterano de los tercios de Flandes que malvive como espadachín a sueldo en el Madrid del siglo XVII.",
+				"/img/books/elCapitanAlatriste.jpg", 1996);
+
+		b6.getGenders().add(g11);
+		b6.getGenders().add(g1);
+		b6.getGenders().add(g6);
+		bookRepository.save(b6);
+
+		Book b7 = new Book("La Biblia", "Dios",
+				"Todo comenzó con Adán y Eva en el paraiso, pero cuando les echaron de ahí... tuvieron 2 hijos: Caín y Abel...¿Qué `pasó con las mujeres a partir de entonces? Estas dudas y muchas otras más aqui",
+				"/img/books/laBiblia.jpg", 0);
+
+		b7.getGenders().add(g1);
+		b7.getGenders().add(g2);
+		b7.getGenders().add(g3);
+		b7.getGenders().add(g4);
+		b7.getGenders().add(g5);
+		b7.getGenders().add(g6);
+		b7.getGenders().add(g7);
+		b7.getGenders().add(g8);
+		b7.getGenders().add(g9);
+		b7.getGenders().add(g10);
+		b7.getGenders().add(g11);
+		b7.getGenders().add(g12);
+		b7.getGenders().add(g13);
+		bookRepository.save(b7);
+
+		Book b8 = new Book("La biblioteca de los muertos", "Glenn Cooper",
+				"Bretaña, siglo VII. En la abadía de Vectis crece Octavus, un niño al que le auguran poderes diabólicos. Octavus no tarda en empezar a escribir una lista de nombres y fechas sin ningún sentido aparente. Pero poco después, cuando una muerte en la abadía coincide con un nombre y una fecha de la lista, el miedo se apodera de los monjes. Nueva York, en la actualidad...",
+				"/img/books/laBibliotecaDeLosMuertos.jpg", 2009);
+
+		b8.getGenders().add(g5);
+		b8.getGenders().add(g3);
+		bookRepository.save(b8);
+
+		Book b9 = new Book("Harry potter y el prisionero de Azkaban", "J.K. Rowling",
+				"De la prisión de Azkaban se ha escapado un terrible villano, Sirius Black, un asesino en serie que fue cómplice de lord Voldemort y que, dicen los rumores, quiere vengarse de Harry por haber destruido a su maestro",
+				"/img/books/harryPotterYazkaban.jpg", 1999);
+
+		b9.getGenders().add(g1);
+		b9.getGenders().add(g13);
+		bookRepository.save(b9);
+
+		Book b10 = new Book("El clan del oso cavernario: Los Hijos de la Tierra", "Jean M. Auel",
+				"Narra como Ayla, una niña Cromagnon de 5 años, queda aislada de su tribu por culpa de un terremoto. Pese a ser de una estirpe más desarrollada, es acogida por un grupo de Neardentales, que basa sus razonamientos y comportamientos en las experiencias de sus antepasados.",
+				"/img/books/elClanDeOsoCavernario.jpg", 1980);
+
+		b10.getGenders().add(g11);
+		b10.getGenders().add(g1);
+		bookRepository.save(b10);
+
+		Book b11 = new Book("El bosque de los arboles muertos", "Ana Alcolea",
+				"Beatriz va a pasar sus vacaciones veraniegas en un antiguo castillo en Escocia, algo que no le agrada demasiado. Preferiría quedarse con sus amigos en la piscina o en la playa, pero su suspenso en Inglés ha hecho que su madre recurra a una antigua amiga para que la acoja durante el verano y así Beatriz pueda practicar el idioma. Lo que parece un aburrido verano...",
+				"/img/books/elBosqueDeLosArbolesMuertos.jpg", 2010);
+
+		b11.getGenders().add(g2);
+		b11.getGenders().add(g3);
+		b11.getGenders().add(g5);
+		bookRepository.save(b11);
+
+		Book b12 = new Book("Cronicas de la dragonlance: la reina de la oscuridad", "Margaret Weiss",
+				"Al cabo de cinco años, un grupo de amigos se reúne en El Último Hogar, mientras vientos de guerra asolan el mundo en el que viven. Un arma mágica de increíble poder caerá en las manos de estos amigos y los obligará a emprender una larga aventura que decidirá el destino de Krynn, su mundo.",
+				"/img/books/dragondOfSpringDawning.jpg", 1985);
+
+		b12.getGenders().add(g1);
+		b12.getGenders().add(g13);
+		bookRepository.save(b12);
+
+		Book b13 = new Book("Sherlock Holmes: la liga de los pelirojos", "Arthur Conan Doyle",
+				"Wilson, un prestamista pelirrojo, acude a Sherlock Holmes y a Watson para resolver el misterio de la súbita disolución de la «Liga de los pelirrojos», de la que él había sido miembro. El detective londinense no tarda en averiguar que tras esta disolución se encuentra John Clay, uno de los delincuentes más inteligentes y peligrosos de Inglaterra.",
+				"/img/books/sherlockHolmasYlosPelirojos.jpg", 1891);
+
+		b13.getGenders().add(g5);
+		b13.getGenders().add(g11);
+		b13.getGenders().add(g1);
+		bookRepository.save(b13);
+
+		Book b14 = new Book("Crepúsculo", "Stephenie Meyer",
+				"Cuando Isabella Swan se muda a Forks, una pequeña localidad del estado de Washington en la que nunca deja de llover, piensa que es lo más aburrido que le podía haber ocurrido en la vida. Pero su vida da un giro excitante y aterrador una vez que se encuentra con el misterioso y seductor Edward Cullen. Hasta ese momento, Edward se las ha arreglado para mantener...",
+				"/img/books/crepusculo.jpg", 2005);
+
+		b14.getGenders().add(g3);
+		b14.getGenders().add(g1);
+		b14.getGenders().add(g13);
+		bookRepository.save(b14);
 		
-		//Book b3 = new Book("Graceling",)
 		
+		Book b15 = new Book("A 3 metros bajo el cielo","Federico Moccia","\"Babi es una estudiante modelo y la hija perfecta. Step, en cambio, es violento y descarado. Provienen de dos mundos completamente distintos. A pesar de todo, entre los dos nacerá un amor más allá de todas las convenciones. Un amor controvertido por el que deberán luchar más de lo que esperaban. Babi...",
+				"/img/books/TresMetro.jpg",2004);
 		
+		b15.getGenders().add(g3);
+		b15.getGenders().add(g1);
+		bookRepository.save(b15);
 		
+		Book b16 = new Book("El quijote","Miguel de Cervantes","Como todo caballero necesita una dama, convierte el recuerdo de una campesina de la que estuvo enamorado en la hermosa Dulcinea del Toboso. Y a sí mismo se pone el nombre de Don Quijote, como el famoso caballero Lanzarote (Lancelot). Sale así al campo, con un aspecto ridículo, con la idea de realizar hazañas heroicas.",
+				"/img/books/elQuijote.jpg",1615);
+				
+				b16.getGenders().add(g1);
+				b16.getGenders().add(g11);
+				b16.getGenders().add(g8);
+				bookRepository.save(b16);
+				
+				
+		Book b17 = new Book("Beethoven","Jan Swafford","Beethoven, el genio romántico, hombre atormentado y fascinante capaz de componer las piezas más sublimes, vivió su tiempo con extraordinaria intensidad. Jan Swafford recrea de manera amena y profunda la vida del hombre, del compositor y del genio.",
+				"/img/books/beethoven.jpg",2017);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		b17.getGenders().add(g12);
+		b17.getGenders().add(g11);
+		bookRepository.save(b17);
+
+				
 		
 		
 		
@@ -467,19 +591,54 @@ public class DatabaseInformationLoader {
 		commentBookRepository.save(cb1);
 
 		// Test Data Point Film
-		PointFilm pf1 = new PointFilm((long) 5);
+		PointFilm pf1 = new PointFilm((double) 5);
 		pf1.setFilm(f1);
 		pf1.setUser(u1);
 		pointFilmRepository.save(pf1);
+		
+		PointFilm pf2 = new PointFilm((double) 2.3);
+		pf2.setFilm(f1);
+		pf2.setUser(u1);
+		pointFilmRepository.save(pf2);
+		
+		PointFilm pf3 = new PointFilm((double) 2.3);
+		pf3.setFilm(f1);
+		pf3.setUser(u2);
+		pointFilmRepository.save(pf3);
+		
+		PointFilm pf4 = new PointFilm((double) 4.5);
+		pf4.setFilm(f1);
+		pf4.setUser(u3);
+		pointFilmRepository.save(pf4);
+		
+		PointFilm pf5 = new PointFilm((double) 1.5);
+		pf5.setFilm(f2);
+		pf5.setUser(u1);
+		pointFilmRepository.save(pf5);
+		
+		PointFilm pf6 = new PointFilm((double) 3.9);
+		pf6.setFilm(f3);
+		pf6.setUser(u2);
+		pointFilmRepository.save(pf6);
+		
+		PointFilm pf7 = new PointFilm((double) 2.3);
+		pf7.setFilm(f4);
+		pf7.setUser(u2);
+		pointFilmRepository.save(pf7);
+		
+		PointFilm pf8 = new PointFilm((double) 4.2);
+		pf8.setFilm(f5);
+		pf8.setUser(u2);
+		pointFilmRepository.save(pf8);
 
 		// Test Data Point Show
-		PointShow ps1 = new PointShow((long) 5);
+		PointShow ps1 = new PointShow((double) 5);
 		ps1.setShow(sh1);
 		ps1.setUser(u1);
 		pointShowRepository.save(ps1);
 
 		// Test Data Point Book
-		PointBook pb1 = new PointBook((long) 5);
+		PointBook pb1 = new PointBook((double) 5);
 		pb1.setBook(b1);
 		pb1.setUser(u1);
 		pointBookRepository.save(pb1);
