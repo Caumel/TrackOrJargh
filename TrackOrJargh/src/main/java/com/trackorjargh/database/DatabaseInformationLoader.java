@@ -95,6 +95,8 @@ public class DatabaseInformationLoader {
 		genderRepository.save(g11);
 		Gender g12 = new Gender("Musical");
 		genderRepository.save(g12);
+		Gender g13 = new Gender("Fantasía");
+		genderRepository.save(g13);
 
 		// Test Data Film
 		Film f0 = new Film("Guardianes",
@@ -134,7 +136,7 @@ public class DatabaseInformationLoader {
 
 		Film f3 = new Film("Insidious", "Patrick Wilson, Rose Byrne, Barbara Hershey", "James Wan",
 				"La historia se centra en una pareja cuyo hijo inexplicablemente entra en estado de coma y se convierte en un recipiente para fantasmas en una dimensión astral que quiere habitar su cuerpo",
-				"/img/peliculas/insidious.jpg", "https://www.youtube.com/embed/FRW3K0LlsD0", 2010);
+				"/img/films/insidious.jpg", "https://www.youtube.com/embed/FRW3K0LlsD0", 2010);
 
 		f3.getGenders().add(g2);
 		f3.getGenders().add(g5);
@@ -144,7 +146,7 @@ public class DatabaseInformationLoader {
 				"Nia Vardalos, Christina Eleusiniotis, John Corbett, Michael Constantine, Lainie Kazan, Andrea Martin",
 				" Joel Zwick",
 				"La trama gira alrededor de Toula Portokalos, una mujer de ascendencia griego-americana, que se enamora de un chico estadounidense llamado Ian Miller. En el transcurso de la película, los protagonistas tienen que luchar por vencer las diferencias culturales",
-				"/img/peliculas/miGranBodaGriega.jpg", "https://www.youtube.com/embed/nnVMh3uDwwE", 2002);
+				"/img/films/miGranBodaGriega.jpg", "https://www.youtube.com/embed/nnVMh3uDwwE", 2002);
 
 		f4.getGenders().add(g3);
 		f4.getGenders().add(g4);
@@ -154,7 +156,7 @@ public class DatabaseInformationLoader {
 				"Ryunosuke Kamiki, Mone Kamishiraishi, Masami Nagasawa,Etsuko Ichihara, Ryo Narita, Aoi Yūki",
 				"Makoto Shinkai",
 				"Aki y Mitsuha descubren un día que durante el sueño sus cuerpos se intercambian, y comienzan a comunicarse por medio de notas. A medida que consiguen superar torpemente un reto tras otro, se va creando entre los dos un vínculo que poco a poco se convierte en algo más romántico",
-				"/img/peliculas/yourName.jpg", "https://www.youtube.com/embed/eHS8cPgzLsI", 2017);
+				"/img/films/yourName.jpg", "https://www.youtube.com/embed/eHS8cPgzLsI", 2017);
 
 		f5.getGenders().add(g3);
 		f5.getGenders().add(g5);
@@ -166,7 +168,7 @@ public class DatabaseInformationLoader {
 				"Russell Crowe, Joaquin Phoenix, Connie Nielsen, Ralf Möller, Oliver Reed, Djimon Hounsou, Derek Jacobi, John Shrapnel y Richard Harris",
 				"Ridley Scott",
 				"Máximo Décimo Meridio, un leal general hispano del ejército de la Antigua Roma, que es traicionado por Cómodo, el ambicioso hijo del emperador, quien ha asesinado a su padre y se ha hecho con el trono. Forzado a convertirse en esclavo, Máximo triunfa como gladiador mientras anhela vengar la muerte de su familia y su emperador",
-				"/img/peliculas/gladiador.jpg", "https://www.youtube.com/embed/s6v-bUY_wS8", 2000);
+				"/img/films/gladiador.jpg", "https://www.youtube.com/embed/s6v-bUY_wS8", 2000);
 
 		f6.getGenders().add(g6);
 		f6.getGenders().add(g11);
@@ -176,7 +178,7 @@ public class DatabaseInformationLoader {
 				"Harrison Ford, Kate Capshaw,Amrish Puri,Jonathan Ke Quan, Roshan Seth, Philip Stone, Roy Chiao",
 				"Steven Spielberg",
 				" Indiana Jones llega accidentalmente al norte de India, donde los desesperados habitantes de un pequeño pueblo le piden ayuda para encontrar una piedra mágica que les han robado",
-				"/img/peliculas/indianJohns.jpg", "https://www.youtube.com/embed/jFqK5xyPQQc", 1984);
+				"/img/films/indianJohns.jpg", "https://www.youtube.com/embed/jFqK5xyPQQc", 1984);
 
 		f7.getGenders().add(g1);
 		f7.getGenders().add(g6);
@@ -186,7 +188,7 @@ public class DatabaseInformationLoader {
 				"Jeff Fenholt, Ben Vereen, Yvonne Elliman, Barry Dennen, Bob Bingham, Phil Jethro, Michael Jason, Dennis Buckleys, Paul Ainsley, Ted Neeley",
 				"Robert Stigwood",
 				"Famoso musical de rock, basado en una exitosa obra de Broadway, que relata la historia de Jesús de Nazaret por medio de canciones. Se vendieron millones de discos de su banda sonora en todo el mundo.",
-				"/img/peliculas/jesucristo.jpg", "https://www.youtube.com/embed/edTECo3gCd4", 1970);
+				"/img/films/jesucristo.jpg", "https://www.youtube.com/embed/edTECo3gCd4", 1970);
 
 		f8.getGenders().add(g11);
 		f8.getGenders().add(g12);
@@ -195,7 +197,7 @@ public class DatabaseInformationLoader {
 		Film f9 = new Film("Star Wars La venganza de los Sith", "Hayden Christensen, Natalie Portman, Ewan McGregor",
 				"George Lucas",
 				"Último capítulo de la trilogía de precuelas de Star Wars, en el que Anakin Skywalker definitivamente se pasa al lado oscuro. En el Episodio III aparece el General Grievous, un ser implacable mitad-alien mitad-robot, el líder del ejército separatista Droid. Los Sith son los amos del lado oscuro de la Fuerza y los enemigos de los Jedi. Fueron prácticamente exterminados por los Jedi hace mil años, pero esta orden del mal sobrevivió en la clandestinidad",
-				"/img/peliculas/starWars3.jpg", "https://www.youtube.com/embed/kqkfjBKmWc4", 2005);
+				"/img/films/starWars3.jpg", "https://www.youtube.com/embed/kqkfjBKmWc4", 2005);
 
 		f9.getGenders().add(g1);
 		f9.getGenders().add(g6);
@@ -204,7 +206,7 @@ public class DatabaseInformationLoader {
 
 		Film f10 = new Film("El exorcista", " Ellen Burstyn, Max von Sydow, Linda Blair", "William Friedkin",
 				"Adaptación de la novela de William Peter Blatty que se inspiró en un exorcismo real ocurrido en Washington en 1949. Regan, una niña de doce años, es víctima de fenómenos paranormales como la levitación o la manifestación de una fuerza sobrehumana. Su madre, aterrorizada, tras someter a su hija a múltiples análisis médicos que no ofrecen ningún resultado, acude a un sacerdote con estudios de psiquiatría. Éste, convencido de que el mal no es físico sino espiritual, es decir que se trata de una posesión diabólica, decide practicar un exorcismo. Seguramente la película de terror más popular de todos los tiempos.",
-				"/img/peliculas/theExorcist.jpg", "https://www.youtube.com/embed/HTPg9f3Win0 ", 1973);
+				"/img/films/theExorcist.jpg", "https://www.youtube.com/embed/HTPg9f3Win0 ", 1973);
 
 		f10.getGenders().add(g2);
 		f10.getGenders().add(g5);
@@ -212,7 +214,7 @@ public class DatabaseInformationLoader {
 
 		Film f11 = new Film("La princesa de Mononoke", "Yôji Matsuda, Yuriko Ishida, Yûko Tanaka", "Hayao Miyazaki",
 				"Con el fin de curar la herida que le ha causado un jabalí enloquecido, el joven Ashitaka sale en busca del dios Ciervo, pues sólo él puede liberarlo del sortilegio. A lo largo de su periplo descubre cómo los animales del bosque luchan contra hombres que están dispuestos a destruir la Naturaleza.",
-				"/img/peliculas/laPrincesa.jpg", "https://www.youtube.com/embed/WVjVkpk7wKg", 1997);
+				"/img/films/laPrincesa.jpg", "https://www.youtube.com/embed/WVjVkpk7wKg", 1997);
 
 		f11.getGenders().add(g1);
 		f11.getGenders().add(g6);
@@ -223,15 +225,16 @@ public class DatabaseInformationLoader {
 		Film f12 = new Film("Scooby-doo y el misterio de Wrestlemania", " Frank Welker, Mindy Cohn, Grey DeLisle",
 				"Brandon Vietti",
 				"Scooby y sus amigos ganan unas entradas para el show de Wrestlemania, pero allí son sorprendidos con la aparición de un oso fantasma.",
-				"/img/peliculas/scoobyDoo.jpg", "https://www.youtube.com/embed/VD88HIKoFzk", 2014);
+				"/img/films/scoobyDoo.jpg", "https://www.youtube.com/embed/VD88HIKoFzk", 2014);
 
 		f12.getGenders().add(g7);
 		f12.getGenders().add(g1);
+		f12.getGenders().add(g13);
 		filmRepository.save(f12);
 
 		Film f13 = new Film("Los vengadores", "Robert Downey Jr., Chris Evans, Scarlett Johansson", "Joss Whedon",
 				"Cuando un enemigo inesperado surge como una gran amenaza para la seguridad mundial, Nick Fury, director de la Agencia SHIELD, decide reclutar a un equipo para salvar al mundo de un desastre casi seguro. Adaptación del cómic de Marvel \"Los Vengadores\", el legendario grupo de superhéroes formado por Ironman, Hulk, Thor y el Capitán América entre otros.",
-				"/img/peliculas/losVengadores.jpg", "https://www.youtube.com/embed/HQIiYqOVTWo", 2012);
+				"/img/films/losVengadores.jpg", "https://www.youtube.com/embed/HQIiYqOVTWo", 2012);
 
 		f13.getGenders().add(g1);
 		f13.getGenders().add(g8);
@@ -242,7 +245,7 @@ public class DatabaseInformationLoader {
 
 		Film f14 = new Film("Capitan America", "Chris Evans, Hugo Weaving, Samuel L. Jackson", "Joe Johnston",
 				"Tras los devastadores acontecimientos acaecidos en Nueva York con Los Vengadores, Steve Rogers, alias el Capitán América, vive tranquilamente en Washington D.C. intentando adaptarse al mundo moderno. Pero cuando atacan a un colega de S.H.I.E.L.D., Steve se ve envuelto en una trama de intrigas que representa una amenaza para el mundo. Se unirá entonces a la Viuda Negra para desenmascarar a los conspiradores. Cuando por fin descubren la magnitud de la trama, se unirá a ellos el Halcón. Los tres tendrán que enfrentarse a un enemigo inesperado y extraordinario: el Soldado de Invierno.",
-				"/img/peliculas/capitanAmerica.jpg", "https://www.youtube.com/embed/B5nTjpO4LZ0", 2011);
+				"/img/films/capitanAmerica.jpg", "https://www.youtube.com/embed/B5nTjpO4LZ0", 2011);
 
 		f14.getGenders().add(g1);
 		f14.getGenders().add(g8);
@@ -253,7 +256,7 @@ public class DatabaseInformationLoader {
 		Film f15 = new Film("Doctor Strange", "Benedict Cumberbatch, Chiwetel Ejiofor, Rachel McAdams",
 				"Scott Derrickson",
 				"La vida del Dr. Stephen Strange cambia para siempre tras un accidente automovilístico que le deja muy malheridas sus manos. Cuando la medicina tradicional falla, se ve obligado a buscar esperanza y una cura en un lugar impensable: una comunidad aislada en Nepal llamada Kamar-Taj. Rápidamente descubre que éste no es sólo un centro de recuperación, sino también la primera línea de una batalla en contra de fuerzas oscuras y ocultas empeñadas en destruir nuestra realidad. En poco tiempo, Strange, armado con sus poderes mágicos recientemente adquiridos, se ve obligado a elegir entre volver a su antigua vida de riqueza y prestigio o dejarlo todo, para defender el mundo como el mago más poderoso del planeta. Adaptación del cómic creado por Stan Lee y Steve Ditko.",
-				"/img/peliculas/drstrange.jpg", "https://www.youtube.com/embed/DYyMsYgZDJM", 2016);
+				"/img/films/drstrange.jpg", "https://www.youtube.com/embed/DYyMsYgZDJM", 2016);
 
 		f15.getGenders().add(g1);
 		f15.getGenders().add(g8);
@@ -264,7 +267,7 @@ public class DatabaseInformationLoader {
 
 		Film f16 = new Film("El padrino", " Marlon Brando, Al Pacino, James Caan", "Francis Ford Coppola",
 				"Finales de los años 40 en Nueva York. Vito Corleone es, en la jerga del crimen organizado, un padrino o don, el cabecilla de la Mafia. Michael, un libre pensador que desafió a su padre al alistarse en el cuerpo de Marines en la Segunda Guerra Mundial, regresa como capitán y héroe de guerra",
-				"/img/peliculas/elPadrino.jpg", "https://www.youtube.com/embed/sY1S34973zA", 1972);
+				"/img/films/elPadrino.jpg", "https://www.youtube.com/embed/sY1S34973zA", 1972);
 
 		f16.getGenders().add(g11);
 		f16.getGenders().add(g6);
@@ -273,7 +276,7 @@ public class DatabaseInformationLoader {
 		Film f17 = new Film("La naranja mecánica", " Malcolm McDowell, Patrick Magee, Michael Bates",
 				" Stanley Kubrick",
 				"Las aventuras de un joven cuyos principales intereses son la violación, la ultra-violencia, y Beethoven. Alex es el jefe de la banda de los drugos, que tienen sus propios métodos para divertirse y descargar su tremenda agresividad, ya sea dando una paliza a un mendigo o entrando en una casa para destrozar lo que hay dentro y violar a la mujer que viva allí. Sin embargo, cuando uno de estos ataques de violencia se convierte en asesinato. Alex es detenido y sometido por voluntad propia a un tratamiento innovador capaz de eliminar sus instintos violentos. La acción se sitúa en Gran Bretaña, en un futuro que no se sabe cuando es. Una de las películas más conocidas y queridas de Stanley Kubrick, basado en la novela de Anthony Burgess con el mismo nombre.",
-				"/img/peliculas/laNaranjaMecanica.jpg", "https://www.youtube.com/embed/xHFPi_3kc1U", 1971);
+				"/img/films/laNaranjaMecanica.jpg", "https://www.youtube.com/embed/xHFPi_3kc1U", 1971);
 
 		f17.getGenders().add(g11);
 		f17.getGenders().add(g6);
@@ -282,7 +285,7 @@ public class DatabaseInformationLoader {
 		Film f18 = new Film("El rey leon", "Matthew Broderick, Jeremy Irons, James Earl Jones",
 				"Roger Allers, Rob Minkoff",
 				"Simba es un león, hijo del rey de la selva Mufasa. Cierto día, jugando al backet con amigos unos tipos del barrio le metieron en un lio, y su padre le decia una y otra vez con tu tio y con tu tia te irás a Bel-Air",
-				"/img/peliculas/reyLeon.jpg", "https://www.youtube.com/embed/4sj1MT05lAA", 1994);
+				"/img/films/reyLeon.jpg", "https://www.youtube.com/embed/4sj1MT05lAA", 1994);
 
 		f18.getGenders().add(g1);
 		f18.getGenders().add(g7);
@@ -290,7 +293,7 @@ public class DatabaseInformationLoader {
 
 		Film f19 = new Film("Titanic", " Leonardo DiCaprio, Kate Winslet, Billy Zane", " James Cameron",
 				"Jack es un chico pobre de barrio que no trafica con drogas pues porque aun no se han inventado todavía que se cuela en un barco con un amigo el cual muere luego bum spoiler y que se enamora de una chica un pelin guarri porque le mola que la pinten en bolas y tiene un grave problema para compartir lo cual lleva a Jack a morir cuando se hunde el barco y no le comparte el tablon flotante",
-				"/img/peliculas/titanic.jpg", "https://www.youtube.com/embed/2e-eXJ6HgkQ", 1997);
+				"/img/films/titanic.jpg", "https://www.youtube.com/embed/2e-eXJ6HgkQ", 1997);
 
 		f19.getGenders().add(g3);
 		f19.getGenders().add(g11);
@@ -299,7 +302,7 @@ public class DatabaseInformationLoader {
 		Film f20 = new Film("Interestellar", " Matthew McConaughey, Anne Hathaway, Jessica Chastain",
 				"Christopher Nolan",
 				"Un grupo de astronautas se lanza al espacio para buscar un futuro para la raza humana que parece perdido en 'Interstellar'. Ahora que la Tierra se acerca poco a poco al fin de su sus días debido a una más que preocupante escasez de comida por el mal estado de las tierras. Cooper deberá elegir entre quedarse con sus hijos o liderar esta expedición, que aprovechará los descubrimientos en astrofísica para abandonar el sistema solar y encontrar un lugar libre de contaminación, donde poder empezar una nueva vida para la raza humana. Noveno largometraje del aclamado director y guionista Christopher Nolan (trilogía de 'El Caballero Oscuro') su guion está basado en las teorías del físico Kip Thorne.",
-				"/img/peliculas/interestellar.jpg", "https://www.youtube.com/embed/UoSSbmD9vqc", 2014);
+				"/img/films/interestellar.jpg", "https://www.youtube.com/embed/UoSSbmD9vqc", 2014);
 
 		f20.getGenders().add(g5);
 		f20.getGenders().add(g10);
@@ -308,7 +311,7 @@ public class DatabaseInformationLoader {
 		Film f21 = new Film("Buscando a nemo", " Albert Brooks, Ellen DeGeneres, Alexander Gould",
 				" Andrew Stanton, Lee Unkrich",
 				"El pequeño Nemo, un pececillo hijo único que perdió a su madre antes de nacer, es muy querido y excesivamente protegido por su padre. Nemo ha sido pescado y sacadi de la gran barrera del arrecife australiano y ahora vive en una pequeña pecera en la oficina de un dentista de Sidney. El tímido padre de Nemo se embarcará en una peligrosa aventura donde conoce Dory. Juntos van al rescate de su pequeño hijo. Pero Nemo y sus nuevos amigos tienen también un astuto plan para escapar de la pecera y volver al mar.",
-				"/img/peliculas/buscandoAnemo.jpg", "https://www.youtube.com/embed/wZdpNglLbt8", 2003);
+				"/img/films/buscandoAnemo.jpg", "https://www.youtube.com/embed/wZdpNglLbt8", 2003);
 
 		f21.getGenders().add(g1);
 		f21.getGenders().add(g7);
@@ -386,6 +389,8 @@ public class DatabaseInformationLoader {
 		
 		
 		
+		
+		
 
 		// Test Data Book
 		Book b1 = new Book("Los Juegos del Hambre", "",
@@ -394,13 +399,33 @@ public class DatabaseInformationLoader {
 		b1.getGenders().add(g1);
 		bookRepository.save(b1);
 
-		for (int x = 2; x <= 100; x++) {
-			b1 = new Book("Los Juegos del Hambre " + x, "",
-					"Los juegos del hambre se desarrolla en un país llamado Panem, lo que es en realidad una civilización postapocalíptica ubicada en lo que antes era América del Norte.",
-					"/img/los_juegos_del_hambre.jpg", 2008);
-			b1.getGenders().add(g1);
-			bookRepository.save(b1);
-		}
+		Book b2 = new Book("El retorno del rey","J.R.R. Tolkien", "Los ejércitos del Señor Oscuro van extendiendo cada vez más su maléfica sombra por la Tierra Media. Hombres, elfos y enanos unen sus fuerzas para presentar batalla a Sauron y sus huestes. Ajenos a estos preparativos, Frodo y Sam siguen adentrándose en el país de Mordor en su heroico viaje para destruir el Anillo de Poder en las Grietas del Destino",
+				"/img/books/elRetornoDelRey.jpg", 1955);
+		
+		b2.getGenders().add(g1);
+		b2.getGenders().add(e);
+		bookRepository.save(b2);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 		// Test Data Show
 		Show sh1 = new Show("The Big Bang Theory", "", "",
