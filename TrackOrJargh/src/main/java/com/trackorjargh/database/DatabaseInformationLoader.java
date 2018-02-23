@@ -192,7 +192,7 @@ public class DatabaseInformationLoader {
 
 		f8.getGenders().add(g11);
 		f8.getGenders().add(g12);
-		filmRepository.save(f7);
+		filmRepository.save(f8);
 
 		Film f9 = new Film("Star Wars La venganza de los Sith", "Hayden Christensen, Natalie Portman, Ewan McGregor",
 				"George Lucas",
@@ -323,7 +323,7 @@ public class DatabaseInformationLoader {
 		c1.setFilm(f1);
 		c1.setUser(u1);
 		commentFilmRepository.save(c1);
-		
+			
 		CommentFilm c2 = new CommentFilm("A mi me gustó mas la 2, pero bueno no está mal");
 		c2.setFilm(f2);
 		c2.setUser(u1);
@@ -373,19 +373,19 @@ public class DatabaseInformationLoader {
 		c11.setFilm(f7);
 		c11.setUser(u3);
 		commentFilmRepository.save(c11);
-		
+			
 		CommentFilm c12 = new CommentFilm("A mi me ha gustado, lo unico que a la iglesia no le mola mucho porque al parecer la peli acaba con la muerte de jesucristo, y da un mensaje equivocado en teoria");
 		c12.setFilm(f8);
 		c12.setUser(u1);
 		commentFilmRepository.save(c12);
-		
+		/*
 		CommentFilm c13 = new CommentFilm("Un poco bodrio, pero bueno, no pueden gustarme todas");
 		c13.setFilm(f9);
 		c13.setUser(u2);
 		commentFilmRepository.save(c13);
 		
 		
-		
+		*/
 		
 		
 		
@@ -403,9 +403,10 @@ public class DatabaseInformationLoader {
 				"/img/books/elRetornoDelRey.jpg", 1955);
 		
 		b2.getGenders().add(g1);
-		b2.getGenders().add(e);
+		b2.getGenders().add(g13);
 		bookRepository.save(b2);
 		
+		//Book b3 = new Book("Graceling",)
 		
 		
 		
