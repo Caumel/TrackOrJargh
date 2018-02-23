@@ -312,7 +312,7 @@ public class DatabaseInformationLoader {
 
 		Film f21 = new Film("Buscando a nemo", " Albert Brooks, Ellen DeGeneres, Alexander Gould",
 				" Andrew Stanton, Lee Unkrich",
-				"El pequeño Nemo, un pececillo hijo único que perdió a su madre antes de nacer, es muy querido y excesivamente protegido por su padre. Nemo ha sido pescado y sacadi de la gran barrera del arrecife australiano y ahora vive en una pequeña pecera en la oficina de un dentista de Sidney. El tímido padre de Nemo se embarcará en una peligrosa aventura donde conoce Dory. Juntos vane...", 
+				"El pequeño Nemo, un pececillo hijo único que perdió a su madre antes de nacer, es muy querido y excesivamente protegido por su padre. Nemo ha sido pescado y sacadi de la gran barrera del arrecife australiano y ahora vive en una pequeña pecera en la oficina de un dentista de Sidney. El tímido padre de Nemo se embarcará en una peligrosa aventura donde conoce Dory. Juntos vane...",
 				"/img/films/buscandoAnemo.jpg", "https://www.youtube.com/embed/wZdpNglLbt8", 2003);
 
 		f21.getGenders().add(g1);
@@ -408,7 +408,7 @@ public class DatabaseInformationLoader {
 		bookRepository.save(b2);
 
 		Book b3 = new Book("Graceling", "Kristin Cashore",
-				"Hay gente en estas tierras que tiene poderes extraordinarios a los que llamamos gracias. Una gracia puede tener un valor infinito o puede ser totalmente inútil. Una gracia puede hacer que alguien sea veloz como el viento, o que sea capaz de predecir el tiempo, mientras que otras sólo harán que hables al revés sin pensar o te subas a los árboles. Mi nombre es Katsa..." ,
+				"Hay gente en estas tierras que tiene poderes extraordinarios a los que llamamos gracias. Una gracia puede tener un valor infinito o puede ser totalmente inútil. Una gracia puede hacer que alguien sea veloz como el viento, o que sea capaz de predecir el tiempo, mientras que otras sólo harán que hables al revés sin pensar o te subas a los árboles. Mi nombre es Katsa...",
 				"/img/books/graceling.jpg", 2008);
 
 		b3.getGenders().add(g1);
@@ -519,39 +519,57 @@ public class DatabaseInformationLoader {
 		b14.getGenders().add(g1);
 		b14.getGenders().add(g13);
 		bookRepository.save(b14);
-		
-		
-		Book b15 = new Book("A 3 metros bajo el cielo","Federico Moccia","\"Babi es una estudiante modelo y la hija perfecta. Step, en cambio, es violento y descarado. Provienen de dos mundos completamente distintos. A pesar de todo, entre los dos nacerá un amor más allá de todas las convenciones. Un amor controvertido por el que deberán luchar más de lo que esperaban. Babi...",
-				"/img/books/TresMetro.jpg",2004);
-		
+
+		Book b15 = new Book("A 3 metros bajo el cielo", "Federico Moccia",
+				"\"Babi es una estudiante modelo y la hija perfecta. Step, en cambio, es violento y descarado. Provienen de dos mundos completamente distintos. A pesar de todo, entre los dos nacerá un amor más allá de todas las convenciones. Un amor controvertido por el que deberán luchar más de lo que esperaban. Babi...",
+				"/img/books/TresMetro.jpg", 2004);
+
 		b15.getGenders().add(g3);
 		b15.getGenders().add(g1);
 		bookRepository.save(b15);
-		
-		Book b16 = new Book("El quijote","Miguel de Cervantes","Como todo caballero necesita una dama, convierte el recuerdo de una campesina de la que estuvo enamorado en la hermosa Dulcinea del Toboso. Y a sí mismo se pone el nombre de Don Quijote, como el famoso caballero Lanzarote (Lancelot). Sale así al campo, con un aspecto ridículo, con la idea de realizar hazañas heroicas.",
-				"/img/books/elQuijote.jpg",1615);
-				
-				b16.getGenders().add(g1);
-				b16.getGenders().add(g11);
-				b16.getGenders().add(g8);
-				bookRepository.save(b16);
-				
-				
-		Book b17 = new Book("Beethoven","Jan Swafford","Beethoven, el genio romántico, hombre atormentado y fascinante capaz de componer las piezas más sublimes, vivió su tiempo con extraordinaria intensidad. Jan Swafford recrea de manera amena y profunda la vida del hombre, del compositor y del genio.",
-				"/img/books/beethoven.jpg",2017);
-		
+
+		Book b16 = new Book("El quijote", "Miguel de Cervantes",
+				"Como todo caballero necesita una dama, convierte el recuerdo de una campesina de la que estuvo enamorado en la hermosa Dulcinea del Toboso. Y a sí mismo se pone el nombre de Don Quijote, como el famoso caballero Lanzarote (Lancelot). Sale así al campo, con un aspecto ridículo, con la idea de realizar hazañas heroicas.",
+				"/img/books/elQuijote.jpg", 1615);
+
+		b16.getGenders().add(g1);
+		b16.getGenders().add(g11);
+		b16.getGenders().add(g8);
+		bookRepository.save(b16);
+
+		Book b17 = new Book("Beethoven", "Jan Swafford",
+				"Beethoven, el genio romántico, hombre atormentado y fascinante capaz de componer las piezas más sublimes, vivió su tiempo con extraordinaria intensidad. Jan Swafford recrea de manera amena y profunda la vida del hombre, del compositor y del genio.",
+				"/img/books/beethoven.jpg", 2017);
+
 		b17.getGenders().add(g12);
 		b17.getGenders().add(g11);
 		bookRepository.save(b17);
 
-				
+		Book b18 = new Book("Las fronteras del significado", "Charles Rosen",
+				"Charles Rosen explora cuestiones relacionadas con la composición, la interpretación y la escucha de la obra de distintos compositores, y nos ofrece así una aproximación a la música en la que tan importantes como las piezas musicales son las tradiciones en las que éstas se inscriben y se concretan...",
+				"/img/books/lasFronterasDelSignificado.jpg", 2017);
+		b18.getGenders().add(g12);
+		b18.getGenders().add(g11);
+		bookRepository.save(b18);
 		
 		
+		Book b19 = new Book("Asesinato en el Orient Express","Agatha Christie","En un lugar aislado de la antigua Yugoslavia, en plena madrugada, una fuerte tormenta de nieve obstaculiza la línea férrea por donde circula el Orient Express. Procedente de la exótica Estambul, en él viaja el detective Hércules Poirot...",
+				"/img/books/asesinatoEnOrienteExpress.jpg",1974);
+		
+		b19.getGenders().add(g1);
+		b19.getGenders().add(g5);
+		bookRepository.save(b19);
 		
 		
+		Book b20 = new Book("La cumbre escarlata","Nancy Holder","Ambientada en el siglo XIX, en la remota y montañosa región de Cumbria, al norte de Inglaterra, La cumbre escarlata sigue a la joven escritora Edith Cushing, quien descubre que su nuevo y encantador esposo, Sir Thomas Sharpe, no es quien parece ser...",
+				"/img/books/laCumbreEscarlata.jpg",2015);
 		
-		
+		b20.getGenders().add(g2);
+		b20.getGenders().add(g5);
+		b20.getGenders().add(g1);
+		bookRepository.save(b20);
 
+		
 		// Test Data Show
 		Show sh1 = new Show("The Big Bang Theory", "", "",
 				"La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.",
@@ -595,37 +613,37 @@ public class DatabaseInformationLoader {
 		pf1.setFilm(f1);
 		pf1.setUser(u1);
 		pointFilmRepository.save(pf1);
-		
+
 		PointFilm pf2 = new PointFilm((double) 2.3);
 		pf2.setFilm(f1);
 		pf2.setUser(u1);
 		pointFilmRepository.save(pf2);
-		
+
 		PointFilm pf3 = new PointFilm((double) 2.3);
 		pf3.setFilm(f1);
 		pf3.setUser(u2);
 		pointFilmRepository.save(pf3);
-		
+
 		PointFilm pf4 = new PointFilm((double) 4.5);
 		pf4.setFilm(f1);
 		pf4.setUser(u3);
 		pointFilmRepository.save(pf4);
-		
+
 		PointFilm pf5 = new PointFilm((double) 1.5);
 		pf5.setFilm(f2);
 		pf5.setUser(u1);
 		pointFilmRepository.save(pf5);
-		
+
 		PointFilm pf6 = new PointFilm((double) 3.9);
 		pf6.setFilm(f3);
 		pf6.setUser(u2);
 		pointFilmRepository.save(pf6);
-		
+
 		PointFilm pf7 = new PointFilm((double) 2.3);
 		pf7.setFilm(f4);
 		pf7.setUser(u2);
 		pointFilmRepository.save(pf7);
-		
+
 		PointFilm pf8 = new PointFilm((double) 4.2);
 		pf8.setFilm(f5);
 		pf8.setUser(u2);
