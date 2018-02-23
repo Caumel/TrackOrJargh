@@ -7,7 +7,7 @@ function loadContent() {
 		$("#moreContent").attr("class","fa fa-spinner fa-pulse fa-3x fa-fw");
 		$("#moreContent").unbind("click");
 		
-		$.get("rest/" + typePage +"?page=" + request + "&size=" + numElements, function(data) {
+		$.get(typePage +"?page=" + request + "&size=" + numElements, function(data) {
 			sleep(1000);
 			
 			jQuery.each(data.content, function(count, item) {
@@ -45,7 +45,7 @@ function sleep(miliseconds) {
 
 $(function() {
 	$("#moreContent").click(loadContent);
-	$.get("rest/" + typePage +"?page=" + request + "&size=" + numElements, function(data) {		
+	$.get(typePage +"?page=" + request + "&size=" + numElements, function(data) {		
 		totalPages = data.totalPages;
 	});	
 });

@@ -1,7 +1,5 @@
 package com.trackorjargh.javacontrollers;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -9,10 +7,10 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -99,8 +97,8 @@ public class PageController {
 		return "index";
 	}
 
-	@RequestMapping("/peliculas")
-	public String serveFilmList(Model model) {
+	@RequestMapping(value={"/peliculas", "/peliculas/mejorvaloradas"})
+	public String serveFilmList(Model model, HttpServletRequest request) {
 		List<Film> films = filmRepository.findByLastAdded(5);
 		films.get(0).setFirstInList(true);
 
@@ -112,6 +110,27 @@ public class PageController {
 
 		model.addAttribute("content", filmRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "peliculas");
+		
+		Page<Film> filmsPage;
+		String typePage;
+		if(request.getServletPath().equalsIgnoreCase("/peliculas")) {
+			filmsPage = filmRepository.findAll(new PageRequest(0, 10));
+			model.addAttribute("contentShowButton", true);
+			typePage = "/rest/peliculas";
+		} else {
+			filmsPage = filmRepository.findBestPointFilm(new PageRequest(0, 10));
+			model.addAttribute("bestPointContentShowButton", true);
+			typePage = "/rest/peliculas/mejorvaloradas";
+		}
+		
+		if(filmsPage.getNumberOfElements() > 0 && filmsPage.getNumberOfElements() < 10) {
+			model.addAttribute("noElementsSearch", true);
+		}
+		
+		model.addAttribute("linkContent", "/peliculas");
+		model.addAttribute("linkBestPointContent", "/peliculas/mejorvaloradas");
+		model.addAttribute("content", filmsPage);
+		model.addAttribute("typePage", typePage);
 		model.addAttribute("filmsActive", true);
 		model.addAttribute("contentCarousel", films);
 		model.addAttribute("loggedUser", userComponent.isLoggedUser());
@@ -120,8 +139,8 @@ public class PageController {
 		return "contentList";
 	}
 
-	@RequestMapping("/series")
-	public String serveShowList(Model model) {
+	@RequestMapping({"/series", "/series/mejorvaloradas"})
+	public String serveShowList(Model model, HttpServletRequest request) {
 		List<Show> shows = showRepository.findByLastAdded(5);
 		shows.get(0).setFirstInList(true);
 
@@ -130,9 +149,29 @@ public class PageController {
 
 			model.addAttribute("userList", user.getLists());
 		}
+		
+		Page<Show> showsPage;
+		String typePage;
+		if(request.getServletPath().equalsIgnoreCase("/series")) {
+			showsPage = showRepository.findAll(new PageRequest(0, 10));
+			model.addAttribute("contentShowButton", true);
+			typePage = "/rest/series";
+		} else {
+			showsPage = showRepository.findBestPointShow(new PageRequest(0, 10));
+			model.addAttribute("bestPointContentShowButton", true);
+			typePage = "/rest/series/mejorvaloradas";
+		}
+		
+		if(showsPage.getNumberOfElements() > 0 && showsPage.getNumberOfElements() < 10) {
+			model.addAttribute("noElementsSearch", true);
+		}
 
 		model.addAttribute("content", showRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "series");
+		model.addAttribute("linkContent", "/series");
+		model.addAttribute("linkBestPointContent", "/series/mejorvaloradas");
+		model.addAttribute("content", showsPage);
+		model.addAttribute("typePage", typePage);
 		model.addAttribute("showsActive", true);
 		model.addAttribute("contentCarousel", shows);
 		model.addAttribute("loggedUser", userComponent.isLoggedUser());
@@ -140,8 +179,8 @@ public class PageController {
 		return "contentList";
 	}
 
-	@RequestMapping("/libros")
-	public String serveBookList(Model model) {
+	@RequestMapping({"/libros", "/libros/mejorvalorados"})
+	public String serveBookList(Model model, HttpServletRequest request) {
 		List<Book> books = bookRepository.findByLastAdded(5);
 		books.get(0).setFirstInList(true);
 
@@ -150,9 +189,29 @@ public class PageController {
 
 			model.addAttribute("userList", user.getLists());
 		}
+		
+		Page<Book> booksPage;
+		String typePage;
+		if(request.getServletPath().equalsIgnoreCase("/libros")) {
+			booksPage = bookRepository.findAll(new PageRequest(0, 10));
+			model.addAttribute("contentShowButton", true);
+			typePage = "/rest/libros";
+		} else {
+			booksPage = bookRepository.findBestPointBook(new PageRequest(0, 10));
+			model.addAttribute("bestPointContentShowButton", true);
+			typePage = "/rest/libros/mejorvalorados";
+		}
+		
+		if(booksPage.getNumberOfElements() > 0 && booksPage.getNumberOfElements() < 10) {
+			model.addAttribute("noElementsSearch", true);
+		}
 
 		model.addAttribute("content", bookRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "libros");
+		model.addAttribute("linkContent", "/libros");
+		model.addAttribute("linkBestPointContent", "/libros/mejorvalorados");
+		model.addAttribute("content", booksPage);
+		model.addAttribute("typePage", typePage);
 		model.addAttribute("booksActive", true);
 		model.addAttribute("contentCarousel", books);
 		model.addAttribute("loggedUser", userComponent.isLoggedUser());
