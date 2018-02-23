@@ -48,6 +48,24 @@ public class ApiRestController {
 		return showRepository.findAll(page);
 	}
 	
+	@RequestMapping(value = "/rest/peliculas/mejorvaloradas", method = RequestMethod.GET)
+	@JsonView(Film.BasicInformation.class)
+	public Page<Film> getBestPointPeliculas(Pageable page) {
+		return filmRepository.findBestPointFilm(page);
+	}
+	
+	@RequestMapping(value = "/rest/libros/mejorvalorados", method = RequestMethod.GET)
+	@JsonView(Book.BasicInformation.class)
+	public Page<Book> getBestPointLibros(Pageable page) {
+		return bookRepository.findBestPointBook(page);
+	}
+	
+	@RequestMapping(value = "/rest/series/mejorvaloradas", method = RequestMethod.GET)
+	@JsonView(Show.BasicInformation.class)
+	public Page<Show> getBestPointSeries(Pageable page) {
+		return showRepository.findBestPointShow(page);
+	}
+	
 	@RequestMapping(value = "/rest/busqueda/{optionSearch}/series/{name}/page", method = RequestMethod.GET)
 	@JsonView(Show.BasicInformation.class)
 	public Page<Show> getSearchSeries(Pageable page, @PathVariable String optionSearch, @PathVariable String name) {
