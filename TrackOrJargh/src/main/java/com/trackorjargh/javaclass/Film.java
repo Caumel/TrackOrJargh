@@ -162,19 +162,19 @@ public class Film implements InterfaceMainItem{
 		this.pointsFilm = pointsFilm;
 	}
 
-	public String getDirectores() {
+	public String getDirectors() {
 		return directors;
 	}
 
-	public void setDirectores(String directores) {
+	public void setDirectors(String directores) {
 		this.directors = directores;
 	}
 
-	public String getActores() {
+	public String getActors() {
 		return actors;
 	}
 
-	public void setActores(String actores) {
+	public void setActors(String actores) {
 		this.actors = actores;
 	}
 }
