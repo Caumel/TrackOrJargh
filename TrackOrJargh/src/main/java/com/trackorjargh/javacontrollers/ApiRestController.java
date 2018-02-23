@@ -2,7 +2,6 @@ package com.trackorjargh.javacontrollers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,9 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.Film;
+import com.trackorjargh.javaclass.Lists;
 import com.trackorjargh.javaclass.Show;
 import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.FilmRepository;
+import com.trackorjargh.javarepository.ListsRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 
 @RestController
@@ -26,7 +27,8 @@ public class ApiRestController {
 	private BookRepository bookRepository;
 	@Autowired
 	private ShowRepository showRepository;
-
+	@Autowired
+	private ListsRepository listsRepository;
 	
 	@RequestMapping(value = "/rest/peliculas", method = RequestMethod.GET)
 	@JsonView(Film.BasicInformation.class)
@@ -62,5 +64,14 @@ public class ApiRestController {
 	@JsonView(Book.BasicInformation.class)
 	public Page<Book> getSearchLibros(Pageable page, @PathVariable String optionSearch, @PathVariable String name) {
 		return bookRepository.findByNameContainingIgnoreCase(name, page);
+	}
+	
+	@RequestMapping(value = "/rest/agregarlista/{nameList}/{nameContent}", method = RequestMethod.PUT)
+	public void addedListInUser(@PathVariable String nameList, @PathVariable String nameContent) {
+		Lists listUser = listsRepository.findByName(nameList); 
+		Film film = filmRepository.findByName(nameContent);
+		
+		listUser.getFilms().add(film);
+		listsRepository.save(listUser);		
 	}
 }

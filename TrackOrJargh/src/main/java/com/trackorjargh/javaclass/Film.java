@@ -3,6 +3,7 @@ package com.trackorjargh.javaclass;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +31,7 @@ public class Film implements InterfaceMainItem{
 	@JsonView(BasicInformation.class)
 	private String name;
 	@JsonView(BasicInformation.class)
+	@Column(columnDefinition = "TEXT")
 	private String synopsis;
 	@JsonView(BasicInformation.class)
 	private String image;

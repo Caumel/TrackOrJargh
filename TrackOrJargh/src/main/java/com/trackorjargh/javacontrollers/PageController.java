@@ -377,6 +377,8 @@ public class PageController {
 			}
 			userRepository.save(userComponent.getLoggedUser());
 		}
+		
+		model.addAttribute("listsUser", listsRepository.findByUser(userComponent.getLoggedUser()));
 
 		if (userComponent.getLoggedUser().getRoles().size() == 3) {
 			model.addAttribute("isAdmin", true);
@@ -392,13 +394,12 @@ public class PageController {
 	// create empty list
 	@RequestMapping("/listaNueva")
 	public String modProfile(Model model, @RequestParam String listName) {
-		listsRepository.save(new Lists(listName));
-		// model.addAttribute("visibleCarousel", true);
-		return "userProfile";
+		Lists listUser = new Lists(listName);
+		listUser.setUser(userComponent.getLoggedUser());		
+		listsRepository.save(listUser);
+		
+		return "redirect:/miperfil";
 	}
-
-	// @RequestMapping(/"borrarLista")
-	// public String modProfile(Model model)
 
 	@RequestMapping("/activarusuario/{name}")
 	public String activatedUser(Model model, @PathVariable String name) {
