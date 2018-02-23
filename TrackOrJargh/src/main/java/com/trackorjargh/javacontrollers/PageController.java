@@ -514,13 +514,26 @@ public class PageController {
 		redir.addFlashAttribute("user", user);
 		return modelAndView;
 	}
-
-	@RequestMapping("/seleccionarSerie")
+	
+	@RequestMapping("/seleccionarPelicula")
 	public ModelAndView filmSelection(RedirectAttributes redir, @RequestParam String name) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/administracion");
-		Show show = showRepository.findByName(name);
+		Film film= filmRepository.findByName(name);
 		redir.addFlashAttribute("adminFilm", true);
+		redir.addFlashAttribute("film", film);
+		redir.addFlashAttribute("genders", genderRepository.findByFilms(film));
+		redir.addFlashAttribute("genresNotInFilm", genderRepository.findByNotInFilm(film.getId()));
+
+		return modelAndView;
+	}
+
+	@RequestMapping("/seleccionarSerie")
+	public ModelAndView showSelection(RedirectAttributes redir, @RequestParam String name) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("redirect:/administracion");
+		Show show = showRepository.findByName(name);
+		redir.addFlashAttribute("adminShow", true);
 		redir.addFlashAttribute("show", show);
 		redir.addFlashAttribute("genders", genderRepository.findByShows(show));
 		redir.addFlashAttribute("genresNotInShow", genderRepository.findByNotInShow(show.getId()));
@@ -533,9 +546,9 @@ public class PageController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/administracion");
 		Book book= bookRepository.findByName(name);
-		redir.addFlashAttribute("adminFilm", true);
+		redir.addFlashAttribute("adminBook", true);
 		redir.addFlashAttribute("book", book);
-		redir.addFlashAttribute("genders", genderRepository.findByFilms(book));
+		redir.addFlashAttribute("genders", genderRepository.findByBooks(book));
 		redir.addFlashAttribute("genresNotInBook", genderRepository.findByNotInBook(book.getId()));
 
 		return modelAndView;
@@ -576,7 +589,7 @@ public class PageController {
 	@RequestMapping("/adminPelicula")
 	public String adminFilm(Model model, @RequestParam String name, @RequestParam String newName,
 			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteFilm, @RequestParam String actors,
-			@RequestParam String directors) {
+			@RequestParam String directors, @RequestParam String imageFilm, @RequestParam Boolean AventurasChecked) { // AQUI
 		Film film = filmRepository.findByName(name);
 		if (confirmDelete.isPresent() && confirmDelete.get()) {
 			if (name.equals(deleteFilm)) {
@@ -594,11 +607,11 @@ public class PageController {
 	
 	@RequestMapping("/adminSerie")
 	public String adminShow(Model model, @RequestParam String name, @RequestParam String newName,
-			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteFilm, @RequestParam String actors,
-			@RequestParam String directors) {
+			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteShow, @RequestParam String actors,
+			@RequestParam String directors, @RequestParam String imageShow) { // Y AQUI
 		Show show= showRepository.findByName(name);
 		if (confirmDelete.isPresent() && confirmDelete.get()) {
-			if (name.equals(deleteFilm)) {
+			if (name.equals(deleteShow)) {
 
 			}
 		} else {
@@ -613,10 +626,10 @@ public class PageController {
 	
 	@RequestMapping("/adminLibro")
 	public String adminBook(Model model, @RequestParam String name, @RequestParam String newName,
-			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteFilm, @RequestParam String authors) {
+			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteBook, @RequestParam String authors, @RequestParam String imageBook) { // Y AQUI
 		Book book = bookRepository.findByName(name);
 		if (confirmDelete.isPresent() && confirmDelete.get()) {
-			if (name.equals(deleteFilm)) {
+			if (name.equals(deleteBook)) {
 
 			}
 		} else {
