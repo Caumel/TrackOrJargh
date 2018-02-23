@@ -64,6 +64,7 @@ public class DatabaseInformationLoader {
 		User u1 = new User("oscar", "1234", "oscarsotosanchez@gmail.com", "", true, "ROLE_USER");
 		userRepository.save(u1);
 		User u2 = new User("jesus", "1234", "jesusmola@gmail.com", "img/userFoto.jpg", true, "ROLE_USER", "ROLE_ADMIN");
+		User u2 = new User("jesus", "1234", "jesusmola@gmail.com", "img/userFoto.jpg", true, "ROLE_USER", "ROLE_MODERATOR","ROLE_ADMIN");
 		userRepository.save(u2);
 
 		// Test Data Gender
@@ -87,6 +88,15 @@ public class DatabaseInformationLoader {
 		genderRepository.save(g9);
 
 		// Test Data Film
+		Film f0 = new Film("Guardianes",
+				"Chris Pratt, Zoe Saldana, Bradley Cooper, Dave Bautista, Vin Diesel, Michael Rooker, Karen Gillan, Pom Klementieff, Elizabeth Debicki, Chris Sullivan, Sean Gunn, Sylvester Stallone, Kurt Russell",
+				"James Gunn",
+				"Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...",
+				"/img/Guardianes2.jpg", "https://www.youtube.com/embed/12gvJgLE4us?rel=0&amp;controls=0&amp;showinfo=0",
+				2017);
+		f0.getGenders().add(g1);
+		filmRepository.save(f0);
+		
 		Film f1 = new Film("Guardianes de la Galaxia 2",
 				"Chris Pratt, Zoe Saldana, Bradley Cooper, Dave Bautista, Vin Diesel, Michael Rooker, Karen Gillan, Pom Klementieff, Elizabeth Debicki, Chris Sullivan, Sean Gunn, Sylvester Stallone, Kurt Russell",
 				"James Gunn",

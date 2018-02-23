@@ -1,5 +1,7 @@
 package com.trackorjargh.javacontrollers;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -10,9 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.javaclass.Book;
@@ -37,6 +42,7 @@ import com.trackorjargh.javarepository.CommentFilmRepository;
 import com.trackorjargh.javarepository.CommentShowRepository;
 import com.trackorjargh.javarepository.FilmRepository;
 import com.trackorjargh.javarepository.ForgotPasswordRepository;
+import com.trackorjargh.javarepository.GenderRepository;
 import com.trackorjargh.javarepository.ListsRepository;
 import com.trackorjargh.javarepository.PointBookRepository;
 import com.trackorjargh.javarepository.PointFilmRepository;
@@ -56,6 +62,8 @@ public class PageController {
 	private UserRepository userRepository;
 	@Autowired
 	private ShowRepository showRepository;
+	@Autowired
+	private GenderRepository genderRepository;
 	@Autowired
 	private CommentFilmRepository commentFilmRepository;
 	@Autowired
@@ -96,9 +104,11 @@ public class PageController {
 		List<Film> films = filmRepository.findByLastAdded(5);
 		films.get(0).setFirstInList(true);
 		
+
 		if (userComponent.isLoggedUser()) {
 			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
 			
+
 			model.addAttribute("userList", user.getLists());
 		}
 
@@ -107,6 +117,7 @@ public class PageController {
 		model.addAttribute("filmsActive", true);
 		model.addAttribute("contentCarousel", films);
 		model.addAttribute("loggedUser", userComponent.isLoggedUser());		
+		model.addAttribute("loggedUser", userComponent.isLoggedUser());
 
 		return "contentList";
 	}
@@ -116,9 +127,11 @@ public class PageController {
 		List<Show> shows = showRepository.findByLastAdded(5);
 		shows.get(0).setFirstInList(true);
 		
+
 		if (userComponent.isLoggedUser()) {
 			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
 			
+
 			model.addAttribute("userList", user.getLists());
 		}
 
@@ -136,16 +149,18 @@ public class PageController {
 		List<Book> books = bookRepository.findByLastAdded(5);
 		books.get(0).setFirstInList(true);
 		
+
 		if (userComponent.isLoggedUser()) {
 			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
 			
+
 			model.addAttribute("userList", user.getLists());
 		}
 
 		model.addAttribute("content", bookRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "libros");
 		model.addAttribute("booksActive", true);
-		model.addAttribute("contentCarousel", books);	
+		model.addAttribute("contentCarousel", books);
 		model.addAttribute("loggedUser", userComponent.isLoggedUser());
 
 		return "contentList";
@@ -156,6 +171,7 @@ public class PageController {
 			@RequestParam Optional<String> pointsSent) {
 		Film film = filmRepository.findByName(name);
 		
+
 		if (messageSent.isPresent()) {
 			CommentFilm message = new CommentFilm(messageSent.get());
 			message.setFilm(film);
@@ -166,6 +182,7 @@ public class PageController {
 
 		if (pointsSent.isPresent()) {
 			double points = Double.parseDouble(pointsSent.get());			
+			double points = Double.parseDouble(pointsSent.get());
 			PointFilm pointFilm = pointFilmRepository.findByUserAndFilm(userComponent.getLoggedUser(), film);
 
 			if (pointFilm == null) {
@@ -191,6 +208,7 @@ public class PageController {
 		double points = 0;
 		double userPoints = 0;
 		
+
 		List<PointFilm> listPoints = pointFilmRepository.findByFilm(film);
 
 		if (listPoints.size() > 0) {
@@ -199,10 +217,13 @@ public class PageController {
 			points /= listPoints.size();
 		}
 		
+
 		PointFilm userPointFilm = pointFilmRepository.findByUserAndFilm(userComponent.getLoggedUser(), film);
 		if(userPointFilm != null)
+		if (userPointFilm != null)
 			userPoints = userPointFilm.getPoints();
 		
+
 		model.addAttribute("totalPoints", points);
 		model.addAttribute("userPoints", userPoints);
 
@@ -211,6 +232,8 @@ public class PageController {
 
 	@RequestMapping("/serie/{name}")
 	public String serveShowProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent, @RequestParam Optional<String> pointsSent) {
+	public String serveShowProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent,
+			@RequestParam Optional<String> pointsSent) {
 		Show show = showRepository.findByName(name);
 
 		if (messageSent.isPresent()) {
@@ -221,8 +244,10 @@ public class PageController {
 			commentShowRepository.save(message);
 		}
 		
+
 		if (pointsSent.isPresent()) {
 			double points = Double.parseDouble(pointsSent.get());			
+			double points = Double.parseDouble(pointsSent.get());
 			PointShow pointShow = pointShowRepository.findByUserAndShow(userComponent.getLoggedUser(), show);
 
 			if (pointShow == null) {
@@ -246,9 +271,11 @@ public class PageController {
 		model.addAttribute("episodeSection", true);
 		model.addAttribute("actionMessage", "/serie/" + name);
 		
+
 		double points = 0;
 		double userPoints = 0;
 		
+
 		List<PointShow> listPoints = pointShowRepository.findByShow(show);
 
 		if (listPoints.size() > 0) {
@@ -257,10 +284,13 @@ public class PageController {
 			points /= listPoints.size();
 		}
 		
+
 		PointShow userPointShow = pointShowRepository.findByUserAndShow(userComponent.getLoggedUser(), show);
 		if(userPointShow != null)
+		if (userPointShow != null)
 			userPoints = userPointShow.getPoints();
 		
+
 		model.addAttribute("totalPoints", points);
 		model.addAttribute("userPoints", userPoints);
 
@@ -269,6 +299,8 @@ public class PageController {
 
 	@RequestMapping("/libro/{name}")
 	public String serveProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent, @RequestParam Optional<String> pointsSent) {
+	public String serveProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent,
+			@RequestParam Optional<String> pointsSent) {
 		Book book = bookRepository.findByName(name);
 
 		if (messageSent.isPresent()) {
@@ -279,8 +311,10 @@ public class PageController {
 			commentBookRepository.save(message);
 		}
 		
+
 		if (pointsSent.isPresent()) {
 			double points = Double.parseDouble(pointsSent.get());			
+			double points = Double.parseDouble(pointsSent.get());
 			PointBook pointBook = pointBookRepository.findByUserAndBook(userComponent.getLoggedUser(), book);
 
 			if (pointBook == null) {
@@ -304,9 +338,11 @@ public class PageController {
 		model.addAttribute("isBook", true);
 		model.addAttribute("actionMessage", "/libro/" + name);
 		
+
 		double points = 0;
 		double userPoints = 0;
 		
+
 		List<PointBook> listPoints = pointBookRepository.findByBook(book);
 
 		if (listPoints.size() > 0) {
@@ -315,13 +351,17 @@ public class PageController {
 			points /= listPoints.size();
 		}
 		
+
 		PointBook userPointBook = pointBookRepository.findByUserAndBook(userComponent.getLoggedUser(), book);
 		if(userPointBook != null)
+		if (userPointBook != null)
 			userPoints = userPointBook.getPoints();
 		
+
 		model.addAttribute("totalPoints", points);
 		model.addAttribute("userPoints", userPoints);
 		
+
 		return "contentProfile";
 	}
 
@@ -336,6 +376,14 @@ public class PageController {
 				userComponent.getLoggedUser().setPassword(passUser.get());
 			}
 			userRepository.save(userComponent.getLoggedUser());
+		}
+
+		if (userComponent.getLoggedUser().getRoles().size() == 3) {
+			model.addAttribute("isAdmin", true);
+		} else {
+			if (userComponent.getLoggedUser().getRoles().size() == 2) {
+				model.addAttribute("isModerator", true);
+			}
 		}
 
 		return "userProfile";
@@ -471,26 +519,63 @@ public class PageController {
 
 	@RequestMapping("/administracion")
 	public String serveAdmin(Model model) {
+
 		return "administration";
+	}
+
+	@RequestMapping("/seleccionarUsuario")
+	public ModelAndView userSelection(RedirectAttributes redir, @RequestParam String name) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("redirect:/administracion");
+		User user = userRepository.findByName(name);
+		if (user.getRoles().size() == 3) {
+			redir.addFlashAttribute("isAdmin", true);
+		} else {
+			if (user.getRoles().size() == 2) {
+				redir.addFlashAttribute("isModerator", true);
+			}
+		}
+		redir.addFlashAttribute("adminUser", true);
+		redir.addFlashAttribute("user", user);
+		return modelAndView;
+	}
+
+	@RequestMapping("/seleccionarPelicula")	
+	public ModelAndView filmSelection(RedirectAttributes redir, @RequestParam String name) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("redirect:/administracion");
+		Film film = filmRepository.findByName(name);
+		redir.addFlashAttribute("adminFilm", true);
+		redir.addFlashAttribute("film", film);
+		redir.addFlashAttribute("genders", genderRepository.findByFilms(film));
+		redir.addFlashAttribute("genresNotInFilm", genderRepository.findByNotInFilm(film.getId()));
+
+		return modelAndView;
 	}
 
 	@RequestMapping("/adminUsuario")
 	public String adminUser(Model model, @RequestParam String name, @RequestParam String email,
 			@RequestParam Boolean confirmDelete, @RequestParam String deleteUser, @RequestParam String userType) {
+			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteUser,
+			@RequestParam String userType) {
 		User user = userRepository.findByName(name);
 		if (confirmDelete) {
+		if (confirmDelete.isPresent() && confirmDelete.get()) {
 			if (name.equals(deleteUser)) {
 
 			}
 		} else {
 			user.setEmail(email);
+			user.setRoles(new LinkedList<String>());
 			if (userType.equals("Usuario")) {
 				user.setRoles(new LinkedList<String>());
 				user.getRoles().add("ROLE_USER");
 			} else {
 				if (userType.equals("Moderador")) {
+					user.getRoles().add("ROLE_USER");
 					user.getRoles().add("ROLE_MODERATOR");
 				} else {
+					user.getRoles().add("ROLE_USER");
 					user.getRoles().add("ROLE_MODERATOR");
 					user.getRoles().add("ROLE_ADMINISTRATOR");
 				}
@@ -498,12 +583,28 @@ public class PageController {
 			userRepository.save(user);
 		}
 		
+
 		return "redirect:/administracion";
 	}
 
 	@RequestMapping("/adminPelis")
 	public String adminFilms(Model model) {
 		model.addAttribute("content", filmRepository.findByName("Guardianes de la galaxia 2"));
+	@RequestMapping("/adminPelicula")
+	public String adminFilm(Model model, @RequestParam String name, @RequestParam String newName,
+			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteFilm, @RequestParam String actors,
+			@RequestParam String directors) {
+		Film film= filmRepository.findByName(name);
+		if (confirmDelete.isPresent() && confirmDelete.get()) {
+			if (name.equals(deleteFilm)) {
+
+			}
+		} else {
+			film.setName(newName);
+			film.setActors(actors);
+			film.setDirectors(directors);
+			}
+			filmRepository.save(film);
 
 		return "redirect:/administracion";
 	}
