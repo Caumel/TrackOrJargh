@@ -43,6 +43,11 @@ public class SearchController {
 				
 		if(films.getNumberOfElements() == 0) {
 			model.addAttribute("noElementsSearch", true);
+			model.addAttribute("noResult", true);
+		}
+		
+		if(films.getNumberOfElements() > 0 && films.getNumberOfElements() < 10) {
+			model.addAttribute("noElementsSearch", true);
 		}
 		
 		return "search";
@@ -59,6 +64,11 @@ public class SearchController {
 		
 		if(shows.getNumberOfElements() == 0) {
 			model.addAttribute("noElementsSearch", true);
+			model.addAttribute("noResult", true);
+		}
+		
+		if(shows.getNumberOfElements() > 0 && shows.getNumberOfElements() < 10) {
+			model.addAttribute("noElementsSearch", true);
 		}
 		
 		return "search";
@@ -74,6 +84,11 @@ public class SearchController {
 		model.addAttribute("typeSearch", "/rest/busqueda/" + optionSearch +"/libros/" + name + "/page");
 		
 		if(books.getNumberOfElements() == 0) {
+			model.addAttribute("noElementsSearch", true);
+			model.addAttribute("noResult", true);
+		}
+		
+		if(books.getNumberOfElements() > 0 && books.getNumberOfElements() < 10) {
 			model.addAttribute("noElementsSearch", true);
 		}
 		

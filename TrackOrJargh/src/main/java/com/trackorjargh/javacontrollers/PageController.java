@@ -123,6 +123,10 @@ public class PageController {
 			typePage = "/rest/peliculas/mejorvaloradas";
 		}
 		
+		if(filmsPage.getNumberOfElements() > 0 && filmsPage.getNumberOfElements() < 10) {
+			model.addAttribute("noElementsSearch", true);
+		}
+		
 		model.addAttribute("linkContent", "/peliculas");
 		model.addAttribute("linkBestPointContent", "/peliculas/mejorvaloradas");
 		model.addAttribute("content", filmsPage);
@@ -156,6 +160,10 @@ public class PageController {
 			showsPage = showRepository.findBestPointShow(new PageRequest(0, 10));
 			model.addAttribute("bestPointContentShowButton", true);
 			typePage = "/rest/series/mejorvaloradas";
+		}
+		
+		if(showsPage.getNumberOfElements() > 0 && showsPage.getNumberOfElements() < 10) {
+			model.addAttribute("noElementsSearch", true);
 		}
 
 		model.addAttribute("content", showRepository.findAll(new PageRequest(0, 10)));
@@ -192,6 +200,10 @@ public class PageController {
 			booksPage = bookRepository.findBestPointBook(new PageRequest(0, 10));
 			model.addAttribute("bestPointContentShowButton", true);
 			typePage = "/rest/libros/mejorvalorados";
+		}
+		
+		if(booksPage.getNumberOfElements() > 0 && booksPage.getNumberOfElements() < 10) {
+			model.addAttribute("noElementsSearch", true);
 		}
 
 		model.addAttribute("content", bookRepository.findAll(new PageRequest(0, 10)));
