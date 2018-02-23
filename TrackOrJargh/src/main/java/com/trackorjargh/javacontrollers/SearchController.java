@@ -34,8 +34,14 @@ public class SearchController {
 	
 	@RequestMapping("/busqueda/{optionSearch}/pelicula/{name}")
 	public String searchFilms(Model model, @PathVariable String optionSearch, @PathVariable String name) {
-		Page<Film> films = filmRepository.findByNameContainingIgnoreCase(name, new PageRequest(0, 10));
-		
+		Page<Film> films;
+
+		if(optionSearch.equalsIgnoreCase("titulo")) {
+			films = filmRepository.findByNameContainingIgnoreCase(name, new PageRequest(0, 10));
+		} else {
+			films = filmRepository.findFilmsByGender("%" + name + "%", new PageRequest(0, 10));
+		}
+			
 		model.addAttribute("content", films);
 		model.addAttribute("typeFilm", true);
 		model.addAttribute("inputSearch", name);

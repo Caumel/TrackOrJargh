@@ -75,7 +75,11 @@ public class ApiRestController {
 	@RequestMapping(value = "/rest/busqueda/{optionSearch}/peliculas/{name}/page", method = RequestMethod.GET)
 	@JsonView(Film.BasicInformation.class)
 	public Page<Film> getSearchPeliculas(Pageable page, @PathVariable String optionSearch, @PathVariable String name) {
-		return filmRepository.findByNameContainingIgnoreCase(name, page);
+		if(optionSearch.equalsIgnoreCase("titulo")) {
+			return filmRepository.findByNameContainingIgnoreCase(name, page);
+		} else {
+			return filmRepository.findFilmsByGender("%" + name + "%", page);
+		}
 	}
 	
 	@RequestMapping(value = "/rest/busqueda/{optionSearch}/libros/{name}/page", method = RequestMethod.GET)
