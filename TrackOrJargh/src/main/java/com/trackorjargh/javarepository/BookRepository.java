@@ -25,6 +25,11 @@ public interface BookRepository extends JpaRepository<Book, Long>{
     		nativeQuery = true)
     Page<Book> findBestPointBook(Pageable pageable);
     
+    @Query(value = "SELECT BOOK.* FROM BOOK_GENDERS INNER JOIN BOOK ON BOOK_GENDERS.BOOKS_ID=BOOK.ID WHERE BOOK_GENDERS.GENDERS_ID IN (SELECT ID FROM GENDER WHERE LOWER(NAME) LIKE LOWER(?1)) \n-- #pageable\n",
+    		countQuery = "SELECT COUNT(BOOK.*) FROM BOOK_GENDERS INNER JOIN FILM ON BOOK_GENDERS.BOOKS_ID=FILM.ID WHERE BOOK_GENDERS.GENDERS_ID IN (SELECT ID FROM GENDER WHERE LOWER(NAME) LIKE LOWER(?1))",
+    		nativeQuery = true)
+    Page<Book> findBooksByGender(String gender, Pageable pageable);
+    
 	Book findById(Long id);
 	Book findByName(String name);
 }
