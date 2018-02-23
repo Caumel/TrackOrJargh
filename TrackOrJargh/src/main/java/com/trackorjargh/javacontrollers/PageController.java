@@ -100,8 +100,6 @@ public class PageController {
 		return "index";
 	}
 
-	@RequestMapping("/peliculas")
-	public String serveFilmList(Model model) {
 	@RequestMapping(value={"/peliculas", "/peliculas/mejorvaloradas"})
 	public String serveFilmList(Model model, HttpServletRequest request) {
 		List<Film> films = filmRepository.findByLastAdded(5);
@@ -140,8 +138,6 @@ public class PageController {
 		return "contentList";
 	}
 
-	@RequestMapping("/series")
-	public String serveShowList(Model model) {
 	@RequestMapping({"/series", "/series/mejorvaloradas"})
 	public String serveShowList(Model model, HttpServletRequest request) {
 		List<Show> shows = showRepository.findByLastAdded(5);
@@ -178,8 +174,6 @@ public class PageController {
 		return "contentList";
 	}
 
-	@RequestMapping("/libros")
-	public String serveBookList(Model model) {
 	@RequestMapping({"/libros", "/libros/mejorvalorados"})
 	public String serveBookList(Model model, HttpServletRequest request) {
 		List<Book> books = bookRepository.findByLastAdded(5);
