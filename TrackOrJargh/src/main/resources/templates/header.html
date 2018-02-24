@@ -20,6 +20,11 @@
 				<li {{#filmsActive}}class="menu-active"{{/filmsActive}}><a href="/peliculas">Películas</a></li>
 				<li {{#showsActive}}class="menu-active"{{/showsActive}}><a href="/series">Series</a></li>
 				<li {{#booksActive}}class="menu-active"{{/booksActive}}><a href="/libros">Libros</a></li>
+				
+				{{#isUserAdmin}}
+				<li {{#adminActive}}class="menu-active"{{/adminActive}}><a href="/administracion">Administración</a></li>
+				{{/isUserAdmin}}
+				
 				{{#userLogged}}
 				<li {{#myProfile}}class="menu-active"{{/myProfile}}><a href="/miperfil">{{name}}</a></li>
 				{{/userLogged}}

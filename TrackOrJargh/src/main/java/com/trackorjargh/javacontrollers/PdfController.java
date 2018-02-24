@@ -15,11 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.javaclass.User;
+import com.trackorjargh.javarepository.ListsRepository;
+import com.trackorjargh.pdf.PdfCreate;
 
 @Controller
 public class PdfController {
 	@Autowired
 	private UserComponent userComponent;
+	@Autowired
+	private PdfCreate pdfCreate;
+	@Autowired
+	private ListsRepository listsRepository;
 	
 	@RequestMapping("/crearpdflistas")
 	public void handleFileDownloadPDF(HttpServletResponse res)
@@ -27,6 +33,8 @@ public class PdfController {
 		
 		User user = userComponent.getLoggedUser();
 		String namePdf = "pdf-" + user.getName() + "-" + user.getId() + ".pdf";
+		
+		pdfCreate.createPdfLists(userComponent.getLoggedUser(), listsRepository.findByUser(userComponent.getLoggedUser()));
 		
 		Path FILES_FOLDER = Paths.get(System.getProperty("user.dir"), "files");
 		Path pdf = FILES_FOLDER.resolve(namePdf);

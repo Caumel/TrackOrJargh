@@ -93,8 +93,6 @@ public class PageController {
 	private ForgotPasswordRepository forgotPasswordRepository;
 	@Autowired
 	private ListsRepository listsRepository;
-	@Autowired
-	private PdfCreate pdfCreate;
 
 	@RequestMapping("/")
 	public String serveIndex(Model model) {
@@ -450,9 +448,6 @@ public class PageController {
 			}
 		}
 		
-		//Create PDF
-		pdfCreate.createPdfLists(userComponent.getLoggedUser(), listsRepository.findByUser(userComponent.getLoggedUser()));
-
 		model.addAttribute("myProfile", true);
 		return "userProfile";
 	}
@@ -586,7 +581,8 @@ public class PageController {
 
 	@RequestMapping("/administracion")
 	public String serveAdmin(Model model) {
-
+		model.addAttribute("adminActive", true);
+		
 		return "administration";
 	}
 

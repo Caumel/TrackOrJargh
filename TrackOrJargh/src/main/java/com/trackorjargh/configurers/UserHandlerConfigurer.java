@@ -12,6 +12,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.trackorjargh.component.UserComponent;
+import com.trackorjargh.javaclass.User;
+import com.trackorjargh.javarepository.UserRepository;
 
 @Configuration
 public class UserHandlerConfigurer extends WebMvcConfigurerAdapter {
@@ -29,13 +31,21 @@ public class UserHandlerConfigurer extends WebMvcConfigurerAdapter {
 class UserHandlerInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	private UserComponent userComponent;
+	@Autowired
+	private UserRepository userRepository;
 
 	@Override
 	public void postHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler,
 			final ModelAndView modelAndView) throws Exception {
 		if (modelAndView != null) {
 			if (userComponent.isLoggedUser()) {
-				modelAndView.addObject("userLogged", userComponent.getLoggedUser());
+				User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+				
+				modelAndView.addObject("userLogged", user);
+				
+				if(user.getRoles().contains("ROLE_ADMIN")) {
+					modelAndView.addObject("isUserAdmin", true);
+				}
 			}
 		}
 	}
