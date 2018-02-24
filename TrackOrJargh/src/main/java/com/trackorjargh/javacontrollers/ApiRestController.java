@@ -236,4 +236,34 @@ public class ApiRestController {
 		listsRepository.save(listUser);
 		return true;
 	}
+	
+	@RequestMapping(value = "/rest/borrarLista/{nameList}", method = RequestMethod.DELETE)
+	public boolean deletedListInUser(@PathVariable String nameList) {
+		Lists listUser = listsRepository.findByName(nameList);
+		System.out.println(nameList);
+		listsRepository.delete(listUser);
+		
+		return true;
+	}
+	
+	//@RequestMapping(value = "/rest/borrarContenido/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.DELETE)
+	//public boolean deletedContentInList(@PathVariable String nameList,@PathVariable @PathVariable String nameContent) {
+		//Lists listUser = listsRepository.findByName(nameList);
+		//Film film = filmRepository.findByName(nameContent);
+		//if (listUser.getFilms().contains(film)) {
+			//listUser.getFilms().remove(film);
+			
+		//}else {
+			//Show show = showRepository.findByName(nameContent);
+			//if (listUser.getShows().contains(show)) {
+			//listUser.getShows().remove(show);
+			
+		//}else {
+			//Book book = bookRepository.findByName(nameContent);
+			//listUser.getBooks().remove(book);
+		//}
+		
+		//}
+		//return true;
+	//}
 }

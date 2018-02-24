@@ -158,3 +158,11 @@ filter:alpha(opacity=100);
     color: #18d26e;
     transition: 0.3s;
 }
+#deleteButton {
+    font-weight: 700;
+    background-color: #18d26e;
+    border-color: #18d26e;
+}
+.p-2 {
+    padding: .0.5rem!important;
+}

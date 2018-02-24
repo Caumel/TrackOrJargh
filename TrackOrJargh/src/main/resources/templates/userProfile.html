@@ -121,10 +121,16 @@
                                         {{/visibleCarousel}}
                                         {{#listsUser}}
                                         <div id="CreateList" class="form-control ">
-                                            <a id="CreatedLists">{{name}}<i class="ion-trash-a text-right"></i></a>
+                                            <div class="d-flex">
+  											<a id="CreatedLists" name="deleteListName" class="mr-auto p-2">{{name}}</a>
+  											<button id="deleteButton" class="p-2" type="button" name="deleteList" value="{{name}}"><i class="ion-trash-a text-right"></i></button>
+											</div>
                                             {{#printList}}
                                             <br/>
-                                            <a href="{{url}}{{name}}">{{name}}</a><i id="{{name}}" name="deleteContent" class="ion-trash-a text-right"></i>
+                                            <div class="d-flex">
+  											<a href="{{url}}{{name}}" class="mr-auto p-2">{{name}}</a>
+  											<button id="deleteButton" class="p-2" type="button" name="deleteContent" value="{{url}}"><i class="ion-trash-a text-right"></i></button>
+											</div>
                                             {{/printList}}
                                         </div>
                                         {{/listsUser}}
@@ -174,6 +180,7 @@
         <script src="/js/main.js"></script>
         <!-- Password validation Javascript -->
         <script src="/js/passwordValidation.js"></script>
+        <script src="/js/userProfile.js"></script>
 
     </body>
 </html>
