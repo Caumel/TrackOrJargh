@@ -58,6 +58,12 @@ function loadContent() {
 	}
 }
 
+function addFilmToList(){ 
+	var nameList = $(this).text();
+	
+	alert($(this).parents("input[name='nameFilm']").val());
+}
+
 function sleep(miliseconds) {
 	  var start = new Date().getTime();
 	  while (true) {
@@ -74,5 +80,7 @@ $(function() {
 	
 	$.get("/rest/listasusuario", function(data) {	
 		listsUser = data;
-	});		
+	});	
+	
+	$("[name='buttonList']").click(addFilmToList);
 });

@@ -110,14 +110,15 @@
 									<a href="{{url}}{{name}}">{{name}}</a>
 								</h4>
 								<p>{{year}}</p>
+								<input type="hidden" name="nameFilm" value="{{name}}"/>
 								{{#userLogged}}
 								<div class="dropup float-left">
   									<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   										<i class="ion-plus-round"></i>
   									</button>
   									<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-  									{{#userList}}
-    									<button name="buttonList" class="dropdown-item" type="button">{{name}}</button>
+  										{{#userList}}
+    									<button id="" name="buttonList" class="dropdown-item" type="button">{{name}}</button>
     									{{/userList}}
     									<a href="/miperfil" class="dropdown-item">Crear lista</a>
   									</div>
