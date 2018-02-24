@@ -105,9 +105,15 @@ public class ApiRestController {
 		}
 	}
 	
-	@RequestMapping(value = "/rest/informacionusuario", method = RequestMethod.GET)
-	public List<Lists> getUser() {
-		return userComponent.getLoggedUser().getLists();
+	@RequestMapping(value = "/rest/listasusuario", method = RequestMethod.GET)
+	public List<Lists> getListsUser() {	
+		if(!userComponent.isLoggedUser()) {
+			return null;
+		} else {
+			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+			
+			return user.getLists();
+		}		
 	}
 
 	@RequestMapping(value = "/rest/agregarlista/{nameList}/{nameContent}", method = RequestMethod.PUT)

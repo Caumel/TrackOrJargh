@@ -24,7 +24,6 @@ import com.trackorjargh.javaclass.CommentFilm;
 import com.trackorjargh.javaclass.CommentShow;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.ForgotPassword;
-import com.trackorjargh.javaclass.Gender;
 import com.trackorjargh.javaclass.GenerateURLPage;
 import com.trackorjargh.javaclass.InterfaceMainItem;
 import com.trackorjargh.javaclass.Lists;
@@ -134,8 +133,7 @@ public class PageController {
 		model.addAttribute("typePage", typePage);
 		model.addAttribute("filmsActive", true);
 		model.addAttribute("contentCarousel", films);
-		model.addAttribute("loggedUser", userComponent.isLoggedUser());
-		model.addAttribute("loggedUser", userComponent.isLoggedUser());
+		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
 
 		return "contentList";
 	}
@@ -175,7 +173,7 @@ public class PageController {
 		model.addAttribute("typePage", typePage);
 		model.addAttribute("showsActive", true);
 		model.addAttribute("contentCarousel", shows);
-		model.addAttribute("loggedUser", userComponent.isLoggedUser());
+		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
 
 		return "contentList";
 	}
@@ -215,7 +213,7 @@ public class PageController {
 		model.addAttribute("typePage", typePage);
 		model.addAttribute("booksActive", true);
 		model.addAttribute("contentCarousel", books);
-		model.addAttribute("loggedUser", userComponent.isLoggedUser());
+		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
 
 		return "contentList";
 	}
