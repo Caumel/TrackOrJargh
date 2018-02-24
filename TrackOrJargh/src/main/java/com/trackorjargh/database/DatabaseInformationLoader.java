@@ -98,8 +98,6 @@ public class DatabaseInformationLoader {
 		Gender g13 = new Gender("Fantasia");
 		genderRepository.save(g13);
 
-		final int maxGenders = 13;
-
 		// Test Data Film
 		Film f0 = new Film("Guardianes",
 				"Chris Pratt, Zoe Saldana, Bradley Cooper, Dave Bautista, Vin Diesel, Michael Rooker, Karen Gillan, Pom Klementieff, Elizabeth Debicki, Chris Sullivan, Sean Gunn, Sylvester Stallone, Kurt Russell",
@@ -551,38 +549,108 @@ public class DatabaseInformationLoader {
 		b18.getGenders().add(g12);
 		b18.getGenders().add(g11);
 		bookRepository.save(b18);
-		
-		
-		Book b19 = new Book("Asesinato en el Orient Express","Agatha Christie","En un lugar aislado de la antigua Yugoslavia, en plena madrugada, una fuerte tormenta de nieve obstaculiza la línea férrea por donde circula el Orient Express. Procedente de la exótica Estambul, en él viaja el detective Hércules Poirot...",
-				"/img/books/asesinatoEnOrienteExpress.jpg",1974);
-		
+
+		Book b19 = new Book("Asesinato en el Orient Express", "Agatha Christie",
+				"En un lugar aislado de la antigua Yugoslavia, en plena madrugada, una fuerte tormenta de nieve obstaculiza la línea férrea por donde circula el Orient Express. Procedente de la exótica Estambul, en él viaja el detective Hércules Poirot...",
+				"/img/books/asesinatoEnOrienteExpress.jpg", 1974);
+
 		b19.getGenders().add(g1);
 		b19.getGenders().add(g5);
 		bookRepository.save(b19);
-		
-		
-		Book b20 = new Book("La cumbre escarlata","Nancy Holder","Ambientada en el siglo XIX, en la remota y montañosa región de Cumbria, al norte de Inglaterra, La cumbre escarlata sigue a la joven escritora Edith Cushing, quien descubre que su nuevo y encantador esposo, Sir Thomas Sharpe, no es quien parece ser...",
-				"/img/books/laCumbreEscarlata.jpg",2015);
-		
+
+		Book b20 = new Book("La cumbre escarlata", "Nancy Holder",
+				"Ambientada en el siglo XIX, en la remota y montañosa región de Cumbria, al norte de Inglaterra, La cumbre escarlata sigue a la joven escritora Edith Cushing, quien descubre que su nuevo y encantador esposo, Sir Thomas Sharpe, no es quien parece ser...",
+				"/img/books/laCumbreEscarlata.jpg", 2015);
+
 		b20.getGenders().add(g2);
 		b20.getGenders().add(g5);
 		b20.getGenders().add(g1);
 		bookRepository.save(b20);
 
-		
+		Book b21 = new Book("Arthas: El Ascenso de El Rey Exánime", "Christie Golden",
+				"Es una entidad de poder incalculable y maldad sin parangón; su gélida alma ha sido consumida totalmente por sus planes de destruir toda lo que está vivo. Pero esto no siempre fue así. Mucho antes de que su alma se fundiera con...",
+				"/img/books/Arthas.jpg", 2010);
+
+		b21.getGenders().add(g6);
+		b21.getGenders().add(g8);
+		b21.getGenders().add(g1);
+		bookRepository.save(b21);
+
 		// Test Data Show
 		Show sh1 = new Show("The Big Bang Theory", "", "",
 				"La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.",
 				"/img/the_big_bang_theroy.jpg", "https://www.youtube.com/embed/_uQXxvZ3afQ", 2007);
+		
+		sh1.getGenders().add(g4);
+		sh1.getGenders().add(g10);
 		showRepository.save(sh1);
 
-		for (int x = 2; x <= 100; x++) {
-			sh1 = new Show("The Big Bang Theory " + x, "", "",
-					"La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.",
-					"/img/the_big_bang_theroy.jpg", "https://www.youtube.com/embed/_uQXxvZ3afQ", 2007);
-			sh1.getGenders().add(g1);
-			showRepository.save(sh1);
-		}
+		
+		Show sh2 = new Show("Narcos","Pedro Pascal, Wagner Moura, Boyd Holbrook","Carlo Bernard, Chris Brancato, Doug Miro",
+				 "En esta exitosa serie nos adentraremos en la vida de Pablo Escobar, el lider de la droga de Colombia en los años 80 que aterrorizó al país durante años. Héroe para algunos, monstruo para otros, esta serie cuenta su historia lo mas fielmente posible",
+				 "/img/shows/narcos.jpg","https://www.youtube.com/embed/U7elNhHwgBU",2015);
+		
+		sh2.getGenders().add(g6);
+		sh2.getGenders().add(g11);
+		showRepository.save(sh2);
+		
+		
+		Show sh3 = new Show("Friends","Jennifer Aniston, Courteney Cox, Lisa Kudrow","David Crane, Marta Kauffman","En esta exitosa serie viviremos las divertidas desventuras de seis veinteañeros que se enfrentan a los obstáculos del trabajo, la vida y el amor en los 90 en Manhattan.",
+				"/img/shows/friends.jpg","https://www.youtube.com/embed/V5hOm8_3mJA",1994);
+			
+		sh3.getGenders().add(g4);
+		sh3.getGenders().add(g3);
+		showRepository.save(sh3);
+		
+		Show sh4 = new Show("Your lie in april","Natsuki Hanae, Risa Taneda, Ayane Sakura","Kyohei Ishiguro","Your lie in April trata de un prodigio del piano que no puede escuchar su música después de haber sufrido un trauma. Un día, a Kousei le presentan a una violinista llamada Kaori Miyazono. A pesar de que su primera impresión de ella fue terrible...",
+				"/img/shows/yourLieInAbril.jpg","https://www.youtube.com/embed/3aL0gDZtFbE",2014);
+			
+		
+		sh4.getGenders().add(g12);
+		sh4.getGenders().add(g7);
+		sh4.getGenders().add(g3);
+		showRepository.save(sh4);
+		
+		
+		
+		Show sh5 = new Show("Walking dead"," Andrew Lincoln, Norman Reedus, Melissa McBride","Frank Darabont",
+			"Una serie americana en torno al drama, el terror y la ciencia ficción que narra cómo un grupo de personajes intenta sobrevivir en un mundo devastado por el apocalípsis zombie. La trama arranca cuando el protagonista, el sheriff Rick Grimes, se despierta en un hospital tras estar varios…",
+			"/img/shows/theWalkingDead.jpg","https://www.youtube.com/embed/R1v0uFms68U ",2010);
+		
+		sh5.getGenders().add(g2);
+		sh5.getGenders().add(g1);
+		sh5.getGenders().add(g6);
+		sh5.getGenders().add(g13);
+		showRepository.save(sh5);
+		
+		Show sh6 = new Show("Vikingos"," Gustaf Skarsgård, Katheryn Winnick, Alexander Ludwig","Michael Hirst","La serie está basada en los relatos semilegendarios de Ragnar Lodbrok, reconocido como uno de los primeros reyes de Suecia y Dinamarca, durante el siglo VIII.",
+				"/img/shows/vkingos.jpg","https://www.youtube.com/embed/5aASH8HMJbo ",2013);
+		
+		sh6.getGenders().add(g11);
+		sh6.getGenders().add(g6);
+		sh6.getGenders().add(g1);
+		showRepository.save(sh6);
+		
+		
+		Show sh7 = new Show("One Tree Hill","Mark Schwahn","Chad Michael Murray, James Lafferty, Hilarie Burton","La serie narraba la historia de un grupo de jóvenes y sus familias en un pueblo pequeño llamado Tree Hill, a través de la escuela secundaria y después de la universidad.",
+				"/img/shows/oneTreeHill.jpg","https://www.youtube.com/embed/noDPlG88grk",2003);
+		
+		sh7.getGenders().add(g3);
+		showRepository.save(sh7);
+		
+		Show sh8 = new Show("Once upon a time","Adam Horowitz, Edward Kitsis","Ginnifer Goodwin, Jennifer Morrison, Lana Parrilla","La serie sigue a varios personajes de cuentos de hadas que fueron transportados al mundo real y robaron sus recuerdos originales mediante una poderosa maldición.",
+				"/img/shows/onceUponATime.jpg","https://www.youtube.com/embed/Rga4rp4j5TY",2011);
+		
+		sh8.getGenders().add(g1);
+		sh8.getGenders().add(g3);
+		sh8.getGenders().add(g3);
+		showRepository.save(sh8);
+		
+		
+		
+		
+		
+		
 
 		// Test Data Lists
 		Lists l1 = new Lists("Mi Lista Molona");
@@ -625,7 +693,7 @@ public class DatabaseInformationLoader {
 		pf3.setUser(u2);
 		pointFilmRepository.save(pf3);
 
-		PointFilm pf4 = new PointFilm((double) 4.5);
+		PointFilm pf4 = new PointFilm((double) 5);
 		pf4.setFilm(f1);
 		pf4.setUser(u3);
 		pointFilmRepository.save(pf4);
