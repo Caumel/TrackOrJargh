@@ -274,7 +274,10 @@ public class PageController {
 
 		model.addAttribute("totalPoints", points);
 		model.addAttribute("userPoints", userPoints);
-
+		
+		model.addAttribute("contentRelation", filmRepository.findFilmsRelationsById(film.getId(), new PageRequest(0, 8)));
+		model.addAttribute("iconFilmShow", true);
+		
 		return "contentProfile";
 	}
 
@@ -334,7 +337,10 @@ public class PageController {
 
 		model.addAttribute("totalPoints", points);
 		model.addAttribute("userPoints", userPoints);
-
+		
+		model.addAttribute("contentRelation", showRepository.findShowsRelationsById(show.getId(), new PageRequest(0, 8)));
+		model.addAttribute("iconFilmShow", true);
+		
 		return "contentProfile";
 	}
 
@@ -395,6 +401,9 @@ public class PageController {
 		model.addAttribute("totalPoints", points);
 		model.addAttribute("userPoints", userPoints);
 
+		model.addAttribute("contentRelation", bookRepository.findBooksRelationsById(book.getId(), new PageRequest(0, 8)));
+		model.addAttribute("iconBook", true);
+		
 		return "contentProfile";
 	}
 

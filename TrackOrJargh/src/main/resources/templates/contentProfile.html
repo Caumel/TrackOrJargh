@@ -148,7 +148,48 @@
 	{{/userLogged}} <!-- #call-to-action --> <!--==========================
                   Contact Section
                 ============================-->
-	<section id="contact" class="section-bg wow fadeInUp">
+
+	<section id="portfolio" class="section-bg wow fadeInUp">
+		<div class="container">
+
+			<div class="section-header">
+				<h3>
+					<i class="{{#iconFilmShow}}ion-ios-film-outline{{/iconFilmShow}}{{#iconBook}}ion-ios-book-outline{{/iconBook}}"></i> Contenido Relacionado
+				</h3>
+			</div>
+
+			{{^contentRelation}}
+			<p class="text-center">No hay contenido relacionado.</p>
+			{{/contentRelation}}
+			
+			<div id="elements" class="row ">
+				{{#contentRelation}}
+				<div
+					class="col-lg-3 col-md-3 portfolio-item filter-app wow fadeInUp">
+					<div class="portfolio-wrap">
+						<figure style="background-image: url('{{image}}');">
+							<p class="textPortfolio">{{synopsis}}</p>
+						</figure>
+
+						<div class="portfolio-info">
+							<h4>
+								<a href="{{url}}{{name}}">{{name}}</a>
+							</h4>
+							<p>{{year}}</p>
+						</div>
+					</div>
+				</div>
+				{{/contentRelation}}
+			</div>
+
+		</div>
+	</section>
+
+	<!-- #contact --> <!-- #call-to-action --> <!--==========================
+                  Contact Section
+                ============================-->
+
+	<section id="contact" class="wow fadeInUp">
 		<div class="container">
 
 			<div class="section-header">
@@ -158,7 +199,7 @@
 			</div>
 
 			{{^comments}}
-			<p class="text-center">Esta película no tiene comentarios.</p>
+			<p class="text-center">{{name}} aún no tiene comentarios.</p>
 			{{/comments}}
 
 			<div class="row contact-info">

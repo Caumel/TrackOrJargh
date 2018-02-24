@@ -30,6 +30,11 @@ public interface BookRepository extends JpaRepository<Book, Long>{
     		nativeQuery = true)
     Page<Book> findBooksByGender(String gender, Pageable pageable);
     
+    @Query(value = "SELECT BOOK.* FROM BOOK_GENDERS INNER JOIN BOOK ON BOOK_GENDERS.BOOKS_ID=BOOK.ID WHERE BOOK_GENDERS.GENDERS_ID IN (SELECT GENDERS_ID FROM FILM_GENDERS WHERE FILMS_ID = ?1) AND BOOK.ID != ?1 \n-- #pageable\n",
+    		countQuery = "SELECT COUNT(BOOK.*) FROM BOOK_GENDERS INNER JOIN BOOK ON BOOK_GENDERS.BOOKS_ID=BOOK.ID WHERE BOOK_GENDERS.GENDERS_ID IN (SELECT GENDERS_ID FROM FILM_GENDERS WHERE FILMS_ID = ?1) AND BOOK.ID != ?1",
+    		nativeQuery = true)
+    Page<Book> findBooksRelationsById(long id, Pageable pageable);
+    
 	Book findById(Long id);
 	Book findByName(String name);
 }

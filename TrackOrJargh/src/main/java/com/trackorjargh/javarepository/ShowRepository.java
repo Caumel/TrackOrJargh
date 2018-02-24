@@ -28,6 +28,11 @@ public interface ShowRepository extends JpaRepository<Show, Long>{
     		nativeQuery = true)
     Page<Show> findShowsByGender(String gender, Pageable pageable);
     
+    @Query(value = "SELECT SHOW.* FROM SHOW_GENDERS INNER JOIN SHOW ON SHOW_GENDERS.SHOWS_ID=SHOW.ID WHERE SHOW_GENDERS.GENDERS_ID IN (SELECT GENDERS_ID FROM FILM_GENDERS WHERE FILMS_ID = ?1) AND SHOW.ID != ?1 \n-- #pageable\n",
+    		countQuery = "SELECT COUNT(SHOW.*) FROM SHOW_GENDERS INNER JOIN SHOW ON SHOW_GENDERS.SHOWS_ID=SHOW.ID WHERE SHOW_GENDERS.GENDERS_ID IN (SELECT GENDERS_ID FROM FILM_GENDERS WHERE FILMS_ID = ?1) AND SHOW.ID != ?1",
+    		nativeQuery = true)
+    Page<Show> findShowsRelationsById(long id, Pageable pageable);
+    
 	Page<Show> findByNameContainingIgnoreCase(String name, Pageable pageable);	
 	Show findById(Long id);
 	Show findByName(String name);

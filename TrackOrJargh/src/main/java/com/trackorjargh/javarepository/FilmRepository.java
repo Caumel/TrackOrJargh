@@ -27,6 +27,11 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
     		nativeQuery = true)
     Page<Film> findFilmsByGender(String gender, Pageable pageable);
     
+    @Query(value = "SELECT FILM.* FROM FILM_GENDERS INNER JOIN FILM ON FILM_GENDERS.FILMS_ID=FILM.ID WHERE FILM_GENDERS.GENDERS_ID IN (SELECT GENDERS_ID FROM FILM_GENDERS WHERE FILMS_ID = ?1) AND FILM.ID != ?1 \n-- #pageable\n",
+    		countQuery = "SELECT COUNT(FILM.*) FROM FILM_GENDERS INNER JOIN FILM ON FILM_GENDERS.FILMS_ID=FILM.ID WHERE FILM_GENDERS.GENDERS_ID IN (SELECT GENDERS_ID FROM FILM_GENDERS WHERE FILMS_ID = ?1) AND FILM.ID != ?1",
+    		nativeQuery = true)
+    Page<Film> findFilmsRelationsById(long id, Pageable pageable);
+    
 	
 	Page<Film> findByNameContainingIgnoreCase(String name, Pageable pageable);
 	Film findByName(String name);
