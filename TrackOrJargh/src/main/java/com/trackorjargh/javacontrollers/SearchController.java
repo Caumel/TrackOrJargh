@@ -45,6 +45,7 @@ public class SearchController {
 			model.addAttribute("searchGende", true);
 		}
 			
+		model.addAttribute("search", name);
 		model.addAttribute("searchActive", true);
 		model.addAttribute("content", films);
 		model.addAttribute("typeFilm", true);
@@ -75,6 +76,7 @@ public class SearchController {
 			model.addAttribute("searchGende", true);
 		}
 		
+		model.addAttribute("search", name);
 		model.addAttribute("searchActive", true);
 		model.addAttribute("content", shows);
 		model.addAttribute("typeShow", true);
@@ -105,6 +107,7 @@ public class SearchController {
 			model.addAttribute("searchGende", true);
 		}
 		
+		model.addAttribute("search", name);
 		model.addAttribute("searchActive", true);
 		model.addAttribute("content", books);		
 		model.addAttribute("typeBook", true);
