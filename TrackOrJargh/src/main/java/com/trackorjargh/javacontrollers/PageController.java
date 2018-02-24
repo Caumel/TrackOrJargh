@@ -594,7 +594,7 @@ public class PageController {
 		Film film = filmRepository.findByName(name);
 		redir.addFlashAttribute("adminFilm", true);
 		redir.addFlashAttribute("film", film);
-		redir.addFlashAttribute("genders", genderRepository.findByFilms(film));
+		redir.addFlashAttribute("genres", genderRepository.findByFilms(film));
 		redir.addFlashAttribute("genresNotInFilm", genderRepository.findByNotInFilm(film.getId()));
 
 		return modelAndView;
@@ -607,7 +607,7 @@ public class PageController {
 		Show show = showRepository.findByName(name);
 		redir.addFlashAttribute("adminShow", true);
 		redir.addFlashAttribute("show", show);
-		redir.addFlashAttribute("genders", genderRepository.findByShows(show));
+		redir.addFlashAttribute("genres", genderRepository.findByShows(show));
 		redir.addFlashAttribute("genresNotInShow", genderRepository.findByNotInShow(show.getId()));
 
 		return modelAndView;
@@ -620,7 +620,7 @@ public class PageController {
 		Book book = bookRepository.findByName(name);
 		redir.addFlashAttribute("adminBook", true);
 		redir.addFlashAttribute("book", book);
-		redir.addFlashAttribute("genders", genderRepository.findByBooks(book));
+		redir.addFlashAttribute("genres", genderRepository.findByBooks(book));
 		redir.addFlashAttribute("genresNotInBook", genderRepository.findByNotInBook(book.getId()));
 
 		return modelAndView;
@@ -662,16 +662,21 @@ public class PageController {
 	public String adminFilm(Model model, @RequestParam String name, @RequestParam String newName,
 			@RequestParam Optional<Boolean> confirmDelete, @RequestParam Optional<String> deleteFilm,
 			@RequestParam String actors, @RequestParam String directors, @RequestParam String imageFilm,
-			@RequestParam Optional<String[]> genreContent, @RequestParam Optional<String[]> newGenres) { // AQUI
+			@RequestParam Optional<String[]> genreContent, @RequestParam Optional<String[]> newGenres,
+			@RequestParam String synopsis, @RequestParam String trailer, @RequestParam String year) { // AQUI
 		Film film = filmRepository.findByName(name);
 		if (confirmDelete.isPresent() && confirmDelete.get()) {
-			if (name.equals(deleteFilm)) {
+			if (name.equals(deleteFilm.get())) {
 
 			}
 		} else {
 			film.setName(newName);
 			film.setActors(actors);
 			film.setDirectors(directors);
+			film.setSynopsis(synopsis);
+			film.setTrailer(trailer);
+			int yearInt = Integer.parseInt(year);
+			film.setYear(yearInt);
 		}
 		if (genreContent.isPresent()) {
 			for (String genre : genreContent.get()) {
@@ -691,18 +696,23 @@ public class PageController {
 
 	@RequestMapping("/adminSerie")
 	public String adminShow(Model model, @RequestParam String name, @RequestParam String newName,
-			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteShow, @RequestParam String actors,
-			@RequestParam String directors, @RequestParam String imageShow,
-			@RequestParam Optional<String[]> genreContent, @RequestParam Optional<String[]> newGenres) { // Y AQUI
+			@RequestParam Optional<Boolean> confirmDelete, @RequestParam Optional<String> deleteShow,
+			@RequestParam String actors, @RequestParam String directors, @RequestParam String imageShow,
+			@RequestParam Optional<String[]> genreContent, @RequestParam Optional<String[]> newGenres,
+			@RequestParam String synopsis, @RequestParam String trailer, @RequestParam String year) { // Y AQUI
 		Show show = showRepository.findByName(name);
 		if (confirmDelete.isPresent() && confirmDelete.get()) {
-			if (name.equals(deleteShow)) {
+			if (name.equals(deleteShow.get())) {
 
 			}
 		} else {
 			show.setName(newName);
 			show.setActors(actors);
 			show.setDirectors(directors);
+			show.setSynopsis(synopsis);
+			show.setTrailer(trailer);
+			int yearInt = Integer.parseInt(year);
+			show.setYear(yearInt);
 		}
 		if (genreContent.isPresent()) {
 			for (String genre : genreContent.get()) {
@@ -722,17 +732,21 @@ public class PageController {
 
 	@RequestMapping("/adminLibro")
 	public String adminBook(Model model, @RequestParam String name, @RequestParam String newName,
-			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteBook,
+			@RequestParam Optional<Boolean> confirmDelete, @RequestParam Optional<String> deleteBook,
 			@RequestParam String authors, @RequestParam String imageBook, @RequestParam Optional<String[]> genreContent,
-			@RequestParam Optional<String[]> newGenres) { // Y AQUI
+			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String trailer,
+			@RequestParam String year) { // Y AQUI
 		Book book = bookRepository.findByName(name);
 		if (confirmDelete.isPresent() && confirmDelete.get()) {
-			if (name.equals(deleteBook)) {
+			if (name.equals(deleteBook.get())) {
 
 			}
 		} else {
 			book.setName(newName);
 			book.setAuthors(authors);
+			book.setSynopsis(synopsis);
+			int yearInt = Integer.parseInt(year);
+			book.setYear(yearInt);
 		}
 		if (genreContent.isPresent()) {
 			for (String genre : genreContent.get()) {
@@ -754,6 +768,38 @@ public class PageController {
 	public String newContent(Model model) {
 		model.addAttribute("genres", genderRepository.findAll());
 		return "newContent";
+	}
+
+	@RequestMapping("/nuevaPelicula")
+	public String newFilm(@RequestParam String imageFilm, @RequestParam String newName, @RequestParam String actors,
+			@RequestParam String directors, @RequestParam Optional<String[]> newGenres, @RequestParam String synopsis,
+			@RequestParam String trailer, @RequestParam String year) {
+		int yearInt = Integer.parseInt(year);
+		Film film = new Film(newName, actors, directors, synopsis, "", trailer, yearInt);
+		filmRepository.save(film);
+		String name = film.getName();
+		return "redirect:/pelicula/" + name;
+	}
+
+	@RequestMapping("/nuevaSerie")
+	public String newShow(@RequestParam String imageShow, @RequestParam String newName, @RequestParam String actors,
+			@RequestParam String directors, @RequestParam Optional<String[]> newGenres, @RequestParam String synopsis,
+			@RequestParam String trailer, @RequestParam String year) {
+		int yearInt = Integer.parseInt(year);
+		Show show = new Show(newName, actors, directors, synopsis, "", trailer, yearInt);
+		showRepository.save(show);
+		String name = show.getName();
+		return "redirect:/serie/" + name;
+	}
+
+	@RequestMapping("/nuevoLibro")
+	public String newBook(@RequestParam String imageBook, @RequestParam String newName, @RequestParam String authors,
+			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String year) {
+		int yearInt = Integer.parseInt(year);
+		Book book = new Book(newName, authors, synopsis, imageBook, yearInt);
+		bookRepository.save(book);
+		String name = book.getName();
+		return "redirect:/libro/" + name;
 	}
 
 }

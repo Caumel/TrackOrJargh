@@ -100,6 +100,12 @@
                                 class="form-control" id="actors" name="actors" value="{{film.actors}}"> <label
                                 for="directors">Directores</label> <input type="text" class="form-control" id="actors"
                                 name="directors" value="{{film.directors}}"> 
+                             <label for="synopsis">Sinopsis:</label>
+                             <textarea type="text" class="form-control" rows="5" name="synopsis" value="{{film.synopsis}}" id="synopsis" placeholder="Sinopsis"></textarea>
+                             <label for="trailer">Trailer</label>
+                             <input type="text" class="form-control" id="trailer" name="trailer" value="{{film.trailer}}" placeholder="Trailer">
+                             <label for="year">Año</label>
+                             <input type="text" class="form-control" id="year" name="year" value="{{film.year}}" placeholder="Año">
                             {{#genres}} 
                             <label for="{{name}}Genre">{{name}}</label>
                             <input class="mr-1" id="{{name}}Genre" type="checkbox" value="{{name}}" name="genreContent" checked>
@@ -123,7 +129,7 @@
                         <button type="submit" name="targetShow">Enviar</button>
                     </form>
                     {{/adminShow}} {{#adminShow}}
-                    <form action="/adminPelicula" method="post">
+                    <form action="/adminSerie" method="post">
                         <label for="show">Película a modificar:</label> <input type="text" class="form-control"
                                                                                id="show" placeholder="Serie a modificar" name="name" value="{{show.name}}" readonly>
                         <div class="form-group pt-3">
@@ -139,6 +145,12 @@
                                 class="form-control" id="actors" name="actors" value="{{show.actors}}"> <label
                                 for="directors">Directores</label> <input type="text" class="form-control" id="actors"
                                 name="directors" value="{{show.directors}}">
+                             <label for="synopsis">Sinopsis:</label>
+                             <textarea type="text" class="form-control" rows="5" name="synopsis" value="{{show.synopsis}}" id="synopsis" placeholder="Sinopsis"></textarea>
+                             <label for="trailer">Trailer</label>
+                             <input type="text" class="form-control" id="trailer" name="trailer" value="{{show.trailer}}" placeholder="Trailer">
+                             <label for="year">Año</label>
+                             <input type="text" class="form-control" id="year" name="year" value="{{show.year}}" placeholder="Año">
                             {{#genres}} 
                             <label for="{{name}}Genre">{{name}}</label>
                             <input class="mr-1" id="{{name}}Genre" type="checkbox" value="{{name}}" name="genreContent" checked>
@@ -176,7 +188,11 @@
                                 Libro</label><input type="checkbox" class="form-check-input ml-2" name="confirmDelete"> <input
                                 type="text" class="form-control" id="deleteBook"
                                 placeholder="Escribe el nombre del libro de nuevo para eliminar"> <label for="authors">Autor/es</label> <input type="text"
-                                class="form-control" id="authors" name="authors" value="{{book.authors}}">  
+                                class="form-control" id="authors" name="authors" value="{{book.authors}}"> 
+                             <label for="synopsis">Sinopsis:</label>
+                             <textarea type="text" class="form-control" rows="5" name="synopsis" value="{{book.synopsis}}" id="synopsis" placeholder="Sinopsis"></textarea>
+                             <label for="year">Año</label>
+                             <input type="text" class="form-control" id="year" name="year" value="{{book.year}}" placeholder="Año">
                             {{#genres}} 
                             <label for="{{name}}Genre">{{name}}</label>
                             <input class="mr-1" id="{{name}}Genre" type="checkbox" value="{{name}}" name="genreContent" checked>
