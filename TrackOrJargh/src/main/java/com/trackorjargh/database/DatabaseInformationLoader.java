@@ -270,7 +270,7 @@ public class DatabaseInformationLoader {
 				"/img/films/elPadrino.jpg", "https://www.youtube.com/embed/sY1S34973zA", 1972);
 
 		f16.getGenders().add(g11);
-		f16.getGenders().add(g6);
+		f16.getGenders().add(g9);
 		filmRepository.save(f16);
 
 		Film f17 = new Film("La naranja mecánica", " Malcolm McDowell, Patrick Magee, Michael Bates",
@@ -297,6 +297,7 @@ public class DatabaseInformationLoader {
 
 		f19.getGenders().add(g3);
 		f19.getGenders().add(g11);
+		f19.getGenders().add(g9);
 		filmRepository.save(f19);
 
 		Film f20 = new Film("Interestellar", " Matthew McConaughey, Anne Hathaway, Jessica Chastain",
@@ -395,6 +396,7 @@ public class DatabaseInformationLoader {
 				"Los juegos del hambre se desarrolla en un país llamado Panem, lo que es en realidad una civilización postapocalíptica ubicada en lo que antes era América del Norte.",
 				"/img/los_juegos_del_hambre.jpg", 2008);
 		b1.getGenders().add(g1);
+		b1.getGenders().add(g9);
 		bookRepository.save(b1);
 
 		Book b2 = new Book("El retorno del rey", "J.R.R. Tolkien",
@@ -480,6 +482,7 @@ public class DatabaseInformationLoader {
 				"/img/books/elClanDeOsoCavernario.jpg", 1980);
 
 		b10.getGenders().add(g11);
+		b10.getGenders().add(g9);
 		b10.getGenders().add(g1);
 		bookRepository.save(b10);
 
@@ -488,6 +491,7 @@ public class DatabaseInformationLoader {
 				"/img/books/elBosqueDeLosArbolesMuertos.jpg", 2010);
 
 		b11.getGenders().add(g2);
+		b11.getGenders().add(g9);
 		b11.getGenders().add(g3);
 		b11.getGenders().add(g5);
 		bookRepository.save(b11);
@@ -667,8 +671,9 @@ public class DatabaseInformationLoader {
 		sh10.getGenders().add(g10);
 		showRepository.save(sh10);
 
-		Show sh11 = new Show("Dr.Who", "Michael Ryan", "Peter McAllum, Kate Hardy, Richard Clark","Doctor Who es un programa de televisión que trata de las aventuras de un misterioso hombre conocido sólo como el Doctor. El Doctor viaja a través del espacio y el tiempo en una nave llamada TARDIS",
-				"/img/shows/doctorWho.jpg","https://www.youtube.com/embed/SKAOzznX9zA ", 2012);
+		Show sh11 = new Show("Dr.Who", "Michael Ryan", "Peter McAllum, Kate Hardy, Richard Clark",
+				"Doctor Who es un programa de televisión que trata de las aventuras de un misterioso hombre conocido sólo como el Doctor. El Doctor viaja a través del espacio y el tiempo en una nave llamada TARDIS",
+				"/img/shows/doctorWho.jpg", "https://www.youtube.com/embed/SKAOzznX9zA ", 2012);
 
 		sh11.getGenders().add(g1);
 		sh11.getGenders().add(g5);
@@ -676,7 +681,8 @@ public class DatabaseInformationLoader {
 		sh11.getGenders().add(g2);
 		showRepository.save(sh11);
 
-		Show sh12 = new Show("Belzebub", "Shizuka Itô, Katsuyuki Konishi, Takahiro Mizushima", "Nobuhiro Takamoto","La historia trata sobre el delincuente juvenil más fuerte, Oga Tatsumi, quien está en el primer año de la Escuela Ishiyama, la escuela para delincuentes. Pero un día mientras dormía cerca a un río, mira a un hombre flotar en el río, quien de repente se parte...",
+		Show sh12 = new Show("Belzebub", "Shizuka Itô, Katsuyuki Konishi, Takahiro Mizushima", "Nobuhiro Takamoto",
+				"La historia trata sobre el delincuente juvenil más fuerte, Oga Tatsumi, quien está en el primer año de la Escuela Ishiyama, la escuela para delincuentes. Pero un día mientras dormía cerca a un río, mira a un hombre flotar en el río, quien de repente se parte...",
 				"/img/shows/beelzebub.jpg", "https://www.youtube.com/embed/5lyYR7StfrQ", 2011);
 
 		sh12.getGenders().add(g7);
@@ -685,9 +691,7 @@ public class DatabaseInformationLoader {
 		sh12.getGenders().add(g13);
 		showRepository.save(sh12);
 
-		Show sh13 = new Show("Mahouka Koukou no Rettousei", "Yûichi Nakamura, Saori Hayami, Yumi Uchiyama",
-				"Manabu Ono",
-				"La Magia no es algo de las leyendas ni los cuentos de hadas, se convirtió en tecnología desde hace casi un siglo. El proceso mágico ha sido sistematizado y con ayuda de dispositivo llamado CAD, los procesos pueden ser acelerados significativamente y esto ...",
+		Show sh13 = new Show("Mahouka Koukou no Rettousei", "Yûichi Nakamura, Saori Hayami, Yumi Uchiyama","Manabu Ono","La Magia no es algo de las leyendas ni los cuentos de hadas, se convirtió en tecnología desde hace casi un siglo. El proceso mágico ha sido sistematizado y con ayuda de dispositivo llamado CAD, los procesos pueden ser acelerados significativamente y esto ...",
 				"/img/shows/mahouka.jpg", "https://www.youtube.com/embed/U-gkwdGooDU", 2015);
 
 		sh13.getGenders().add(g7);
@@ -738,6 +742,7 @@ public class DatabaseInformationLoader {
 				"/img/shows/fargo.jpg", "https://www.youtube.com/embed/EB4PmbfG4bw", 2014);
 
 		sh18.getGenders().add(g1);
+		sh18.getGenders().add(g9);
 		showRepository.save(sh18);
 
 		Show sh19 = new Show("Los Simpson", " Dan Castellaneta, Nancy Cartwright, Julie Kavner",
@@ -787,7 +792,6 @@ public class DatabaseInformationLoader {
 		sh23.getGenders().add(g1);
 		sh23.getGenders().add(g6);
 		showRepository.save(sh23);
-		
 
 		// Test Data Lists
 		Lists l1 = new Lists("Mi Lista Molona");
@@ -908,25 +912,219 @@ public class DatabaseInformationLoader {
 
 		PointFilm pf6 = new PointFilm((double) 3.9);
 		pf6.setFilm(f3);
-		pf6.setUser(u2);
+		pf6.setUser(u1);
 		pointFilmRepository.save(pf6);
 
 		PointFilm pf7 = new PointFilm((double) 2.3);
 		pf7.setFilm(f4);
-		pf7.setUser(u2);
+		pf7.setUser(u3);
 		pointFilmRepository.save(pf7);
 
-		PointFilm pf8 = new PointFilm((double) 4.2);
+		PointFilm pf8 = new PointFilm((double) 4.3);
 		pf8.setFilm(f5);
 		pf8.setUser(u2);
 		pointFilmRepository.save(pf8);
+		
+		PointFilm pf9 = new PointFilm((double) 4.9);
+		pf9.setFilm(f6);
+		pf9.setUser(u3);
+		pointFilmRepository.save(pf9);
+		
+		PointFilm pf10 = new PointFilm((double) 2.6);
+		pf10.setFilm(f7);
+		pf10.setUser(u1);
+		pointFilmRepository.save(pf10);
+		
+		PointFilm pf11 = new PointFilm((double) 3);
+		pf11.setFilm(f8);
+		pf11.setUser(u1);
+		pointFilmRepository.save(pf11);
+		
+		PointFilm pf12 = new PointFilm((double) 3.5);
+		pf12.setFilm(f9);
+		pf12.setUser(u1);
+		pointFilmRepository.save(pf12);
+
+		PointFilm pf13 = new PointFilm((double) 1);
+		pf13.setFilm(f10);
+		pf13.setUser(u1);
+		pointFilmRepository.save(pf13);
+		
+		PointFilm pf14 = new PointFilm((double) 2);
+		pf14.setFilm(f11);
+		pf14.setUser(u1);
+		pointFilmRepository.save(pf14);
+		
+		PointFilm pf15 = new PointFilm((double) 4);
+		pf15.setFilm(f14);
+		pf15.setUser(u1);
+		pointFilmRepository.save(pf14);
+		
+		PointFilm pf16 = new PointFilm((double) 3);
+		pf16.setFilm(f15);
+		pf16.setUser(u1);
+		pointFilmRepository.save(pf15);
+		
+		PointFilm pf17 = new PointFilm((double) 2);
+		pf17.setFilm(f16);
+		pf17.setUser(u1);
+		pointFilmRepository.save(pf16);
+		
+		PointFilm pf18 = new PointFilm((double) 1.5);
+		pf18.setFilm(f17);
+		pf18.setUser(u1);
+		pointFilmRepository.save(pf17);
+		
+		PointFilm pf19 = new PointFilm((double) 4.4);
+		pf19.setFilm(f18);
+		pf19.setUser(u1);
+		pointFilmRepository.save(pf18);
+		
+		PointFilm pf20 = new PointFilm((double) 4.5);
+		pf20.setFilm(f19);
+		pf20.setUser(u1);
+		pointFilmRepository.save(pf19);
+		
+		PointFilm pf22 = new PointFilm((double) 3.5);
+		pf22.setFilm(f20);
+		pf22.setUser(u1);
+		pointFilmRepository.save(pf22);
+		
+		PointFilm pf21 = new PointFilm((double) 5);
+		pf21.setFilm(f21);
+		pf21.setUser(u1);
+		pointFilmRepository.save(pf21);
+		
+		PointFilm pf24 = new PointFilm((double) 3.4);
+		pf24.setFilm(f12);
+		pf24.setUser(u1);
+		pointFilmRepository.save(pf24);
+		
+		PointFilm pf23 = new PointFilm((double) 2.6);
+		pf23.setFilm(f13);
+		pf23.setUser(u1);
+		pointFilmRepository.save(pf23);
+		
+		
+		
 
 		// Test Data Point Show
-		PointShow ps1 = new PointShow((double) 5);
+		PointShow ps1 = new PointShow((double) 3.5);
 		ps1.setShow(sh1);
 		ps1.setUser(u1);
 		pointShowRepository.save(ps1);
-
+		
+		PointShow ps2 = new PointShow((double) 4.3);
+		ps2.setShow(sh2);
+		ps2.setUser(u1);
+		pointShowRepository.save(ps2);
+		
+		PointShow ps3 = new PointShow((double) 2.4);
+		ps3.setShow(sh3);
+		ps3.setUser(u2);
+		pointShowRepository.save(ps3);
+		
+		PointShow ps4 = new PointShow((double) 4.2);
+		ps4.setShow(sh4);
+		ps4.setUser(u1);
+		pointShowRepository.save(ps4);
+		
+		PointShow ps5 = new PointShow((double) 1.4);
+		ps5.setShow(sh5);
+		ps5.setUser(u3);
+		pointShowRepository.save(ps5);
+		
+		PointShow ps6 = new PointShow((double) 5);
+		ps6.setShow(sh6);
+		ps6.setUser(u1);
+		pointShowRepository.save(ps6);
+		
+		PointShow ps7 = new PointShow((double) 2.7);
+		ps7.setShow(sh7);
+		ps7.setUser(u1);
+		pointShowRepository.save(ps7);
+		
+		PointShow ps8 = new PointShow((double) 2.2);
+		ps8.setShow(sh8);
+		ps8.setUser(u1);
+		pointShowRepository.save(ps8);
+		
+		PointShow ps9 = new PointShow((double) 3.6);
+		ps9.setShow(sh9);
+		ps9.setUser(u1);
+		pointShowRepository.save(ps9);
+		
+		PointShow ps10 = new PointShow((double) 4.5);
+		ps10.setShow(sh10);
+		ps10.setUser(u1);
+		pointShowRepository.save(ps10);
+		
+		PointShow ps11 = new PointShow((double) 4.7);
+		ps11.setShow(sh11);
+		ps11.setUser(u1);
+		pointShowRepository.save(ps11);
+		
+		PointShow ps12 = new PointShow((double) 4);
+		ps12.setShow(sh12);
+		ps12.setUser(u1);
+		pointShowRepository.save(ps12);
+		
+		PointShow ps13 = new PointShow((double) 2.5);
+		ps13.setShow(sh1);
+		ps13.setUser(u1);
+		pointShowRepository.save(ps13);
+		
+		PointShow ps14 = new PointShow((double) 3);
+		ps14.setShow(sh14);
+		ps14.setUser(u1);
+		pointShowRepository.save(ps14);
+		
+		PointShow ps15 = new PointShow((double) 4);
+		ps15.setShow(sh15);
+		ps15.setUser(u1);
+		pointShowRepository.save(ps15);
+		
+		PointShow ps16 = new PointShow((double) 3.6);
+		ps16.setShow(sh16);
+		ps16.setUser(u1);
+		pointShowRepository.save(ps16);
+		
+		PointShow ps17 = new PointShow((double) 4.2);
+		ps17.setShow(sh17);
+		ps17.setUser(u1);
+		pointShowRepository.save(ps17);
+		
+		PointShow ps18 = new PointShow((double) 4.6);
+		ps18.setShow(sh18);
+		ps18.setUser(u1);
+		pointShowRepository.save(ps18);
+		
+		PointShow ps19 = new PointShow((double) 4.9);
+		ps19.setShow(sh19);
+		ps19.setUser(u1);
+		pointShowRepository.save(ps19);
+		
+		PointShow ps20 = new PointShow((double) 5);
+		ps20.setShow(sh20);
+		ps20.setUser(u1);
+		pointShowRepository.save(ps20);
+		
+		PointShow ps21 = new PointShow((double) 3.2);
+		ps21.setShow(sh21);
+		ps21.setUser(u1);
+		pointShowRepository.save(ps21);
+		
+		PointShow ps22 = new PointShow((double) 2.2);
+		ps22.setShow(sh22);
+		ps22.setUser(u1);
+		pointShowRepository.save(ps22);
+		
+		PointShow ps23 = new PointShow((double) 1);
+		ps23.setShow(sh23);
+		ps23.setUser(u1);
+		pointShowRepository.save(ps23);
+		
+		
 		// Test Data Point Book
 		PointBook pb1 = new PointBook((double) 5);
 		pb1.setBook(b1);
