@@ -121,8 +121,11 @@
                                         {{/visibleCarousel}}
                                         {{#listsUser}}
                                         <div id="CreateList" class="form-control ">
-                                            <a id="CreatedLists">{{name}}<i class="ion-trash-a text-right"></i> <i
-                                                    class="ion-edit text-rigth"></i></a>
+                                            <a id="CreatedLists">{{name}}<i class="ion-trash-a text-right"></i></a>
+                                            {{#printList}}
+                                            <br/>
+                                            <a href="{{url}}{{name}}">{{name}}</a><i id="{{name}}" name="deleteContent" class="ion-trash-a text-right"></i>
+                                            {{/printList}}
                                         </div>
                                         {{/listsUser}}
                                         <button id="plusButton" class="btn btn-login" type="button" data-toggle="collapse"

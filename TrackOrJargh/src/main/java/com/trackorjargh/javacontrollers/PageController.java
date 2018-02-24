@@ -30,6 +30,7 @@ import com.trackorjargh.javaclass.Lists;
 import com.trackorjargh.javaclass.PointBook;
 import com.trackorjargh.javaclass.PointFilm;
 import com.trackorjargh.javaclass.PointShow;
+import com.trackorjargh.javaclass.PreparateListsShow;
 import com.trackorjargh.javaclass.PreparateMessageShow;
 import com.trackorjargh.javaclass.RandomGenerate;
 import com.trackorjargh.javaclass.Show;
@@ -422,8 +423,12 @@ public class PageController {
 			}
 			userRepository.save(userComponent.getLoggedUser());
 		}
-
-		model.addAttribute("listsUser", listsRepository.findByUser(userComponent.getLoggedUser()));
+		
+		List<PreparateListsShow> listsUser = new LinkedList<>();
+		for (Lists list : listsRepository.findByUser(userComponent.getLoggedUser()))
+			listsUser.add(new PreparateListsShow(list.getName(), list.getFilms(), list.getBooks(), list.getShows()));
+		
+		model.addAttribute("listsUser", listsUser);
 
 		if (userComponent.getLoggedUser().getRoles().size() == 3) {
 			model.addAttribute("isAdmin", true);
