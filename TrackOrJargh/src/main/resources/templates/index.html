@@ -31,6 +31,9 @@
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/styleIndex.css" rel="stylesheet">
 
+<!-- Load c3.css -->
+<link href="/css/c3.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -78,40 +81,6 @@
 	</section>
 	<!-- #intro -->
 
-	<main id="main"> <!--==========================
-              Featured Services Section
-            ============================-->
-	<section id="featured-services">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-lg-4 box">
-					<i class="ion-ios-film-outline"></i>
-					<h4 class="title">
-						<a href="/peliculas">Películas</a>
-					</h4>
-					<p class="description">Entra y descubre toda nuestra variedad de películas donde podrás encontrar tanto comentarios como valoraciones de nuestra comunidad. </p>
-				</div>
-
-				<div class="col-lg-4 box box-bg">
-					<i class="ion-ios-monitor-outline"></i>
-					<h4 class="title">
-						<a href="/series">Series</a>
-					</h4>
-					<p class="description">Toda una amplia gama de series de los mayores proveedores a tu disposición para que puedas comentar y valorarlas.</p>
-				</div>
-
-				<div class="col-lg-4 box">
-					<i class="ion-ios-book-outline"></i>
-					<h4 class="title">
-						<a href="/libros">Libros</a>
-					</h4>
-					<p class="description">Y por si pensabas que para los más lectores no había nada, también tenemos un apartado especial para ellos.</p>
-				</div>
-
-			</div>
-		</div>
-	</section>
 	<!-- #featured-services --> <!--==========================
               Interactions Section
             ============================-->
@@ -119,103 +88,29 @@
 		<div class="container">
 
 			<header class="section-header">
-				<h3>Interacciones</h3>
-				<p>Aquí puedes encontrar los mensajes recibidos de otros
-					usuarios, así como las alertas de tu contenido preferido y las
-					respuestas a tus comentarios.</p>
+				<h3><i class="fa fa-line-chart" aria-hidden="true"></i> Gráficos</h3>
 			</header>
 
 			<div class="row interactions-cols">
 
 				<div class="col-md-6 wow fadeInUp">
+					<h4 class="text-center">Películas mejor valoradas</h4>
 					<div class="interactions-col">
-						<div class="img">
-							<img src=" /img/notification_index.jpg" alt="" class="img-fluid">
-							<div class="icon">
-								<i class="ion-ios-bell-outline"></i>
-							</div>
-						</div>
-						<h2 class="title">
-							<button id="notificationButton" class="btn btn-primary"
-								type="button" data-toggle="collapse"
-								data-target="#collapseNotification" aria-expanded="false"
-								aria-controls="collapseNotification">Notificaciones</button>
-							<div class="collapse" id="collapseNotification">
-								<div class="card card-body">
-								<table class="table">
-									  <thead>
-									    <tr>
-									      <th scope="col">Notificacion</th>
-									      <th scope="col">Asunto</th>
-									      
-									    </tr>
-									  </thead>
-									  <tbody>
-									    <tr>
-									      <th scope="row">1</th>
-									      <td>NUEVO 2x05: Black Lightning</td>
-									    </tr>
-									    <tr>
-									      <th scope="row">2</th>
-									      <td>ESDLA: 18.02.18 3er libro </td>
-									    </tr>
-									    <tr>
-									      <th scope="row">3</th>
-									      <td>Novedad: Origen </td>
-									    </tr>
-									  </tbody>
-									</table>	
-								</div>
-							</div>
-						</h2>
-						<p id="hideNotification"></p>
+						<div id="bestFilmsPoints"></div>
 					</div>
 				</div>
 
-				<div class="col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+				<div class="col-md-6 wow fadeInUp">
+					<h4 class="text-center">Series mejor valoradas</h4>
 					<div class="interactions-col">
-						<div class="img">
-							<img src=" /img/message_index.jpg" alt="" class="img-fluid">
-							<div class="icon">
-								<i class="ion-ios-email-outline"></i>
-							</div>
-						</div>
-						<h2 class="title">
-							<button id="messageButton" class="btn btn-primary" type="button"
-								data-toggle="collapse" data-target="#collapseMessage"
-								aria-expanded="false" aria-controls="collapseMessage">Mensajes
-
-							</button>
-							<div class="collapse" id="collapseMessage">
-								<div class="card card-body">
-									<table class="table">
-										  <thead>
-										    <tr>
-										      <th scope="col">Mensaje</th>
-										      <th scope="col">Asunto</th>
-										      
-										    </tr>
-										  </thead>
-										  <tbody>
-										    <tr>
-										      <th scope="row">1</th>
-										      <td>Mira esta peli</td>
-										    </tr>
-										    <tr>
-										      <th scope="row">2</th>
-										      <td>Acabe la serie </td>
-										    </tr>
-										    <tr>
-										      <th scope="row">3</th>
-										      <td>has leido ESDLA?</td>
-										    </tr>
-										  </tbody>
-									</table>
-								</div>
-
-							</div>
-						</h2>
-						<p id="hideMessages"></p>
+						<div id="bestShowsPoints"></div>
+					</div>
+				</div>
+				
+				<div class="col-md-6 wow fadeInUp">	
+					<h4 class="text-center">Libros mejor valorados</h4>			
+					<div class="interactions-col">
+						<div id="bestBooksPoints"></div>
 					</div>
 				</div>
 
@@ -245,10 +140,16 @@
 	<script src="/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
 	<script src="/js/jsIndex.js"></script>
 	<!-- Contact Form JavaScript File -->
-	<script src="/contactform/contactform.js"></script>
+	<script src="/contactform/contactform.js"></script>	
+	<!-- Load d3.js and c3.js -->
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src="/js/c3.min.js"></script>
 
 	<!-- Template Main Javascript File -->
 	<script src="/js/main.js"></script>
+	<script src="/js/grafics.js"></script>
+	
+
 
 </body>
 </html>

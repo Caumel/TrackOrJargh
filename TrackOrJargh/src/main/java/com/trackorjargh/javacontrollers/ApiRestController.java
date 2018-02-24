@@ -1,9 +1,11 @@
 package com.trackorjargh.javacontrollers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,14 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.trackorjargh.component.UserComponent;
+import com.trackorjargh.grafics.Grafics;
 import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.Lists;
+import com.trackorjargh.javaclass.PointBook;
+import com.trackorjargh.javaclass.PointFilm;
+import com.trackorjargh.javaclass.PointShow;
 import com.trackorjargh.javaclass.Show;
 import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.FilmRepository;
 import com.trackorjargh.javarepository.ListsRepository;
+import com.trackorjargh.javarepository.PointBookRepository;
+import com.trackorjargh.javarepository.PointFilmRepository;
+import com.trackorjargh.javarepository.PointShowRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
 
@@ -29,9 +38,15 @@ public class ApiRestController {
 	@Autowired
 	private FilmRepository filmRepository;
 	@Autowired
+	private PointFilmRepository pointFilmRepository;
+	@Autowired
 	private BookRepository bookRepository;
 	@Autowired
+	private PointShowRepository pointShowRepository;
+	@Autowired
 	private ShowRepository showRepository;
+	@Autowired
+	private PointBookRepository pointBookRepository;
 	@Autowired
 	private ListsRepository listsRepository;
 	@Autowired
@@ -62,11 +77,86 @@ public class ApiRestController {
 	public Page<Film> getBestPointPeliculas(Pageable page) {
 		return filmRepository.findBestPointFilm(page);
 	}
+	
+	@RequestMapping(value = "/rest/peliculas/graficomejorvaloradas", method = RequestMethod.GET)
+	public List<Grafics> getBestPointFilms() {
+		List<Film> films = filmRepository.findBestPointFilm(new PageRequest(0, 10)).getContent();
+		List<PointFilm> listPoints;
+		List<Grafics> graficFilms = new ArrayList<>();
+		double points;
+		
+		for(Film film : films) {
+			points = 0;
+			
+			listPoints = pointFilmRepository.findByFilm(film);
+			
+			if (listPoints.size() > 0) {
+				for (PointFilm pf : listPoints)
+					points += pf.getPoints();
+				points /= listPoints.size();
+			}
+			
+			graficFilms.add(new Grafics(film.getName(), points));
+		}
+		
+		
+		return graficFilms;
+	}
 
 	@RequestMapping(value = "/rest/libros/mejorvalorados", method = RequestMethod.GET)
 	@JsonView(Book.BasicInformation.class)
 	public Page<Book> getBestPointLibros(Pageable page) {
 		return bookRepository.findBestPointBook(page);
+	}
+	
+	@RequestMapping(value = "/rest/libros/graficomejorvaloradas", method = RequestMethod.GET)
+	public List<Grafics> getBestPointBooks() {
+		List<Book> books = bookRepository.findBestPointBook(new PageRequest(0, 10)).getContent();
+		List<PointBook> listPoints;
+		List<Grafics> graficShows = new ArrayList<>();
+		double points;
+		
+		for(Book book : books) {
+			points = 0;
+			
+			listPoints = pointBookRepository.findByBook(book);
+			
+			if (listPoints.size() > 0) {
+				for (PointBook sb : listPoints)
+					points += sb.getPoints();
+				points /= listPoints.size();
+			}
+			
+			graficShows.add(new Grafics(book.getName(), points));
+		}
+		
+		
+		return graficShows;
+	}
+	
+	@RequestMapping(value = "/rest/series/graficomejorvaloradas", method = RequestMethod.GET)
+	public List<Grafics> getBestPointShows() {
+		List<Show> shows = showRepository.findBestPointShow(new PageRequest(0, 10)).getContent();
+		List<PointShow> listPoints;
+		List<Grafics> graficShows = new ArrayList<>();
+		double points;
+		
+		for(Show show : shows) {
+			points = 0;
+			
+			listPoints = pointShowRepository.findByShow(show);
+			
+			if (listPoints.size() > 0) {
+				for (PointShow sf : listPoints)
+					points += sf.getPoints();
+				points /= listPoints.size();
+			}
+			
+			graficShows.add(new Grafics(show.getName(), points));
+		}
+		
+		
+		return graficShows;
 	}
 
 	@RequestMapping(value = "/rest/series/mejorvaloradas", method = RequestMethod.GET)
