@@ -60,8 +60,9 @@ function loadContent() {
 
 function addFilmToList(){ 
 	var nameList = $(this).text();
+	var nameFilm = $(this).parents(".portfolio-info").find("[name='nameFilm']").text();
 	
-	alert($(this).parents("input[name='nameFilm']").val());
+	alert("Film: " + nameFilm + " List: " + nameList);
 }
 
 function sleep(miliseconds) {
