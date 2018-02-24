@@ -134,10 +134,22 @@
                                             {{/printList}}
                                         </div>
                                         {{/listsUser}}
+                                        
+                                        {{^listsUser}}
+                                        <p>Aún no ha creado ninguna lista, animate y crea una.</p>
+                                        {{/listsUser}}
+                                        
                                         <button id="plusButton" class="btn btn-login" type="button" data-toggle="collapse"
                                                 data-target="#showAddList" aria-expanded="false" aria-controls="showAddList">
                                             <i class="ion-plus-circled"></i>
                                         </button>
+                                        
+                                        {{#listsUser}}
+                                        <br/>
+                                        <br/>
+                                        <a href="/crearpdflistas">Crear PDF de las listas</a>
+                                        {{/listsUser}}
+                                        
                                         <div class="collapse" id="showAddList">
                                             <input type="text" name="listName"
                                                    tabindex="2" class="form-group form-control" placeholder="Nombre de la lista" value="" />

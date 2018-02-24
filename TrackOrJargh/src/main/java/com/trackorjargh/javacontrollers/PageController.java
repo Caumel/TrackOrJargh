@@ -58,6 +58,7 @@ import com.trackorjargh.javarepository.PointShowRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
 import com.trackorjargh.mail.MailComponent;
+import com.trackorjargh.pdf.PdfCreate;
 
 @Controller
 public class PageController {
@@ -92,6 +93,8 @@ public class PageController {
 	private ForgotPasswordRepository forgotPasswordRepository;
 	@Autowired
 	private ListsRepository listsRepository;
+	@Autowired
+	private PdfCreate pdfCreate;
 
 	@RequestMapping("/")
 	public String serveIndex(Model model) {
@@ -446,6 +449,9 @@ public class PageController {
 				model.addAttribute("isModerator", true);
 			}
 		}
+		
+		//Create PDF
+		pdfCreate.createPdfLists(userComponent.getLoggedUser(), listsRepository.findByUser(userComponent.getLoggedUser()));
 
 		model.addAttribute("myProfile", true);
 		return "userProfile";
