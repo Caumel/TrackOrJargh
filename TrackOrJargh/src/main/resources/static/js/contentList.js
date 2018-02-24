@@ -66,7 +66,11 @@ function addFilmToList(){
 	    url: "/rest/agregarlista/"+nameList+"/"+typePageAddList+"/"+nameFilm,
 	    type: 'PUT',
 	    success: function(result) {
-	    	alert(result);
+	    	if (result == true){
+	    		messagePopUp("Genial! ha sido añadido correctamente a tu lista.", true);
+	    	}else{
+	    		messagePopUpError("Ups, parece que ya pertenece a esa lista, intentelo con otra por favor.", true);
+	    	}
 	    }
 	});
 }
