@@ -433,6 +433,7 @@ public class PageController {
 			}
 		}
 
+		model.addAttribute("myProfile", true);
 		return "userProfile";
 	}
 
