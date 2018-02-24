@@ -15,7 +15,7 @@ import com.trackorjargh.javaclass.Show;
 
 public interface GenderRepository extends JpaRepository<Gender, Long> {
 
-	List<Gender> findByFilms(Film film);
+	List<Gender> findByFilms(Film film);	
 
 	@Query(value = "SELECT * FROM GENDER WHERE ID NOT IN (SELECT GENDERS_ID FROM FILM_GENDERS WHERE FILMS_ID = ?1)", nativeQuery = true)
 	List<Gender> findByNotInFilm(Long id);
