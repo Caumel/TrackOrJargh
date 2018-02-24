@@ -30,7 +30,7 @@ public interface GenderRepository extends JpaRepository<Gender, Long> {
 	@Query(value = "SELECT * FROM GENDER WHERE ID NOT LIKE (SELECT GENDERS_ID FROM BOOK_GENDERS WHERE BOOKS_ID = ?1)", nativeQuery = true)
 	List<Gender> findByNotInBook(Long id);
 	
-	List<Gender> findByName(String name);
+	Gender findByName(String name);
 	
     @Modifying
     @Transactional
@@ -46,4 +46,6 @@ public interface GenderRepository extends JpaRepository<Gender, Long> {
     @Transactional
 	@Query(value = "DELETE FROM SHOW_GENDERS WHERE SHOWS_ID = ?1", nativeQuery = true)
 	void removePointShowsByShowId(long id);
+    
+    Gender findById(int id);
 }

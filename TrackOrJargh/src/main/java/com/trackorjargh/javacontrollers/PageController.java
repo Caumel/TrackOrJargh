@@ -24,6 +24,7 @@ import com.trackorjargh.javaclass.CommentFilm;
 import com.trackorjargh.javaclass.CommentShow;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.ForgotPassword;
+import com.trackorjargh.javaclass.Gender;
 import com.trackorjargh.javaclass.GenerateURLPage;
 import com.trackorjargh.javaclass.InterfaceMainItem;
 import com.trackorjargh.javaclass.Lists;
@@ -97,7 +98,7 @@ public class PageController {
 		return "index";
 	}
 
-	@RequestMapping(value={"/peliculas", "/peliculas/mejorvaloradas"})
+	@RequestMapping(value = { "/peliculas", "/peliculas/mejorvaloradas" })
 	public String serveFilmList(Model model, HttpServletRequest request) {
 		List<Film> films = filmRepository.findByLastAdded(5);
 		films.get(0).setFirstInList(true);
@@ -110,10 +111,10 @@ public class PageController {
 
 		model.addAttribute("content", filmRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("typePage", "peliculas");
-		
+
 		Page<Film> filmsPage;
 		String typePage;
-		if(request.getServletPath().equalsIgnoreCase("/peliculas")) {
+		if (request.getServletPath().equalsIgnoreCase("/peliculas")) {
 			filmsPage = filmRepository.findAll(new PageRequest(0, 10));
 			model.addAttribute("contentShowButton", true);
 			typePage = "/rest/peliculas";
@@ -122,11 +123,11 @@ public class PageController {
 			model.addAttribute("bestPointContentShowButton", true);
 			typePage = "/rest/peliculas/mejorvaloradas";
 		}
-		
-		if(filmsPage.getNumberOfElements() > 0 && filmsPage.getNumberOfElements() < 10) {
+
+		if (filmsPage.getNumberOfElements() > 0 && filmsPage.getNumberOfElements() < 10) {
 			model.addAttribute("noElementsSearch", true);
 		}
-		
+
 		model.addAttribute("linkContent", "/peliculas");
 		model.addAttribute("linkBestPointContent", "/peliculas/mejorvaloradas");
 		model.addAttribute("content", filmsPage);
@@ -139,7 +140,7 @@ public class PageController {
 		return "contentList";
 	}
 
-	@RequestMapping({"/series", "/series/mejorvaloradas"})
+	@RequestMapping({ "/series", "/series/mejorvaloradas" })
 	public String serveShowList(Model model, HttpServletRequest request) {
 		List<Show> shows = showRepository.findByLastAdded(5);
 		shows.get(0).setFirstInList(true);
@@ -149,10 +150,10 @@ public class PageController {
 
 			model.addAttribute("userList", user.getLists());
 		}
-		
+
 		Page<Show> showsPage;
 		String typePage;
-		if(request.getServletPath().equalsIgnoreCase("/series")) {
+		if (request.getServletPath().equalsIgnoreCase("/series")) {
 			showsPage = showRepository.findAll(new PageRequest(0, 10));
 			model.addAttribute("contentShowButton", true);
 			typePage = "/rest/series";
@@ -161,8 +162,8 @@ public class PageController {
 			model.addAttribute("bestPointContentShowButton", true);
 			typePage = "/rest/series/mejorvaloradas";
 		}
-		
-		if(showsPage.getNumberOfElements() > 0 && showsPage.getNumberOfElements() < 10) {
+
+		if (showsPage.getNumberOfElements() > 0 && showsPage.getNumberOfElements() < 10) {
 			model.addAttribute("noElementsSearch", true);
 		}
 
@@ -179,7 +180,7 @@ public class PageController {
 		return "contentList";
 	}
 
-	@RequestMapping({"/libros", "/libros/mejorvalorados"})
+	@RequestMapping({ "/libros", "/libros/mejorvalorados" })
 	public String serveBookList(Model model, HttpServletRequest request) {
 		List<Book> books = bookRepository.findByLastAdded(5);
 		books.get(0).setFirstInList(true);
@@ -189,10 +190,10 @@ public class PageController {
 
 			model.addAttribute("userList", user.getLists());
 		}
-		
+
 		Page<Book> booksPage;
 		String typePage;
-		if(request.getServletPath().equalsIgnoreCase("/libros")) {
+		if (request.getServletPath().equalsIgnoreCase("/libros")) {
 			booksPage = bookRepository.findAll(new PageRequest(0, 10));
 			model.addAttribute("contentShowButton", true);
 			typePage = "/rest/libros";
@@ -201,8 +202,8 @@ public class PageController {
 			model.addAttribute("bestPointContentShowButton", true);
 			typePage = "/rest/libros/mejorvalorados";
 		}
-		
-		if(booksPage.getNumberOfElements() > 0 && booksPage.getNumberOfElements() < 10) {
+
+		if (booksPage.getNumberOfElements() > 0 && booksPage.getNumberOfElements() < 10) {
 			model.addAttribute("noElementsSearch", true);
 		}
 
@@ -274,10 +275,11 @@ public class PageController {
 
 		model.addAttribute("totalPoints", points);
 		model.addAttribute("userPoints", userPoints);
-		
-		model.addAttribute("contentRelation", filmRepository.findFilmsRelationsById(film.getId(), new PageRequest(0, 8)));
+
+		model.addAttribute("contentRelation",
+				filmRepository.findFilmsRelationsById(film.getId(), new PageRequest(0, 8)));
 		model.addAttribute("iconFilmShow", true);
-		
+
 		return "contentProfile";
 	}
 
@@ -337,10 +339,11 @@ public class PageController {
 
 		model.addAttribute("totalPoints", points);
 		model.addAttribute("userPoints", userPoints);
-		
-		model.addAttribute("contentRelation", showRepository.findShowsRelationsById(show.getId(), new PageRequest(0, 8)));
+
+		model.addAttribute("contentRelation",
+				showRepository.findShowsRelationsById(show.getId(), new PageRequest(0, 8)));
 		model.addAttribute("iconFilmShow", true);
-		
+
 		return "contentProfile";
 	}
 
@@ -401,9 +404,10 @@ public class PageController {
 		model.addAttribute("totalPoints", points);
 		model.addAttribute("userPoints", userPoints);
 
-		model.addAttribute("contentRelation", bookRepository.findBooksRelationsById(book.getId(), new PageRequest(0, 8)));
+		model.addAttribute("contentRelation",
+				bookRepository.findBooksRelationsById(book.getId(), new PageRequest(0, 8)));
 		model.addAttribute("iconBook", true);
-		
+
 		return "contentProfile";
 	}
 
@@ -582,12 +586,12 @@ public class PageController {
 		redir.addFlashAttribute("user", user);
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("/seleccionarPelicula")
 	public ModelAndView filmSelection(RedirectAttributes redir, @RequestParam String name) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/administracion");
-		Film film= filmRepository.findByName(name);
+		Film film = filmRepository.findByName(name);
 		redir.addFlashAttribute("adminFilm", true);
 		redir.addFlashAttribute("film", film);
 		redir.addFlashAttribute("genders", genderRepository.findByFilms(film));
@@ -607,13 +611,13 @@ public class PageController {
 		redir.addFlashAttribute("genresNotInShow", genderRepository.findByNotInShow(show.getId()));
 
 		return modelAndView;
-	}	
-	
+	}
+
 	@RequestMapping("/seleccionarLibro")
 	public ModelAndView bookSelection(RedirectAttributes redir, @RequestParam String name) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/administracion");
-		Book book= bookRepository.findByName(name);
+		Book book = bookRepository.findByName(name);
 		redir.addFlashAttribute("adminBook", true);
 		redir.addFlashAttribute("book", book);
 		redir.addFlashAttribute("genders", genderRepository.findByBooks(book));
@@ -621,7 +625,7 @@ public class PageController {
 
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("/adminUsuario")
 	public String adminUser(Model model, @RequestParam String name, @RequestParam String email,
 			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteUser,
@@ -656,8 +660,9 @@ public class PageController {
 
 	@RequestMapping("/adminPelicula")
 	public String adminFilm(Model model, @RequestParam String name, @RequestParam String newName,
-			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteFilm, @RequestParam String actors,
-			@RequestParam String directors, @RequestParam String imageFilm, @RequestParam Boolean AventurasChecked) { // AQUI
+			@RequestParam Optional<Boolean> confirmDelete, @RequestParam Optional<String> deleteFilm,
+			@RequestParam String actors, @RequestParam String directors, @RequestParam String imageFilm,
+			@RequestParam Optional<String[]> genreContent, @RequestParam Optional<String[]> newGenres) { // AQUI
 		Film film = filmRepository.findByName(name);
 		if (confirmDelete.isPresent() && confirmDelete.get()) {
 			if (name.equals(deleteFilm)) {
@@ -668,16 +673,28 @@ public class PageController {
 			film.setActors(actors);
 			film.setDirectors(directors);
 		}
+		if (genreContent.isPresent()) {
+			for (String genre : genreContent.get()) {
+				film.getGenders().clear();
+				film.getGenders().add(genderRepository.findByName(genre));
+			}
+		}
+		if (newGenres.isPresent()) {
+			for (String genre : newGenres.get()) {
+				film.getGenders().add(genderRepository.findByName(genre));
+			}
+		}
 		filmRepository.save(film);
 
 		return "redirect:/administracion";
 	}
-	
+
 	@RequestMapping("/adminSerie")
 	public String adminShow(Model model, @RequestParam String name, @RequestParam String newName,
 			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteShow, @RequestParam String actors,
-			@RequestParam String directors, @RequestParam String imageShow) { // Y AQUI
-		Show show= showRepository.findByName(name);
+			@RequestParam String directors, @RequestParam String imageShow,
+			@RequestParam Optional<String[]> genreContent, @RequestParam Optional<String[]> newGenres) { // Y AQUI
+		Show show = showRepository.findByName(name);
 		if (confirmDelete.isPresent() && confirmDelete.get()) {
 			if (name.equals(deleteShow)) {
 
@@ -687,14 +704,27 @@ public class PageController {
 			show.setActors(actors);
 			show.setDirectors(directors);
 		}
+		if (genreContent.isPresent()) {
+			for (String genre : genreContent.get()) {
+				show.getGenders().clear();
+				show.getGenders().add(genderRepository.findByName(genre));
+			}
+		}
+		if (newGenres.isPresent()) {
+			for (String genre : newGenres.get()) {
+				show.getGenders().add(genderRepository.findByName(genre));
+			}
+		}
 		showRepository.save(show);
 
 		return "redirect:/administracion";
 	}
-	
+
 	@RequestMapping("/adminLibro")
 	public String adminBook(Model model, @RequestParam String name, @RequestParam String newName,
-			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteBook, @RequestParam String authors, @RequestParam String imageBook) { // Y AQUI
+			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteBook,
+			@RequestParam String authors, @RequestParam String imageBook, @RequestParam Optional<String[]> genreContent,
+			@RequestParam Optional<String[]> newGenres) { // Y AQUI
 		Book book = bookRepository.findByName(name);
 		if (confirmDelete.isPresent() && confirmDelete.get()) {
 			if (name.equals(deleteBook)) {
@@ -704,8 +734,26 @@ public class PageController {
 			book.setName(newName);
 			book.setAuthors(authors);
 		}
+		if (genreContent.isPresent()) {
+			for (String genre : genreContent.get()) {
+				book.getGenders().clear();
+				book.getGenders().add(genderRepository.findByName(genre));
+			}
+		}
+		if (newGenres.isPresent()) {
+			for (String genre : newGenres.get()) {
+				book.getGenders().add(genderRepository.findByName(genre));
+			}
+		}
 		bookRepository.save(book);
 
 		return "redirect:/administracion";
 	}
+
+	@RequestMapping("/subirContenido")
+	public String newContent(Model model) {
+		model.addAttribute("genres", genderRepository.findAll());
+		return "newContent";
+	}
+
 }
