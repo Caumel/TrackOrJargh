@@ -646,11 +646,6 @@ public class DatabaseInformationLoader {
 		sh8.getGenders().add(g3);
 		showRepository.save(sh8);
 		
-		
-		
-		
-		
-		
 
 		// Test Data Lists
 		Lists l1 = new Lists("Mi Lista Molona");
@@ -664,6 +659,76 @@ public class DatabaseInformationLoader {
 		cf1.setFilm(f1);
 		cf1.setUser(u1);
 		commentFilmRepository.save(cf1);
+		
+		
+		
+		CommentFilm cf2 = new CommentFilm("A mi me gustó mas la 2, pero bueno no está mal");
+		c2.setFilm(f2);
+		c2.setUser(u1);
+		commentFilmRepository.save(cf2);
+		
+
+		CommentFilm cf3 = new CommentFilm("Qué miedo pasé, esa noche dormí abrazado a mi osito de peluche");
+		c3.setFilm(f3);
+		c3.setUser(u1);
+		commentFilmRepository.save(cf3);
+		
+
+		CommentFilm cf4 = new CommentFilm("k dices tio, no es pa tanto, vaya cagueta");
+		c4.setFilm(f3);
+		c4.setUser(u2);
+		commentFilmRepository.save(cf4);
+		
+		CommentFilm cf5 = new CommentFilm("Esta peli la vi con mi novia, no esta mal, te ries, pero hubiera preferido esdla");
+		c5.setFilm(f4);
+		c5.setUser(u3);
+		commentFilmRepository.save(cf5);
+		
+
+		CommentFilm cf6 = new CommentFilm("Es que eres un poco calzonazossss!!! jajajaja ");
+		c6.setFilm(f4);
+		c6.setUser(u2);
+		commentFilmRepository.save(cf6);
+		
+
+		CommentFilm cf7 = new CommentFilm("¬¬");
+		c7.setFilm(f4);
+		c7.setUser(u3);
+		commentFilmRepository.save(cf7);
+		
+		CommentFilm cf8 = new CommentFilm("Buah, me ha encantado, me he descargado y todo la banda sonora, que por si a alguien le interesa se llaman RADWIMPS");
+		c8.setFilm(f5);
+		c8.setUser(u3);
+		commentFilmRepository.save(cf8);
+		
+		CommentFilm cf9 = new CommentFilm("Yo me rei mucho cuando cayó el meteorito, lo dije de broma pero al final resultó que cayó de verdad xD");
+		c9.setFilm(f5);
+		c9.setUser(u1);
+		commentFilmRepository.save(cf9);
+		
+
+		CommentFilm cf10 = new CommentFilm("No me gustan las peliculas de gladiadiores, me parace absurdo el final y gratuito, y el emperador lo hace todo mal en fin... ");
+		c10.setFilm(f6);
+		c10.setUser(u2);
+		commentFilmRepository.save(cf10);
+		
+
+		CommentFilm cf11 = new CommentFilm("Esta es la peli que hablan en Big Bang que si quitas a indiana Johnes no habria cambiado nada XDD ");
+		c11.setFilm(f7);
+		c11.setUser(u3);
+		commentFilmRepository.save(cf11);
+			
+
+		CommentFilm cf12 = new CommentFilm("A mi me ha gustado, lo unico que a la iglesia no le mola mucho porque al parecer la peli acaba con la muerte de jesucristo, y da un mensaje equivocado en teoria");
+		c12.setFilm(f8);
+		c12.setUser(u1);
+		commentFilmRepository.save(cf12);
+		
+
+		CommentFilm cf13 = new CommentFilm("Un poco bodrio, pero bueno, no pueden gustarme todas");
+		c13.setFilm(f9);
+		c13.setUser(u2);
+		commentFilmRepository.save(cf13);
 
 		// Test Data Comment Show
 		CommentShow cs1 = new CommentShow("Esta serie es muy buena");
