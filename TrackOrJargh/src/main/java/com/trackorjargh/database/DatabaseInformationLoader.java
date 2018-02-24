@@ -1005,8 +1005,6 @@ public class DatabaseInformationLoader {
 		pf23.setUser(u1);
 		pointFilmRepository.save(pf23);
 		
-		
-		
 
 		// Test Data Point Show
 		PointShow ps1 = new PointShow((double) 3.5);
@@ -1126,9 +1124,125 @@ public class DatabaseInformationLoader {
 		
 		
 		// Test Data Point Book
-		PointBook pb1 = new PointBook((double) 5);
+		PointBook pb1 = new PointBook((double) 2);
 		pb1.setBook(b1);
 		pb1.setUser(u1);
 		pointBookRepository.save(pb1);
+		
+		PointBook pb2 = new PointBook((double) 3.5);
+		pb2.setBook(b2);
+		pb2.setUser(u1);
+		pointBookRepository.save(pb2);
+		
+		PointBook pb3 = new PointBook((double) 2.6);
+		pb3.setBook(b3);
+		pb3.setUser(u1);
+		pointBookRepository.save(pb3);
+		
+		PointBook pb4 = new PointBook((double) 4.5);
+		pb4.setBook(b4);
+		pb4.setUser(u1);
+		pointBookRepository.save(pb4);
+		
+		PointBook pb5 = new PointBook((double) 3.1);
+		pb5.setBook(b5);
+		pb5.setUser(u1);
+		pointBookRepository.save(pb5);
+		
+		PointBook pb6 = new PointBook((double) 2);
+		pb6.setBook(b6);
+		pb6.setUser(u1);
+		pointBookRepository.save(pb6);
+		
+		PointBook pb7 = new PointBook((double) 3.5);
+		pb7.setBook(b7);
+		pb7.setUser(u1);
+		pointBookRepository.save(pb7);
+		
+		PointBook pb8 = new PointBook((double) 3.8);
+		pb8.setBook(b8);
+		pb8.setUser(u1);
+		pointBookRepository.save(pb8);
+		
+		PointBook pb9 = new PointBook((double) 3);
+		pb9.setBook(b9);
+		pb9.setUser(u1);
+		pointBookRepository.save(pb9);
+		
+		PointBook pb10 = new PointBook((double) 4.5);
+		pb10.setBook(b10);
+		pb10.setUser(u1);
+		pointBookRepository.save(pb10);
+		
+		PointBook pb11 = new PointBook((double) 3.9);
+		pb11.setBook(b11);
+		pb11.setUser(u1);
+		pointBookRepository.save(pb11);
+		
+		PointBook pb12 = new PointBook((double) 4.1);
+		pb12.setBook(b12);
+		pb12.setUser(u1);
+		pointBookRepository.save(pb12);
+		
+		PointBook pb13 = new PointBook((double) 5);
+		pb13.setBook(b13);
+		pb13.setUser(u1);
+		pointBookRepository.save(pb13);
+		
+		PointBook pb14 = new PointBook((double) 4);
+		pb14.setBook(b14);
+		pb14.setUser(u1);
+		pointBookRepository.save(pb14);
+		
+		PointBook pb15 = new PointBook((double) 2.9);
+		pb15.setBook(b15);
+		pb15.setUser(u1);
+		pointBookRepository.save(pb15);
+		
+		PointBook pb16 = new PointBook((double) 3);
+		pb16.setBook(b16);
+		pb16.setUser(u1);
+		pointBookRepository.save(pb16);
+		
+		PointBook pb17 = new PointBook((double) 3.5);
+		pb17.setBook(b17);
+		pb17.setUser(u1);
+		pointBookRepository.save(pb17);
+		
+		PointBook pb18 = new PointBook((double) 1.9);
+		pb18.setBook(b18);
+		pb18.setUser(u1);
+		pointBookRepository.save(pb18);
+		
+		PointBook pb19 = new PointBook((double) 1);
+		pb19.setBook(b19);
+		pb19.setUser(u1);
+		pointBookRepository.save(pb19);
+		
+		PointBook pb20 = new PointBook((double) 3.2);
+		pb20.setBook(b20);
+		pb20.setUser(u1);
+		pointBookRepository.save(pb20);
+		
+		PointBook pb21 = new PointBook((double) 4);
+		pb21.setBook(b21);
+		pb21.setUser(u1);
+		pointBookRepository.save(pb21);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }
