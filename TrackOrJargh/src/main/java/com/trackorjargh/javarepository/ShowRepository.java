@@ -18,7 +18,7 @@ public interface ShowRepository extends JpaRepository<Show, Long>{
 	@Query(value = "Select top ?1 * from Show order by id desc", nativeQuery = true)
 	List<Show> findByLastAdded(int additions);
 
-    @Query(value = "SELECT SHOW.* FROM POINT_SHOW INNER JOIN SHOW ON POINT_SHOW.SHOW_ID=SHOW.ID GROUP BY POINT_SHOW.SHOW_ID ORDER BY AVG(POINT_SHOW.POINTS) \n-- #pageable\n", 
+    @Query(value = "SELECT SHOW.* FROM POINT_SHOW INNER JOIN SHOW ON POINT_SHOW.SHOW_ID=SHOW.ID GROUP BY POINT_SHOW.SHOW_ID ORDER BY AVG(POINT_SHOW.POINTS) DESC \n-- #pageable\n", 
     		countQuery = "SELECT COUNT(*) FROM POINT_SHOW GROUP BY SHOW_ID",
     		nativeQuery = true)
     Page<Show> findBestPointShow(Pageable pageable);

@@ -20,7 +20,7 @@ public interface BookRepository extends JpaRepository<Book, Long>{
 	List<Book> findByLastAdded(int additions);
 	Page<Book> findByNameContainingIgnoreCase(String name, Pageable pageable);
 	
-    @Query(value = "SELECT BOOK.* FROM POINT_BOOK INNER JOIN BOOK ON POINT_BOOK.BOOK_ID=BOOK.ID GROUP BY POINT_BOOK.BOOK_ID ORDER BY AVG(POINT_BOOK.POINTS) \n-- #pageable\n", 
+    @Query(value = "SELECT BOOK.* FROM POINT_BOOK INNER JOIN BOOK ON POINT_BOOK.BOOK_ID=BOOK.ID GROUP BY POINT_BOOK.BOOK_ID ORDER BY AVG(POINT_BOOK.POINTS) DESC \n-- #pageable\n", 
     		countQuery = "SELECT COUNT(*) FROM POINT_BOOK GROUP BY BOOK_ID",
     		nativeQuery = true)
     Page<Book> findBestPointBook(Pageable pageable);
