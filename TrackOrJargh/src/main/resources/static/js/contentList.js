@@ -62,7 +62,13 @@ function addFilmToList(){
 	var nameList = $(this).text();
 	var nameFilm = $(this).parents(".portfolio-info").find("[name='nameFilm']").text();
 	
-	alert("Film: " + nameFilm + " List: " + nameList);
+	$.ajax({
+	    url: "/rest/agregarlista/"+nameList+"/"+typePageAddList+"/"+nameFilm,
+	    type: 'PUT',
+	    success: function(result) {
+	    	alert(result);
+	    }
+	});
 }
 
 function sleep(miliseconds) {

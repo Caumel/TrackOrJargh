@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus.Series;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -116,12 +117,20 @@ public class ApiRestController {
 		}		
 	}
 
-	@RequestMapping(value = "/rest/agregarlista/{nameList}/{nameContent}", method = RequestMethod.PUT)
-	public void addedListInUser(@PathVariable String nameList, @PathVariable String nameContent) {
+	@RequestMapping(value = "/rest/agregarlista/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.PUT)
+	public void addedListInUser(@PathVariable String nameList,@PathVariable String typeContent , @PathVariable String nameContent) {
 		Lists listUser = listsRepository.findByName(nameList);
-		Film film = filmRepository.findByName(nameContent);
-
-		listUser.getFilms().add(film);
+		if (typeContent.equalsIgnoreCase("pelicula")) {
+			Film film = filmRepository.findByName(nameContent);
+			listUser.getFilms().add(film);
+		}else if (typeContent.equalsIgnoreCase("serie")){
+			Show show = showRepository.findByName(nameContent);
+			listUser.getShows().add(show);
+		}else if (typeContent.equalsIgnoreCase("libro")){
+			Book book = bookRepository.findByName(nameContent);
+			listUser.getBooks().add(book);
+		}
+		
 		listsRepository.save(listUser);
 	}
 }
