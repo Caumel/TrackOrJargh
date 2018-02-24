@@ -1,19 +1,28 @@
 package com.trackorjargh.javacontrollers;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -806,5 +815,43 @@ public class PageController {
 		String name = book.getName();
 		return "redirect:/libro/" + name;
 	}
+	
+	public String uploadImage(String imageName, MultipartFile file) {
+		Path FILES_FOLDER = Paths.get(System.getProperty("user.dir"), "files");
+		String fileName = "image-" + imageName + ".jpg";
 
+		if (!file.isEmpty()) {
+			try {
+				if (!Files.exists(FILES_FOLDER)) {
+					Files.createDirectories(FILES_FOLDER);
+				}
+				
+				File uploadedFile = new File(FILES_FOLDER.toFile(), fileName);
+				file.transferTo(uploadedFile);
+
+				return "/imagen/" + fileName;
+
+			} catch (Exception e) {
+				return "Error Upload";
+			}
+		} else {
+			return "Empty File";
+		}
+	}
+	
+	@RequestMapping("/imagen/{fileName:.+}")
+	public void handleFileDownload(@PathVariable String fileName, HttpServletResponse res)
+			throws FileNotFoundException, IOException {
+		Path FILES_FOLDER = Paths.get(System.getProperty("user.dir"), "files");
+		Path image = FILES_FOLDER.resolve(fileName);
+
+		if (Files.exists(image)) {
+			res.setContentType("image/jpeg");
+			res.setContentLength((int) image.toFile().length());
+			FileCopyUtils.copy(Files.newInputStream(image), res.getOutputStream());
+
+		} else {
+			res.sendError(404);
+		}
+	}
 }
