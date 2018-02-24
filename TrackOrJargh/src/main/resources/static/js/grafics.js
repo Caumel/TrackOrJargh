@@ -55,4 +55,23 @@ $(function() {
 			}
 		});
 	});
+	
+	$.get("/rest/graficogeneros", function(data) {
+		var chart = c3.generate({
+			bindto : '#gende',
+			data : {
+				json : data,
+				type : 'bar',
+				keys : {
+					x : 'name',
+					value : [ 'numItems' ],
+				}
+			},
+			axis : {
+				x : {
+					type : 'category'
+				}
+			}
+		});
+	});
 });

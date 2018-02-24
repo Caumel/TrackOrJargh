@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.grafics.Grafics;
+import com.trackorjargh.grafics.NumberItemByGende;
 import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.Film;
+import com.trackorjargh.javaclass.Gender;
 import com.trackorjargh.javaclass.Lists;
 import com.trackorjargh.javaclass.PointBook;
 import com.trackorjargh.javaclass.PointFilm;
@@ -25,6 +27,7 @@ import com.trackorjargh.javaclass.Show;
 import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.FilmRepository;
+import com.trackorjargh.javarepository.GenderRepository;
 import com.trackorjargh.javarepository.ListsRepository;
 import com.trackorjargh.javarepository.PointBookRepository;
 import com.trackorjargh.javarepository.PointFilmRepository;
@@ -51,6 +54,8 @@ public class ApiRestController {
 	private ListsRepository listsRepository;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private GenderRepository genderRepository;
 	@Autowired
 	private UserComponent userComponent;
 
@@ -157,6 +162,23 @@ public class ApiRestController {
 		
 		
 		return graficShows;
+	}
+	
+	@RequestMapping(value = "/rest/graficogeneros", method = RequestMethod.GET)
+	public List<NumberItemByGende> getGraphicGende() {
+		List<NumberItemByGende> listGende = new ArrayList<>();
+		
+		int sumGende;
+		for(Gender gende : genderRepository.findAll()) {
+			sumGende = 0;	
+			sumGende += gende.getFilms().size();
+			sumGende += gende.getBooks().size();
+			sumGende += gende.getShows().size();
+			
+			listGende.add(new NumberItemByGende(gende.getName(), sumGende));
+		}
+				
+		return listGende;		
 	}
 
 	@RequestMapping(value = "/rest/series/mejorvaloradas", method = RequestMethod.GET)
