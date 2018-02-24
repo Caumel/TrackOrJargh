@@ -55,8 +55,8 @@
 					<ul id="portfolio-flters">	
 						<input type="text" name="inputSearch" value="{{#inputSearch}}{{.}}{{/inputSearch}}" />
 						<select name="optionSearch">
-  							<option value="titulo">Titulo</option>
-  							<option value="genero">Genero</option>
+  							<option value="titulo" {{#searchTitle}}selected{{/searchTitle}}>Titulo</option>
+  							<option value="genero" {{#searchGende}}selected{{/searchGende}}>Genero</option>
 						</select>		
 						<br />		
 							

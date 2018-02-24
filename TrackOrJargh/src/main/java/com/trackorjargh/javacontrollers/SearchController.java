@@ -27,6 +27,7 @@ public class SearchController {
 
 	@RequestMapping("/busqueda")
 	public String search(Model model) {	
+		model.addAttribute("searchActive", true);
 		model.addAttribute("noElementsSearch", true);
 		model.addAttribute("index", true);
 		return "search";
@@ -38,10 +39,13 @@ public class SearchController {
 
 		if(optionSearch.equalsIgnoreCase("titulo")) {
 			films = filmRepository.findByNameContainingIgnoreCase(name, new PageRequest(0, 10));
+			model.addAttribute("searchTitle", true);
 		} else {
 			films = filmRepository.findFilmsByGender("%" + name + "%", new PageRequest(0, 10));
+			model.addAttribute("searchGende", true);
 		}
 			
+		model.addAttribute("searchActive", true);
 		model.addAttribute("content", films);
 		model.addAttribute("typeFilm", true);
 		model.addAttribute("inputSearch", name);
@@ -61,8 +65,17 @@ public class SearchController {
 	
 	@RequestMapping("/busqueda/{optionSearch}/serie/{name}")
 	public String searchShows(Model model, @PathVariable String optionSearch, @PathVariable String name) {		
-		Page<Show> shows = showRepository.findByNameContainingIgnoreCase(name, new PageRequest(0, 10));
+		Page<Show> shows;
 		
+		if(optionSearch.equalsIgnoreCase("titulo")) {
+			shows = showRepository.findByNameContainingIgnoreCase(name, new PageRequest(0, 10));
+			model.addAttribute("searchTitle", true);
+		} else {
+			shows = showRepository.findShowsByGender(name, new PageRequest(0, 10));
+			model.addAttribute("searchGende", true);
+		}
+		
+		model.addAttribute("searchActive", true);
 		model.addAttribute("content", shows);
 		model.addAttribute("typeShow", true);
 		model.addAttribute("inputSearch", name);
@@ -82,8 +95,17 @@ public class SearchController {
 	
 	@RequestMapping("/busqueda/{optionSearch}/libro/{name}")
 	public String searchBooks(Model model, @PathVariable String optionSearch, @PathVariable String name) {		
-		Page<Book> books = bookRepository.findByNameContainingIgnoreCase(name, new PageRequest(0, 10));
+		Page<Book> books;
 		
+		if(optionSearch.equalsIgnoreCase("titulo")) {
+			books = bookRepository.findByNameContainingIgnoreCase(name, new PageRequest(0, 10));
+			model.addAttribute("searchTitle", true);
+		} else {
+			books = bookRepository.findBooksByGender(name, new PageRequest(0, 10));
+			model.addAttribute("searchGende", true);
+		}
+		
+		model.addAttribute("searchActive", true);
 		model.addAttribute("content", books);		
 		model.addAttribute("typeBook", true);
 		model.addAttribute("inputSearch", name);
