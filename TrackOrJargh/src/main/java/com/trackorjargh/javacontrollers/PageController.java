@@ -134,6 +134,7 @@ public class PageController {
 		model.addAttribute("filmsActive", true);
 		model.addAttribute("contentCarousel", films);
 		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
+		model.addAttribute("typePageAddList", "peliculas");
 
 		return "contentList";
 	}
@@ -166,7 +167,6 @@ public class PageController {
 		}
 
 		model.addAttribute("content", showRepository.findAll(new PageRequest(0, 10)));
-		model.addAttribute("typePage", "series");
 		model.addAttribute("linkContent", "/series");
 		model.addAttribute("linkBestPointContent", "/series/mejorvaloradas");
 		model.addAttribute("content", showsPage);
@@ -174,6 +174,7 @@ public class PageController {
 		model.addAttribute("showsActive", true);
 		model.addAttribute("contentCarousel", shows);
 		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
+		model.addAttribute("typePageAddList", "series");
 
 		return "contentList";
 	}
@@ -206,7 +207,6 @@ public class PageController {
 		}
 
 		model.addAttribute("content", bookRepository.findAll(new PageRequest(0, 10)));
-		model.addAttribute("typePage", "libros");
 		model.addAttribute("linkContent", "/libros");
 		model.addAttribute("linkBestPointContent", "/libros/mejorvalorados");
 		model.addAttribute("content", booksPage);
@@ -214,6 +214,7 @@ public class PageController {
 		model.addAttribute("booksActive", true);
 		model.addAttribute("contentCarousel", books);
 		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
+		model.addAttribute("typePageAddList", "libros");
 
 		return "contentList";
 	}
