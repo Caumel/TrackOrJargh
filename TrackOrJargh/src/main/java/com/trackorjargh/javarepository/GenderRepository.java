@@ -17,17 +17,17 @@ public interface GenderRepository extends JpaRepository<Gender, Long> {
 
 	List<Gender> findByFilms(Film film);
 
-	@Query(value = "SELECT * FROM GENDER WHERE ID NOT LIKE (SELECT GENDERS_ID FROM FILM_GENDERS WHERE FILMS_ID = ?1)", nativeQuery = true)
+	@Query(value = "SELECT * FROM GENDER WHERE ID NOT IN (SELECT GENDERS_ID FROM FILM_GENDERS WHERE FILMS_ID = ?1)", nativeQuery = true)
 	List<Gender> findByNotInFilm(Long id);
 
 	List<Gender> findByShows(Show show);
 
-	@Query(value = "SELECT * FROM GENDER WHERE ID NOT LIKE (SELECT GENDERS_ID FROM SHOW_GENDERS WHERE SHOWS_ID = ?1)", nativeQuery = true)
+	@Query(value = "SELECT * FROM GENDER WHERE ID NOT IN (SELECT GENDERS_ID FROM SHOW_GENDERS WHERE SHOWS_ID = ?1)", nativeQuery = true)
 	List<Gender> findByNotInShow(Long id);
 
 	List<Gender> findByBooks(Book book);
 
-	@Query(value = "SELECT * FROM GENDER WHERE ID NOT LIKE (SELECT GENDERS_ID FROM BOOK_GENDERS WHERE BOOKS_ID = ?1)", nativeQuery = true)
+	@Query(value = "SELECT * FROM GENDER WHERE ID NOT IN (SELECT GENDERS_ID FROM BOOK_GENDERS WHERE BOOKS_ID = ?1)", nativeQuery = true)
 	List<Gender> findByNotInBook(Long id);
 	
 	Gender findByName(String name);
