@@ -119,9 +119,6 @@ public class PageController {
 			model.addAttribute("userList", user.getLists());
 		}
 
-		model.addAttribute("content", filmRepository.findAll(new PageRequest(0, 10)));
-		model.addAttribute("typePage", "peliculas");
-
 		Page<Film> filmsPage;
 		String typePage;
 		if (request.getServletPath().equalsIgnoreCase("/peliculas")) {
@@ -177,7 +174,6 @@ public class PageController {
 			model.addAttribute("noElementsSearch", true);
 		}
 
-		model.addAttribute("content", showRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("linkContent", "/series");
 		model.addAttribute("linkBestPointContent", "/series/mejorvaloradas");
 		model.addAttribute("content", showsPage);
@@ -217,7 +213,6 @@ public class PageController {
 			model.addAttribute("noElementsSearch", true);
 		}
 
-		model.addAttribute("content", bookRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("linkContent", "/libros");
 		model.addAttribute("linkBestPointContent", "/libros/mejorvalorados");
 		model.addAttribute("content", booksPage);
