@@ -248,7 +248,7 @@ public class PageController {
 		}
 
 		List<PreparateMessageShow> listMessages = new LinkedList<>();
-		for (CommentFilm cf : film.getCommentsFilm())
+		for (CommentFilm cf : commentFilmRepository.findByFilm(film))
 			listMessages.add(cf.preparateShowMessage());
 
 		model.addAttribute("content", film);
@@ -310,7 +310,7 @@ public class PageController {
 		}
 
 		List<PreparateMessageShow> listMessages = new LinkedList<>();
-		for (CommentShow ch : show.getCommentsShow())
+		for (CommentShow ch : commentShowRepository.findByShow(show))
 			listMessages.add(ch.preparateShowMessage());
 
 		model.addAttribute("content", show);
@@ -373,7 +373,7 @@ public class PageController {
 		}
 
 		List<PreparateMessageShow> listMessages = new LinkedList<>();
-		for (CommentBook cb : book.getCommentsBook())
+		for (CommentBook cb : commentBookRepository.findByBook(book))
 			listMessages.add(cb.preparateShowMessage());
 
 		model.addAttribute("content", bookRepository.findByName(name));
