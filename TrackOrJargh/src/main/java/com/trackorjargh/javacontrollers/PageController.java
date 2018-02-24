@@ -134,7 +134,7 @@ public class PageController {
 		model.addAttribute("filmsActive", true);
 		model.addAttribute("contentCarousel", films);
 		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
-		model.addAttribute("typePageAddList", "peliculas");
+		model.addAttribute("typePageAddList", "pelicula");
 
 		return "contentList";
 	}
@@ -174,7 +174,7 @@ public class PageController {
 		model.addAttribute("showsActive", true);
 		model.addAttribute("contentCarousel", shows);
 		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
-		model.addAttribute("typePageAddList", "series");
+		model.addAttribute("typePageAddList", "serie");
 
 		return "contentList";
 	}
@@ -214,7 +214,7 @@ public class PageController {
 		model.addAttribute("booksActive", true);
 		model.addAttribute("contentCarousel", books);
 		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
-		model.addAttribute("typePageAddList", "libros");
+		model.addAttribute("typePageAddList", "libro");
 
 		return "contentList";
 	}
