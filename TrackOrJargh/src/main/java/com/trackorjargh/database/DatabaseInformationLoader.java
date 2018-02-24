@@ -667,9 +667,8 @@ public class DatabaseInformationLoader {
 		sh10.getGenders().add(g10);
 		showRepository.save(sh10);
 
-		Show sh11 = new Show("Dr.Who", "Michael Ryan", "Peter McAllum, Kate Hardy, Richard Clark",
-				"Doctor Who es un programa de televisión que trata de las aventuras de un misterioso hombre conocido sólo como el Doctor. El Doctor viaja a través del espacio y el tiempo en una nave llamada TARDIS",
-				"/img/shows/doctorWho.jpg", "https://www.youtube.com/embed/SKAOzznX9zA ", 2012);
+		Show sh11 = new Show("Dr.Who", "Michael Ryan", "Peter McAllum, Kate Hardy, Richard Clark","Doctor Who es un programa de televisión que trata de las aventuras de un misterioso hombre conocido sólo como el Doctor. El Doctor viaja a través del espacio y el tiempo en una nave llamada TARDIS",
+				"/img/shows/doctorWho.jpg","https://www.youtube.com/embed/SKAOzznX9zA ", 2012);
 
 		sh11.getGenders().add(g1);
 		sh11.getGenders().add(g5);
@@ -677,8 +676,7 @@ public class DatabaseInformationLoader {
 		sh11.getGenders().add(g2);
 		showRepository.save(sh11);
 
-		Show sh12 = new Show("Belzebub", "Shizuka Itô, Katsuyuki Konishi, Takahiro Mizushima", "Nobuhiro Takamoto",
-				"La historia trata sobre el delincuente juvenil más fuerte, Oga Tatsumi, quien está en el primer año de la Escuela Ishiyama, la escuela para delincuentes. Pero un día mientras dormía cerca a un río, mira a un hombre flotar en el río, quien de repente se parte...",
+		Show sh12 = new Show("Belzebub", "Shizuka Itô, Katsuyuki Konishi, Takahiro Mizushima", "Nobuhiro Takamoto","La historia trata sobre el delincuente juvenil más fuerte, Oga Tatsumi, quien está en el primer año de la Escuela Ishiyama, la escuela para delincuentes. Pero un día mientras dormía cerca a un río, mira a un hombre flotar en el río, quien de repente se parte...",
 				"/img/shows/beelzebub.jpg", "https://www.youtube.com/embed/5lyYR7StfrQ", 2011);
 
 		sh12.getGenders().add(g7);
@@ -726,71 +724,69 @@ public class DatabaseInformationLoader {
 		sh16.getGenders().add(g5);
 		showRepository.save(sh16);
 
-		Show sh17 = new Show("Sherlock","Benedict Cumberbach,John Wilson","Arthur Conan Doyle","Moderna actualización del mito de Sherlock Holmes, ambientado en el Londres del siglo XXI. Sus insuperables habilidades de deducción y su arrogante distanciamiento...",
-				"/img/shows/sherlock.jpg","https://www.youtube.com/embed/Nj7ZSUkTTVI ",2010);
+		Show sh17 = new Show("Sherlock", "Benedict Cumberbach,John Wilson", "Arthur Conan Doyle",
+				"Moderna actualización del mito de Sherlock Holmes, ambientado en el Londres del siglo XXI. Sus insuperables habilidades de deducción y su arrogante distanciamiento...",
+				"/img/shows/sherlock.jpg", "https://www.youtube.com/embed/Nj7ZSUkTTVI ", 2010);
 
 		sh17.getGenders().add(g1);
 		sh17.getGenders().add(g5);
 		sh17.getGenders().add(g11);
 		showRepository.save(sh17);
-		
-		Show sh18 = new Show("Fargo","Billy Bob Thornton, Martin Freeman, Allison Tolman","John Fargo","Lester Nygaard, un apocado vendedor de seguros de una pequeña población de Minnesota, ve cómo su mundo cambia por completo con la llegada de los nazis a minesota...",
-				"/img/shows/fargo.jpg","https://www.youtube.com/embed/EB4PmbfG4bw",2014);
-				
+
+		Show sh18 = new Show("Fargo", "Billy Bob Thornton, Martin Freeman, Allison Tolman", "John Fargo",
+				"Lester Nygaard, un apocado vendedor de seguros de una pequeña población de Minnesota, ve cómo su mundo cambia por completo con la llegada de los nazis a minesota...",
+				"/img/shows/fargo.jpg", "https://www.youtube.com/embed/EB4PmbfG4bw", 2014);
+
 		sh18.getGenders().add(g1);
 		showRepository.save(sh18);
-		
-		Show sh19 = new Show("Los Simpson"," Dan Castellaneta, Nancy Cartwright, Julie Kavner"," James L. Brooks, Matt Groening, Sam Simon","La afamada serie de television que cuenta las aventuras y desventuras de una familia que vive en Springfield, que no vamos a...",
-				"/img/shows/losSimpson.jpg","https://www.youtube.com/embed/ypZPaxbP8g8",1989);
-		
+
+		Show sh19 = new Show("Los Simpson", " Dan Castellaneta, Nancy Cartwright, Julie Kavner",
+				" James L. Brooks, Matt Groening, Sam Simon",
+				"La afamada serie de television que cuenta las aventuras y desventuras de una familia que vive en Springfield, que no vamos a...",
+				"/img/shows/losSimpson.jpg", "https://www.youtube.com/embed/ypZPaxbP8g8", 1989);
+
 		sh19.getGenders().add(g4);
 		showRepository.save(sh19);
-		
-		
-		Show sh20 = new Show("Sobrenatural","Jared Padalecki,Jensen Ackles","Eric Kripke","Un misterioso mensaje telefónico de su padre, que hace mucho tiempo que ha abandonado el hogar familiar, lleva a los hermanos Dean y Sam Winchester hasta California. Aunque no ...", 
-				"/img/shows/sobrenatural.jpg","https://www.youtube.com/embed/74WD8FUgS6g",2005);
+
+		Show sh20 = new Show("Sobrenatural", "Jared Padalecki,Jensen Ackles", "Eric Kripke",
+				"Un misterioso mensaje telefónico de su padre, que hace mucho tiempo que ha abandonado el hogar familiar, lleva a los hermanos Dean y Sam Winchester hasta California. Aunque no ...",
+				"/img/shows/sobrenatural.jpg", "https://www.youtube.com/embed/74WD8FUgS6g", 2005);
 
 		sh20.getGenders().add(g2);
 		sh20.getGenders().add(g1);
 		sh20.getGenders().add(g13);
 		sh20.getGenders().add(g6);
 		showRepository.save(sh20);
-		
-		Show sh21 = new Show("The Flash","Grant Gustin, Candice Patton, Danielle Panabaker","Greg Berlanti, Geoff Johns, Andrew Kreisberg","Sigue las veloces aventuras de Barry Allen, un joven común y corriente con el deseo latente de ayudar a los demás. Cuando una...",
-				"/img/shows/theFlash.jpg","https://www.youtube.com/embed/Yj0l7iGKh8g",2005);
-		
+
+		Show sh21 = new Show("The Flash", "Grant Gustin, Candice Patton, Danielle Panabaker",
+				"Greg Berlanti, Geoff Johns, Andrew Kreisberg",
+				"Sigue las veloces aventuras de Barry Allen, un joven común y corriente con el deseo latente de ayudar a los demás. Cuando una...",
+				"/img/shows/theFlash.jpg", "https://www.youtube.com/embed/Yj0l7iGKh8g", 2005);
+
 		sh21.getGenders().add(g2);
 		sh21.getGenders().add(g11);
 		sh21.getGenders().add(g5);
 		sh21.getGenders().add(g8);
 		showRepository.save(sh21);
-		
-		
-		
-		
-		
-		Show sh22 = new Show("Arrow","Stephen Amell, Katie Cassidy, David Ramsey ","Greg Berlanti, Marc Guggenheim, Andrew Kreisberg","Adaptación libre de un personaje de DC Comics, playboy de día, que, durante la noche, usa su arco y sus flechas contra el crimen. Tras haber desaparecido y haber sido dado por muerto en un violento...",
-				"/img/shows/arrow.jpg","https://www.youtube.com/embed/uFdqDMxlx88",2012);
+
+		Show sh22 = new Show("Arrow", "Stephen Amell, Katie Cassidy, David Ramsey ",
+				"Greg Berlanti, Marc Guggenheim, Andrew Kreisberg",
+				"Adaptación libre de un personaje de DC Comics, playboy de día, que, durante la noche, usa su arco y sus flechas contra el crimen. Tras haber desaparecido y haber sido dado por muerto en un violento...",
+				"/img/shows/arrow.jpg", "https://www.youtube.com/embed/uFdqDMxlx88", 2012);
 
 		sh22.getGenders().add(g8);
 		sh22.getGenders().add(g1);
 		sh22.getGenders().add(g6);
 		showRepository.save(sh22);
-		
-		
-		Show sh23 = new Show("Smallville","Tom Welling, Michael Rosenbaum, Allison Mack","Alfred Gough, Miles Millar","Serie que narra los inicios de Superman -Clark Kent- en su pueblo natal, Smallville. Allí vivía con sus padres, estudiaba en el instituto local y conoció a su primera novia, Lana Lang, y a su futuro rival, Lex Luthor.",
-				"/img/shows/smallville.jpg","https://www.youtube.com/embed/AF4eljyAhVw ",2001);
 
-		
+		Show sh23 = new Show("Smallville", "Tom Welling, Michael Rosenbaum, Allison Mack", "Alfred Gough, Miles Millar",
+				"Serie que narra los inicios de Superman -Clark Kent- en su pueblo natal, Smallville. Allí vivía con sus padres, estudiaba en el instituto local y conoció a su primera novia, Lana Lang, y a su futuro rival, Lex Luthor.",
+				"/img/shows/smallville.jpg", "https://www.youtube.com/embed/AF4eljyAhVw ", 2001);
+
 		sh23.getGenders().add(g8);
 		sh23.getGenders().add(g1);
 		sh23.getGenders().add(g6);
 		showRepository.save(sh23);
-		
-		
-		
-		
-		
 		
 
 		// Test Data Lists
