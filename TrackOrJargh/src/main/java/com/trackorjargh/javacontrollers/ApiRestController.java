@@ -1,5 +1,7 @@
 package com.trackorjargh.javacontrollers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,14 +11,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.Lists;
 import com.trackorjargh.javaclass.Show;
+import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.FilmRepository;
 import com.trackorjargh.javarepository.ListsRepository;
 import com.trackorjargh.javarepository.ShowRepository;
+import com.trackorjargh.javarepository.UserRepository;
 
 @RestController
 public class ApiRestController {
@@ -29,6 +34,10 @@ public class ApiRestController {
 	private ShowRepository showRepository;
 	@Autowired
 	private ListsRepository listsRepository;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private UserComponent userComponent;
 
 	@RequestMapping(value = "/rest/peliculas", method = RequestMethod.GET)
 	@JsonView(Film.BasicInformation.class)
@@ -94,6 +103,11 @@ public class ApiRestController {
 		} else {
 			return bookRepository.findBooksByGender("%" + name + "%", page);
 		}
+	}
+	
+	@RequestMapping(value = "/rest/informacionusuario", method = RequestMethod.GET)
+	public List<Lists> getUser() {
+		return userComponent.getLoggedUser().getLists();
 	}
 
 	@RequestMapping(value = "/rest/agregarlista/{nameList}/{nameContent}", method = RequestMethod.PUT)
