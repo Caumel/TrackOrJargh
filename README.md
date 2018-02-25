@@ -88,6 +88,9 @@ In this page, you can search every item in the web (books,films or shows) by gen
 ![books](/TrackOrJargh/src/main/resources/static/img/documentation/login.jpg)
 Here you can log in if you already have an account,register using Facebook, or you can create an account (with e-mail confirmation)
 
+###### ERROR:
+![error](/TrackOrJargh/src/main/resources/static/img/documentation/error.jpg)
+
 #### REGISTERED USERS
 ###### INDEX:
 ![indexRegisteredUser](/TrackOrJargh/src/main/resources/static/img/documentation/indexLoggedUser.jpg)
@@ -110,5 +113,12 @@ As you can see, in every item of films/shows/books now appears a green button to
 Here you can add a new list, delete a created list and also create a PDF with all your favourite lists 
 
 ### 2. Navigation Diagram
+#### NAVIGATION DIAGRAM
+![navigationDiagram](/TrackOrJargh/src/main/resources/static/img/documentation/NavigationDiagram.jpg)
+#### JAVA CLASSES DIAGRAM
+![javaDiagram](/TrackOrJargh/src/main/resources/static/img/documentation/JavaClasses.jpg)
+#### DB DIAGRAM
+![dbDiagram](/TrackOrJargh/src/main/resources/static/img/documentation/db diagram.jpg)
+
 
 
