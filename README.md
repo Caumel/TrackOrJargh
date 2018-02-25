@@ -80,6 +80,10 @@ Exactly as the previous image, but with the shows
 ![libros](/TrackOrJargh/src/main/resources/static/img/documentation/libros.jpg)
 Same goes with books
 
+###### SEARCH:
+![search](/TrackOrJargh/src/main/resources/static/img/documentation/busqueda.jpg)
+In this page, you can search every item in the web (books,films or shows) by genre or name. 
+
 ###### LOGIN:
 ![books](/TrackOrJargh/src/main/resources/static/img/documentation/login.jpg)
 Here you can log in if you already have an account,register using Facebook, or you can create an account (with e-mail confirmation)
