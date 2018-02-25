@@ -23,4 +23,6 @@ public interface CommentFilmRepository extends JpaRepository<CommentFilm, Long>{
     @Transactional
 	@Query(value = "DELETE FROM COMMENT_FILM WHERE FILM_ID = ?1", nativeQuery = true)
 	void removeCommentsFilmssByFilmId(long id);
+    
+    CommentFilm findById(Long id);
 }

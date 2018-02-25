@@ -283,6 +283,7 @@ public class PageController {
 		model.addAttribute("contentRelation",
 				filmRepository.findFilmsRelationsById(film.getId(), new PageRequest(0, 8)));
 		model.addAttribute("iconFilmShow", true);
+		model.addAttribute("deleteComment", "/pelicula/borrarcomentario/");
 
 		return "contentProfile";
 	}
@@ -347,6 +348,7 @@ public class PageController {
 		model.addAttribute("contentRelation",
 				showRepository.findShowsRelationsById(show.getId(), new PageRequest(0, 8)));
 		model.addAttribute("iconFilmShow", true);
+		model.addAttribute("deleteComment", "/serie/borrarcomentario/");
 
 		return "contentProfile";
 	}
@@ -411,8 +413,33 @@ public class PageController {
 		model.addAttribute("contentRelation",
 				bookRepository.findBooksRelationsById(book.getId(), new PageRequest(0, 8)));
 		model.addAttribute("iconBook", true);
+		model.addAttribute("deleteComment", "/libro/borrarcomentario/");
 
 		return "contentProfile";
+	}
+	
+	@RequestMapping("/pelicula/borrarcomentario/{id}/{name}")
+	public String deleteCommentFilm(Model model, @PathVariable int id, @PathVariable String name) {
+		CommentFilm comment = commentFilmRepository.findById(new Long(id));
+		commentFilmRepository.delete(comment);
+		
+		return "redirect:/pelicula/" + name;
+	}
+	
+	@RequestMapping("/serie/borrarcomentario/{id}/{name}")
+	public String deleteCommentShow(Model model, @PathVariable int id, @PathVariable String name) {
+		CommentShow comment = commentShowRepository.findById(new Long(id));
+		commentShowRepository.delete(comment);
+		
+		return "redirect:/serie/" + name;
+	}
+	
+	@RequestMapping("/libro/borrarcomentario/{id}/{name}")
+	public String deleteCommentBook(Model model, @PathVariable int id, @PathVariable String name) {
+		CommentBook comment = commentBookRepository.findById(new Long(id));
+		commentBookRepository.delete(comment);
+		
+		return "redirect:/libro/" + name;
 	}
 
 	@RequestMapping("/miperfil")

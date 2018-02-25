@@ -154,14 +154,16 @@
 
 			<div class="section-header">
 				<h3>
-					<i class="{{#iconFilmShow}}ion-ios-film-outline{{/iconFilmShow}}{{#iconBook}}ion-ios-book-outline{{/iconBook}}"></i> Contenido Relacionado
+					<i
+						class="{{#iconFilmShow}}ion-ios-film-outline{{/iconFilmShow}}{{#iconBook}}ion-ios-book-outline{{/iconBook}}"></i>
+					Contenido Relacionado
 				</h3>
 			</div>
 
 			{{^contentRelation}}
 			<p class="text-center">No hay contenido relacionado.</p>
 			{{/contentRelation}}
-			
+
 			<div id="elements" class="row ">
 				{{#contentRelation}}
 				<div
@@ -214,6 +216,22 @@
 							<a href=""><b>{{name}}</b></a>
 						</h4>
 					</div>
+
+					{{#isUserAdmin}}
+					<div class="text-right mt-1">
+						<p class="reporte">
+							<a href="{{deleteComment}}{{id}}/{{content.name}}">Borrar Comentario</a>
+						</p>
+					</div>
+					{{/isUserAdmin}}
+					
+					{{#isUserModerator}}
+					<div class="text-right mt-1">
+						<p class="reporte">
+							<a href="{{deleteComment}}{{id}}/{{content.name}}">Borrar Comentario</a>
+						</p>
+					</div>
+					{{/isUserModerator}}
 
 					<div class="comment text-left">
 						<p class="description">{{message}}</p>

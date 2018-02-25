@@ -43,6 +43,7 @@ class UserHandlerInterceptor extends HandlerInterceptorAdapter {
 				
 				modelAndView.addObject("userLogged", user);
 				modelAndView.addObject("isUserAdmin", request.isUserInRole("ADMIN"));
+				modelAndView.addObject("isUserModerator", request.isUserInRole("MODERATOR"));
 			}
 		}
 	}
