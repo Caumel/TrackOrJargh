@@ -87,10 +87,10 @@
 					<form method="post" role="form" action="/login"
 						style="display: block;">
 						<input type="text" name="username" id="userL" tabindex="1"
-							class="form-group form-control" placeholder="Usuario" value="{{#viewUser}}{{name}}{{/viewUser}}" autofocus>
+							class="form-group form-control" placeholder="Usuario" value="{{#viewUser}}{{name}}{{/viewUser}}" required autofocus>
 
 						<input type="password" name="password" id="passwordL" tabindex="2"
-							class="form-group form-control" placeholder="Contraseña">
+							class="form-group form-control" placeholder="Contraseña" required>
 
 						<div class="row form-group">
 							<input type="submit" name="login-submit" id="buttonLog"
@@ -128,15 +128,15 @@
 								style="display: block;" action="/registrar">
 								<input type="text" name="name" tabindex="2"
 									class="form-group form-control" placeholder="Nombre de Usuario"
-									value="" /> 
+									value="" required /> 
 								<input type="email" name="email" tabindex="2"
-									class="form-group form-control" placeholder="Email" value="" />
+									class="form-group form-control" placeholder="Email" value="" required />
 								<input id="password" type="password" name="pass"
 									class="form-group form-control" tabindex="2" role="form"
-									placeholder="Contraseña" /> 
+									placeholder="Contraseña" required /> 
 								<input type="password" id="confirmPass" tabindex="2"
 									class="form-group form-control"
-									placeholder="Confirmar Contraseña" />
+									placeholder="Confirmar Contraseña" required />
 								<input type="hidden" name="registerUser" value="true"/>
 
 								<div class="row form-group">

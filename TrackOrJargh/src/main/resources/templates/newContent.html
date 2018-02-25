@@ -42,7 +42,7 @@
             <div class="tab-content" id="adminTabContent">
                 <div class="tab-pane fade show active" id="films" role="tabpanel"
                      aria-labelledby="films-tab">
-                    <form action="/nuevaPelicula" method="post">
+                    <form action="/nuevaPelicula" enctype="multipart/form-data" method="post">
                         <div class="form-group pt-3">
                         	<label for="imageFilm">Selecccionar imagen:</label>
                             <input type="file" id="imageFilm" name="imageFilm">
@@ -71,7 +71,7 @@
                 </div>
                <div class="tab-pane fade" id="shows" role="tabpanel"
                      aria-labelledby="shows-tab">
-                    <form action="/nuevaSerie" method="post">
+                    <form action="/nuevaSerie" enctype="multipart/form-data" method="post">
                         <div class="form-group pt-3">
                         	<label for="imageShow">Selecccionar imagen:</label>
                             <input type="file" id="imageShow" name="imageShow">
@@ -100,7 +100,7 @@
                 </div>
                 <div class="tab-pane fade" id="books" role="tabpanel"
                      aria-labelledby="books-tab">
-                    <form action="/nuevoLibro" method="post">
+                    <form action="/nuevoLibro" enctype="multipart/form-data" method="post">
                         <div class="form-group pt-3">
                         	<label for="imageBook">Selecccionar imagen:</label>
                             <input type="file" id="imageBook" name="imageBook">

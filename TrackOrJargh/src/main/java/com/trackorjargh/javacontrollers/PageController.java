@@ -523,12 +523,14 @@ public class PageController {
 	public String serveRegistrer(Model model, RedirectAttributes redir, HttpServletRequest request,
 			@RequestParam String name, @RequestParam String email, @RequestParam String pass) {
 
-		User newUser = new User(name, pass, email, "/img/default-user.png", false, "ROLE_USER");
-		GenerateURLPage url = new GenerateURLPage(request);
-		mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount(newUser));
-
-		redir.addFlashAttribute("registered", true);
-		userRepository.save(newUser);
+		if(!name.equals("")) {
+			User newUser = new User(name, pass, email, "/img/default-user.png", false, "ROLE_USER");
+			GenerateURLPage url = new GenerateURLPage(request);
+			mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount(newUser));
+	
+			redir.addFlashAttribute("registered", true);
+			userRepository.save(newUser);
+		}
 
 		return "redirect:/login";
 	}
