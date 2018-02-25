@@ -434,6 +434,9 @@ public class PageController {
 			listsUser.add(new PreparateListsShow(list.getName(), list.getFilms(), list.getBooks(), list.getShows()));
 		
 		model.addAttribute("listsUser", listsUser);
+		
+		if(listsUser.size() > 0)
+			model.addAttribute("listUserTrue", true);
 
 		if (userComponent.getLoggedUser().getRoles().size() == 3) {
 			model.addAttribute("isAdmin", true);
