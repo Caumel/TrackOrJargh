@@ -35,7 +35,7 @@ Desarrollo de Aplicaciones Web - URJC (Móstoles) - 2017/2018
 
 
 ### 4.Advanced features
-Reccomended content algorythm.
+Reccomended content.
 
 Searching by tags and genders.
 
@@ -50,7 +50,7 @@ Verification email sent when an new user signs up in the site.
 
 Pdf generation on user's demand with a list of the viewed content.
 
-Google account login.
+Facebook account login.
 
 # 2nd PHASE
 
