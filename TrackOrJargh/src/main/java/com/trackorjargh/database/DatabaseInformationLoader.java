@@ -99,7 +99,7 @@ public class DatabaseInformationLoader {
 		genderRepository.save(g13);
 
 		// Test Data Film
-		Film f0 = new Film("Guardianes",
+		Film f0 = new Film("Guardianes de la Galaxia 1",
 				"Chris Pratt, Zoe Saldana, Bradley Cooper, Dave Bautista, Vin Diesel, Michael Rooker, Karen Gillan, Pom Klementieff, Elizabeth Debicki, Chris Sullivan, Sean Gunn, Sylvester Stallone, Kurt Russell",
 				"James Gunn",
 				"Guardianes de la Galaxia Vol. 2 continúa las aventuras del equipo a medida que viajan cruzando\n los confines del cosmos. Los Guardianes tendrán que luchar para\n mantener su recién...",
@@ -121,7 +121,7 @@ public class DatabaseInformationLoader {
 		f1.getGenders().add(g10);
 		filmRepository.save(f1);
 
-		Film f2 = new Film("Guardianes de la Galaxia",
+		Film f2 = new Film("Guardianes de la Galaxia 3",
 				"Chris Pratt, Zoe Saldana, Bradley Cooper, Dave Bautista, Vin Diesel, Michael Rooker, Karen Gillan, Djimon Hounsou, John C. Reilly, Glenn Close, Lee Pace, Benicio del Toro",
 				"James Gunn",
 				"Peter Quill, debe mantener una incomoda alianza con Gamora, Drax, Rocket y Groot para asegurar un artefacto que pone en peligro a toda la galaxia no caiga en las manos del temible Ronan el Acusador.",
