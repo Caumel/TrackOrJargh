@@ -288,4 +288,26 @@ public class ApiRestController {
 		listsRepository.save(listUser);
 		return true;
 	}
+	
+	@RequestMapping(value = "/rest/comprobarusuario/{name}/", method = RequestMethod.GET)
+	public boolean checkUser(@PathVariable String name) {
+		User user = userRepository.findByNameIgnoreCase(name);
+		
+		if(user != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@RequestMapping(value = "/rest/comprobaremail/{email}/", method = RequestMethod.GET)
+	public boolean checkEmail(@PathVariable String email) {
+		User user = userRepository.findByEmail(email);
+		
+		if(user != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
