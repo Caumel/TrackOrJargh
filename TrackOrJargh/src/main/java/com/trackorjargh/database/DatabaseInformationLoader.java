@@ -318,79 +318,6 @@ public class DatabaseInformationLoader {
 		f21.getGenders().add(g7);
 		filmRepository.save(f21);
 
-		// Comment Film Section
-
-		CommentFilm c1 = new CommentFilm("Esta pelicula es muy buena");
-		c1.setFilm(f1);
-		c1.setUser(u1);
-		commentFilmRepository.save(c1);
-
-		CommentFilm c2 = new CommentFilm("A mi me gustó mas la 2, pero bueno no está mal");
-		c2.setFilm(f2);
-		c2.setUser(u1);
-		commentFilmRepository.save(c2);
-
-		CommentFilm c3 = new CommentFilm("Qué miedo pasé, esa noche dormí abrazado a mi osito de peluche");
-		c3.setFilm(f3);
-		c3.setUser(u1);
-		commentFilmRepository.save(c3);
-
-		CommentFilm c4 = new CommentFilm("k dices tio, no es pa tanto, vaya cagueta");
-		c4.setFilm(f3);
-		c4.setUser(u2);
-		commentFilmRepository.save(c4);
-
-		CommentFilm c5 = new CommentFilm(
-				"Esta peli la vi con mi novia, no esta mal, te ries, pero hubiera preferido esdla");
-		c5.setFilm(f4);
-		c5.setUser(u3);
-		commentFilmRepository.save(c5);
-
-		CommentFilm c6 = new CommentFilm("Es que eres un poco calzonazossss!!! jajajaja ");
-		c6.setFilm(f4);
-		c6.setUser(u2);
-		commentFilmRepository.save(c6);
-
-		CommentFilm c7 = new CommentFilm("¬¬");
-		c7.setFilm(f4);
-		c7.setUser(u3);
-		commentFilmRepository.save(c7);
-
-		CommentFilm c8 = new CommentFilm(
-				"Buah, me ha encantado, me he descargado y todo la banda sonora, que por si a alguien le interesa se llaman RADWIMPS");
-		c8.setFilm(f5);
-		c8.setUser(u3);
-		commentFilmRepository.save(c8);
-
-		CommentFilm c9 = new CommentFilm(
-				"Yo me rei mucho cuando cayó el meteorito, lo dije de broma pero al final resultó que cayó de verdad xD");
-		c9.setFilm(f5);
-		c9.setUser(u1);
-		commentFilmRepository.save(c9);
-
-		CommentFilm c10 = new CommentFilm(
-				"No me gustan las peliculas de gladiadiores, me parace absurdo el final y gratuito, y el emperador lo hace todo mal en fin... ");
-		c10.setFilm(f6);
-		c10.setUser(u2);
-		commentFilmRepository.save(c8);
-
-		CommentFilm c11 = new CommentFilm(
-				"Esta es la peli que hablan en Big Bang que si quitas a indiana Johnes no habria cambiado nada XDD ");
-		c11.setFilm(f7);
-		c11.setUser(u3);
-		commentFilmRepository.save(c11);
-
-		CommentFilm c12 = new CommentFilm(
-				"A mi me ha gustado, lo unico que a la iglesia no le mola mucho porque al parecer la peli acaba con la muerte de jesucristo, y da un mensaje equivocado en teoria");
-		c12.setFilm(f8);
-		c12.setUser(u1);
-		commentFilmRepository.save(c12);
-
-		CommentFilm c13 = new CommentFilm("Un poco bodrio, pero bueno, no pueden gustarme todas");
-		c13.setFilm(f9);
-		c13.setUser(u2);
-		commentFilmRepository.save(c13);
-
 		// Test Data Book
 		Book b1 = new Book("Los Juegos del Hambre", "",
 				"Los juegos del hambre se desarrolla en un país llamado Panem, lo que es en realidad una civilización postapocalíptica ubicada en lo que antes era América del Norte.",
@@ -691,7 +618,9 @@ public class DatabaseInformationLoader {
 		sh12.getGenders().add(g13);
 		showRepository.save(sh12);
 
-		Show sh13 = new Show("Mahouka Koukou no Rettousei", "Yûichi Nakamura, Saori Hayami, Yumi Uchiyama","Manabu Ono","La Magia no es algo de las leyendas ni los cuentos de hadas, se convirtió en tecnología desde hace casi un siglo. El proceso mágico ha sido sistematizado y con ayuda de dispositivo llamado CAD, los procesos pueden ser acelerados significativamente y esto ...",
+		Show sh13 = new Show("Mahouka Koukou no Rettousei", "Yûichi Nakamura, Saori Hayami, Yumi Uchiyama",
+				"Manabu Ono",
+				"La Magia no es algo de las leyendas ni los cuentos de hadas, se convirtió en tecnología desde hace casi un siglo. El proceso mágico ha sido sistematizado y con ayuda de dispositivo llamado CAD, los procesos pueden ser acelerados significativamente y esto ...",
 				"/img/shows/mahouka.jpg", "https://www.youtube.com/embed/U-gkwdGooDU", 2015);
 
 		sh13.getGenders().add(g7);
@@ -807,70 +736,130 @@ public class DatabaseInformationLoader {
 		commentFilmRepository.save(cf1);
 
 		CommentFilm cf2 = new CommentFilm("A mi me gustó mas la 2, pero bueno no está mal");
-		c2.setFilm(f2);
-		c2.setUser(u1);
+		cf2.setFilm(f2);
+		cf2.setUser(u1);
 		commentFilmRepository.save(cf2);
 
 		CommentFilm cf3 = new CommentFilm("Qué miedo pasé, esa noche dormí abrazado a mi osito de peluche");
-		c3.setFilm(f3);
-		c3.setUser(u1);
+		cf3.setFilm(f3);
+		cf3.setUser(u1);
 		commentFilmRepository.save(cf3);
 
 		CommentFilm cf4 = new CommentFilm("k dices tio, no es pa tanto, vaya cagueta");
-		c4.setFilm(f3);
-		c4.setUser(u2);
+		cf4.setFilm(f3);
+		cf4.setUser(u2);
 		commentFilmRepository.save(cf4);
 
 		CommentFilm cf5 = new CommentFilm(
 				"Esta peli la vi con mi novia, no esta mal, te ries, pero hubiera preferido esdla");
-		c5.setFilm(f4);
-		c5.setUser(u3);
+		cf5.setFilm(f4);
+		cf5.setUser(u3);
 		commentFilmRepository.save(cf5);
 
 		CommentFilm cf6 = new CommentFilm("Es que eres un poco calzonazossss!!! jajajaja ");
-		c6.setFilm(f4);
-		c6.setUser(u2);
+		cf6.setFilm(f4);
+		cf6.setUser(u2);
 		commentFilmRepository.save(cf6);
 
 		CommentFilm cf7 = new CommentFilm("¬¬");
-		c7.setFilm(f4);
-		c7.setUser(u3);
+		cf7.setFilm(f4);
+		cf7.setUser(u3);
 		commentFilmRepository.save(cf7);
 
 		CommentFilm cf8 = new CommentFilm(
 				"Buah, me ha encantado, me he descargado y todo la banda sonora, que por si a alguien le interesa se llaman RADWIMPS");
-		c8.setFilm(f5);
-		c8.setUser(u3);
+		cf8.setFilm(f5);
+		cf8.setUser(u3);
 		commentFilmRepository.save(cf8);
 
 		CommentFilm cf9 = new CommentFilm(
 				"Yo me rei mucho cuando cayó el meteorito, lo dije de broma pero al final resultó que cayó de verdad xD");
-		c9.setFilm(f5);
-		c9.setUser(u1);
+		cf9.setFilm(f5);
+		cf9.setUser(u1);
 		commentFilmRepository.save(cf9);
 
 		CommentFilm cf10 = new CommentFilm(
 				"No me gustan las peliculas de gladiadiores, me parace absurdo el final y gratuito, y el emperador lo hace todo mal en fin... ");
-		c10.setFilm(f6);
-		c10.setUser(u2);
+		cf10.setFilm(f6);
+		cf10.setUser(u2);
 		commentFilmRepository.save(cf10);
 
 		CommentFilm cf11 = new CommentFilm(
 				"Esta es la peli que hablan en Big Bang que si quitas a indiana Johnes no habria cambiado nada XDD ");
-		c11.setFilm(f7);
-		c11.setUser(u3);
+		cf11.setFilm(f7);
+		cf11.setUser(u3);
 		commentFilmRepository.save(cf11);
 
 		CommentFilm cf12 = new CommentFilm(
 				"A mi me ha gustado, lo unico que a la iglesia no le mola mucho porque al parecer la peli acaba con la muerte de jesucristo, y da un mensaje equivocado en teoria");
-		c12.setFilm(f8);
-		c12.setUser(u1);
+		cf12.setFilm(f8);
+		cf12.setUser(u1);
 		commentFilmRepository.save(cf12);
 
 		CommentFilm cf13 = new CommentFilm("Un poco bodrio, pero bueno, no pueden gustarme todas");
-		c13.setFilm(f9);
-		c13.setUser(u2);
+		cf13.setFilm(f9);
+		cf13.setUser(u2);
 		commentFilmRepository.save(cf13);
+
+		CommentFilm cf14 = new CommentFilm("Las he visto mejores");
+		cf14.setFilm(f10);
+		cf14.setUser(u2);
+		commentFilmRepository.save(cf14);
+
+		CommentFilm cf15 = new CommentFilm("Esta la vi en el cine y me arrepenti de gastarme el dinero");
+		cf15.setFilm(f11);
+		cf15.setUser(u2);
+		commentFilmRepository.save(cf15);
+
+		CommentFilm cf16 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf16.setFilm(f12);
+		cf16.setUser(u2);
+		commentFilmRepository.save(cf16);
+
+		CommentFilm cf17 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf17.setFilm(f13);
+		cf17.setUser(u2);
+		commentFilmRepository.save(cf17);
+
+		CommentFilm cf18 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf18.setFilm(f14);
+		cf18.setUser(u2);
+		commentFilmRepository.save(cf18);
+
+		CommentFilm cf19 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf19.setFilm(f15);
+		cf19.setUser(u2);
+		commentFilmRepository.save(cf19);
+
+		CommentFilm cf20 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf20.setFilm(f16);
+		cf20.setUser(u2);
+		commentFilmRepository.save(cf20);
+
+		CommentFilm cf21 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf21.setFilm(f17);
+		cf21.setUser(u2);
+		commentFilmRepository.save(cf21);
+
+		CommentFilm cf22 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf22.setFilm(f18);
+		cf22.setUser(u2);
+		commentFilmRepository.save(cf22);
+
+		CommentFilm cf23 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf23.setFilm(f19);
+		cf23.setUser(u2);
+		commentFilmRepository.save(cf23);
+
+		CommentFilm cf24 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf24.setFilm(f20);
+		cf24.setUser(u2);
+		commentFilmRepository.save(cf24);
+
+		CommentFilm cf25 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf25.setFilm(f21);
+		cf25.setUser(u2);
+		commentFilmRepository.save(cf25);
 
 		// Test Data Comment Show
 		CommentShow cs1 = new CommentShow("Esta serie es muy buena");
@@ -878,11 +867,216 @@ public class DatabaseInformationLoader {
 		cs1.setUser(u1);
 		commentShowRepository.save(cs1);
 
+		CommentShow cs2 = new CommentShow("Esta serie es muy buena");
+		cs2.setShow(sh2);
+		cs2.setUser(u1);
+		commentShowRepository.save(cs2);
+
+		CommentShow cs3 = new CommentShow("Esta serie es muy buena");
+		cs3.setShow(sh3);
+		cs3.setUser(u1);
+		commentShowRepository.save(cs3);
+
+		CommentShow cs4 = new CommentShow("Esta serie es muy buena");
+		cs4.setShow(sh4);
+		cs4.setUser(u2);
+		commentShowRepository.save(cs4);
+
+		CommentShow cs5 = new CommentShow("Esta serie es muy buena");
+		cs5.setShow(sh5);
+		cs5.setUser(u1);
+		commentShowRepository.save(cs5);
+
+		CommentShow cs6 = new CommentShow("Esta serie es muy buena");
+		cs6.setShow(sh6);
+		cs6.setUser(u3);
+		commentShowRepository.save(cs6);
+
+		CommentShow cs7 = new CommentShow("Esta serie es muy buena");
+		cs7.setShow(sh7);
+		cs7.setUser(u2);
+		commentShowRepository.save(cs7);
+
+		CommentShow cs8 = new CommentShow("Esta serie es muy buena");
+		cs8.setShow(sh2);
+		cs8.setUser(u1);
+		commentShowRepository.save(cs8);
+
+		CommentShow cs9 = new CommentShow("Esta serie es muy buena");
+		cs9.setShow(sh9);
+		cs9.setUser(u1);
+		commentShowRepository.save(cs9);
+
+		CommentShow cs10 = new CommentShow("Esta serie es muy buena");
+		cs10.setShow(sh10);
+		cs10.setUser(u3);
+		commentShowRepository.save(cs10);
+
+		CommentShow cs11 = new CommentShow("Esta serie es muy buena");
+		cs11.setShow(sh11);
+		cs11.setUser(u1);
+		commentShowRepository.save(cs11);
+
+		CommentShow cs12 = new CommentShow("Esta serie es muy buena");
+		cs12.setShow(sh12);
+		cs12.setUser(u3);
+		commentShowRepository.save(cs12);
+
+		CommentShow cs13 = new CommentShow("Esta serie es muy buena");
+		cs13.setShow(sh13);
+		cs13.setUser(u2);
+		commentShowRepository.save(cs13);
+
+		CommentShow cs14 = new CommentShow("Esta serie es muy buena");
+		cs14.setShow(sh14);
+		cs14.setUser(u2);
+		commentShowRepository.save(cs14);
+
+		CommentShow cs15 = new CommentShow("Esta serie es muy buena");
+		cs15.setShow(sh15);
+		cs15.setUser(u1);
+		commentShowRepository.save(cs15);
+
+		CommentShow cs16 = new CommentShow("Esta serie es muy buena");
+		cs16.setShow(sh16);
+		cs16.setUser(u2);
+		commentShowRepository.save(cs16);
+
+		CommentShow cs17 = new CommentShow("Esta serie es muy buena");
+		cs17.setShow(sh17);
+		cs17.setUser(u3);
+		commentShowRepository.save(cs17);
+
+		CommentShow cs18 = new CommentShow("Esta serie es muy buena");
+		cs18.setShow(sh18);
+		cs18.setUser(u1);
+		commentShowRepository.save(cs18);
+
+		CommentShow cs19 = new CommentShow("Esta serie es muy buena");
+		cs19.setShow(sh19);
+		cs19.setUser(u2);
+		commentShowRepository.save(cs19);
+
+		CommentShow cs21 = new CommentShow("Rollazo BUUUUUUUUUUUUUUUUHHHHHHHHHHH");
+		cs21.setShow(sh21);
+		cs21.setUser(u3);
+		commentShowRepository.save(cs21);
+
+		CommentShow cs22 = new CommentShow("Esta serie es muy buena");
+		cs22.setShow(sh22);
+		cs22.setUser(u2);
+		commentShowRepository.save(cs22);
+
+		CommentShow cs23 = new CommentShow("Lo ha petado");
+		cs23.setShow(sh23);
+		cs23.setUser(u1);
+		commentShowRepository.save(cs23);
+
 		// Test Data Comment Book
 		CommentBook cb1 = new CommentBook("Este libro es muy bueno");
 		cb1.setBook(b1);
 		cb1.setUser(u1);
 		commentBookRepository.save(cb1);
+
+		CommentBook cb2 = new CommentBook("Este libro es muy bueno");
+		cb2.setBook(b2);
+		cb2.setUser(u2);
+		commentBookRepository.save(cb2);
+
+		CommentBook cb3 = new CommentBook("Este libro es muy bueno");
+		cb3.setBook(b3);
+		cb3.setUser(u1);
+		commentBookRepository.save(cb3);
+
+		CommentBook cb4 = new CommentBook("Este libro es muy bueno");
+		cb4.setBook(b4);
+		cb4.setUser(u3);
+		commentBookRepository.save(cb4);
+
+		CommentBook cb5 = new CommentBook("Este libro es muy bueno");
+		cb5.setBook(b5);
+		cb5.setUser(u2);
+		commentBookRepository.save(cb5);
+
+		CommentBook cb6 = new CommentBook("Este libro es muy bueno");
+		cb6.setBook(b6);
+		cb6.setUser(u1);
+		commentBookRepository.save(cb6);
+
+		CommentBook cb7 = new CommentBook("Este libro es muy bueno");
+		cb7.setBook(b7);
+		cb7.setUser(u1);
+		commentBookRepository.save(cb7);
+
+		CommentBook cb8 = new CommentBook("Este libro es muy bueno");
+		cb8.setBook(b8);
+		cb8.setUser(u3);
+		commentBookRepository.save(cb8);
+
+		CommentBook cb9 = new CommentBook("Este libro es muy bueno");
+		cb9.setBook(b9);
+		cb9.setUser(u3);
+		commentBookRepository.save(cb9);
+
+		CommentBook cb10 = new CommentBook("Este libro es muy bueno");
+		cb10.setBook(b10);
+		cb10.setUser(u2);
+		commentBookRepository.save(cb10);
+
+		CommentBook cb11 = new CommentBook("Este libro es muy bueno");
+		cb11.setBook(b11);
+		cb11.setUser(u2);
+		commentBookRepository.save(cb11);
+
+		CommentBook cb12 = new CommentBook("Este libro es muy bueno");
+		cb12.setBook(b12);
+		cb12.setUser(u1);
+		commentBookRepository.save(cb12);
+
+		CommentBook cb13 = new CommentBook("Este libro es muy bueno");
+		cb13.setBook(b13);
+		cb13.setUser(u1);
+		commentBookRepository.save(cb13);
+
+		CommentBook cb14 = new CommentBook("Este libro es muy bueno");
+		cb14.setBook(b14);
+		cb14.setUser(u3);
+		commentBookRepository.save(cb14);
+
+		CommentBook cb15 = new CommentBook("Este libro es muy bueno");
+		cb15.setBook(b15);
+		cb15.setUser(u2);
+		commentBookRepository.save(cb15);
+
+		CommentBook cb16 = new CommentBook("Este libro es muy bueno");
+		cb16.setBook(b16);
+		cb16.setUser(u1);
+		commentBookRepository.save(cb16);
+
+		CommentBook cb17 = new CommentBook("Este libro es muy bueno");
+		cb17.setBook(b17);
+		cb17.setUser(u2);
+		commentBookRepository.save(cb17);
+
+		CommentBook cb18 = new CommentBook("Este libro es muy bueno");
+		cb18.setBook(b1);
+		cb18.setUser(u3);
+		commentBookRepository.save(cb18);
+
+		CommentBook cb19 = new CommentBook("Este libro es muy bueno");
+		cb19.setBook(b19);
+		cb19.setUser(u3);
+		commentBookRepository.save(cb19);
+
+		CommentBook cb20 = new CommentBook("Este libro es muy bueno");
+		cb20.setBook(b20);
+		cb20.setUser(u2);
+		commentBookRepository.save(cb20);
+
+		CommentBook cb21 = new CommentBook("Este libro es muy bueno");
+		cb21.setBook(b21);
+		cb21.setUser(u1);
+		commentBookRepository.save(cb21);
 
 		// Test Data Point Film
 		PointFilm pf1 = new PointFilm((double) 5);
@@ -924,22 +1118,22 @@ public class DatabaseInformationLoader {
 		pf8.setFilm(f5);
 		pf8.setUser(u2);
 		pointFilmRepository.save(pf8);
-		
+
 		PointFilm pf9 = new PointFilm((double) 4.9);
 		pf9.setFilm(f6);
 		pf9.setUser(u3);
 		pointFilmRepository.save(pf9);
-		
+
 		PointFilm pf10 = new PointFilm((double) 2.6);
 		pf10.setFilm(f7);
 		pf10.setUser(u1);
 		pointFilmRepository.save(pf10);
-		
+
 		PointFilm pf11 = new PointFilm((double) 3);
 		pf11.setFilm(f8);
 		pf11.setUser(u1);
 		pointFilmRepository.save(pf11);
-		
+
 		PointFilm pf12 = new PointFilm((double) 3.5);
 		pf12.setFilm(f9);
 		pf12.setUser(u1);
@@ -949,300 +1143,283 @@ public class DatabaseInformationLoader {
 		pf13.setFilm(f10);
 		pf13.setUser(u1);
 		pointFilmRepository.save(pf13);
-		
+
 		PointFilm pf14 = new PointFilm((double) 2);
 		pf14.setFilm(f11);
 		pf14.setUser(u1);
 		pointFilmRepository.save(pf14);
-		
+
 		PointFilm pf15 = new PointFilm((double) 4);
 		pf15.setFilm(f14);
 		pf15.setUser(u1);
 		pointFilmRepository.save(pf14);
-		
+
 		PointFilm pf16 = new PointFilm((double) 3);
 		pf16.setFilm(f15);
 		pf16.setUser(u1);
 		pointFilmRepository.save(pf15);
-		
+
 		PointFilm pf17 = new PointFilm((double) 2);
 		pf17.setFilm(f16);
 		pf17.setUser(u1);
 		pointFilmRepository.save(pf16);
-		
+
 		PointFilm pf18 = new PointFilm((double) 1.5);
 		pf18.setFilm(f17);
 		pf18.setUser(u1);
 		pointFilmRepository.save(pf17);
-		
+
 		PointFilm pf19 = new PointFilm((double) 4.4);
 		pf19.setFilm(f18);
 		pf19.setUser(u1);
 		pointFilmRepository.save(pf18);
-		
+
 		PointFilm pf20 = new PointFilm((double) 4.5);
 		pf20.setFilm(f19);
 		pf20.setUser(u1);
 		pointFilmRepository.save(pf19);
-		
+
 		PointFilm pf22 = new PointFilm((double) 3.5);
 		pf22.setFilm(f20);
 		pf22.setUser(u1);
 		pointFilmRepository.save(pf22);
-		
+
 		PointFilm pf21 = new PointFilm((double) 5);
 		pf21.setFilm(f21);
 		pf21.setUser(u1);
 		pointFilmRepository.save(pf21);
-		
+
 		PointFilm pf24 = new PointFilm((double) 3.4);
 		pf24.setFilm(f12);
 		pf24.setUser(u1);
 		pointFilmRepository.save(pf24);
-		
+
 		PointFilm pf23 = new PointFilm((double) 2.6);
 		pf23.setFilm(f13);
 		pf23.setUser(u1);
 		pointFilmRepository.save(pf23);
-		
 
 		// Test Data Point Show
 		PointShow ps1 = new PointShow((double) 3.5);
 		ps1.setShow(sh1);
 		ps1.setUser(u1);
 		pointShowRepository.save(ps1);
-		
+
 		PointShow ps2 = new PointShow((double) 4.3);
 		ps2.setShow(sh2);
 		ps2.setUser(u1);
 		pointShowRepository.save(ps2);
-		
+
 		PointShow ps3 = new PointShow((double) 2.4);
 		ps3.setShow(sh3);
 		ps3.setUser(u2);
 		pointShowRepository.save(ps3);
-		
+
 		PointShow ps4 = new PointShow((double) 4.2);
 		ps4.setShow(sh4);
 		ps4.setUser(u1);
 		pointShowRepository.save(ps4);
-		
+
 		PointShow ps5 = new PointShow((double) 1.4);
 		ps5.setShow(sh5);
 		ps5.setUser(u3);
 		pointShowRepository.save(ps5);
-		
+
 		PointShow ps6 = new PointShow((double) 5);
 		ps6.setShow(sh6);
 		ps6.setUser(u1);
 		pointShowRepository.save(ps6);
-		
+
 		PointShow ps7 = new PointShow((double) 2.7);
 		ps7.setShow(sh7);
 		ps7.setUser(u1);
 		pointShowRepository.save(ps7);
-		
+
 		PointShow ps8 = new PointShow((double) 2.2);
 		ps8.setShow(sh8);
 		ps8.setUser(u1);
 		pointShowRepository.save(ps8);
-		
+
 		PointShow ps9 = new PointShow((double) 3.6);
 		ps9.setShow(sh9);
 		ps9.setUser(u1);
 		pointShowRepository.save(ps9);
-		
+
 		PointShow ps10 = new PointShow((double) 4.5);
 		ps10.setShow(sh10);
 		ps10.setUser(u1);
 		pointShowRepository.save(ps10);
-		
+
 		PointShow ps11 = new PointShow((double) 4.7);
 		ps11.setShow(sh11);
 		ps11.setUser(u1);
 		pointShowRepository.save(ps11);
-		
+
 		PointShow ps12 = new PointShow((double) 4);
 		ps12.setShow(sh12);
 		ps12.setUser(u1);
 		pointShowRepository.save(ps12);
-		
+
 		PointShow ps13 = new PointShow((double) 2.5);
 		ps13.setShow(sh1);
 		ps13.setUser(u1);
 		pointShowRepository.save(ps13);
-		
+
 		PointShow ps14 = new PointShow((double) 3);
 		ps14.setShow(sh14);
 		ps14.setUser(u1);
 		pointShowRepository.save(ps14);
-		
+
 		PointShow ps15 = new PointShow((double) 4);
 		ps15.setShow(sh15);
 		ps15.setUser(u1);
 		pointShowRepository.save(ps15);
-		
+
 		PointShow ps16 = new PointShow((double) 3.6);
 		ps16.setShow(sh16);
 		ps16.setUser(u1);
 		pointShowRepository.save(ps16);
-		
+
 		PointShow ps17 = new PointShow((double) 4.2);
 		ps17.setShow(sh17);
 		ps17.setUser(u1);
 		pointShowRepository.save(ps17);
-		
+
 		PointShow ps18 = new PointShow((double) 4.6);
 		ps18.setShow(sh18);
 		ps18.setUser(u1);
 		pointShowRepository.save(ps18);
-		
+
 		PointShow ps19 = new PointShow((double) 4.9);
 		ps19.setShow(sh19);
 		ps19.setUser(u1);
 		pointShowRepository.save(ps19);
-		
+
 		PointShow ps20 = new PointShow((double) 5);
 		ps20.setShow(sh20);
 		ps20.setUser(u1);
 		pointShowRepository.save(ps20);
-		
+
 		PointShow ps21 = new PointShow((double) 3.2);
 		ps21.setShow(sh21);
 		ps21.setUser(u1);
 		pointShowRepository.save(ps21);
-		
+
 		PointShow ps22 = new PointShow((double) 2.2);
 		ps22.setShow(sh22);
 		ps22.setUser(u1);
 		pointShowRepository.save(ps22);
-		
+
 		PointShow ps23 = new PointShow((double) 1);
 		ps23.setShow(sh23);
 		ps23.setUser(u1);
 		pointShowRepository.save(ps23);
-		
-		
+
 		// Test Data Point Book
 		PointBook pb1 = new PointBook((double) 2);
 		pb1.setBook(b1);
 		pb1.setUser(u1);
 		pointBookRepository.save(pb1);
-		
+
 		PointBook pb2 = new PointBook((double) 3.5);
 		pb2.setBook(b2);
 		pb2.setUser(u1);
 		pointBookRepository.save(pb2);
-		
+
 		PointBook pb3 = new PointBook((double) 2.6);
 		pb3.setBook(b3);
 		pb3.setUser(u1);
 		pointBookRepository.save(pb3);
-		
+
 		PointBook pb4 = new PointBook((double) 4.5);
 		pb4.setBook(b4);
 		pb4.setUser(u1);
 		pointBookRepository.save(pb4);
-		
+
 		PointBook pb5 = new PointBook((double) 3.1);
 		pb5.setBook(b5);
 		pb5.setUser(u1);
 		pointBookRepository.save(pb5);
-		
+
 		PointBook pb6 = new PointBook((double) 2);
 		pb6.setBook(b6);
 		pb6.setUser(u1);
 		pointBookRepository.save(pb6);
-		
+
 		PointBook pb7 = new PointBook((double) 3.5);
 		pb7.setBook(b7);
 		pb7.setUser(u1);
 		pointBookRepository.save(pb7);
-		
+
 		PointBook pb8 = new PointBook((double) 3.8);
 		pb8.setBook(b8);
 		pb8.setUser(u1);
 		pointBookRepository.save(pb8);
-		
+
 		PointBook pb9 = new PointBook((double) 3);
 		pb9.setBook(b9);
 		pb9.setUser(u1);
 		pointBookRepository.save(pb9);
-		
+
 		PointBook pb10 = new PointBook((double) 4.5);
 		pb10.setBook(b10);
 		pb10.setUser(u1);
 		pointBookRepository.save(pb10);
-		
+
 		PointBook pb11 = new PointBook((double) 3.9);
 		pb11.setBook(b11);
 		pb11.setUser(u1);
 		pointBookRepository.save(pb11);
-		
+
 		PointBook pb12 = new PointBook((double) 4.1);
 		pb12.setBook(b12);
 		pb12.setUser(u1);
 		pointBookRepository.save(pb12);
-		
+
 		PointBook pb13 = new PointBook((double) 5);
 		pb13.setBook(b13);
 		pb13.setUser(u1);
 		pointBookRepository.save(pb13);
-		
+
 		PointBook pb14 = new PointBook((double) 4);
 		pb14.setBook(b14);
 		pb14.setUser(u1);
 		pointBookRepository.save(pb14);
-		
+
 		PointBook pb15 = new PointBook((double) 2.9);
 		pb15.setBook(b15);
 		pb15.setUser(u1);
 		pointBookRepository.save(pb15);
-		
+
 		PointBook pb16 = new PointBook((double) 3);
 		pb16.setBook(b16);
 		pb16.setUser(u1);
 		pointBookRepository.save(pb16);
-		
+
 		PointBook pb17 = new PointBook((double) 3.5);
 		pb17.setBook(b17);
 		pb17.setUser(u1);
 		pointBookRepository.save(pb17);
-		
+
 		PointBook pb18 = new PointBook((double) 1.9);
 		pb18.setBook(b18);
 		pb18.setUser(u1);
 		pointBookRepository.save(pb18);
-		
+
 		PointBook pb19 = new PointBook((double) 1);
 		pb19.setBook(b19);
 		pb19.setUser(u1);
 		pointBookRepository.save(pb19);
-		
+
 		PointBook pb20 = new PointBook((double) 3.2);
 		pb20.setBook(b20);
 		pb20.setUser(u1);
 		pointBookRepository.save(pb20);
-		
+
 		PointBook pb21 = new PointBook((double) 4);
 		pb21.setBook(b21);
 		pb21.setUser(u1);
 		pointBookRepository.save(pb21);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
 }
