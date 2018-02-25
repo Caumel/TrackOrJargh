@@ -58,6 +58,7 @@
     font-family: "Montserrat", sans-serif;
 	background-color: black;
 	color: #18d26e;
+	
 }
 
 #acceptBtn:hover{
@@ -70,6 +71,7 @@
 	font-weight: 700;
 	color:white;
 	background-color: #18d26e;
+	border-color: #18d26e ;
 }
 #plusButton{
 	font-weight: 700;
@@ -123,6 +125,9 @@
 #listContentToShow{
 	margin-bottom:2%;
 	margin-top: 2%;	
+}
+#showAddList{
+	margin-top: 2%;
 }
 
 /* Hover image */
