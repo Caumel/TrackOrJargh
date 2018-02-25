@@ -28,8 +28,6 @@ Desarrollo de Aplicaciones Web - URJC (Móstoles) - 2017/2018
 | Points_shows              | Joins points and shows                            |
 | Comments_books            | Joins comments and books                          |
 | Points_books              | Joins points and books                            |
-| Seasons                   | Seasons of the shows                              |
-| Episodes                  | Episodes of the shows                             |
 | Gender                    | Genders of the movies, shows and books            |
 | Actors                    | Shows and movies actors                           |    
 | Users                     | Users of the webpage (normal,moderator and admin) |
