@@ -47,15 +47,14 @@
 						role="tabpanel" aria-labelledby="v-pills-PersonalData-tab">
 						<div class="text-center rounded mb-3 h2">Mi cuenta</div>
 						{{#userLogged}}
-						<form method="post" role="form" action="/miperfil" style="display: block;"
-							enctype="multipart/form-data">
+						<form method="post" enctype="multipart/form-data" role="form" action="/miperfil" style="display: block;">
 							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 								<img id="userImage" class="img-responsive rounded-circle" src="{{image}}"
 									alt="Imagen de perfil">
 							</div>
 							<label for="userImage">Cambiar imagen</label>
 							<br>
-							<input type="file" id="userImage" name="userImage">
+							<input type="file" name="imageShow"></input>
 							<div class="form-group pt-3">
 								<label for="userName">Nombre de usuario</label> <input type="text" class="form-control"
 									id="userName" placeholder="{{name}}" readonly> <label for="email">Correo
@@ -73,6 +72,7 @@
 										<option value="Administrador"{{#isAdmin}}selected{{/isAdmin}}>Administrador</option>
 									</select>
 								</fieldset>
+								<input type="hidden" name="sent" value="true" />
 								<input id="acceptBtn" type="submit" class="btn btn-login  form-group form-contro mx-auto"
 									value="Aceptar">
 							</div>
@@ -95,7 +95,7 @@
 												<i class="ion-trash-a text-right"></i>
 											</button>
 										</div>
-										<div id="printListContent" class="form-control">
+										<div id="printListContent"  class="form-control border-right-0 border-left-0 border-bottom-0 rounded-0">
 											{{#printList}}
 											<div id="listContentToShow" class="d-flex">
 												<a href="{{url}}{{name}}" name="deleteContentName" class="mr-auto p-2">{{name}}</a>
