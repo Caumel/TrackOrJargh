@@ -23,4 +23,6 @@ public interface CommentShowRepository extends JpaRepository<CommentShow, Long>{
     @Transactional
 	@Query(value = "DELETE FROM COMMENT_SHOW WHERE SHOW_ID = ?1", nativeQuery = true)
 	void removeCommentsShowsByShowId(long id);
+    
+    CommentShow findById(Long id);
 }

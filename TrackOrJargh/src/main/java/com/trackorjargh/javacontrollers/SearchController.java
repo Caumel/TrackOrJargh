@@ -8,12 +8,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.Show;
+import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.FilmRepository;
 import com.trackorjargh.javarepository.ShowRepository;
+import com.trackorjargh.javarepository.UserRepository;
 
 @Controller
 public class SearchController {
@@ -24,12 +27,19 @@ public class SearchController {
 	private BookRepository bookRepository;
 	@Autowired
 	private ShowRepository showRepository;
+	@Autowired
+	private UserComponent userComponent;
+	@Autowired
+	private UserRepository userRepository;
 
 	@RequestMapping("/busqueda")
 	public String search(Model model) {	
 		model.addAttribute("searchActive", true);
 		model.addAttribute("noElementsSearch", true);
 		model.addAttribute("index", true);
+		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
+		model.addAttribute("typePageAddList", "null");
+		
 		return "search";
 	}
 	
@@ -51,7 +61,9 @@ public class SearchController {
 		model.addAttribute("typeFilm", true);
 		model.addAttribute("inputSearch", name);
 		model.addAttribute("typeSearch", "/rest/busqueda/" + optionSearch +"/peliculas/" + name + "/page");
-				
+		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
+		model.addAttribute("typePageAddList", "pelicula");
+		
 		if(films.getNumberOfElements() == 0) {
 			model.addAttribute("noElementsSearch", true);
 			model.addAttribute("noResult", true);
@@ -59,6 +71,12 @@ public class SearchController {
 		
 		if(films.getNumberOfElements() > 0 && films.getNumberOfElements() < 10) {
 			model.addAttribute("noElementsSearch", true);
+		}
+		
+		if (userComponent.isLoggedUser()) {
+			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+
+			model.addAttribute("userList", user.getLists());
 		}
 		
 		return "search";
@@ -72,7 +90,7 @@ public class SearchController {
 			shows = showRepository.findByNameContainingIgnoreCase(name, new PageRequest(0, 10));
 			model.addAttribute("searchTitle", true);
 		} else {
-			shows = showRepository.findShowsByGender(name, new PageRequest(0, 10));
+			shows = showRepository.findShowsByGender("%" + name + "%", new PageRequest(0, 10));
 			model.addAttribute("searchGende", true);
 		}
 		
@@ -82,6 +100,8 @@ public class SearchController {
 		model.addAttribute("typeShow", true);
 		model.addAttribute("inputSearch", name);
 		model.addAttribute("typeSearch", "/rest/busqueda/" + optionSearch +"/series/" + name + "/page");
+		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
+		model.addAttribute("typePageAddList", "serie");
 		
 		if(shows.getNumberOfElements() == 0) {
 			model.addAttribute("noElementsSearch", true);
@@ -90,6 +110,12 @@ public class SearchController {
 		
 		if(shows.getNumberOfElements() > 0 && shows.getNumberOfElements() < 10) {
 			model.addAttribute("noElementsSearch", true);
+		}
+		
+		if (userComponent.isLoggedUser()) {
+			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+
+			model.addAttribute("userList", user.getLists());
 		}
 		
 		return "search";
@@ -103,7 +129,7 @@ public class SearchController {
 			books = bookRepository.findByNameContainingIgnoreCase(name, new PageRequest(0, 10));
 			model.addAttribute("searchTitle", true);
 		} else {
-			books = bookRepository.findBooksByGender(name, new PageRequest(0, 10));
+			books = bookRepository.findBooksByGender("%" + name + "%", new PageRequest(0, 10));
 			model.addAttribute("searchGende", true);
 		}
 		
@@ -113,6 +139,8 @@ public class SearchController {
 		model.addAttribute("typeBook", true);
 		model.addAttribute("inputSearch", name);
 		model.addAttribute("typeSearch", "/rest/busqueda/" + optionSearch +"/libros/" + name + "/page");
+		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
+		model.addAttribute("typePageAddList", "libro");
 		
 		if(books.getNumberOfElements() == 0) {
 			model.addAttribute("noElementsSearch", true);
@@ -121,6 +149,12 @@ public class SearchController {
 		
 		if(books.getNumberOfElements() > 0 && books.getNumberOfElements() < 10) {
 			model.addAttribute("noElementsSearch", true);
+		}
+		
+		if (userComponent.isLoggedUser()) {
+			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+
+			model.addAttribute("userList", user.getLists());
 		}
 		
 		return "search";

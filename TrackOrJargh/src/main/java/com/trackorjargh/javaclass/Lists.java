@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Lists {
 	@Id
@@ -18,6 +20,7 @@ public class Lists {
 	private String name;
 	
 	@ManyToOne
+	@JsonIgnore
 	private User user;
 	
 	@ManyToMany

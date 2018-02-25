@@ -98,8 +98,6 @@ public class DatabaseInformationLoader {
 		Gender g13 = new Gender("Fantasia");
 		genderRepository.save(g13);
 
-		final int maxGenders = 13;
-
 		// Test Data Film
 		Film f0 = new Film("Guardianes",
 				"Chris Pratt, Zoe Saldana, Bradley Cooper, Dave Bautista, Vin Diesel, Michael Rooker, Karen Gillan, Pom Klementieff, Elizabeth Debicki, Chris Sullivan, Sean Gunn, Sylvester Stallone, Kurt Russell",
@@ -272,7 +270,7 @@ public class DatabaseInformationLoader {
 				"/img/films/elPadrino.jpg", "https://www.youtube.com/embed/sY1S34973zA", 1972);
 
 		f16.getGenders().add(g11);
-		f16.getGenders().add(g6);
+		f16.getGenders().add(g9);
 		filmRepository.save(f16);
 
 		Film f17 = new Film("La naranja mecánica", " Malcolm McDowell, Patrick Magee, Michael Bates",
@@ -299,6 +297,7 @@ public class DatabaseInformationLoader {
 
 		f19.getGenders().add(g3);
 		f19.getGenders().add(g11);
+		f19.getGenders().add(g9);
 		filmRepository.save(f19);
 
 		Film f20 = new Film("Interestellar", " Matthew McConaughey, Anne Hathaway, Jessica Chastain",
@@ -319,84 +318,12 @@ public class DatabaseInformationLoader {
 		f21.getGenders().add(g7);
 		filmRepository.save(f21);
 
-		// Comment Film Section
-
-		CommentFilm c1 = new CommentFilm("Esta pelicula es muy buena");
-		c1.setFilm(f1);
-		c1.setUser(u1);
-		commentFilmRepository.save(c1);
-
-		CommentFilm c2 = new CommentFilm("A mi me gustó mas la 2, pero bueno no está mal");
-		c2.setFilm(f2);
-		c2.setUser(u1);
-		commentFilmRepository.save(c2);
-
-		CommentFilm c3 = new CommentFilm("Qué miedo pasé, esa noche dormí abrazado a mi osito de peluche");
-		c3.setFilm(f3);
-		c3.setUser(u1);
-		commentFilmRepository.save(c3);
-
-		CommentFilm c4 = new CommentFilm("k dices tio, no es pa tanto, vaya cagueta");
-		c4.setFilm(f3);
-		c4.setUser(u2);
-		commentFilmRepository.save(c4);
-
-		CommentFilm c5 = new CommentFilm(
-				"Esta peli la vi con mi novia, no esta mal, te ries, pero hubiera preferido esdla");
-		c5.setFilm(f4);
-		c5.setUser(u3);
-		commentFilmRepository.save(c5);
-
-		CommentFilm c6 = new CommentFilm("Es que eres un poco calzonazossss!!! jajajaja ");
-		c6.setFilm(f4);
-		c6.setUser(u2);
-		commentFilmRepository.save(c6);
-
-		CommentFilm c7 = new CommentFilm("¬¬");
-		c7.setFilm(f4);
-		c7.setUser(u3);
-		commentFilmRepository.save(c7);
-
-		CommentFilm c8 = new CommentFilm(
-				"Buah, me ha encantado, me he descargado y todo la banda sonora, que por si a alguien le interesa se llaman RADWIMPS");
-		c8.setFilm(f5);
-		c8.setUser(u3);
-		commentFilmRepository.save(c8);
-
-		CommentFilm c9 = new CommentFilm(
-				"Yo me rei mucho cuando cayó el meteorito, lo dije de broma pero al final resultó que cayó de verdad xD");
-		c9.setFilm(f5);
-		c9.setUser(u1);
-		commentFilmRepository.save(c9);
-
-		CommentFilm c10 = new CommentFilm(
-				"No me gustan las peliculas de gladiadiores, me parace absurdo el final y gratuito, y el emperador lo hace todo mal en fin... ");
-		c10.setFilm(f6);
-		c10.setUser(u2);
-		commentFilmRepository.save(c8);
-
-		CommentFilm c11 = new CommentFilm(
-				"Esta es la peli que hablan en Big Bang que si quitas a indiana Johnes no habria cambiado nada XDD ");
-		c11.setFilm(f7);
-		c11.setUser(u3);
-		commentFilmRepository.save(c11);
-
-		CommentFilm c12 = new CommentFilm(
-				"A mi me ha gustado, lo unico que a la iglesia no le mola mucho porque al parecer la peli acaba con la muerte de jesucristo, y da un mensaje equivocado en teoria");
-		c12.setFilm(f8);
-		c12.setUser(u1);
-		commentFilmRepository.save(c12);
-
-		CommentFilm c13 = new CommentFilm("Un poco bodrio, pero bueno, no pueden gustarme todas");
-		c13.setFilm(f9);
-		c13.setUser(u2);
-		commentFilmRepository.save(c13);
-
 		// Test Data Book
 		Book b1 = new Book("Los Juegos del Hambre", "",
 				"Los juegos del hambre se desarrolla en un país llamado Panem, lo que es en realidad una civilización postapocalíptica ubicada en lo que antes era América del Norte.",
 				"/img/los_juegos_del_hambre.jpg", 2008);
 		b1.getGenders().add(g1);
+		b1.getGenders().add(g9);
 		bookRepository.save(b1);
 
 		Book b2 = new Book("El retorno del rey", "J.R.R. Tolkien",
@@ -482,6 +409,7 @@ public class DatabaseInformationLoader {
 				"/img/books/elClanDeOsoCavernario.jpg", 1980);
 
 		b10.getGenders().add(g11);
+		b10.getGenders().add(g9);
 		b10.getGenders().add(g1);
 		bookRepository.save(b10);
 
@@ -490,6 +418,7 @@ public class DatabaseInformationLoader {
 				"/img/books/elBosqueDeLosArbolesMuertos.jpg", 2010);
 
 		b11.getGenders().add(g2);
+		b11.getGenders().add(g9);
 		b11.getGenders().add(g3);
 		b11.getGenders().add(g5);
 		bookRepository.save(b11);
@@ -551,38 +480,247 @@ public class DatabaseInformationLoader {
 		b18.getGenders().add(g12);
 		b18.getGenders().add(g11);
 		bookRepository.save(b18);
-		
-		
-		Book b19 = new Book("Asesinato en el Orient Express","Agatha Christie","En un lugar aislado de la antigua Yugoslavia, en plena madrugada, una fuerte tormenta de nieve obstaculiza la línea férrea por donde circula el Orient Express. Procedente de la exótica Estambul, en él viaja el detective Hércules Poirot...",
-				"/img/books/asesinatoEnOrienteExpress.jpg",1974);
-		
+
+		Book b19 = new Book("Asesinato en el Orient Express", "Agatha Christie",
+				"En un lugar aislado de la antigua Yugoslavia, en plena madrugada, una fuerte tormenta de nieve obstaculiza la línea férrea por donde circula el Orient Express. Procedente de la exótica Estambul, en él viaja el detective Hércules Poirot...",
+				"/img/books/asesinatoEnOrienteExpress.jpg", 1974);
+
 		b19.getGenders().add(g1);
 		b19.getGenders().add(g5);
 		bookRepository.save(b19);
-		
-		
-		Book b20 = new Book("La cumbre escarlata","Nancy Holder","Ambientada en el siglo XIX, en la remota y montañosa región de Cumbria, al norte de Inglaterra, La cumbre escarlata sigue a la joven escritora Edith Cushing, quien descubre que su nuevo y encantador esposo, Sir Thomas Sharpe, no es quien parece ser...",
-				"/img/books/laCumbreEscarlata.jpg",2015);
-		
+
+		Book b20 = new Book("La cumbre escarlata", "Nancy Holder",
+				"Ambientada en el siglo XIX, en la remota y montañosa región de Cumbria, al norte de Inglaterra, La cumbre escarlata sigue a la joven escritora Edith Cushing, quien descubre que su nuevo y encantador esposo, Sir Thomas Sharpe, no es quien parece ser...",
+				"/img/books/laCumbreEscarlata.jpg", 2015);
+
 		b20.getGenders().add(g2);
 		b20.getGenders().add(g5);
 		b20.getGenders().add(g1);
 		bookRepository.save(b20);
 
-		
+		Book b21 = new Book("Arthas: El Ascenso de El Rey Exánime", "Christie Golden",
+				"Es una entidad de poder incalculable y maldad sin parangón; su gélida alma ha sido consumida totalmente por sus planes de destruir toda lo que está vivo. Pero esto no siempre fue así. Mucho antes de que su alma se fundiera con...",
+				"/img/books/Arthas.jpg", 2010);
+
+		b21.getGenders().add(g6);
+		b21.getGenders().add(g8);
+		b21.getGenders().add(g1);
+		bookRepository.save(b21);
+
 		// Test Data Show
 		Show sh1 = new Show("The Big Bang Theory", "", "",
 				"La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.",
 				"/img/the_big_bang_theroy.jpg", "https://www.youtube.com/embed/_uQXxvZ3afQ", 2007);
+
+		sh1.getGenders().add(g4);
+		sh1.getGenders().add(g10);
 		showRepository.save(sh1);
 
-		for (int x = 2; x <= 100; x++) {
-			sh1 = new Show("The Big Bang Theory " + x, "", "",
-					"La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.",
-					"/img/the_big_bang_theroy.jpg", "https://www.youtube.com/embed/_uQXxvZ3afQ", 2007);
-			sh1.getGenders().add(g1);
-			showRepository.save(sh1);
-		}
+		Show sh2 = new Show("Narcos", "Pedro Pascal, Wagner Moura, Boyd Holbrook",
+				"Carlo Bernard, Chris Brancato, Doug Miro",
+				"En esta exitosa serie nos adentraremos en la vida de Pablo Escobar, el lider de la droga de Colombia en los años 80 que aterrorizó al país durante años. Héroe para algunos, monstruo para otros, esta serie cuenta su historia lo mas fielmente posible",
+				"/img/shows/narcos.jpg", "https://www.youtube.com/embed/U7elNhHwgBU", 2015);
+
+		sh2.getGenders().add(g6);
+		sh2.getGenders().add(g11);
+		showRepository.save(sh2);
+
+		Show sh3 = new Show("Friends", "Jennifer Aniston, Courteney Cox, Lisa Kudrow", "David Crane, Marta Kauffman",
+				"En esta exitosa serie viviremos las divertidas desventuras de seis veinteañeros que se enfrentan a los obstáculos del trabajo, la vida y el amor en los 90 en Manhattan.",
+				"/img/shows/friends.jpg", "https://www.youtube.com/embed/V5hOm8_3mJA", 1994);
+
+		sh3.getGenders().add(g4);
+		sh3.getGenders().add(g3);
+		showRepository.save(sh3);
+
+		Show sh4 = new Show("Your lie in april", "Natsuki Hanae, Risa Taneda, Ayane Sakura", "Kyohei Ishiguro",
+				"Your lie in April trata de un prodigio del piano que no puede escuchar su música después de haber sufrido un trauma. Un día, a Kousei le presentan a una violinista llamada Kaori Miyazono. A pesar de que su primera impresión de ella fue terrible...",
+				"/img/shows/yourLieInAbril.jpg", "https://www.youtube.com/embed/3aL0gDZtFbE", 2014);
+
+		sh4.getGenders().add(g12);
+		sh4.getGenders().add(g7);
+		sh4.getGenders().add(g3);
+		showRepository.save(sh4);
+
+		Show sh5 = new Show("Walking dead", " Andrew Lincoln, Norman Reedus, Melissa McBride", "Frank Darabont",
+				"Una serie americana en torno al drama, el terror y la ciencia ficción que narra cómo un grupo de personajes intenta sobrevivir en un mundo devastado por el apocalípsis zombie. La trama arranca cuando el protagonista, el sheriff Rick Grimes, se despierta en un hospital tras estar varios…",
+				"/img/shows/theWalkingDead.jpg", "https://www.youtube.com/embed/R1v0uFms68U ", 2010);
+
+		sh5.getGenders().add(g2);
+		sh5.getGenders().add(g1);
+		sh5.getGenders().add(g6);
+		sh5.getGenders().add(g13);
+		showRepository.save(sh5);
+
+		Show sh6 = new Show("Vikingos", " Gustaf Skarsgård, Katheryn Winnick, Alexander Ludwig", "Michael Hirst",
+				"La serie está basada en los relatos semilegendarios de Ragnar Lodbrok, reconocido como uno de los primeros reyes de Suecia y Dinamarca, durante el siglo VIII.",
+				"/img/shows/vkingos.jpg", "https://www.youtube.com/embed/5aASH8HMJbo ", 2013);
+
+		sh6.getGenders().add(g11);
+		sh6.getGenders().add(g6);
+		sh6.getGenders().add(g1);
+		showRepository.save(sh6);
+
+		Show sh7 = new Show("One Tree Hill", "Mark Schwahn", "Chad Michael Murray, James Lafferty, Hilarie Burton",
+				"La serie narraba la historia de un grupo de jóvenes y sus familias en un pueblo pequeño llamado Tree Hill, a través de la escuela secundaria y después de la universidad.",
+				"/img/shows/oneTreeHill.jpg", "https://www.youtube.com/embed/noDPlG88grk", 2003);
+
+		sh7.getGenders().add(g3);
+		showRepository.save(sh7);
+
+		Show sh8 = new Show("Once upon a time", "Adam Horowitz, Edward Kitsis",
+				"Ginnifer Goodwin, Jennifer Morrison, Lana Parrilla",
+				"La serie sigue a varios personajes de cuentos de hadas que fueron transportados al mundo real y robaron sus recuerdos originales mediante una poderosa maldición.",
+				"/img/shows/onceUponATime.jpg", "https://www.youtube.com/embed/Rga4rp4j5TY", 2011);
+
+		sh8.getGenders().add(g1);
+		sh8.getGenders().add(g3);
+		sh8.getGenders().add(g3);
+		showRepository.save(sh8);
+
+		Show sh9 = new Show("Altered Carbon", "Joel Kinnaman, James Purefoy, Martha Higareda", "Laeta Kalogridis",
+				"Altered Carbon se desarrolla en medio del siglo XXV, una época en la que las personas ya no mueren, técnicamente, sino que sus mentes y consciencias son transferidas de un cuerpo a otro...",
+				"/img/shows/alteredCarbon.jpg", "https://www.youtube.com/embed/dhFM8akm9a4", 2018);
+
+		sh9.getGenders().add(g1);
+		sh9.getGenders().add(g3);
+		sh9.getGenders().add(g3);
+		showRepository.save(sh9);
+
+		Show sh10 = new Show("Rick & Morty", "Dan Harmon, Justin Roiland",
+				"Chris Parnell, Spencer Grammer, Sarah Chalke",
+				"Rick, un científico alcohólico, secuestra a su influenciable nieto, Morty, para vivir peligrosas aventuras a través de nuestro cosmos y universos paralelos.",
+				"/img/shows/rickYmorty.jpg", "www.youtube.com/embed/WNhH00OIPP0 ", 2013);
+
+		sh10.getGenders().add(g4);
+		sh10.getGenders().add(g1);
+		sh10.getGenders().add(g7);
+		sh10.getGenders().add(g10);
+		showRepository.save(sh10);
+
+		Show sh11 = new Show("Dr.Who", "Michael Ryan", "Peter McAllum, Kate Hardy, Richard Clark",
+				"Doctor Who es un programa de televisión que trata de las aventuras de un misterioso hombre conocido sólo como el Doctor. El Doctor viaja a través del espacio y el tiempo en una nave llamada TARDIS",
+				"/img/shows/doctorWho.jpg", "https://www.youtube.com/embed/SKAOzznX9zA ", 2012);
+
+		sh11.getGenders().add(g1);
+		sh11.getGenders().add(g5);
+		sh11.getGenders().add(g8);
+		sh11.getGenders().add(g2);
+		showRepository.save(sh11);
+
+		Show sh12 = new Show("Belzebub", "Shizuka Itô, Katsuyuki Konishi, Takahiro Mizushima", "Nobuhiro Takamoto",
+				"La historia trata sobre el delincuente juvenil más fuerte, Oga Tatsumi, quien está en el primer año de la Escuela Ishiyama, la escuela para delincuentes. Pero un día mientras dormía cerca a un río, mira a un hombre flotar en el río, quien de repente se parte...",
+				"/img/shows/beelzebub.jpg", "https://www.youtube.com/embed/5lyYR7StfrQ", 2011);
+
+		sh12.getGenders().add(g7);
+		sh12.getGenders().add(g1);
+		sh12.getGenders().add(g6);
+		sh12.getGenders().add(g13);
+		showRepository.save(sh12);
+
+		Show sh13 = new Show("Mahouka Koukou no Rettousei", "Yûichi Nakamura, Saori Hayami, Yumi Uchiyama",
+				"Manabu Ono",
+				"La Magia no es algo de las leyendas ni los cuentos de hadas, se convirtió en tecnología desde hace casi un siglo. El proceso mágico ha sido sistematizado y con ayuda de dispositivo llamado CAD, los procesos pueden ser acelerados significativamente y esto ...",
+				"/img/shows/mahouka.jpg", "https://www.youtube.com/embed/U-gkwdGooDU", 2015);
+
+		sh13.getGenders().add(g7);
+		sh13.getGenders().add(g13);
+		sh13.getGenders().add(g1);
+		showRepository.save(sh13);
+
+		Show sh14 = new Show("Juego de Tronos", "George R.R.Martin",
+				"Sean Bean, Emilia Clarke, Peter Dinklage, Kit Harington",
+				"La historia se desarrolla en un mundo ficticio de carácter medieval donde hay Siete Reinos. Hay tres líneas argumentales principales: la crónica de la guerra civil dinástica por el control de Poniente entre varias familias nobles que aspiran al Trono...",
+				"/img/shows/jdt.jpg", "https://www.youtube.com/embed/g1IICkElV0M", 2011);
+
+		sh14.getGenders().add(g6);
+		sh14.getGenders().add(g13);
+		sh14.getGenders().add(g1);
+		showRepository.save(sh14);
+
+		Show sh15 = new Show("Daredevil", "Charlie Cox, Vincent D'Onofrio, Deborah Ann Woll", "Drew Goddard",
+				"Matt Murdock es un abogado de la cocina del infierno que tuvo un accidente de pequeño con productos quimicos y ahora es un superheroe que castiga a los criminales que la justicia no castiga durante el dia, el lo hace por la noche contra las fuerzas del mal como La Mano",
+				"/img/shows/daredevil.jpg", "https://www.youtube.com/embed/KQzRs6UCbuI", 2015);
+
+		sh15.getGenders().add(g6);
+		sh15.getGenders().add(g8);
+		sh15.getGenders().add(g1);
+		showRepository.save(sh15);
+
+		Show sh16 = new Show("Stranger Things", "Millie Bobby Brown, Finn Wolfhard, Winona Ryder",
+				"Matt Duffer, Ross Duffer",
+				"Homenaje a los clásicos misterios sobrenaturales de los años 80 es la historia de un niño que desaparece en el pequeño pueblo de Hawkins, Indiana, sin dejar rastro en 1983. En su búsqueda desesperada, tanto sus amigos y familiares como el sheriff...",
+				"/img/shows/strangerThings.jpg", "https://www.youtube.com/embed/XWxyRG_tckY", 2016);
+
+		sh16.getGenders().add(g2);
+		sh16.getGenders().add(g10);
+		sh16.getGenders().add(g5);
+		showRepository.save(sh16);
+
+		Show sh17 = new Show("Sherlock", "Benedict Cumberbach,John Wilson", "Arthur Conan Doyle",
+				"Moderna actualización del mito de Sherlock Holmes, ambientado en el Londres del siglo XXI. Sus insuperables habilidades de deducción y su arrogante distanciamiento...",
+				"/img/shows/sherlock.jpg", "https://www.youtube.com/embed/Nj7ZSUkTTVI ", 2010);
+
+		sh17.getGenders().add(g1);
+		sh17.getGenders().add(g5);
+		sh17.getGenders().add(g11);
+		showRepository.save(sh17);
+
+		Show sh18 = new Show("Fargo", "Billy Bob Thornton, Martin Freeman, Allison Tolman", "John Fargo",
+				"Lester Nygaard, un apocado vendedor de seguros de una pequeña población de Minnesota, ve cómo su mundo cambia por completo con la llegada de los nazis a minesota...",
+				"/img/shows/fargo.jpg", "https://www.youtube.com/embed/EB4PmbfG4bw", 2014);
+
+		sh18.getGenders().add(g1);
+		sh18.getGenders().add(g9);
+		showRepository.save(sh18);
+
+		Show sh19 = new Show("Los Simpson", " Dan Castellaneta, Nancy Cartwright, Julie Kavner",
+				" James L. Brooks, Matt Groening, Sam Simon",
+				"La afamada serie de television que cuenta las aventuras y desventuras de una familia que vive en Springfield, que no vamos a...",
+				"/img/shows/losSimpson.jpg", "https://www.youtube.com/embed/ypZPaxbP8g8", 1989);
+
+		sh19.getGenders().add(g4);
+		showRepository.save(sh19);
+
+		Show sh20 = new Show("Sobrenatural", "Jared Padalecki,Jensen Ackles", "Eric Kripke",
+				"Un misterioso mensaje telefónico de su padre, que hace mucho tiempo que ha abandonado el hogar familiar, lleva a los hermanos Dean y Sam Winchester hasta California. Aunque no ...",
+				"/img/shows/sobrenatural.jpg", "https://www.youtube.com/embed/74WD8FUgS6g", 2005);
+
+		sh20.getGenders().add(g2);
+		sh20.getGenders().add(g1);
+		sh20.getGenders().add(g13);
+		sh20.getGenders().add(g6);
+		showRepository.save(sh20);
+
+		Show sh21 = new Show("The Flash", "Grant Gustin, Candice Patton, Danielle Panabaker",
+				"Greg Berlanti, Geoff Johns, Andrew Kreisberg",
+				"Sigue las veloces aventuras de Barry Allen, un joven común y corriente con el deseo latente de ayudar a los demás. Cuando una...",
+				"/img/shows/theFlash.jpg", "https://www.youtube.com/embed/Yj0l7iGKh8g", 2005);
+
+		sh21.getGenders().add(g2);
+		sh21.getGenders().add(g11);
+		sh21.getGenders().add(g5);
+		sh21.getGenders().add(g8);
+		showRepository.save(sh21);
+
+		Show sh22 = new Show("Arrow", "Stephen Amell, Katie Cassidy, David Ramsey ",
+				"Greg Berlanti, Marc Guggenheim, Andrew Kreisberg",
+				"Adaptación libre de un personaje de DC Comics, playboy de día, que, durante la noche, usa su arco y sus flechas contra el crimen. Tras haber desaparecido y haber sido dado por muerto en un violento...",
+				"/img/shows/arrow.jpg", "https://www.youtube.com/embed/uFdqDMxlx88", 2012);
+
+		sh22.getGenders().add(g8);
+		sh22.getGenders().add(g1);
+		sh22.getGenders().add(g6);
+		showRepository.save(sh22);
+
+		Show sh23 = new Show("Smallville", "Tom Welling, Michael Rosenbaum, Allison Mack", "Alfred Gough, Miles Millar",
+				"Serie que narra los inicios de Superman -Clark Kent- en su pueblo natal, Smallville. Allí vivía con sus padres, estudiaba en el instituto local y conoció a su primera novia, Lana Lang, y a su futuro rival, Lex Luthor.",
+				"/img/shows/smallville.jpg", "https://www.youtube.com/embed/AF4eljyAhVw ", 2001);
+
+		sh23.getGenders().add(g8);
+		sh23.getGenders().add(g1);
+		sh23.getGenders().add(g6);
+		showRepository.save(sh23);
 
 		// Test Data Lists
 		Lists l1 = new Lists("Mi Lista Molona");
@@ -597,17 +735,348 @@ public class DatabaseInformationLoader {
 		cf1.setUser(u1);
 		commentFilmRepository.save(cf1);
 
+		CommentFilm cf2 = new CommentFilm("A mi me gustó mas la 2, pero bueno no está mal");
+		cf2.setFilm(f2);
+		cf2.setUser(u1);
+		commentFilmRepository.save(cf2);
+
+		CommentFilm cf3 = new CommentFilm("Qué miedo pasé, esa noche dormí abrazado a mi osito de peluche");
+		cf3.setFilm(f3);
+		cf3.setUser(u1);
+		commentFilmRepository.save(cf3);
+
+		CommentFilm cf4 = new CommentFilm("k dices tio, no es pa tanto, vaya cagueta");
+		cf4.setFilm(f3);
+		cf4.setUser(u2);
+		commentFilmRepository.save(cf4);
+
+		CommentFilm cf5 = new CommentFilm(
+				"Esta peli la vi con mi novia, no esta mal, te ries, pero hubiera preferido esdla");
+		cf5.setFilm(f4);
+		cf5.setUser(u3);
+		commentFilmRepository.save(cf5);
+
+		CommentFilm cf6 = new CommentFilm("Es que eres un poco calzonazossss!!! jajajaja ");
+		cf6.setFilm(f4);
+		cf6.setUser(u2);
+		commentFilmRepository.save(cf6);
+
+		CommentFilm cf7 = new CommentFilm("¬¬");
+		cf7.setFilm(f4);
+		cf7.setUser(u3);
+		commentFilmRepository.save(cf7);
+
+		CommentFilm cf8 = new CommentFilm(
+				"Buah, me ha encantado, me he descargado y todo la banda sonora, que por si a alguien le interesa se llaman RADWIMPS");
+		cf8.setFilm(f5);
+		cf8.setUser(u3);
+		commentFilmRepository.save(cf8);
+
+		CommentFilm cf9 = new CommentFilm(
+				"Yo me rei mucho cuando cayó el meteorito, lo dije de broma pero al final resultó que cayó de verdad xD");
+		cf9.setFilm(f5);
+		cf9.setUser(u1);
+		commentFilmRepository.save(cf9);
+
+		CommentFilm cf10 = new CommentFilm(
+				"No me gustan las peliculas de gladiadiores, me parace absurdo el final y gratuito, y el emperador lo hace todo mal en fin... ");
+		cf10.setFilm(f6);
+		cf10.setUser(u2);
+		commentFilmRepository.save(cf10);
+
+		CommentFilm cf11 = new CommentFilm(
+				"Esta es la peli que hablan en Big Bang que si quitas a indiana Johnes no habria cambiado nada XDD ");
+		cf11.setFilm(f7);
+		cf11.setUser(u3);
+		commentFilmRepository.save(cf11);
+
+		CommentFilm cf12 = new CommentFilm(
+				"A mi me ha gustado, lo unico que a la iglesia no le mola mucho porque al parecer la peli acaba con la muerte de jesucristo, y da un mensaje equivocado en teoria");
+		cf12.setFilm(f8);
+		cf12.setUser(u1);
+		commentFilmRepository.save(cf12);
+
+		CommentFilm cf13 = new CommentFilm("Un poco bodrio, pero bueno, no pueden gustarme todas");
+		cf13.setFilm(f9);
+		cf13.setUser(u2);
+		commentFilmRepository.save(cf13);
+
+		CommentFilm cf14 = new CommentFilm("Las he visto mejores");
+		cf14.setFilm(f10);
+		cf14.setUser(u2);
+		commentFilmRepository.save(cf14);
+
+		CommentFilm cf15 = new CommentFilm("Esta la vi en el cine y me arrepenti de gastarme el dinero");
+		cf15.setFilm(f11);
+		cf15.setUser(u2);
+		commentFilmRepository.save(cf15);
+
+		CommentFilm cf16 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf16.setFilm(f12);
+		cf16.setUser(u2);
+		commentFilmRepository.save(cf16);
+
+		CommentFilm cf17 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf17.setFilm(f13);
+		cf17.setUser(u2);
+		commentFilmRepository.save(cf17);
+
+		CommentFilm cf18 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf18.setFilm(f14);
+		cf18.setUser(u2);
+		commentFilmRepository.save(cf18);
+
+		CommentFilm cf19 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf19.setFilm(f15);
+		cf19.setUser(u2);
+		commentFilmRepository.save(cf19);
+
+		CommentFilm cf20 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf20.setFilm(f16);
+		cf20.setUser(u2);
+		commentFilmRepository.save(cf20);
+
+		CommentFilm cf21 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf21.setFilm(f17);
+		cf21.setUser(u2);
+		commentFilmRepository.save(cf21);
+
+		CommentFilm cf22 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf22.setFilm(f18);
+		cf22.setUser(u2);
+		commentFilmRepository.save(cf22);
+
+		CommentFilm cf23 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf23.setFilm(f19);
+		cf23.setUser(u2);
+		commentFilmRepository.save(cf23);
+
+		CommentFilm cf24 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf24.setFilm(f20);
+		cf24.setUser(u2);
+		commentFilmRepository.save(cf24);
+
+		CommentFilm cf25 = new CommentFilm("Una buena pelicula, mis dieses");
+		cf25.setFilm(f21);
+		cf25.setUser(u2);
+		commentFilmRepository.save(cf25);
+
 		// Test Data Comment Show
 		CommentShow cs1 = new CommentShow("Esta serie es muy buena");
 		cs1.setShow(sh1);
 		cs1.setUser(u1);
 		commentShowRepository.save(cs1);
 
+		CommentShow cs2 = new CommentShow("Esta serie es muy buena");
+		cs2.setShow(sh2);
+		cs2.setUser(u1);
+		commentShowRepository.save(cs2);
+
+		CommentShow cs3 = new CommentShow("Esta serie es muy buena");
+		cs3.setShow(sh3);
+		cs3.setUser(u1);
+		commentShowRepository.save(cs3);
+
+		CommentShow cs4 = new CommentShow("Esta serie es muy buena");
+		cs4.setShow(sh4);
+		cs4.setUser(u2);
+		commentShowRepository.save(cs4);
+
+		CommentShow cs5 = new CommentShow("Esta serie es muy buena");
+		cs5.setShow(sh5);
+		cs5.setUser(u1);
+		commentShowRepository.save(cs5);
+
+		CommentShow cs6 = new CommentShow("Esta serie es muy buena");
+		cs6.setShow(sh6);
+		cs6.setUser(u3);
+		commentShowRepository.save(cs6);
+
+		CommentShow cs7 = new CommentShow("Esta serie es muy buena");
+		cs7.setShow(sh7);
+		cs7.setUser(u2);
+		commentShowRepository.save(cs7);
+
+		CommentShow cs8 = new CommentShow("Esta serie es muy buena");
+		cs8.setShow(sh2);
+		cs8.setUser(u1);
+		commentShowRepository.save(cs8);
+
+		CommentShow cs9 = new CommentShow("Esta serie es muy buena");
+		cs9.setShow(sh9);
+		cs9.setUser(u1);
+		commentShowRepository.save(cs9);
+
+		CommentShow cs10 = new CommentShow("Esta serie es muy buena");
+		cs10.setShow(sh10);
+		cs10.setUser(u3);
+		commentShowRepository.save(cs10);
+
+		CommentShow cs11 = new CommentShow("Esta serie es muy buena");
+		cs11.setShow(sh11);
+		cs11.setUser(u1);
+		commentShowRepository.save(cs11);
+
+		CommentShow cs12 = new CommentShow("Esta serie es muy buena");
+		cs12.setShow(sh12);
+		cs12.setUser(u3);
+		commentShowRepository.save(cs12);
+
+		CommentShow cs13 = new CommentShow("Esta serie es muy buena");
+		cs13.setShow(sh13);
+		cs13.setUser(u2);
+		commentShowRepository.save(cs13);
+
+		CommentShow cs14 = new CommentShow("Esta serie es muy buena");
+		cs14.setShow(sh14);
+		cs14.setUser(u2);
+		commentShowRepository.save(cs14);
+
+		CommentShow cs15 = new CommentShow("Esta serie es muy buena");
+		cs15.setShow(sh15);
+		cs15.setUser(u1);
+		commentShowRepository.save(cs15);
+
+		CommentShow cs16 = new CommentShow("Esta serie es muy buena");
+		cs16.setShow(sh16);
+		cs16.setUser(u2);
+		commentShowRepository.save(cs16);
+
+		CommentShow cs17 = new CommentShow("Esta serie es muy buena");
+		cs17.setShow(sh17);
+		cs17.setUser(u3);
+		commentShowRepository.save(cs17);
+
+		CommentShow cs18 = new CommentShow("Esta serie es muy buena");
+		cs18.setShow(sh18);
+		cs18.setUser(u1);
+		commentShowRepository.save(cs18);
+
+		CommentShow cs19 = new CommentShow("Esta serie es muy buena");
+		cs19.setShow(sh19);
+		cs19.setUser(u2);
+		commentShowRepository.save(cs19);
+
+		CommentShow cs21 = new CommentShow("Rollazo BUUUUUUUUUUUUUUUUHHHHHHHHHHH");
+		cs21.setShow(sh21);
+		cs21.setUser(u3);
+		commentShowRepository.save(cs21);
+
+		CommentShow cs22 = new CommentShow("Esta serie es muy buena");
+		cs22.setShow(sh22);
+		cs22.setUser(u2);
+		commentShowRepository.save(cs22);
+
+		CommentShow cs23 = new CommentShow("Lo ha petado");
+		cs23.setShow(sh23);
+		cs23.setUser(u1);
+		commentShowRepository.save(cs23);
+
 		// Test Data Comment Book
 		CommentBook cb1 = new CommentBook("Este libro es muy bueno");
 		cb1.setBook(b1);
 		cb1.setUser(u1);
 		commentBookRepository.save(cb1);
+
+		CommentBook cb2 = new CommentBook("Este libro es muy bueno");
+		cb2.setBook(b2);
+		cb2.setUser(u2);
+		commentBookRepository.save(cb2);
+
+		CommentBook cb3 = new CommentBook("Este libro es muy bueno");
+		cb3.setBook(b3);
+		cb3.setUser(u1);
+		commentBookRepository.save(cb3);
+
+		CommentBook cb4 = new CommentBook("Este libro es muy bueno");
+		cb4.setBook(b4);
+		cb4.setUser(u3);
+		commentBookRepository.save(cb4);
+
+		CommentBook cb5 = new CommentBook("Este libro es muy bueno");
+		cb5.setBook(b5);
+		cb5.setUser(u2);
+		commentBookRepository.save(cb5);
+
+		CommentBook cb6 = new CommentBook("Este libro es muy bueno");
+		cb6.setBook(b6);
+		cb6.setUser(u1);
+		commentBookRepository.save(cb6);
+
+		CommentBook cb7 = new CommentBook("Este libro es muy bueno");
+		cb7.setBook(b7);
+		cb7.setUser(u1);
+		commentBookRepository.save(cb7);
+
+		CommentBook cb8 = new CommentBook("Este libro es muy bueno");
+		cb8.setBook(b8);
+		cb8.setUser(u3);
+		commentBookRepository.save(cb8);
+
+		CommentBook cb9 = new CommentBook("Este libro es muy bueno");
+		cb9.setBook(b9);
+		cb9.setUser(u3);
+		commentBookRepository.save(cb9);
+
+		CommentBook cb10 = new CommentBook("Este libro es muy bueno");
+		cb10.setBook(b10);
+		cb10.setUser(u2);
+		commentBookRepository.save(cb10);
+
+		CommentBook cb11 = new CommentBook("Este libro es muy bueno");
+		cb11.setBook(b11);
+		cb11.setUser(u2);
+		commentBookRepository.save(cb11);
+
+		CommentBook cb12 = new CommentBook("Este libro es muy bueno");
+		cb12.setBook(b12);
+		cb12.setUser(u1);
+		commentBookRepository.save(cb12);
+
+		CommentBook cb13 = new CommentBook("Este libro es muy bueno");
+		cb13.setBook(b13);
+		cb13.setUser(u1);
+		commentBookRepository.save(cb13);
+
+		CommentBook cb14 = new CommentBook("Este libro es muy bueno");
+		cb14.setBook(b14);
+		cb14.setUser(u3);
+		commentBookRepository.save(cb14);
+
+		CommentBook cb15 = new CommentBook("Este libro es muy bueno");
+		cb15.setBook(b15);
+		cb15.setUser(u2);
+		commentBookRepository.save(cb15);
+
+		CommentBook cb16 = new CommentBook("Este libro es muy bueno");
+		cb16.setBook(b16);
+		cb16.setUser(u1);
+		commentBookRepository.save(cb16);
+
+		CommentBook cb17 = new CommentBook("Este libro es muy bueno");
+		cb17.setBook(b17);
+		cb17.setUser(u2);
+		commentBookRepository.save(cb17);
+
+		CommentBook cb18 = new CommentBook("Este libro es muy bueno");
+		cb18.setBook(b1);
+		cb18.setUser(u3);
+		commentBookRepository.save(cb18);
+
+		CommentBook cb19 = new CommentBook("Este libro es muy bueno");
+		cb19.setBook(b19);
+		cb19.setUser(u3);
+		commentBookRepository.save(cb19);
+
+		CommentBook cb20 = new CommentBook("Este libro es muy bueno");
+		cb20.setBook(b20);
+		cb20.setUser(u2);
+		commentBookRepository.save(cb20);
+
+		CommentBook cb21 = new CommentBook("Este libro es muy bueno");
+		cb21.setBook(b21);
+		cb21.setUser(u1);
+		commentBookRepository.save(cb21);
 
 		// Test Data Point Film
 		PointFilm pf1 = new PointFilm((double) 5);
@@ -625,7 +1094,7 @@ public class DatabaseInformationLoader {
 		pf3.setUser(u2);
 		pointFilmRepository.save(pf3);
 
-		PointFilm pf4 = new PointFilm((double) 4.5);
+		PointFilm pf4 = new PointFilm((double) 5);
 		pf4.setFilm(f1);
 		pf4.setUser(u3);
 		pointFilmRepository.save(pf4);
@@ -637,29 +1106,320 @@ public class DatabaseInformationLoader {
 
 		PointFilm pf6 = new PointFilm((double) 3.9);
 		pf6.setFilm(f3);
-		pf6.setUser(u2);
+		pf6.setUser(u1);
 		pointFilmRepository.save(pf6);
 
 		PointFilm pf7 = new PointFilm((double) 2.3);
 		pf7.setFilm(f4);
-		pf7.setUser(u2);
+		pf7.setUser(u3);
 		pointFilmRepository.save(pf7);
 
-		PointFilm pf8 = new PointFilm((double) 4.2);
+		PointFilm pf8 = new PointFilm((double) 4.3);
 		pf8.setFilm(f5);
 		pf8.setUser(u2);
 		pointFilmRepository.save(pf8);
 
+		PointFilm pf9 = new PointFilm((double) 4.9);
+		pf9.setFilm(f6);
+		pf9.setUser(u3);
+		pointFilmRepository.save(pf9);
+
+		PointFilm pf10 = new PointFilm((double) 2.6);
+		pf10.setFilm(f7);
+		pf10.setUser(u1);
+		pointFilmRepository.save(pf10);
+
+		PointFilm pf11 = new PointFilm((double) 3);
+		pf11.setFilm(f8);
+		pf11.setUser(u1);
+		pointFilmRepository.save(pf11);
+
+		PointFilm pf12 = new PointFilm((double) 3.5);
+		pf12.setFilm(f9);
+		pf12.setUser(u1);
+		pointFilmRepository.save(pf12);
+
+		PointFilm pf13 = new PointFilm((double) 1);
+		pf13.setFilm(f10);
+		pf13.setUser(u1);
+		pointFilmRepository.save(pf13);
+
+		PointFilm pf14 = new PointFilm((double) 2);
+		pf14.setFilm(f11);
+		pf14.setUser(u1);
+		pointFilmRepository.save(pf14);
+
+		PointFilm pf15 = new PointFilm((double) 4);
+		pf15.setFilm(f14);
+		pf15.setUser(u1);
+		pointFilmRepository.save(pf14);
+
+		PointFilm pf16 = new PointFilm((double) 3);
+		pf16.setFilm(f15);
+		pf16.setUser(u1);
+		pointFilmRepository.save(pf15);
+
+		PointFilm pf17 = new PointFilm((double) 2);
+		pf17.setFilm(f16);
+		pf17.setUser(u1);
+		pointFilmRepository.save(pf16);
+
+		PointFilm pf18 = new PointFilm((double) 1.5);
+		pf18.setFilm(f17);
+		pf18.setUser(u1);
+		pointFilmRepository.save(pf17);
+
+		PointFilm pf19 = new PointFilm((double) 4.4);
+		pf19.setFilm(f18);
+		pf19.setUser(u1);
+		pointFilmRepository.save(pf18);
+
+		PointFilm pf20 = new PointFilm((double) 4.5);
+		pf20.setFilm(f19);
+		pf20.setUser(u1);
+		pointFilmRepository.save(pf19);
+
+		PointFilm pf22 = new PointFilm((double) 3.5);
+		pf22.setFilm(f20);
+		pf22.setUser(u1);
+		pointFilmRepository.save(pf22);
+
+		PointFilm pf21 = new PointFilm((double) 5);
+		pf21.setFilm(f21);
+		pf21.setUser(u1);
+		pointFilmRepository.save(pf21);
+
+		PointFilm pf24 = new PointFilm((double) 3.4);
+		pf24.setFilm(f12);
+		pf24.setUser(u1);
+		pointFilmRepository.save(pf24);
+
+		PointFilm pf23 = new PointFilm((double) 2.6);
+		pf23.setFilm(f13);
+		pf23.setUser(u1);
+		pointFilmRepository.save(pf23);
+
 		// Test Data Point Show
-		PointShow ps1 = new PointShow((double) 5);
+		PointShow ps1 = new PointShow((double) 3.5);
 		ps1.setShow(sh1);
 		ps1.setUser(u1);
 		pointShowRepository.save(ps1);
 
+		PointShow ps2 = new PointShow((double) 4.3);
+		ps2.setShow(sh2);
+		ps2.setUser(u1);
+		pointShowRepository.save(ps2);
+
+		PointShow ps3 = new PointShow((double) 2.4);
+		ps3.setShow(sh3);
+		ps3.setUser(u2);
+		pointShowRepository.save(ps3);
+
+		PointShow ps4 = new PointShow((double) 4.2);
+		ps4.setShow(sh4);
+		ps4.setUser(u1);
+		pointShowRepository.save(ps4);
+
+		PointShow ps5 = new PointShow((double) 1.4);
+		ps5.setShow(sh5);
+		ps5.setUser(u3);
+		pointShowRepository.save(ps5);
+
+		PointShow ps6 = new PointShow((double) 5);
+		ps6.setShow(sh6);
+		ps6.setUser(u1);
+		pointShowRepository.save(ps6);
+
+		PointShow ps7 = new PointShow((double) 2.7);
+		ps7.setShow(sh7);
+		ps7.setUser(u1);
+		pointShowRepository.save(ps7);
+
+		PointShow ps8 = new PointShow((double) 2.2);
+		ps8.setShow(sh8);
+		ps8.setUser(u1);
+		pointShowRepository.save(ps8);
+
+		PointShow ps9 = new PointShow((double) 3.6);
+		ps9.setShow(sh9);
+		ps9.setUser(u1);
+		pointShowRepository.save(ps9);
+
+		PointShow ps10 = new PointShow((double) 4.5);
+		ps10.setShow(sh10);
+		ps10.setUser(u1);
+		pointShowRepository.save(ps10);
+
+		PointShow ps11 = new PointShow((double) 4.7);
+		ps11.setShow(sh11);
+		ps11.setUser(u1);
+		pointShowRepository.save(ps11);
+
+		PointShow ps12 = new PointShow((double) 4);
+		ps12.setShow(sh12);
+		ps12.setUser(u1);
+		pointShowRepository.save(ps12);
+
+		PointShow ps13 = new PointShow((double) 2.5);
+		ps13.setShow(sh1);
+		ps13.setUser(u1);
+		pointShowRepository.save(ps13);
+
+		PointShow ps14 = new PointShow((double) 3);
+		ps14.setShow(sh14);
+		ps14.setUser(u1);
+		pointShowRepository.save(ps14);
+
+		PointShow ps15 = new PointShow((double) 4);
+		ps15.setShow(sh15);
+		ps15.setUser(u1);
+		pointShowRepository.save(ps15);
+
+		PointShow ps16 = new PointShow((double) 3.6);
+		ps16.setShow(sh16);
+		ps16.setUser(u1);
+		pointShowRepository.save(ps16);
+
+		PointShow ps17 = new PointShow((double) 4.2);
+		ps17.setShow(sh17);
+		ps17.setUser(u1);
+		pointShowRepository.save(ps17);
+
+		PointShow ps18 = new PointShow((double) 4.6);
+		ps18.setShow(sh18);
+		ps18.setUser(u1);
+		pointShowRepository.save(ps18);
+
+		PointShow ps19 = new PointShow((double) 4.9);
+		ps19.setShow(sh19);
+		ps19.setUser(u1);
+		pointShowRepository.save(ps19);
+
+		PointShow ps20 = new PointShow((double) 5);
+		ps20.setShow(sh20);
+		ps20.setUser(u1);
+		pointShowRepository.save(ps20);
+
+		PointShow ps21 = new PointShow((double) 3.2);
+		ps21.setShow(sh21);
+		ps21.setUser(u1);
+		pointShowRepository.save(ps21);
+
+		PointShow ps22 = new PointShow((double) 2.2);
+		ps22.setShow(sh22);
+		ps22.setUser(u1);
+		pointShowRepository.save(ps22);
+
+		PointShow ps23 = new PointShow((double) 1);
+		ps23.setShow(sh23);
+		ps23.setUser(u1);
+		pointShowRepository.save(ps23);
+
 		// Test Data Point Book
-		PointBook pb1 = new PointBook((double) 5);
+		PointBook pb1 = new PointBook((double) 2);
 		pb1.setBook(b1);
 		pb1.setUser(u1);
 		pointBookRepository.save(pb1);
+
+		PointBook pb2 = new PointBook((double) 3.5);
+		pb2.setBook(b2);
+		pb2.setUser(u1);
+		pointBookRepository.save(pb2);
+
+		PointBook pb3 = new PointBook((double) 2.6);
+		pb3.setBook(b3);
+		pb3.setUser(u1);
+		pointBookRepository.save(pb3);
+
+		PointBook pb4 = new PointBook((double) 4.5);
+		pb4.setBook(b4);
+		pb4.setUser(u1);
+		pointBookRepository.save(pb4);
+
+		PointBook pb5 = new PointBook((double) 3.1);
+		pb5.setBook(b5);
+		pb5.setUser(u1);
+		pointBookRepository.save(pb5);
+
+		PointBook pb6 = new PointBook((double) 2);
+		pb6.setBook(b6);
+		pb6.setUser(u1);
+		pointBookRepository.save(pb6);
+
+		PointBook pb7 = new PointBook((double) 3.5);
+		pb7.setBook(b7);
+		pb7.setUser(u1);
+		pointBookRepository.save(pb7);
+
+		PointBook pb8 = new PointBook((double) 3.8);
+		pb8.setBook(b8);
+		pb8.setUser(u1);
+		pointBookRepository.save(pb8);
+
+		PointBook pb9 = new PointBook((double) 3);
+		pb9.setBook(b9);
+		pb9.setUser(u1);
+		pointBookRepository.save(pb9);
+
+		PointBook pb10 = new PointBook((double) 4.5);
+		pb10.setBook(b10);
+		pb10.setUser(u1);
+		pointBookRepository.save(pb10);
+
+		PointBook pb11 = new PointBook((double) 3.9);
+		pb11.setBook(b11);
+		pb11.setUser(u1);
+		pointBookRepository.save(pb11);
+
+		PointBook pb12 = new PointBook((double) 4.1);
+		pb12.setBook(b12);
+		pb12.setUser(u1);
+		pointBookRepository.save(pb12);
+
+		PointBook pb13 = new PointBook((double) 5);
+		pb13.setBook(b13);
+		pb13.setUser(u1);
+		pointBookRepository.save(pb13);
+
+		PointBook pb14 = new PointBook((double) 4);
+		pb14.setBook(b14);
+		pb14.setUser(u1);
+		pointBookRepository.save(pb14);
+
+		PointBook pb15 = new PointBook((double) 2.9);
+		pb15.setBook(b15);
+		pb15.setUser(u1);
+		pointBookRepository.save(pb15);
+
+		PointBook pb16 = new PointBook((double) 3);
+		pb16.setBook(b16);
+		pb16.setUser(u1);
+		pointBookRepository.save(pb16);
+
+		PointBook pb17 = new PointBook((double) 3.5);
+		pb17.setBook(b17);
+		pb17.setUser(u1);
+		pointBookRepository.save(pb17);
+
+		PointBook pb18 = new PointBook((double) 1.9);
+		pb18.setBook(b18);
+		pb18.setUser(u1);
+		pointBookRepository.save(pb18);
+
+		PointBook pb19 = new PointBook((double) 1);
+		pb19.setBook(b19);
+		pb19.setUser(u1);
+		pointBookRepository.save(pb19);
+
+		PointBook pb20 = new PointBook((double) 3.2);
+		pb20.setBook(b20);
+		pb20.setUser(u1);
+		pointBookRepository.save(pb20);
+
+		PointBook pb21 = new PointBook((double) 4);
+		pb21.setBook(b21);
+		pb21.setUser(u1);
+		pointBookRepository.save(pb21);
+
 	}
 }

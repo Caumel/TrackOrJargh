@@ -23,4 +23,6 @@ public interface CommentBookRepository extends JpaRepository<CommentBook, Long>{
     @Transactional
 	@Query(value = "DELETE FROM COMMENT_BOOK WHERE BOOK_ID = ?1", nativeQuery = true)
 	void removeCommentsBooksByBookId(long id);
+    
+    CommentBook findById(Long id);
 }

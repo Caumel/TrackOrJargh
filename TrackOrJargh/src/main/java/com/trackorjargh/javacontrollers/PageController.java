@@ -1,19 +1,28 @@
 package com.trackorjargh.javacontrollers;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,13 +33,13 @@ import com.trackorjargh.javaclass.CommentFilm;
 import com.trackorjargh.javaclass.CommentShow;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.ForgotPassword;
-import com.trackorjargh.javaclass.Gender;
 import com.trackorjargh.javaclass.GenerateURLPage;
 import com.trackorjargh.javaclass.InterfaceMainItem;
 import com.trackorjargh.javaclass.Lists;
 import com.trackorjargh.javaclass.PointBook;
 import com.trackorjargh.javaclass.PointFilm;
 import com.trackorjargh.javaclass.PointShow;
+import com.trackorjargh.javaclass.PreparateListsShow;
 import com.trackorjargh.javaclass.PreparateMessageShow;
 import com.trackorjargh.javaclass.RandomGenerate;
 import com.trackorjargh.javaclass.Show;
@@ -109,9 +118,6 @@ public class PageController {
 			model.addAttribute("userList", user.getLists());
 		}
 
-		model.addAttribute("content", filmRepository.findAll(new PageRequest(0, 10)));
-		model.addAttribute("typePage", "peliculas");
-
 		Page<Film> filmsPage;
 		String typePage;
 		if (request.getServletPath().equalsIgnoreCase("/peliculas")) {
@@ -134,8 +140,8 @@ public class PageController {
 		model.addAttribute("typePage", typePage);
 		model.addAttribute("filmsActive", true);
 		model.addAttribute("contentCarousel", films);
-		model.addAttribute("loggedUser", userComponent.isLoggedUser());
-		model.addAttribute("loggedUser", userComponent.isLoggedUser());
+		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
+		model.addAttribute("typePageAddList", "pelicula");
 
 		return "contentList";
 	}
@@ -167,15 +173,14 @@ public class PageController {
 			model.addAttribute("noElementsSearch", true);
 		}
 
-		model.addAttribute("content", showRepository.findAll(new PageRequest(0, 10)));
-		model.addAttribute("typePage", "series");
 		model.addAttribute("linkContent", "/series");
 		model.addAttribute("linkBestPointContent", "/series/mejorvaloradas");
 		model.addAttribute("content", showsPage);
 		model.addAttribute("typePage", typePage);
 		model.addAttribute("showsActive", true);
 		model.addAttribute("contentCarousel", shows);
-		model.addAttribute("loggedUser", userComponent.isLoggedUser());
+		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
+		model.addAttribute("typePageAddList", "serie");
 
 		return "contentList";
 	}
@@ -207,15 +212,14 @@ public class PageController {
 			model.addAttribute("noElementsSearch", true);
 		}
 
-		model.addAttribute("content", bookRepository.findAll(new PageRequest(0, 10)));
-		model.addAttribute("typePage", "libros");
 		model.addAttribute("linkContent", "/libros");
 		model.addAttribute("linkBestPointContent", "/libros/mejorvalorados");
 		model.addAttribute("content", booksPage);
 		model.addAttribute("typePage", typePage);
 		model.addAttribute("booksActive", true);
 		model.addAttribute("contentCarousel", books);
-		model.addAttribute("loggedUser", userComponent.isLoggedUser());
+		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
+		model.addAttribute("typePageAddList", "libro");
 
 		return "contentList";
 	}
@@ -279,6 +283,7 @@ public class PageController {
 		model.addAttribute("contentRelation",
 				filmRepository.findFilmsRelationsById(film.getId(), new PageRequest(0, 8)));
 		model.addAttribute("iconFilmShow", true);
+		model.addAttribute("deleteComment", "/pelicula/borrarcomentario/");
 
 		return "contentProfile";
 	}
@@ -343,6 +348,7 @@ public class PageController {
 		model.addAttribute("contentRelation",
 				showRepository.findShowsRelationsById(show.getId(), new PageRequest(0, 8)));
 		model.addAttribute("iconFilmShow", true);
+		model.addAttribute("deleteComment", "/serie/borrarcomentario/");
 
 		return "contentProfile";
 	}
@@ -407,8 +413,33 @@ public class PageController {
 		model.addAttribute("contentRelation",
 				bookRepository.findBooksRelationsById(book.getId(), new PageRequest(0, 8)));
 		model.addAttribute("iconBook", true);
+		model.addAttribute("deleteComment", "/libro/borrarcomentario/");
 
 		return "contentProfile";
+	}
+	
+	@RequestMapping("/pelicula/borrarcomentario/{id}/{name}")
+	public String deleteCommentFilm(Model model, @PathVariable int id, @PathVariable String name) {
+		CommentFilm comment = commentFilmRepository.findById(new Long(id));
+		commentFilmRepository.delete(comment);
+		
+		return "redirect:/pelicula/" + name;
+	}
+	
+	@RequestMapping("/serie/borrarcomentario/{id}/{name}")
+	public String deleteCommentShow(Model model, @PathVariable int id, @PathVariable String name) {
+		CommentShow comment = commentShowRepository.findById(new Long(id));
+		commentShowRepository.delete(comment);
+		
+		return "redirect:/serie/" + name;
+	}
+	
+	@RequestMapping("/libro/borrarcomentario/{id}/{name}")
+	public String deleteCommentBook(Model model, @PathVariable int id, @PathVariable String name) {
+		CommentBook comment = commentBookRepository.findById(new Long(id));
+		commentBookRepository.delete(comment);
+		
+		return "redirect:/libro/" + name;
 	}
 
 	@RequestMapping("/miperfil")
@@ -424,7 +455,14 @@ public class PageController {
 			userRepository.save(userComponent.getLoggedUser());
 		}
 
-		model.addAttribute("listsUser", listsRepository.findByUser(userComponent.getLoggedUser()));
+		List<PreparateListsShow> listsUser = new LinkedList<>();
+		for (Lists list : listsRepository.findByUser(userComponent.getLoggedUser()))
+			listsUser.add(new PreparateListsShow(list.getName(), list.getFilms(), list.getBooks(), list.getShows()));
+
+		model.addAttribute("listsUser", listsUser);
+
+		if (listsUser.size() > 0)
+			model.addAttribute("listUserTrue", true);
 
 		if (userComponent.getLoggedUser().getRoles().size() == 3) {
 			model.addAttribute("isAdmin", true);
@@ -434,6 +472,7 @@ public class PageController {
 			}
 		}
 
+		model.addAttribute("myProfile", true);
 		return "userProfile";
 	}
 
@@ -467,19 +506,22 @@ public class PageController {
 	}
 
 	@RequestMapping("/login")
-	public String serveLogin(Model model, HttpServletRequest request, @RequestParam Optional<String> name,
-			@RequestParam Optional<String> email, @RequestParam Optional<String> pass,
-			@RequestParam Optional<Boolean> registerUser) {
-		if (registerUser.isPresent()) {
-			User newUser = new User(name.get(), pass.get(), email.get(), "", false, "ROLE_USER");
-			GenerateURLPage url = new GenerateURLPage(request);
-			mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount(newUser));
-
-			model.addAttribute("registered", true);
-			userRepository.save(newUser);
-		}
-
+	public String serveLogin(Model model) {
 		return "login";
+	}
+
+	@RequestMapping("/registrar")
+	public String serveRegistrer(Model model, RedirectAttributes redir, HttpServletRequest request, @RequestParam String name,
+			@RequestParam String email, @RequestParam String pass) {
+
+		User newUser = new User(name, pass, email, "", false, "ROLE_USER");
+		GenerateURLPage url = new GenerateURLPage(request);
+		mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount(newUser));
+
+		redir.addFlashAttribute("registered", true);
+		userRepository.save(newUser);
+
+		return "redirect:/login";
 	}
 
 	@RequestMapping("/cambiarcontra/{alphanumericCode}")
@@ -566,6 +608,7 @@ public class PageController {
 
 	@RequestMapping("/administracion")
 	public String serveAdmin(Model model) {
+		model.addAttribute("adminActive", true);
 
 		return "administration";
 	}
@@ -817,4 +860,42 @@ public class PageController {
 		return "redirect:/libro/" + name;
 	}
 
+	public String uploadImage(String imageName, MultipartFile file) {
+		Path FILES_FOLDER = Paths.get(System.getProperty("user.dir"), "files");
+		String fileName = "image-" + imageName + ".jpg";
+
+		if (!file.isEmpty()) {
+			try {
+				if (!Files.exists(FILES_FOLDER)) {
+					Files.createDirectories(FILES_FOLDER);
+				}
+
+				File uploadedFile = new File(FILES_FOLDER.toFile(), fileName);
+				file.transferTo(uploadedFile);
+
+				return "/imagen/" + fileName;
+
+			} catch (Exception e) {
+				return "Error Upload";
+			}
+		} else {
+			return "Empty File";
+		}
+	}
+
+	@RequestMapping("/imagen/{fileName:.+}")
+	public void handleFileDownload(@PathVariable String fileName, HttpServletResponse res)
+			throws FileNotFoundException, IOException {
+		Path FILES_FOLDER = Paths.get(System.getProperty("user.dir"), "files");
+		Path image = FILES_FOLDER.resolve(fileName);
+
+		if (Files.exists(image)) {
+			res.setContentType("image/jpeg");
+			res.setContentLength((int) image.toFile().length());
+			FileCopyUtils.copy(Files.newInputStream(image), res.getOutputStream());
+
+		} else {
+			res.sendError(404);
+		}
+	}
 }

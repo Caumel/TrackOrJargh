@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -33,24 +32,6 @@ public class User {
 	
 	@OneToMany(mappedBy="user")
 	private List<Lists> lists = new LinkedList<>();
-	
-	@OneToOne(mappedBy="user")
-	private CommentBook commentBook;
-	
-	@OneToOne(mappedBy="user")
-	private PointBook pointBook;
-	
-	@OneToOne(mappedBy="user")
-	private CommentFilm commentFilm;
-	
-	@OneToOne(mappedBy="user")
-	private PointFilm pointFilm;
-	
-	@OneToOne(mappedBy="user") 
-	private CommentShow commentShow;
-	
-	@OneToOne(mappedBy="user")
-	private PointShow pointShow;
 
 	public User() {
 	}
@@ -110,54 +91,6 @@ public class User {
 
 	public void setLists(List<Lists> lists) {
 		this.lists = lists;
-	}
-
-	public CommentBook getCommentBook() {
-		return commentBook;
-	}
-
-	public void setCommentBook(CommentBook commentBook) {
-		this.commentBook = commentBook;
-	}
-
-	public PointBook getPointBook() {
-		return pointBook;
-	}
-
-	public void setPointBook(PointBook pointBook) {
-		this.pointBook = pointBook;
-	}
-
-	public CommentFilm getCommentFilm() {
-		return commentFilm;
-	}
-
-	public void setCommentFilm(CommentFilm commentFilm) {
-		this.commentFilm = commentFilm;
-	}
-
-	public PointFilm getPointFilm() {
-		return pointFilm;
-	}
-
-	public void setPointFilm(PointFilm pointFilm) {
-		this.pointFilm = pointFilm;
-	}
-
-	public CommentShow getCommentShow() {
-		return commentShow;
-	}
-
-	public void setCommentShow(CommentShow commentShow) {
-		this.commentShow = commentShow;
-	}
-
-	public PointShow getPointShow() {
-		return pointShow;
-	}
-
-	public void setPointShow(PointShow pointShow) {
-		this.pointShow = pointShow;
 	}
 
 	public List<String> getRoles() {

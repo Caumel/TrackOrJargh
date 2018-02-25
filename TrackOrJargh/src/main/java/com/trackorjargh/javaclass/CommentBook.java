@@ -62,6 +62,6 @@ public class CommentBook {
 	}
 	
 	public PreparateMessageShow preparateShowMessage() {
-		return new PreparateMessageShow(this.user.getName(), this.comment);
+		return new PreparateMessageShow(this.id, this.user.getName(), this.comment);
 	}
 }

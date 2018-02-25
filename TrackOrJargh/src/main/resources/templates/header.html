@@ -21,14 +21,12 @@
 				<li {{#showsActive}}class="menu-active"{{/showsActive}}><a href="/series">Series</a></li>
 				<li {{#booksActive}}class="menu-active"{{/booksActive}}><a href="/libros">Libros</a></li>
 				
+				{{#isUserAdmin}}
+				<li {{#adminActive}}class="menu-active"{{/adminActive}}><a href="/administracion">Administración</a></li>
+				{{/isUserAdmin}}
+				
 				{{#userLogged}}
-				<li class="menu-has-children"><a href="">{{name}}</a>
-					<ul>
-						<li><a href="miperfil">Perfil</a></li>
-						<li><a href="#">Mis listas</a></li>
-						<li><a href="#">Ajustes</a></li>
-					</ul></li>
-				<li>
+				<li {{#myProfile}}class="menu-active"{{/myProfile}}><a href="/miperfil">{{name}}</a></li>
 				{{/userLogged}}
 				
 				{{^userLogged}}
