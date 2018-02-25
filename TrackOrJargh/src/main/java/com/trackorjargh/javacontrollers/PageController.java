@@ -31,6 +31,7 @@ import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.CommentBook;
 import com.trackorjargh.javaclass.CommentFilm;
 import com.trackorjargh.javaclass.CommentShow;
+import com.trackorjargh.javaclass.DeleteElementsOfBBDD;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.ForgotPassword;
 import com.trackorjargh.javaclass.GenerateURLPage;
@@ -92,6 +93,8 @@ public class PageController {
 	private ForgotPasswordRepository forgotPasswordRepository;
 	@Autowired
 	private ListsRepository listsRepository;
+	@Autowired
+	private DeleteElementsOfBBDD deleteElementsOfBBDD;
 
 	@RequestMapping("/")
 	public String serveIndex(Model model) {
@@ -417,28 +420,28 @@ public class PageController {
 
 		return "contentProfile";
 	}
-	
+
 	@RequestMapping("/pelicula/borrarcomentario/{id}/{name}")
 	public String deleteCommentFilm(Model model, @PathVariable int id, @PathVariable String name) {
 		CommentFilm comment = commentFilmRepository.findById(new Long(id));
 		commentFilmRepository.delete(comment);
-		
+
 		return "redirect:/pelicula/" + name;
 	}
-	
+
 	@RequestMapping("/serie/borrarcomentario/{id}/{name}")
 	public String deleteCommentShow(Model model, @PathVariable int id, @PathVariable String name) {
 		CommentShow comment = commentShowRepository.findById(new Long(id));
 		commentShowRepository.delete(comment);
-		
+
 		return "redirect:/serie/" + name;
 	}
-	
+
 	@RequestMapping("/libro/borrarcomentario/{id}/{name}")
 	public String deleteCommentBook(Model model, @PathVariable int id, @PathVariable String name) {
 		CommentBook comment = commentBookRepository.findById(new Long(id));
 		commentBookRepository.delete(comment);
-		
+
 		return "redirect:/libro/" + name;
 	}
 
@@ -511,8 +514,8 @@ public class PageController {
 	}
 
 	@RequestMapping("/registrar")
-	public String serveRegistrer(Model model, RedirectAttributes redir, HttpServletRequest request, @RequestParam String name,
-			@RequestParam String email, @RequestParam String pass) {
+	public String serveRegistrer(Model model, RedirectAttributes redir, HttpServletRequest request,
+			@RequestParam String name, @RequestParam String email, @RequestParam String pass) {
 
 		User newUser = new User(name, pass, email, "", false, "ROLE_USER");
 		GenerateURLPage url = new GenerateURLPage(request);
@@ -703,15 +706,13 @@ public class PageController {
 
 	@RequestMapping("/adminPelicula")
 	public String adminFilm(Model model, @RequestParam String name, @RequestParam String newName,
-			@RequestParam Optional<Boolean> confirmDelete, @RequestParam Optional<String> deleteFilm,
-			@RequestParam String actors, @RequestParam String directors, @RequestParam String imageFilm,
-			@RequestParam Optional<String[]> genreContent, @RequestParam Optional<String[]> newGenres,
-			@RequestParam String synopsis, @RequestParam String trailer, @RequestParam String year) { // AQUI
+			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String actors, @RequestParam String directors,
+			@RequestParam Optional<MultipartFile> imageFilm, @RequestParam Optional<String[]> genreContent,
+			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String trailer,
+			@RequestParam String year) {
 		Film film = filmRepository.findByName(name);
-		if (confirmDelete.isPresent() && confirmDelete.get()) {
-			if (name.equals(deleteFilm.get())) {
-
-			}
+		if (confirmDelete.isPresent()) {
+			deleteElementsOfBBDD.deleteFilm(film);
 		} else {
 			film.setName(newName);
 			film.setActors(actors);
@@ -720,34 +721,35 @@ public class PageController {
 			film.setTrailer(trailer);
 			int yearInt = Integer.parseInt(year);
 			film.setYear(yearInt);
-		}
-		if (genreContent.isPresent()) {
-			for (String genre : genreContent.get()) {
-				film.getGenders().clear();
-				film.getGenders().add(genderRepository.findByName(genre));
+			if (genreContent.isPresent()) {
+				for (String genre : genreContent.get()) {
+					film.getGenders().clear();
+					film.getGenders().add(genderRepository.findByName(genre));
+				}
 			}
-		}
-		if (newGenres.isPresent()) {
-			for (String genre : newGenres.get()) {
-				film.getGenders().add(genderRepository.findByName(genre));
+			if (newGenres.isPresent()) {
+				for (String genre : newGenres.get()) {
+					film.getGenders().add(genderRepository.findByName(genre));
+				}
 			}
+			if (imageFilm.isPresent()) {
+				film.setImage(uploadImage(film.getName(), imageFilm.get()));
+			}
+			filmRepository.save(film);
 		}
-		filmRepository.save(film);
 
-		return "redirect:/administracion";
+		return "redirect:/";
 	}
 
 	@RequestMapping("/adminSerie")
 	public String adminShow(Model model, @RequestParam String name, @RequestParam String newName,
-			@RequestParam Optional<Boolean> confirmDelete, @RequestParam Optional<String> deleteShow,
-			@RequestParam String actors, @RequestParam String directors, @RequestParam String imageShow,
+			@RequestParam Optional<Boolean> confirmDelete,
+			@RequestParam String actors, @RequestParam String directors, @RequestParam Optional<MultipartFile> imageShow,
 			@RequestParam Optional<String[]> genreContent, @RequestParam Optional<String[]> newGenres,
 			@RequestParam String synopsis, @RequestParam String trailer, @RequestParam String year) { // Y AQUI
 		Show show = showRepository.findByName(name);
-		if (confirmDelete.isPresent() && confirmDelete.get()) {
-			if (name.equals(deleteShow.get())) {
-
-			}
+		if (confirmDelete.isPresent()) {
+				deleteElementsOfBBDD.deleteShow(show);
 		} else {
 			show.setName(newName);
 			show.setActors(actors);
@@ -756,53 +758,51 @@ public class PageController {
 			show.setTrailer(trailer);
 			int yearInt = Integer.parseInt(year);
 			show.setYear(yearInt);
-		}
-		if (genreContent.isPresent()) {
-			for (String genre : genreContent.get()) {
-				show.getGenders().clear();
-				show.getGenders().add(genderRepository.findByName(genre));
+			if (genreContent.isPresent()) {
+				for (String genre : genreContent.get()) {
+					show.getGenders().clear();
+					show.getGenders().add(genderRepository.findByName(genre));
+				}
 			}
-		}
-		if (newGenres.isPresent()) {
-			for (String genre : newGenres.get()) {
-				show.getGenders().add(genderRepository.findByName(genre));
+			if (newGenres.isPresent()) {
+				for (String genre : newGenres.get()) {
+					show.getGenders().add(genderRepository.findByName(genre));
+				}
 			}
+			showRepository.save(show);
 		}
-		showRepository.save(show);
 
 		return "redirect:/administracion";
 	}
 
 	@RequestMapping("/adminLibro")
 	public String adminBook(Model model, @RequestParam String name, @RequestParam String newName,
-			@RequestParam Optional<Boolean> confirmDelete, @RequestParam Optional<String> deleteBook,
-			@RequestParam String authors, @RequestParam String imageBook, @RequestParam Optional<String[]> genreContent,
+			@RequestParam Optional<Boolean> confirmDelete, 
+			@RequestParam String authors, @RequestParam Optional<MultipartFile> imageBook, @RequestParam Optional<String[]> genreContent,
 			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String trailer,
 			@RequestParam String year) { // Y AQUI
 		Book book = bookRepository.findByName(name);
-		if (confirmDelete.isPresent() && confirmDelete.get()) {
-			if (name.equals(deleteBook.get())) {
-
-			}
+		if (confirmDelete.isPresent()) {
+				deleteElementsOfBBDD.deleteBook(book);
 		} else {
 			book.setName(newName);
 			book.setAuthors(authors);
 			book.setSynopsis(synopsis);
 			int yearInt = Integer.parseInt(year);
 			book.setYear(yearInt);
-		}
-		if (genreContent.isPresent()) {
-			for (String genre : genreContent.get()) {
-				book.getGenders().clear();
-				book.getGenders().add(genderRepository.findByName(genre));
+			if (genreContent.isPresent()) {
+				for (String genre : genreContent.get()) {
+					book.getGenders().clear();
+					book.getGenders().add(genderRepository.findByName(genre));
+				}
 			}
-		}
-		if (newGenres.isPresent()) {
-			for (String genre : newGenres.get()) {
-				book.getGenders().add(genderRepository.findByName(genre));
+			if (newGenres.isPresent()) {
+				for (String genre : newGenres.get()) {
+					book.getGenders().add(genderRepository.findByName(genre));
+				}
 			}
+			bookRepository.save(book);
 		}
-		bookRepository.save(book);
 
 		return "redirect:/administracion";
 	}
