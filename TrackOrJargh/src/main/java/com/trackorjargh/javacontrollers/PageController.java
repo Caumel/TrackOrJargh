@@ -743,7 +743,7 @@ public class PageController {
 			filmRepository.save(film);
 		}
 
-		return "redirect:/";
+		return "redirect:/administracion";
 	}
 
 	@RequestMapping("/adminSerie")
