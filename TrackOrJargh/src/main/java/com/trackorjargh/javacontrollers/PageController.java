@@ -522,7 +522,7 @@ public class PageController {
 	public String serveRegistrer(Model model, RedirectAttributes redir, HttpServletRequest request,
 			@RequestParam String name, @RequestParam String email, @RequestParam String pass) {
 
-		User newUser = new User(name, pass, email, "", false, "ROLE_USER");
+		User newUser = new User(name, pass, email, "/img/default-user.png", false, "ROLE_USER");
 		GenerateURLPage url = new GenerateURLPage(request);
 		mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount(newUser));
 
