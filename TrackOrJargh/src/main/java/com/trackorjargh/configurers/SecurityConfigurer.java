@@ -57,7 +57,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         //http.authorizeRequests().antMatchers("/tests-login/admin").hasAnyRole("ADMIN");
 		
 		// Login form
-		http.formLogin().loginPage("/loginusuario");
+		http.formLogin().loginPage("/login");
 		http.formLogin().usernameParameter("username");
 		http.formLogin().passwordParameter("password");
 		http.formLogin().defaultSuccessUrl("/");

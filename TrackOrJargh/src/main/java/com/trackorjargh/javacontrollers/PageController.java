@@ -427,14 +427,14 @@ public class PageController {
 			}
 			userRepository.save(userComponent.getLoggedUser());
 		}
-		
+
 		List<PreparateListsShow> listsUser = new LinkedList<>();
 		for (Lists list : listsRepository.findByUser(userComponent.getLoggedUser()))
 			listsUser.add(new PreparateListsShow(list.getName(), list.getFilms(), list.getBooks(), list.getShows()));
-		
+
 		model.addAttribute("listsUser", listsUser);
-		
-		if(listsUser.size() > 0)
+
+		if (listsUser.size() > 0)
 			model.addAttribute("listUserTrue", true);
 
 		if (userComponent.getLoggedUser().getRoles().size() == 3) {
@@ -444,7 +444,7 @@ public class PageController {
 				model.addAttribute("isModerator", true);
 			}
 		}
-		
+
 		model.addAttribute("myProfile", true);
 		return "userProfile";
 	}
@@ -479,19 +479,22 @@ public class PageController {
 	}
 
 	@RequestMapping("/login")
-	public String serveLogin(Model model, HttpServletRequest request, @RequestParam Optional<String> name,
-			@RequestParam Optional<String> email, @RequestParam Optional<String> pass,
-			@RequestParam Optional<Boolean> registerUser) {
-		if (registerUser.isPresent()) {
-			User newUser = new User(name.get(), pass.get(), email.get(), "", false, "ROLE_USER");
-			GenerateURLPage url = new GenerateURLPage(request);
-			mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount(newUser));
-
-			model.addAttribute("registered", true);
-			userRepository.save(newUser);
-		}
-
+	public String serveLogin(Model model) {
 		return "login";
+	}
+
+	@RequestMapping("/registrar")
+	public String serveRegistrer(Model model, RedirectAttributes redir, HttpServletRequest request, @RequestParam String name,
+			@RequestParam String email, @RequestParam String pass) {
+
+		User newUser = new User(name, pass, email, "", false, "ROLE_USER");
+		GenerateURLPage url = new GenerateURLPage(request);
+		mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount(newUser));
+
+		redir.addFlashAttribute("registered", true);
+		userRepository.save(newUser);
+
+		return "redirect:/login";
 	}
 
 	@RequestMapping("/cambiarcontra/{alphanumericCode}")
@@ -579,7 +582,7 @@ public class PageController {
 	@RequestMapping("/administracion")
 	public String serveAdmin(Model model) {
 		model.addAttribute("adminActive", true);
-		
+
 		return "administration";
 	}
 
@@ -814,7 +817,7 @@ public class PageController {
 		String name = book.getName();
 		return "redirect:/libro/" + name;
 	}
-	
+
 	public String uploadImage(String imageName, MultipartFile file) {
 		Path FILES_FOLDER = Paths.get(System.getProperty("user.dir"), "files");
 		String fileName = "image-" + imageName + ".jpg";
@@ -824,7 +827,7 @@ public class PageController {
 				if (!Files.exists(FILES_FOLDER)) {
 					Files.createDirectories(FILES_FOLDER);
 				}
-				
+
 				File uploadedFile = new File(FILES_FOLDER.toFile(), fileName);
 				file.transferTo(uploadedFile);
 
@@ -837,7 +840,7 @@ public class PageController {
 			return "Empty File";
 		}
 	}
-	
+
 	@RequestMapping("/imagen/{fileName:.+}")
 	public void handleFileDownload(@PathVariable String fileName, HttpServletResponse res)
 			throws FileNotFoundException, IOException {
