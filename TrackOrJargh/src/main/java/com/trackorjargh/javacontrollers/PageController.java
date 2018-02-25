@@ -447,7 +447,8 @@ public class PageController {
 
 	@RequestMapping("/miperfil")
 	public String serveUserProfile(Model model, @RequestParam Optional<String> emailUser,
-			@RequestParam Optional<String> passUser, @RequestParam Optional<Boolean> sent, @RequestParam Optional<MultipartFile> imageShow) {
+			@RequestParam Optional<String> passUser, @RequestParam Optional<Boolean> sent,
+			@RequestParam Optional<MultipartFile> imageShow) {
 		if (sent.isPresent()) {
 			if (emailUser.isPresent()) {
 				userComponent.getLoggedUser().setEmail(emailUser.get());
@@ -455,8 +456,8 @@ public class PageController {
 			if (!passUser.get().equals("")) {
 				userComponent.getLoggedUser().setPassword(passUser.get());
 			}
-			
-			if(imageShow.isPresent()) {
+
+			if (imageShow.isPresent()) {
 				String image = uploadImage("userImage", imageShow.get());
 				userComponent.getLoggedUser().setImage(image);
 			}
@@ -679,8 +680,7 @@ public class PageController {
 
 	@RequestMapping("/adminUsuario")
 	public String adminUser(Model model, @RequestParam String name, @RequestParam String email,
-			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteUser,
-			@RequestParam String userType) {
+			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String userType) {
 		User user = userRepository.findByNameIgnoreCase(name);
 		if (confirmDelete.isPresent()) {
 			deleteElementsOfBBDD.deleteUser(user);
@@ -749,7 +749,7 @@ public class PageController {
 			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String actors, @RequestParam String directors,
 			@RequestParam Optional<MultipartFile> imageShow, @RequestParam Optional<String[]> genreContent,
 			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String trailer,
-			@RequestParam String year) { // Y AQUI
+			@RequestParam String year) {
 		Show show = showRepository.findByNameIgnoreCase(name);
 		if (confirmDelete.isPresent()) {
 			deleteElementsOfBBDD.deleteShow(show);
@@ -782,8 +782,7 @@ public class PageController {
 	public String adminBook(Model model, @RequestParam String name, @RequestParam String newName,
 			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String authors,
 			@RequestParam Optional<MultipartFile> imageBook, @RequestParam Optional<String[]> genreContent,
-			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String trailer,
-			@RequestParam String year) { // Y AQUI
+			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String year) {
 		Book book = bookRepository.findByNameIgnoreCase(name);
 		if (confirmDelete.isPresent()) {
 			deleteElementsOfBBDD.deleteBook(book);
@@ -817,11 +816,11 @@ public class PageController {
 	}
 
 	@RequestMapping("/nuevaPelicula")
-	public String newFilm(@RequestParam Optional<MultipartFile> imageFilm, @RequestParam String newName, @RequestParam String actors,
-			@RequestParam String directors, @RequestParam Optional<String[]> newGenres, @RequestParam String synopsis,
-			@RequestParam String trailer, @RequestParam String year) {
+	public String newFilm(@RequestParam Optional<MultipartFile> imageFilm, @RequestParam String newName,
+			@RequestParam String actors, @RequestParam String directors, @RequestParam Optional<String[]> newGenres,
+			@RequestParam String synopsis, @RequestParam String trailer, @RequestParam String year) {
 		String image;
-		if(imageFilm.isPresent()) {
+		if (imageFilm.isPresent()) {
 			image = uploadImage(newName, imageFilm.get());
 		} else {
 			image = "";
@@ -839,11 +838,11 @@ public class PageController {
 	}
 
 	@RequestMapping("/nuevaSerie")
-	public String newShow(@RequestParam Optional<MultipartFile> imageShow, @RequestParam String newName, @RequestParam String actors,
-			@RequestParam String directors, @RequestParam Optional<String[]> newGenres, @RequestParam String synopsis,
-			@RequestParam String trailer, @RequestParam String year) {
+	public String newShow(@RequestParam Optional<MultipartFile> imageShow, @RequestParam String newName,
+			@RequestParam String actors, @RequestParam String directors, @RequestParam Optional<String[]> newGenres,
+			@RequestParam String synopsis, @RequestParam String trailer, @RequestParam String year) {
 		String image;
-		if(imageShow.isPresent()) {
+		if (imageShow.isPresent()) {
 			image = uploadImage(newName, imageShow.get());
 		} else {
 			image = "";
@@ -861,10 +860,11 @@ public class PageController {
 	}
 
 	@RequestMapping("/nuevoLibro")
-	public String newBook(@RequestParam Optional<MultipartFile> imageBook, @RequestParam String newName, @RequestParam String authors,
-			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String year) {
+	public String newBook(@RequestParam Optional<MultipartFile> imageBook, @RequestParam String newName,
+			@RequestParam String authors, @RequestParam Optional<String[]> newGenres, @RequestParam String synopsis,
+			@RequestParam String year) {
 		String image;
-		if(imageBook.isPresent()) {
+		if (imageBook.isPresent()) {
 			image = uploadImage(newName, imageBook.get());
 		} else {
 			image = "";
