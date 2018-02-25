@@ -1,10 +1,11 @@
 function deleteContent(){ 
-	var nameContent = $(this).val();
-	var nameList = $(this).parents(".CreateList").find("[name='deleteListName']").text();
-	alert(nameList);
-	
+	var typeContent = $(this).val();
+	var nameContent = $(this).parents(".d-flex").find("[name='deleteContentName']").text();
+	var nameList = $(this).parents(".form-control").find("[name='deleteListName']").text();
+	typeContent = typeContent.substr(1,typeContent.length - 2);
+	alert(typeContent);
 	$.ajax({
-	    url: "/rest/borrarContenido/"+nameList+"/"+nameContent,
+	    url: "/rest/borrarContenido/"+nameList+"/"+typeContent+"/"+nameContent,
 	    type: 'DELETE',
 	    success: function(result) {
 	    	if (result == true){
@@ -30,5 +31,5 @@ function deleteList(){
 
 $(function() {
 	$("[name='deleteList']").click(deleteList);
-	$("[name='deleteContent']").click(deleteContent);
+	$("[name='deleteContentURL']").click(deleteContent);
 });

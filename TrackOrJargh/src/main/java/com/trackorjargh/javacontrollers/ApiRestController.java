@@ -268,24 +268,23 @@ public class ApiRestController {
 		return true;
 	}
 	
-	//@RequestMapping(value = "/rest/borrarContenido/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.DELETE)
-	//public boolean deletedContentInList(@PathVariable String nameList,@PathVariable @PathVariable String nameContent) {
-		//Lists listUser = listsRepository.findByName(nameList);
-		//Film film = filmRepository.findByName(nameContent);
-		//if (listUser.getFilms().contains(film)) {
-			//listUser.getFilms().remove(film);
-			
-		//}else {
-			//Show show = showRepository.findByName(nameContent);
-			//if (listUser.getShows().contains(show)) {
-			//listUser.getShows().remove(show);
-			
-		//}else {
-			//Book book = bookRepository.findByName(nameContent);
-			//listUser.getBooks().remove(book);
-		//}
+	@RequestMapping(value = "/rest/borrarContenido/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.DELETE)
+	public boolean deletedContentInList(@PathVariable String nameList,@PathVariable String typeContent, @PathVariable String nameContent) {
+		Lists listUser = listsRepository.findByName(nameList);
 		
-		//}
-		//return true;
-	//}
+		if (typeContent.equalsIgnoreCase("pelicula")) {
+			Film film = filmRepository.findByName(nameContent);
+			listUser.getFilms().remove(film);
+			
+		}else if (typeContent.equalsIgnoreCase("serie")){
+			Show show = showRepository.findByName(nameContent);
+			listUser.getShows().remove(show);
+			
+		}else if(typeContent.equalsIgnoreCase("libro")){
+			Book book = bookRepository.findByName(nameContent);
+			listUser.getBooks().remove(book);
+		}
+		
+		return true;
+	}
 }

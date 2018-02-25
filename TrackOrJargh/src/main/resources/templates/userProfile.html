@@ -120,7 +120,7 @@
                                         </div>
                                         {{/visibleCarousel}}
                                         {{#listsUser}}
-                                        <div id="CreateList" class="form-control ">
+                                        <div id="CreateList" class="form-control">
                                             <div class="d-flex">
   											<a id="CreatedLists" name="deleteListName" class="mr-auto p-2">{{name}}</a>
   											<button id="deleteButton" class="p-2" type="button" name="deleteList" value="{{name}}"><i class="ion-trash-a text-right"></i></button>
@@ -128,8 +128,8 @@
                                             {{#printList}}
                                             <br/>
                                             <div class="d-flex">
-  											<a href="{{url}}{{name}}" class="mr-auto p-2">{{name}}</a>
-  											<button id="deleteButton" class="p-2" type="button" name="deleteContent" value="{{url}}"><i class="ion-trash-a text-right"></i></button>
+  											<a href="{{url}}{{name}}" name="deleteContentName" class="mr-auto p-2">{{name}}</a>
+  											<button id="deleteButton" class="p-2" type="button" name="deleteContentURL" value="{{url}}"><i class="ion-trash-a text-right"></i></button>
 											</div>
                                             {{/printList}}
                                         </div>
