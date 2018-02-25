@@ -108,7 +108,12 @@
 }
 
 .btn-secondary {
-    color: #fff !important;
-    background-color: #18d26e !important;
+    color: #fff ;
+    background-color: #18d26e ;
     border-color: #18d26e !important;
+}
+
+#dropdownMenu2:hover{
+	background: #fff;
+    color: #18d26e;
 }
