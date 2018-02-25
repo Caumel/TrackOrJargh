@@ -87,9 +87,19 @@ Here you can log in if you already have an account,register using Facebook, or y
 #### REGISTERED USERS
 ###### INDEX:
 ![indexRegisteredUser](/TrackOrJargh/src/main/resources/static/img/documentation/indexLoggedUser.jpg)
-/TrackOrJargh/src/main/resources/static/img/documentation/indexLoggedUser.jpg
 As you can see, registered users has 2 new features: Administration and MyProfile
 
 ###### ADMINISTRATION:
 ![administration](/TrackOrJargh/src/main/resources/static/img/documentation/admin.jpg)
 This page allows an admin to change content name or even delete it. Admins also can delete a registered account 
+
+###### MyProfile:
+![MyProfile](/TrackOrJargh/src/main/resources/static/img/documentation/miCuenta.jpg)
+Here you can check you username, email, and all other users stuff
+
+###### Films/Shows/Books new feature(Add to List):
+![addList](/TrackOrJargh/src/main/resources/static/img/documentation/addFilm.jpg)
+
+###### MyLists:
+![MyLists](/TrackOrJargh/src/main/resources/static/img/documentation/myLists.jpg)
+Here you can add a new list, delete a created list and also create a PDF with all your favourite lists 
