@@ -701,7 +701,9 @@ public class PageController {
 				}
 			}
 			userRepository.save(user);
-			userComponent.setLoggedUser(user);
+			if (user.getName().equals(userComponent.getLoggedUser().getName())) {
+				userComponent.setLoggedUser(user);
+			}
 		}
 
 		return "redirect:/administracion";
