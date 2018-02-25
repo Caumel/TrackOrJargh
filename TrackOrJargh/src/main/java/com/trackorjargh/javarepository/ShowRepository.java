@@ -35,6 +35,6 @@ public interface ShowRepository extends JpaRepository<Show, Long>{
     
 	Page<Show> findByNameContainingIgnoreCase(String name, Pageable pageable);	
 	Show findById(Long id);
-	Show findByName(String name);
+	Show findByNameIgnoreCase(String name);
 
 }

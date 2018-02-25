@@ -39,7 +39,7 @@ class UserHandlerInterceptor extends HandlerInterceptorAdapter {
 			final ModelAndView modelAndView) throws Exception {
 		if (modelAndView != null) {
 			if (userComponent.isLoggedUser()) {
-				User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+				User user = userRepository.findByNameIgnoreCase(userComponent.getLoggedUser().getName());
 				
 				modelAndView.addObject("userLogged", user);
 				modelAndView.addObject("isUserAdmin", request.isUserInRole("ADMIN"));

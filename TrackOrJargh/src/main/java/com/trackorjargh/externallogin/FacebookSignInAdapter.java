@@ -33,7 +33,7 @@ public class FacebookSignInAdapter implements SignInAdapter {
 
 	@Override
 	public String signIn(String localUserId, Connection<?> connection, NativeWebRequest request) {
-		User user = userRepository.findByName(connection.getDisplayName());
+		User user = userRepository.findByNameIgnoreCase(connection.getDisplayName());
 		
 		List<GrantedAuthority> roles = new ArrayList<>();
 		if(user != null) {

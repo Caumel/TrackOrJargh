@@ -10,7 +10,7 @@ import com.trackorjargh.javaclass.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
 	
-	User findByName(String name);
+	User findByNameIgnoreCase(String name);
 	User findByEmail(String email);
 	
     @Modifying

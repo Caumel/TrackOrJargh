@@ -34,6 +34,6 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
     
 	
 	Page<Film> findByNameContainingIgnoreCase(String name, Pageable pageable);
-	Film findByName(String name);
+	Film findByNameIgnoreCase(String name);
 	Film findById(Long id);
 }

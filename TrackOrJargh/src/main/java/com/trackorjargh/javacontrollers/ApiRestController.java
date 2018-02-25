@@ -222,7 +222,7 @@ public class ApiRestController {
 		if(!userComponent.isLoggedUser()) {
 			return null;
 		} else {
-			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+			User user = userRepository.findByNameIgnoreCase(userComponent.getLoggedUser().getName());
 			
 			return user.getLists();
 		}		
@@ -233,21 +233,21 @@ public class ApiRestController {
 		Lists listUser = listsRepository.findByName(nameList);
 		
 		if (typeContent.equalsIgnoreCase("pelicula")) {
-			Film film = filmRepository.findByName(nameContent);
+			Film film = filmRepository.findByNameIgnoreCase(nameContent);
 			if(listUser.getFilms().contains(film)) {
 				return false;
 			}
 			
 			listUser.getFilms().add(film);
 		}else if (typeContent.equalsIgnoreCase("serie")){
-			Show show = showRepository.findByName(nameContent);
+			Show show = showRepository.findByNameIgnoreCase(nameContent);
 			if(listUser.getShows().contains(show)) {
 				return false;
 			}
 			
 			listUser.getShows().add(show);
 		}else if (typeContent.equalsIgnoreCase("libro")){
-			Book book = bookRepository.findByName(nameContent);
+			Book book = bookRepository.findByNameIgnoreCase(nameContent);
 			if(listUser.getBooks().contains(book)) {
 				return false;
 			}
@@ -273,15 +273,15 @@ public class ApiRestController {
 		Lists listUser = listsRepository.findByName(nameList);
 		
 		if (typeContent.equalsIgnoreCase("pelicula")) {
-			Film film = filmRepository.findByName(nameContent);
+			Film film = filmRepository.findByNameIgnoreCase(nameContent);
 			listUser.getFilms().remove(film);
 			
 		}else if (typeContent.equalsIgnoreCase("serie")){
-			Show show = showRepository.findByName(nameContent);
+			Show show = showRepository.findByNameIgnoreCase(nameContent);
 			listUser.getShows().remove(show);
 			
 		}else if(typeContent.equalsIgnoreCase("libro")){
-			Book book = bookRepository.findByName(nameContent);
+			Book book = bookRepository.findByNameIgnoreCase(nameContent);
 			listUser.getBooks().remove(book);
 		}
 		

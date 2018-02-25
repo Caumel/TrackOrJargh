@@ -36,6 +36,6 @@ public interface BookRepository extends JpaRepository<Book, Long>{
     Page<Book> findBooksRelationsById(long id, Pageable pageable);
     
 	Book findById(Long id);
-	Book findByName(String name);
+	Book findByNameIgnoreCase(String name);
 }
 

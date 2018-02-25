@@ -74,7 +74,7 @@ public class SearchController {
 		}
 		
 		if (userComponent.isLoggedUser()) {
-			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+			User user = userRepository.findByNameIgnoreCase(userComponent.getLoggedUser().getName());
 
 			model.addAttribute("userList", user.getLists());
 		}
@@ -113,7 +113,7 @@ public class SearchController {
 		}
 		
 		if (userComponent.isLoggedUser()) {
-			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+			User user = userRepository.findByNameIgnoreCase(userComponent.getLoggedUser().getName());
 
 			model.addAttribute("userList", user.getLists());
 		}
@@ -152,7 +152,7 @@ public class SearchController {
 		}
 		
 		if (userComponent.isLoggedUser()) {
-			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+			User user = userRepository.findByNameIgnoreCase(userComponent.getLoggedUser().getName());
 
 			model.addAttribute("userList", user.getLists());
 		}

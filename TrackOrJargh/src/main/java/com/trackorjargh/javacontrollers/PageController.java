@@ -116,7 +116,7 @@ public class PageController {
 		films.get(0).setFirstInList(true);
 
 		if (userComponent.isLoggedUser()) {
-			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+			User user = userRepository.findByNameIgnoreCase(userComponent.getLoggedUser().getName());
 
 			model.addAttribute("userList", user.getLists());
 		}
@@ -155,7 +155,7 @@ public class PageController {
 		shows.get(0).setFirstInList(true);
 
 		if (userComponent.isLoggedUser()) {
-			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+			User user = userRepository.findByNameIgnoreCase(userComponent.getLoggedUser().getName());
 
 			model.addAttribute("userList", user.getLists());
 		}
@@ -194,7 +194,7 @@ public class PageController {
 		books.get(0).setFirstInList(true);
 
 		if (userComponent.isLoggedUser()) {
-			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+			User user = userRepository.findByNameIgnoreCase(userComponent.getLoggedUser().getName());
 
 			model.addAttribute("userList", user.getLists());
 		}
@@ -230,7 +230,7 @@ public class PageController {
 	@RequestMapping("/pelicula/{name}")
 	public String serveFilmProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent,
 			@RequestParam Optional<String> pointsSent) {
-		Film film = filmRepository.findByName(name);
+		Film film = filmRepository.findByNameIgnoreCase(name);
 
 		if (messageSent.isPresent()) {
 			CommentFilm message = new CommentFilm(messageSent.get());
@@ -294,7 +294,7 @@ public class PageController {
 	@RequestMapping("/serie/{name}")
 	public String serveShowProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent,
 			@RequestParam Optional<String> pointsSent) {
-		Show show = showRepository.findByName(name);
+		Show show = showRepository.findByNameIgnoreCase(name);
 
 		if (messageSent.isPresent()) {
 			CommentShow message = new CommentShow(messageSent.get());
@@ -359,7 +359,7 @@ public class PageController {
 	@RequestMapping("/libro/{name}")
 	public String serveProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent,
 			@RequestParam Optional<String> pointsSent) {
-		Book book = bookRepository.findByName(name);
+		Book book = bookRepository.findByNameIgnoreCase(name);
 
 		if (messageSent.isPresent()) {
 			CommentBook message = new CommentBook(messageSent.get());
@@ -388,7 +388,7 @@ public class PageController {
 		for (CommentBook cb : commentBookRepository.findByBook(book))
 			listMessages.add(cb.preparateShowMessage());
 
-		model.addAttribute("content", bookRepository.findByName(name));
+		model.addAttribute("content", bookRepository.findByNameIgnoreCase(name));
 		model.addAttribute("comments", listMessages);
 		model.addAttribute("typeContent", "el libro");
 		model.addAttribute("isBook", true);
@@ -447,13 +447,17 @@ public class PageController {
 
 	@RequestMapping("/miperfil")
 	public String serveUserProfile(Model model, @RequestParam Optional<String> emailUser,
-			@RequestParam Optional<String> passUser, @RequestParam Optional<Boolean> sent) {
+			@RequestParam Optional<String> passUser, @RequestParam Optional<Boolean> sent, @RequestParam Optional<MultipartFile> userImage) {
 		if (sent.isPresent()) {
 			if (emailUser.isPresent()) {
 				userComponent.getLoggedUser().setEmail(emailUser.get());
 			}
 			if (!passUser.get().equals("")) {
 				userComponent.getLoggedUser().setPassword(passUser.get());
+			}
+			if(userImage.isPresent()) {
+				String image = uploadImage("userImage", userImage.get());
+				userComponent.getLoggedUser().setImage(image);
 			}
 			userRepository.save(userComponent.getLoggedUser());
 		}
@@ -491,7 +495,7 @@ public class PageController {
 
 	@RequestMapping("/activarusuario/{name}")
 	public String activatedUser(Model model, @PathVariable String name) {
-		User user = userRepository.findByName(name);
+		User user = userRepository.findByNameIgnoreCase(name);
 
 		if (user != null) {
 			if (user.isActivatedUser()) {
@@ -620,7 +624,7 @@ public class PageController {
 	public ModelAndView userSelection(RedirectAttributes redir, @RequestParam String name) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/administracion");
-		User user = userRepository.findByName(name);
+		User user = userRepository.findByNameIgnoreCase(name);
 		if (user.getRoles().size() == 3) {
 			redir.addFlashAttribute("isAdmin", true);
 		} else {
@@ -637,7 +641,7 @@ public class PageController {
 	public ModelAndView filmSelection(RedirectAttributes redir, @RequestParam String name) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/administracion");
-		Film film = filmRepository.findByName(name);
+		Film film = filmRepository.findByNameIgnoreCase(name);
 		redir.addFlashAttribute("adminFilm", true);
 		redir.addFlashAttribute("film", film);
 		redir.addFlashAttribute("genres", genderRepository.findByFilms(film));
@@ -650,7 +654,7 @@ public class PageController {
 	public ModelAndView showSelection(RedirectAttributes redir, @RequestParam String name) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/administracion");
-		Show show = showRepository.findByName(name);
+		Show show = showRepository.findByNameIgnoreCase(name);
 		redir.addFlashAttribute("adminShow", true);
 		redir.addFlashAttribute("show", show);
 		redir.addFlashAttribute("genres", genderRepository.findByShows(show));
@@ -663,7 +667,7 @@ public class PageController {
 	public ModelAndView bookSelection(RedirectAttributes redir, @RequestParam String name) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/administracion");
-		Book book = bookRepository.findByName(name);
+		Book book = bookRepository.findByNameIgnoreCase(name);
 		redir.addFlashAttribute("adminBook", true);
 		redir.addFlashAttribute("book", book);
 		redir.addFlashAttribute("genres", genderRepository.findByBooks(book));
@@ -676,11 +680,9 @@ public class PageController {
 	public String adminUser(Model model, @RequestParam String name, @RequestParam String email,
 			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String deleteUser,
 			@RequestParam String userType) {
-		User user = userRepository.findByName(name);
-		if (confirmDelete.isPresent() && confirmDelete.get()) {
-			if (name.equals(deleteUser)) {
-
-			}
+		User user = userRepository.findByNameIgnoreCase(name);
+		if (confirmDelete.isPresent()) {
+			deleteElementsOfBBDD.deleteUser(user);
 		} else {
 			user.setEmail(email);
 			user.setRoles(new LinkedList<String>());
@@ -710,7 +712,7 @@ public class PageController {
 			@RequestParam Optional<MultipartFile> imageFilm, @RequestParam Optional<String[]> genreContent,
 			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String trailer,
 			@RequestParam String year) {
-		Film film = filmRepository.findByName(name);
+		Film film = filmRepository.findByNameIgnoreCase(name);
 		if (confirmDelete.isPresent()) {
 			deleteElementsOfBBDD.deleteFilm(film);
 		} else {
@@ -743,13 +745,13 @@ public class PageController {
 
 	@RequestMapping("/adminSerie")
 	public String adminShow(Model model, @RequestParam String name, @RequestParam String newName,
-			@RequestParam Optional<Boolean> confirmDelete,
-			@RequestParam String actors, @RequestParam String directors, @RequestParam Optional<MultipartFile> imageShow,
-			@RequestParam Optional<String[]> genreContent, @RequestParam Optional<String[]> newGenres,
-			@RequestParam String synopsis, @RequestParam String trailer, @RequestParam String year) { // Y AQUI
-		Show show = showRepository.findByName(name);
+			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String actors, @RequestParam String directors,
+			@RequestParam Optional<MultipartFile> imageShow, @RequestParam Optional<String[]> genreContent,
+			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String trailer,
+			@RequestParam String year) { // Y AQUI
+		Show show = showRepository.findByNameIgnoreCase(name);
 		if (confirmDelete.isPresent()) {
-				deleteElementsOfBBDD.deleteShow(show);
+			deleteElementsOfBBDD.deleteShow(show);
 		} else {
 			show.setName(newName);
 			show.setActors(actors);
@@ -777,13 +779,13 @@ public class PageController {
 
 	@RequestMapping("/adminLibro")
 	public String adminBook(Model model, @RequestParam String name, @RequestParam String newName,
-			@RequestParam Optional<Boolean> confirmDelete, 
-			@RequestParam String authors, @RequestParam Optional<MultipartFile> imageBook, @RequestParam Optional<String[]> genreContent,
+			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String authors,
+			@RequestParam Optional<MultipartFile> imageBook, @RequestParam Optional<String[]> genreContent,
 			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String trailer,
 			@RequestParam String year) { // Y AQUI
-		Book book = bookRepository.findByName(name);
+		Book book = bookRepository.findByNameIgnoreCase(name);
 		if (confirmDelete.isPresent()) {
-				deleteElementsOfBBDD.deleteBook(book);
+			deleteElementsOfBBDD.deleteBook(book);
 		} else {
 			book.setName(newName);
 			book.setAuthors(authors);
@@ -814,11 +816,17 @@ public class PageController {
 	}
 
 	@RequestMapping("/nuevaPelicula")
-	public String newFilm(@RequestParam String imageFilm, @RequestParam String newName, @RequestParam String actors,
+	public String newFilm(@RequestParam Optional<MultipartFile> imageFilm, @RequestParam String newName, @RequestParam String actors,
 			@RequestParam String directors, @RequestParam Optional<String[]> newGenres, @RequestParam String synopsis,
 			@RequestParam String trailer, @RequestParam String year) {
+		String image;
+		if(imageFilm.isPresent()) {
+			image = uploadImage(newName, imageFilm.get());
+		} else {
+			image = "";
+		}
 		int yearInt = Integer.parseInt(year);
-		Film film = new Film(newName, actors, directors, synopsis, "", trailer, yearInt);
+		Film film = new Film(newName, actors, directors, synopsis, image, trailer, yearInt);
 		if (newGenres.isPresent()) {
 			for (String genre : newGenres.get()) {
 				film.getGenders().add(genderRepository.findByName(genre));
@@ -830,11 +838,17 @@ public class PageController {
 	}
 
 	@RequestMapping("/nuevaSerie")
-	public String newShow(@RequestParam String imageShow, @RequestParam String newName, @RequestParam String actors,
+	public String newShow(@RequestParam Optional<MultipartFile> imageShow, @RequestParam String newName, @RequestParam String actors,
 			@RequestParam String directors, @RequestParam Optional<String[]> newGenres, @RequestParam String synopsis,
 			@RequestParam String trailer, @RequestParam String year) {
+		String image;
+		if(imageShow.isPresent()) {
+			image = uploadImage(newName, imageShow.get());
+		} else {
+			image = "";
+		}
 		int yearInt = Integer.parseInt(year);
-		Show show = new Show(newName, actors, directors, synopsis, "", trailer, yearInt);
+		Show show = new Show(newName, actors, directors, synopsis, image, trailer, yearInt);
 		if (newGenres.isPresent()) {
 			for (String genre : newGenres.get()) {
 				show.getGenders().add(genderRepository.findByName(genre));
@@ -846,10 +860,16 @@ public class PageController {
 	}
 
 	@RequestMapping("/nuevoLibro")
-	public String newBook(@RequestParam String imageBook, @RequestParam String newName, @RequestParam String authors,
+	public String newBook(@RequestParam Optional<MultipartFile> imageBook, @RequestParam String newName, @RequestParam String authors,
 			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String year) {
+		String image;
+		if(imageBook.isPresent()) {
+			image = uploadImage(newName, imageBook.get());
+		} else {
+			image = "";
+		}
 		int yearInt = Integer.parseInt(year);
-		Book book = new Book(newName, authors, synopsis, imageBook, yearInt);
+		Book book = new Book(newName, authors, synopsis, image, yearInt);
 		if (newGenres.isPresent()) {
 			for (String genre : newGenres.get()) {
 				book.getGenders().add(genderRepository.findByName(genre));
