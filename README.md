@@ -69,11 +69,11 @@ And this last 2 images also shows the index as you scroll down, revealing the Gr
 web ordered by genres and best valorations at the moment. 
 
 ###### FILMS:
-![peliculas](/TrackOrJargh/src/main/resources/static/img/documentation/peliculas.jpg)
+![films](/TrackOrJargh/src/main/resources/static/img/documentation/peliculas.jpg)
 Here you can search every film in the web, without any criteria or ordered by the most valorated ones. 
 
 ###### SHOWS:
-![series](/TrackOrJargh/src/main/resources/static/img/documentation/peliculas.jpg)
+![shows](/TrackOrJargh/src/main/resources/static/img/documentation/peliculas.jpg)
 Exactly as the previous image, but with the shows
 
 ###### BOOKS:
@@ -81,5 +81,15 @@ Exactly as the previous image, but with the shows
 Same goes with books
 
 ###### LOGIN:
-![login](/TrackOrJargh/src/main/resources/static/img/documentation/login.jpg)
+![books](/TrackOrJargh/src/main/resources/static/img/documentation/login.jpg)
 Here you can log in if you already have an account,register using Facebook, or you can create an account (with e-mail confirmation)
+
+#### REGISTERED USERS
+###### INDEX:
+![indexRegisteredUser](/TrackOrJargh/src/main/resources/static/img/documentation/indexLoggedUser.jpg)
+/TrackOrJargh/src/main/resources/static/img/documentation/indexLoggedUser.jpg
+As you can see, registered users has 2 new features: Administration and MyProfile
+
+###### ADMINISTRATION:
+![administration](/TrackOrJargh/src/main/resources/static/img/documentation/admin.jpg)
+This page allows an admin to change content name or even delete it. Admins also can delete a registered account 
