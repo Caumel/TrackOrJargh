@@ -3,7 +3,7 @@ Desarrollo de Aplicaciones Web - URJC (Móstoles) - 2017/2018
 
 # 1st PHASE
 
-#### 1.Authors:
+### 1.Authors:
 - Óscar Soto Sánchez o.sotos@alumnos.urjc.es [OscarSotoSanchez](https://github.com/OscarSotoSanchez)
 - Alfonso Casanova Muñoz a.casanovam@alumnos.urjc.es [fonyc](https://github.com/fonyc)
 - Harender Singh Dhanoya hs.dhanoya@alumnos.urjc.es [HarenderS](https://github.com/HarenderS)
@@ -56,4 +56,30 @@ Google account login.
 
 # 2nd PHASE
 
+### 1. Screenshots
+#### NON-REGISTERED USERS
+###### INDEX:
 
+![Index1](/TrackOrJargh/src/main/resources/static/img/documentation/index1.jpg)
+This image carousel shows the last 3 items added to the web (book,show & film)
+
+![Index2](/TrackOrJargh/src/main/resources/static/img/documentation/index2.jpg)
+![Index3](/TrackOrJargh/src/main/resources/static/img/documentation/index3.jpg)
+And this last 2 images also shows the index as you scroll down, revealing the Graphics which can show you all the content in the 
+web ordered by genres and best valorations at the moment. 
+
+###### FILMS:
+![peliculas](/TrackOrJargh/src/main/resources/static/img/documentation/peliculas.jpg)
+Here you can search every film in the web, without any criteria or ordered by the most valorated ones. 
+
+###### SHOWS:
+![series](/TrackOrJargh/src/main/resources/static/img/documentation/peliculas.jpg)
+Exactly as the previous image, but with the shows
+
+###### BOOKS:
+![libros](/TrackOrJargh/src/main/resources/static/img/documentation/libros.jpg)
+Same goes with books
+
+###### LOGIN:
+![login](/TrackOrJargh/src/main/resources/static/img/documentation/login.jpg)
+Here you can log in if you already have an account,register using Facebook, or you can create an account (with e-mail confirmation)
