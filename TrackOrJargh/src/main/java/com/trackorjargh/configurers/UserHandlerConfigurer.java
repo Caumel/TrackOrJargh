@@ -42,10 +42,7 @@ class UserHandlerInterceptor extends HandlerInterceptorAdapter {
 				User user = userRepository.findByName(userComponent.getLoggedUser().getName());
 				
 				modelAndView.addObject("userLogged", user);
-				
-				if(user.getRoles().contains("ROLE_ADMIN")) {
-					modelAndView.addObject("isUserAdmin", true);
-				}
+				modelAndView.addObject("isUserAdmin", request.isUserInRole("ADMIN"));
 			}
 		}
 	}
