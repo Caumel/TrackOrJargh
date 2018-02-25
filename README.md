@@ -118,7 +118,7 @@ Here you can add a new list, delete a created list and also create a PDF with al
 #### JAVA CLASSES DIAGRAM
 ![javaDiagram](/TrackOrJargh/src/main/resources/static/img/documentation/JavaClasses.jpg)
 #### DB DIAGRAM
-![dbDiagram](/TrackOrJargh/src/main/resources/static/img/documentation/db diagram.jpg)
+![dbDiagram](/TrackOrJargh/src/main/resources/static/img/documentation/dbDiagram.jpg)
 
 
 
