@@ -115,7 +115,7 @@ Here you can add a new list, delete a created list and also create a PDF with al
 ### 2. Diagrams
 
 #### NAVIGATION DIAGRAM
-![navigationDiagram](/TrackOrJargh/src/main/resources/static/img/documentation/Navigation Diagram2.jpg)
+![navigationDiagram](/TrackOrJargh/src/main/resources/static/img/documentation/nav.jpg)
 #### JAVA CLASSES DIAGRAM
 ![javaDiagram](/TrackOrJargh/src/main/resources/static/img/documentation/JavaClasses.jpg)
 #### DB DIAGRAM
