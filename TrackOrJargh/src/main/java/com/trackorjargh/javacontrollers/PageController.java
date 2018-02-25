@@ -447,7 +447,7 @@ public class PageController {
 
 	@RequestMapping("/miperfil")
 	public String serveUserProfile(Model model, @RequestParam Optional<String> emailUser,
-			@RequestParam Optional<String> passUser, @RequestParam Optional<Boolean> sent, @RequestParam Optional<MultipartFile> userImage) {
+			@RequestParam Optional<String> passUser, @RequestParam Optional<Boolean> sent, @RequestParam Optional<MultipartFile> imageShow) {
 		if (sent.isPresent()) {
 			if (emailUser.isPresent()) {
 				userComponent.getLoggedUser().setEmail(emailUser.get());
@@ -455,8 +455,9 @@ public class PageController {
 			if (!passUser.get().equals("")) {
 				userComponent.getLoggedUser().setPassword(passUser.get());
 			}
-			if(userImage.isPresent()) {
-				String image = uploadImage("userImage", userImage.get());
+			
+			if(imageShow.isPresent()) {
+				String image = uploadImage("userImage", imageShow.get());
 				userComponent.getLoggedUser().setImage(image);
 			}
 			userRepository.save(userComponent.getLoggedUser());
