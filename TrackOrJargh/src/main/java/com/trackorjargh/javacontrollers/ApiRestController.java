@@ -285,6 +285,7 @@ public class ApiRestController {
 			listUser.getBooks().remove(book);
 		}
 		
+		listsRepository.save(listUser);
 		return true;
 	}
 }

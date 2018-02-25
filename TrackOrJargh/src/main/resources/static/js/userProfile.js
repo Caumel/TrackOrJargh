@@ -3,7 +3,7 @@ function deleteContent(){
 	var nameContent = $(this).parents(".d-flex").find("[name='deleteContentName']").text();
 	var nameList = $(this).parents(".form-control").find("[name='deleteListName']").text();
 	typeContent = typeContent.substr(1,typeContent.length - 2);
-	alert(typeContent);
+	
 	$.ajax({
 	    url: "/rest/borrarContenido/"+nameList+"/"+typeContent+"/"+nameContent,
 	    type: 'DELETE',
