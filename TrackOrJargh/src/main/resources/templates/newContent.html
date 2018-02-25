@@ -45,26 +45,26 @@
                     <form action="/nuevaPelicula" enctype="multipart/form-data" method="post">
                         <div class="form-group pt-3">
                         	<label for="imageFilm">Selecccionar imagen:</label>
-                            <input type="file" id="imageFilm" name="imageFilm">
+                            <input required type="file" id="imageFilm" name="imageFilm">
                         <br>
-                            <label for="name">Nombre</label> <input
+                            <label for="name">Nombre</label> <input required
                                 type="text" class="form-control" id="newName" placeholder="Nombre"
-                                value="" name="newName"> <label for="actors">Actores</label> <input type="text"
+                                value="" name="newName"> <label for="actors">Actores</label> <input required type="text"
                                 class="form-control" id="actors" name="actors" value=""> <label
-                                for="directors">Directores</label> <input type="text" class="form-control" id="actors"
+                                for="directors">Directores</label> <input required type="text" class="form-control" id="actors"
                                 name="directors" value="">
                              <label for="synopsis">Sinopsis:</label>
                              <textarea type="text" class="form-control" rows="5" name="synopsis" value="" id="synopsis" placeholder="Sinopsis"></textarea>
                              <label for="trailer">Trailer</label>
-                             <input type="text" class="form-control" id="trailer" name="trailer" value="" placeholder="Trailer">
+                             <input required type="text" class="form-control" id="trailer" name="trailer" value="" placeholder="Trailer">
                              <label for="year">Año</label>
-                             <input type="text" class="form-control" id="year" name="year" value="" placeholder="Año">
+                             <input required type="text" class="form-control" id="year" name="year" value="" placeholder="Año">
                             {{#genres}} 
                             <label for="{{name}}Genre">{{name}}</label>
-                            <input class="mr-1" id="{{name}}Genre" type="checkbox" value="{{name}}" name="newGenres">
+                            <input required class="mr-1" id="{{name}}Genre" type="checkbox" value="{{name}}" name="newGenres">
                             {{/genres}} 
                             <br> 
-                            <input name="filmModSubmit" type="submit"
+                            <input required name="filmModSubmit" type="submit"
                                    class="btn-get-started border" value="Enviar"> 
                         </div>
                     </form>
@@ -74,26 +74,26 @@
                     <form action="/nuevaSerie" enctype="multipart/form-data" method="post">
                         <div class="form-group pt-3">
                         	<label for="imageShow">Selecccionar imagen:</label>
-                            <input type="file" id="imageShow" name="imageShow">
+                            <input required type="file" id="imageShow" name="imageShow">
                         <br>
-                            <label for="name">Nombre</label> <input
+                            <label for="name">Nombre</label> <input required
                                 type="text" class="form-control" id="newName" placeholder="Nombre"
-                                value="" name="newName"> <label for="actors">Actores</label> <input type="text"
+                                value="" name="newName"> <label for="actors">Actores</label> <input required type="text"
                                 class="form-control" id="actors" name="actors" value=""> <label
-                                for="directors">Directores</label> <input type="text" class="form-control" id="actors"
+                                for="directors">Directores</label> <input required type="text" class="form-control" id="actors"
                                 name="directors" value="">
                              <label for="synopsis">Sinopsis:</label>
                              <textarea type="text" class="form-control" rows="5" name="synopsis" value="" id="synopsis" placeholder="Sinopsis"></textarea>
                              <label for="trailer">Trailer</label>
-                             <input type="text" class="form-control" id="trailer" name="trailer" value="" placeholder="Trailer">
+                             <input required type="text" class="form-control" id="trailer" name="trailer" value="" placeholder="Trailer">
                              <label for="year">Año</label>
-                             <input type="text" class="form-control" id="year" name="year" value="" placeholder="Año">
+                             <input required type="text" class="form-control" id="year" name="year" value="" placeholder="Año">
                             {{#genres}} 
                             <label for="{{name}}Genre">{{name}}</label>
-                            <input class="mr-1" id="{{name}}Genre" type="checkbox" value="{{name}}" name="genreContent">
+                            <input required class="mr-1" id="{{name}}Genre" type="checkbox" value="{{name}}" name="genreContent">
                             {{/genres}} 
                             <br> 
-                            <input name="filmModSubmit" type="submit"
+                            <input required name="filmModSubmit" type="submit"
                                    class="btn-get-started border" value="Enviar"> 
                         </div>
                     </form>
@@ -103,22 +103,22 @@
                     <form action="/nuevoLibro" enctype="multipart/form-data" method="post">
                         <div class="form-group pt-3">
                         	<label for="imageBook">Selecccionar imagen:</label>
-                            <input type="file" id="imageBook" name="imageBook">
+                            <input required type="file" id="imageBook" name="imageBook">
                         <br>
-                            <label for="name">Nombre</label> <input
+                            <label for="name">Nombre</label> <input required
                                 type="text" class="form-control" id="newName" placeholder="Nombre"
-                                value="" name="newName"> <label for="authors">Autor/es</label> <input type="text"
+                                value="" name="newName"> <label for="authors">Autor/es</label> <input required type="text"
                                 class="form-control" id="authors" name="authors" value="">
                              <label for="synopsis">Trailer</label>
-                             <input type="text" class="form-control" id="synopsis" name="synopsis" value="" placeholder="Synopsis">
+                             <input required type="text" class="form-control" id="synopsis" name="synopsis" value="" placeholder="Synopsis">
                              <label for="year">Año</label>
-                             <input type="text" class="form-control" id="year" name="year" value="" placeholder="Año">
+                             <input required type="text" class="form-control" id="year" name="year" value="" placeholder="Año">
                             {{#genres}} 
                             <label for="{{name}}Genre">{{name}}</label>
-                            <input class="mr-1" id="{{name}}Genre" type="checkbox" value="{{name}}" name="genreContent">
+                            <input required class="mr-1" id="{{name}}Genre" type="checkbox" value="{{name}}" name="genreContent">
                             {{/genres}} 
                             <br> 
-                            <input name="filmModSubmit" type="submit"
+                            <input required name="filmModSubmit" type="submit"
                                    class="btn-get-started border" value="Enviar"> 
                         </div>
                     </form>
