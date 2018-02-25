@@ -98,6 +98,10 @@ As you can see, registered users has 2 new features: Administration and MyProfil
 ![administration](/TrackOrJargh/src/main/resources/static/img/documentation/admin.jpg)
 This page allows an admin to change content name or even delete it. Admins also can delete a registered account 
 
+###### UPLOAD CONTENT:
+![upload](/TrackOrJargh/src/main/resources/static/img/documentation/UploadContent.jpg)
+Here an admin can upload any item (film,show or book) adding an image, genre, description... etc 
+
 ###### MY PROFILE:
 ![MyProfile](/TrackOrJargh/src/main/resources/static/img/documentation/miCuenta.jpg)
 Here you can check you username, email, and all other users stuff
