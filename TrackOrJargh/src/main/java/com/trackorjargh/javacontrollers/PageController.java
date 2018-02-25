@@ -776,6 +776,11 @@ public class PageController {
 			@RequestParam String trailer, @RequestParam String year) {
 		int yearInt = Integer.parseInt(year);
 		Film film = new Film(newName, actors, directors, synopsis, "", trailer, yearInt);
+		if (newGenres.isPresent()) {
+			for (String genre : newGenres.get()) {
+				film.getGenders().add(genderRepository.findByName(genre));
+			}
+		}
 		filmRepository.save(film);
 		String name = film.getName();
 		return "redirect:/pelicula/" + name;
@@ -787,6 +792,11 @@ public class PageController {
 			@RequestParam String trailer, @RequestParam String year) {
 		int yearInt = Integer.parseInt(year);
 		Show show = new Show(newName, actors, directors, synopsis, "", trailer, yearInt);
+		if (newGenres.isPresent()) {
+			for (String genre : newGenres.get()) {
+				show.getGenders().add(genderRepository.findByName(genre));
+			}
+		}
 		showRepository.save(show);
 		String name = show.getName();
 		return "redirect:/serie/" + name;
@@ -797,6 +807,11 @@ public class PageController {
 			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String year) {
 		int yearInt = Integer.parseInt(year);
 		Book book = new Book(newName, authors, synopsis, imageBook, yearInt);
+		if (newGenres.isPresent()) {
+			for (String genre : newGenres.get()) {
+				book.getGenders().add(genderRepository.findByName(genre));
+			}
+		}
 		bookRepository.save(book);
 		String name = book.getName();
 		return "redirect:/libro/" + name;
