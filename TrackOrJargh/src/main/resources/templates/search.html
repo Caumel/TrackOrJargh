@@ -51,71 +51,93 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-				
-					<ul id="portfolio-flters">	
-						<input type="text" name="inputSearch" value="{{#inputSearch}}{{.}}{{/inputSearch}}" />
+
+					<ul id="portfolio-flters">
+						<input type="text" name="inputSearch"
+							value="{{#inputSearch}}{{.}}{{/inputSearch}}" />
 						<select name="optionSearch">
-  							<option value="titulo" {{#searchTitle}}selected{{/searchTitle}}>Titulo</option>
-  							<option value="genero" {{#searchGende}}selected{{/searchGende}}>Genero</option>
-						</select>		
-						<br />		
-							
-						<a id="linkFilm" href="/busqueda"><li {{#typeFilm}}class="filter-active"{{/typeFilm}}>Películas</li></a>
-						<a id="linkShow" href="/busqueda"><li {{#typeShow}}class="filter-active"{{/typeShow}}>Series</li></a>
-						<a id="linkBook" href="/busqueda"><li {{#typeBook}}class="filter-active"{{/typeBook}}>Libros</li></a>
+							<option value="titulo"{{#searchTitle}}selected{{/searchTitle}}>Titulo</option>
+							<option value="genero"{{#searchGende}}selected{{/searchGende}}>Genero</option>
+						</select>
+						<br />
+
+						<a id="linkFilm" href="/busqueda"><li
+							{{#typeFilm}}class="filter-active"{{/typeFilm}}>Películas</li></a>
+						<a id="linkShow" href="/busqueda"><li
+							{{#typeShow}}class="filter-active"{{/typeShow}}>Series</li></a>
+						<a id="linkBook" href="/busqueda"><li
+							{{#typeBook}}class="filter-active"{{/typeBook}}>Libros</li></a>
 					</ul>
 				</div>
 			</div>
-			
+
 			<!-- Clase abajo: portfolio-container -->
 			<div id="elements" class="row ">
 				{{#content}}
-					<div class="col-lg-3 col-md-3 portfolio-item filter-app wow fadeInUp">
-						<div class="portfolio-wrap">
-							<figure style="background-image: url('{{image}}');">
-								<p class="textPortfolio">{{synopsis}}</p>
-							</figure>
-	
-							<div class="portfolio-info">
-								<h4>
-									<a href="{{url}}{{name}}">{{name}}</a>
-								</h4>
-								<p>{{year}}</p>
-								{{#loggedUser}}
-								<div class="dropup float-left">
-  									<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  										<i class="ion-plus-round"></i>
-  									</button>
-  									<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-  										{{#userList}}
-    									<button class="dropdown-item" type="button">{{name}}</button>
-    									{{/userList}}
-    									<a href="/miperfil" class="dropdown-item">Crear lista</a>
-  									</div>
+				<div
+					class="col-lg-3 col-md-3 portfolio-item filter-app wow fadeInUp">
+					<div class="portfolio-wrap">
+						<figure style="background-image: url('{{image}}');">
+							<p class="textPortfolio">{{synopsis}}</p>
+						</figure>
+
+
+						<div class="portfolio-info">
+							<h4>
+								<a name="nameFilm" href="{{url}}{{name}}">{{name}}</a>
+							</h4>
+							<p>{{year}}</p>
+							{{#userLogged}}
+							<div class="dropup float-left">
+								<button class="btn btn-secondary dropdown-toggle" type="button"
+									id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false">
+									<i class="ion-plus-round"></i>
+								</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+									{{#userList}}
+									<button name="buttonList" class="dropdown-item" type="button">{{name}}</button>
+									{{/userList}} <a href="/miperfil" class="dropdown-item">Crear
+										lista</a>
 								</div>
-								{{/loggedUser}}
 							</div>
+							{{/userLogged}}
 						</div>
 					</div>
+				</div>
 				{{/content}}
 			</div>
-			{{#noElementsSearch}}
-				{{#index}}
-				<p class="text-center">Esta usted en la página de búsqueda.</p>
-				{{/index}}
-				
-				{{#noResult}}
-				<p class="text-center">La búsqueda '{{#search}}{{.}}{{/search}}' no ha devuelto ningún resultado.</p>
-				{{/noResult}}
-			{{/noElementsSearch}}
-			
-			{{^noElementsSearch}}
+			{{#noElementsSearch}} {{#index}}
+			<p class="text-center">Esta usted en la página de búsqueda.</p>
+			{{/index}} {{#noResult}}
+			<p class="text-center">La búsqueda '{{#search}}{{.}}{{/search}}'
+				no ha devuelto ningún resultado.</p>
+			{{/noResult}} {{/noElementsSearch}} {{^noElementsSearch}}
 			<div class="text-center moreContentButton">
 				<i class="fa fa-plus-circle fa-3x fa-fw" id="moreContent"></i>
 			</div>
 			{{/noElementsSearch}}
 		</div>
 	</section>
+
+	<div class="alert alert-info popup-message" style="display: none;"
+		name="message-success">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<p name="messagePopUpSuccess"></p>
+	</div>
+
+	<div class="alert alert-danger popup-message" style="display: none;"
+		name="message-error">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<p name="messagePopUpError"></p>
+	</div>
+
 	</main>
 	<!-- #portfolio -->
 
@@ -142,10 +164,14 @@
 	<script src="/js/main.js"></script>
 	<!-- ContentList JS -->
 	<script src="/js/search.js"></script>
-	
+	<!-- Messages JS -->
+	<script src="/js/message.js"></script>
+
 	<script>
 		var typeSearch = "{{#typeSearch}}{{.}}{{/typeSearch}}";
+		var typePageAddList = "{{typePageAddList}}";
+		var loggedUserJS = "{{loggedUserJS}}";
 	</script>
-	
+
 </body>
 </html>

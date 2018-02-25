@@ -58,7 +58,6 @@ import com.trackorjargh.javarepository.PointShowRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
 import com.trackorjargh.mail.MailComponent;
-import com.trackorjargh.pdf.PdfCreate;
 
 @Controller
 public class PageController {
