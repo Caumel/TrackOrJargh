@@ -217,6 +217,7 @@
 						</h4>
 					</div>
 
+					{{#isUserModerator}}
 					{{#isUserAdmin}}
 					<div class="text-right mt-1">
 						<p class="reporte">
@@ -224,13 +225,16 @@
 						</p>
 					</div>
 					{{/isUserAdmin}}
+					{{/isUserModerator}}
 					
 					{{#isUserModerator}}
+					{{^isUserAdmin}}
 					<div class="text-right mt-1">
 						<p class="reporte">
 							<a href="{{deleteComment}}{{id}}/{{content.name}}">Borrar Comentario</a>
 						</p>
 					</div>
+					{{/isUserAdmin}}
 					{{/isUserModerator}}
 
 					<div class="comment text-left">
