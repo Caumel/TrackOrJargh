@@ -99,6 +99,7 @@ Here you can check you username, email, and all other users stuff
 
 ###### Films/Shows/Books new feature(Add to List):
 ![addList](/TrackOrJargh/src/main/resources/static/img/documentation/addFilm.jpg)
+As you can see, in every item of films/shows/books now appears a green button to add that concrete item to some of your lists
 
 ###### MyLists:
 ![MyLists](/TrackOrJargh/src/main/resources/static/img/documentation/myLists.jpg)
