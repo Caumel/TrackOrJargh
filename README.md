@@ -104,3 +104,7 @@ As you can see, in every item of films/shows/books now appears a green button to
 ###### MyLists:
 ![MyLists](/TrackOrJargh/src/main/resources/static/img/documentation/myLists.jpg)
 Here you can add a new list, delete a created list and also create a PDF with all your favourite lists 
+
+### 2. Navigation Diagram
+
+
