@@ -1,7 +1,9 @@
 # TrackOrJargh
+Desarrollo de Aplicaciones Web - URJC (Móstoles) - 2017/2018
 
+# 1st PHASE
 
-#### Authors:
+#### 1.Authors:
 - Óscar Soto Sánchez o.sotos@alumnos.urjc.es [OscarSotoSanchez](https://github.com/OscarSotoSanchez)
 - Alfonso Casanova Muñoz a.casanovam@alumnos.urjc.es [fonyc](https://github.com/fonyc)
 - Harender Singh Dhanoya hs.dhanoya@alumnos.urjc.es [HarenderS](https://github.com/HarenderS)
@@ -9,11 +11,11 @@
 - Jesús Elvira Piqueras j.elvira@alumnos.urjc.es [krate95](https://github.com/krate95)
 
 
-### Organization tools
+### 2.Organization tools
 [Github projects](https://github.com/krate95/TrackOrJargh/projects)
 
 
-### Database entities
+### 3.Database entities
 
 | Entity                    | Description                                       |
 | ------------------------- |:-------------------------------------------------:|
@@ -34,22 +36,24 @@
 | Lists                     | User's lists of following content                 |
 
 
-### Advanced features
+### 4.Advanced features
 Reccomended content algorythm.
 
 Searching by tags and genders.
 
 
-### Graphics
+### 5.Graphics
 Global rating of the content.
 
 
-### Advanced technology features
+### 6.Advanced technology features
 
 Verification email sent when an new user signs up in the site.
 
 Pdf generation on user's demand with a list of the viewed content.
 
 Google account login.
+
+# 2nd PHASE
 
 
