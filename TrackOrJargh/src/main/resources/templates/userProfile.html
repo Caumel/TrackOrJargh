@@ -113,12 +113,6 @@
                                 </div>
                                 <form class="text-center" action="/listaNueva">
                                     <div id="" class="form-control">
-                                        {{#visibleCarousel}}
-                                        <div id="CreateList">
-                                            <a id="CreatedLists">{{name}}<i class="ion-trash-a"></i> <i class="ion-edit"></i></a> <a
-                                                id="CreatedLists">{{name}}<i class="ion-trash-a"></i> <i class="ion-edit"></i></a>
-                                        </div>
-                                        {{/visibleCarousel}}
                                         {{#listsUser}}
                                         <div id="CreateList" class="form-control">
                                             <div class="d-flex">
@@ -144,11 +138,11 @@
                                             <i class="ion-plus-circled"></i>
                                         </button>
                                         
-                                        {{#listsUser}}
+                                        {{#listUserTrue}}
                                         <br/>
                                         <br/>
                                         <a href="/crearpdflistas">Crear PDF de las listas</a>
-                                        {{/listsUser}}
+                                        {{/listUserTrue}}
                                         
                                         <div class="collapse" id="showAddList">
                                             <input type="text" name="listName"
