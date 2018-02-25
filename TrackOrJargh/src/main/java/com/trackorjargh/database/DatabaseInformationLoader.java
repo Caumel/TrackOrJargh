@@ -61,12 +61,12 @@ public class DatabaseInformationLoader {
 	@PostConstruct
 	private void initDatabase() {
 		// Test Data User
-		User u1 = new User("oscar", "1234", "oscarsotosanchez@gmail.com", "", true, "ROLE_USER");
+		User u1 = new User("oscar", "1234", "oscarmola@gmail.com", "/img/default-user.png", true, "ROLE_USER");
 		userRepository.save(u1);
-		User u2 = new User("jesus", "1234", "jesusmola@gmail.com", "img/userFoto.jpg", true, "ROLE_USER",
+		User u2 = new User("jesus", "1234", "jesusmola@gmail.com", "/img/userFoto.jpg", true, "ROLE_USER",
 				"ROLE_MODERATOR", "ROLE_ADMIN");
 		userRepository.save(u2);
-		User u3 = new User("alfonso", "1234", "fonycas@hotmail.com", "img/Alfonso_Casanova.jpg", true, "ROLE_USER",
+		User u3 = new User("alfonso", "1234", "fonycas@hotmail.com", "/img/Alfonso_Casanova.jpg", true, "ROLE_USER",
 				"ROLE_ADMIN");
 		userRepository.save(u3);
 

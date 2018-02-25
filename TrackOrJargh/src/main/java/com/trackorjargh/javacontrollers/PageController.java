@@ -447,7 +447,7 @@ public class PageController {
 
 	@RequestMapping("/miperfil")
 	public String serveUserProfile(Model model, @RequestParam Optional<String> emailUser,
-			@RequestParam Optional<String> passUser, @RequestParam Optional<Boolean> sent, @RequestParam Optional<MultipartFile> userImage) {
+			@RequestParam Optional<String> passUser, @RequestParam Optional<Boolean> sent, @RequestParam Optional<MultipartFile> imageShow) {
 		if (sent.isPresent()) {
 			if (emailUser.isPresent()) {
 				userComponent.getLoggedUser().setEmail(emailUser.get());
@@ -455,8 +455,9 @@ public class PageController {
 			if (!passUser.get().equals("")) {
 				userComponent.getLoggedUser().setPassword(passUser.get());
 			}
-			if(userImage.isPresent()) {
-				String image = uploadImage("userImage", userImage.get());
+			
+			if(imageShow.isPresent()) {
+				String image = uploadImage("userImage", imageShow.get());
 				userComponent.getLoggedUser().setImage(image);
 			}
 			userRepository.save(userComponent.getLoggedUser());
@@ -521,7 +522,7 @@ public class PageController {
 	public String serveRegistrer(Model model, RedirectAttributes redir, HttpServletRequest request,
 			@RequestParam String name, @RequestParam String email, @RequestParam String pass) {
 
-		User newUser = new User(name, pass, email, "", false, "ROLE_USER");
+		User newUser = new User(name, pass, email, "/img/default-user.png", false, "ROLE_USER");
 		GenerateURLPage url = new GenerateURLPage(request);
 		mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount(newUser));
 
