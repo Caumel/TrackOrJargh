@@ -104,6 +104,7 @@
 													<i class="ion-trash-a text-right"></i>
 												</button>
 											</div>
+<<<<<<< HEAD
 											{{/printList}}
 										</div>
 									</div>
@@ -156,4 +157,77 @@
 	<script src="/js/passwordValidation.js"></script>
 	<script src="/js/userProfile.js"></script>
 </body>
+											
+											<div id="printListContent" class="form-control border-right-0 border-left-0 border-bottom-0 rounded-0">
+	                                            {{#printList}}
+		                                            <div id="listContentToShow" class="d-flex">
+			  											<a href="{{url}}{{name}}" name="deleteContentName" class="mr-auto p-2">{{name}}</a>
+			  											<button id="deleteButton" class="p-2" type="button" name="deleteContentURL" value="{{url}}"><i class="ion-trash-a text-right"></i></button>
+													</div>
+														
+	                                            {{/printList}}
+                                            </div>
+                                            </div>
+                                        {{/listsUser}}
+                                        
+                                        {{^listsUser}}
+                                        <p>Aún no ha creado ninguna lista, animate y crea una.</p>
+                                        {{/listsUser}}
+                                        
+                                        <button id="plusButton" class="btn btn-login" type="button" data-toggle="collapse"
+                                                data-target="#showAddList" aria-expanded="false" aria-controls="showAddList">
+                                            <i class="ion-plus-circled"></i>
+                                        </button>
+                                        
+                                        {{#listUserTrue}}
+                                        <br/>
+                                        <br/>
+                                        <a href="/crearpdflistas">Crear PDF de las listas</a>
+                                        {{/listUserTrue}}
+                                        
+                                        <div class="collapse" id="showAddList">
+                                            <input type="text" name="listName"
+                                                   tabindex="2" class="form-group form-control" placeholder="Nombre de la lista" value="" />
+                                            <div class="row form-group">
+                                                <input type="submit" name="list-submit" id="sendButton" tabindex="3"
+                                                       class="active btn btn-register mx-auto" value="Crear">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {{>footer}}
+
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+        <!-- JavaScript Libraries -->
+        <script src="/lib/jquery/jquery.min.js"></script>
+        <script src="/lib/jquery/jquery-migrate.min.js"></script>
+        <script src="/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/lib/easing/easing.min.js"></script>
+        <script src="/lib/superfish/hoverIntent.js"></script>
+        <script src="/lib/superfish/superfish.min.js"></script>
+        <script src="/lib/wow/wow.min.js"></script>
+        <script src="/lib/waypoints/waypoints.min.js"></script>
+        <script src="/lib/counterup/counterup.min.js"></script>
+        <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="/lib/isotope/isotope.pkgd.min.js"></script>
+        <script src="/lib/lightbox/js/lightbox.min.js"></script>
+        <script src="/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+        <!-- Contact Form JavaScript File -->
+        <script src="/contactform/contactform.js"></script>
+
+        <!-- Template Main Javascript File -->
+        <script src="/js/main.js"></script>
+        <!-- Password validation Javascript -->
+        <script src="/js/passwordValidation.js"></script>
+        <script src="/js/userProfile.js"></script>
+
+    </body>
 </html>
