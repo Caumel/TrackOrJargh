@@ -523,11 +523,11 @@ public class PageController {
 	public String serveRegistrer(Model model, RedirectAttributes redir, HttpServletRequest request,
 			@RequestParam String name, @RequestParam String email, @RequestParam String pass) {
 
-		if(!name.equals("")) {
+		if (!name.equals("")) {
 			User newUser = new User(name, pass, email, "/img/default-user.png", false, "ROLE_USER");
 			GenerateURLPage url = new GenerateURLPage(request);
 			mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount(newUser));
-	
+
 			redir.addFlashAttribute("registered", true);
 			userRepository.save(newUser);
 		}
@@ -714,7 +714,7 @@ public class PageController {
 	@RequestMapping("/adminPelicula")
 	public String adminFilm(Model model, @RequestParam String name, @RequestParam String newName,
 			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String actors, @RequestParam String directors,
-			@RequestParam Optional<MultipartFile> imageFilm, @RequestParam Optional<String[]> genreContent,
+			@RequestParam MultipartFile imageFilm, @RequestParam Optional<String[]> genreContent,
 			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String trailer,
 			@RequestParam String year) {
 		Film film = filmRepository.findByNameIgnoreCase(name);
@@ -739,8 +739,8 @@ public class PageController {
 					film.getGenders().add(genderRepository.findByName(genre));
 				}
 			}
-			if (imageFilm.isPresent()) {
-				film.setImage(uploadImage(film.getName(), imageFilm.get()));
+			if (!imageFilm.isEmpty()) {
+				film.setImage(uploadImage(film.getName(), imageFilm));
 			}
 			filmRepository.save(film);
 		}
@@ -751,7 +751,7 @@ public class PageController {
 	@RequestMapping("/adminSerie")
 	public String adminShow(Model model, @RequestParam String name, @RequestParam String newName,
 			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String actors, @RequestParam String directors,
-			@RequestParam Optional<MultipartFile> imageShow, @RequestParam Optional<String[]> genreContent,
+			@RequestParam MultipartFile imageShow, @RequestParam Optional<String[]> genreContent,
 			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String trailer,
 			@RequestParam String year) {
 		Show show = showRepository.findByNameIgnoreCase(name);
@@ -776,6 +776,10 @@ public class PageController {
 					show.getGenders().add(genderRepository.findByName(genre));
 				}
 			}
+
+			if (!imageShow.isEmpty()) {
+				show.setImage(uploadImage(show.getName(), imageShow));
+			}
 			showRepository.save(show);
 		}
 
@@ -785,7 +789,7 @@ public class PageController {
 	@RequestMapping("/adminLibro")
 	public String adminBook(Model model, @RequestParam String name, @RequestParam String newName,
 			@RequestParam Optional<Boolean> confirmDelete, @RequestParam String authors,
-			@RequestParam Optional<MultipartFile> imageBook, @RequestParam Optional<String[]> genreContent,
+			@RequestParam MultipartFile imageBook, @RequestParam Optional<String[]> genreContent,
 			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String year) {
 		Book book = bookRepository.findByNameIgnoreCase(name);
 		if (confirmDelete.isPresent()) {
@@ -806,6 +810,10 @@ public class PageController {
 				for (String genre : newGenres.get()) {
 					book.getGenders().add(genderRepository.findByName(genre));
 				}
+			}
+
+			if (!imageBook.isEmpty()) {
+				book.setImage(uploadImage(book.getName(), imageBook));
 			}
 			bookRepository.save(book);
 		}
