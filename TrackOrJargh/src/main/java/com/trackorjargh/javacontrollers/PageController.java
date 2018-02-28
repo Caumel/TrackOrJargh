@@ -699,7 +699,7 @@ public class PageController {
 				} else {
 					user.getRoles().add("ROLE_USER");
 					user.getRoles().add("ROLE_MODERATOR");
-					user.getRoles().add("ROLE_ADMINISTRATOR");
+					user.getRoles().add("ROLE_ADMIN");
 				}
 			}
 			userRepository.save(user);
