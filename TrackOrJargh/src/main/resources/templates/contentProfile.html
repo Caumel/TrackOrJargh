@@ -128,8 +128,9 @@
 	</section>
 	<!-- #services --> <!--==========================
                 Call To Action Section
-                ============================--> {{#userLogged}}
-	<section id="call-to-action" class="wow fadeIn">
+                ============================--> 
+    {{#userLogged}}
+	<section id="call-to-action" style="background: url('{{content.image}}') fixed center, rgba(0, 0, 0, 0.7) !important;" class="wow fadeIn">
 		<div class="container text-center prueba">
 			<h3>Puntua {{typeContent}}</h3>
 			<div class="starts">
@@ -217,25 +218,22 @@
 						</h4>
 					</div>
 
-					{{#isUserModerator}}
-					{{#isUserAdmin}}
+					{{#isUserModerator}} {{#isUserAdmin}}
 					<div class="text-right mt-1">
 						<p class="reporte">
-							<a href="{{deleteComment}}{{id}}/{{content.name}}">Borrar Comentario</a>
+							<a href="{{deleteComment}}{{id}}/{{content.name}}">Borrar
+								Comentario</a>
 						</p>
 					</div>
-					{{/isUserAdmin}}
-					{{/isUserModerator}}
-					
-					{{#isUserModerator}}
+					{{/isUserAdmin}} {{/isUserModerator}} {{#isUserModerator}}
 					{{^isUserAdmin}}
 					<div class="text-right mt-1">
 						<p class="reporte">
-							<a href="{{deleteComment}}{{id}}/{{content.name}}">Borrar Comentario</a>
+							<a href="{{deleteComment}}{{id}}/{{content.name}}">Borrar
+								Comentario</a>
 						</p>
 					</div>
-					{{/isUserAdmin}}
-					{{/isUserModerator}}
+					{{/isUserAdmin}} {{/isUserModerator}}
 
 					<div class="comment text-left">
 						<p class="description">{{message}}</p>
