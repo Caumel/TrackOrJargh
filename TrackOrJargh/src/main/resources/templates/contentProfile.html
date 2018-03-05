@@ -58,6 +58,10 @@
 								<h2>Sinopsis</h2>
 								<p>{{content.synopsis}}</p>
 								<span class="starts" id="totalPoints"></span>
+								{{#isUserAdmin}}
+								<br>
+								<a class="btn-get-started" id="edit" href="/editarContenido{{content.url}}{{content.name}}">Editar</a>
+								{{/isUserAdmin}}
 							</div>
 						</div>
 					</div>

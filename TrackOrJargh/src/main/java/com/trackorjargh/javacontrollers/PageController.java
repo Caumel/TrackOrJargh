@@ -640,7 +640,21 @@ public class PageController {
 		redir.addFlashAttribute("user", user);
 		return modelAndView;
 	}
-
+	
+	@RequestMapping("editarContenido/{type}/{name}")
+	public ModelAndView editContent(RedirectAttributes redir, @PathVariable String type, @PathVariable String name) {
+		switch (type) {
+		case "pelicula":
+			return filmSelection(redir, name);
+		case "serie":
+			return showSelection(redir, name);
+		case "libro":
+			return bookSelection(redir, name);
+		default:
+			return filmSelection(redir, name);
+		}
+	}
+	
 	@RequestMapping("/seleccionarPelicula")
 	public ModelAndView filmSelection(RedirectAttributes redir, @RequestParam String name) {
 		ModelAndView modelAndView = new ModelAndView();
