@@ -1,6 +1,6 @@
 function validateUserName(){
 	if($("[name='name']").val() != ""){
-		$.get("/rest/comprobarusuario/" + $("[name='name']").val() + "/", function(data) {
+		$.get("/api/comprobarusuario/" + $("[name='name']").val() + "/", function(data) {
 			  if(data == true) {
 				  $("[name='name']")[0].setCustomValidity("Ese usuario esta en uso.");
 			  } else {
@@ -12,7 +12,7 @@ function validateUserName(){
 
 function validateUserEmail(){	
 	if($("[name='email']").val() != ""){
-		$.get("/rest/comprobaremail/" + $("[name='email']").val() + "/", function(data) {
+		$.get("/api/comprobaremail/" + $("[name='email']").val() + "/", function(data) {
 			  if(data == true) {
 				  $("[name='email']")[0].setCustomValidity("Ese email esta en uso.");
 			  } else {

@@ -65,7 +65,7 @@ function addFilmToList(){
 	var nameFilm = $(this).parents(".portfolio-info").find("[name='nameFilm']").text();
 	
 	$.ajax({
-	    url: "/rest/agregarlista/"+nameList+"/"+typePageAddList+"/"+nameFilm,
+	    url: "/api/agregarlista/"+nameList+"/"+typePageAddList+"/"+nameFilm,
 	    type: 'PUT',
 	    success: function(result) {
 	    	if (result == true){
@@ -91,7 +91,7 @@ $(function() {
 		totalPages = data.totalPages;
 	});	
 	
-	$.get("/rest/listasusuario", function(data) {	
+	$.get("/api/listasusuario", function(data) {	
 		listsUser = data;
 	});	
 	

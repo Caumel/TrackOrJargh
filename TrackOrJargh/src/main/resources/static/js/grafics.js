@@ -1,5 +1,5 @@
 $(function() {
-	$.get("/rest/peliculas/graficomejorvaloradas", function(data) {
+	$.get("/api/peliculas/graficomejorvaloradas", function(data) {
 		var chart = c3.generate({
 			bindto : '#bestFilmsPoints',
 			data : {
@@ -18,7 +18,7 @@ $(function() {
 		});
 	});
 	
-	$.get("/rest/series/graficomejorvaloradas", function(data) {
+	$.get("/api/series/graficomejorvaloradas", function(data) {
 		var chart = c3.generate({
 			bindto : '#bestShowsPoints',
 			data : {
@@ -37,7 +37,7 @@ $(function() {
 		});
 	});
 	
-	$.get("/rest/libros/graficomejorvaloradas", function(data) {
+	$.get("/api/libros/graficomejorvaloradas", function(data) {
 		var chart = c3.generate({
 			bindto : '#bestBooksPoints',
 			data : {
@@ -56,7 +56,7 @@ $(function() {
 		});
 	});
 	
-	$.get("/rest/graficogeneros", function(data) {
+	$.get("/api/graficogeneros", function(data) {
 		var chart = c3.generate({
 			bindto : '#gende',
 			data : {

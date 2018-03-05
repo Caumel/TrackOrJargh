@@ -5,7 +5,7 @@ function deleteContent(){
 	typeContent = typeContent.substr(1,typeContent.length - 2);
 	
 	$.ajax({
-	    url: "/rest/borrarContenido/"+nameList+"/"+typeContent+"/"+nameContent,
+	    url: "/api/borrarContenido/"+nameList+"/"+typeContent+"/"+nameContent,
 	    type: 'DELETE',
 	    success: function(result) {
 	    	if (result == true){
@@ -19,7 +19,7 @@ function deleteContent(){
 function deleteList(){ 
 	var nameList = $(this).val();
 	$.ajax({
-	    url: "/rest/borrarLista/"+nameList,
+	    url: "/api/borrarLista/"+nameList,
 	    type: 'DELETE',
 	    success: function(result) {
 	    	if (result == true){

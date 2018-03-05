@@ -126,11 +126,11 @@ public class PageController {
 		if (request.getServletPath().equalsIgnoreCase("/peliculas")) {
 			filmsPage = filmRepository.findAll(new PageRequest(0, 10));
 			model.addAttribute("contentShowButton", true);
-			typePage = "/rest/peliculas";
+			typePage = "/api/peliculas";
 		} else {
 			filmsPage = filmRepository.findBestPointFilm(new PageRequest(0, 10));
 			model.addAttribute("bestPointContentShowButton", true);
-			typePage = "/rest/peliculas/mejorvaloradas";
+			typePage = "/api/peliculas/mejorvaloradas";
 		}
 
 		if (filmsPage.getNumberOfElements() > 0 && filmsPage.getNumberOfElements() < 10) {
@@ -165,11 +165,11 @@ public class PageController {
 		if (request.getServletPath().equalsIgnoreCase("/series")) {
 			showsPage = showRepository.findAll(new PageRequest(0, 10));
 			model.addAttribute("contentShowButton", true);
-			typePage = "/rest/series";
+			typePage = "/api/series";
 		} else {
 			showsPage = showRepository.findBestPointShow(new PageRequest(0, 10));
 			model.addAttribute("bestPointContentShowButton", true);
-			typePage = "/rest/series/mejorvaloradas";
+			typePage = "/api/series/mejorvaloradas";
 		}
 
 		if (showsPage.getNumberOfElements() > 0 && showsPage.getNumberOfElements() < 10) {
@@ -204,11 +204,11 @@ public class PageController {
 		if (request.getServletPath().equalsIgnoreCase("/libros")) {
 			booksPage = bookRepository.findAll(new PageRequest(0, 10));
 			model.addAttribute("contentShowButton", true);
-			typePage = "/rest/libros";
+			typePage = "/api/libros";
 		} else {
 			booksPage = bookRepository.findBestPointBook(new PageRequest(0, 10));
 			model.addAttribute("bestPointContentShowButton", true);
-			typePage = "/rest/libros/mejorvalorados";
+			typePage = "/api/libros/mejorvalorados";
 		}
 
 		if (booksPage.getNumberOfElements() > 0 && booksPage.getNumberOfElements() < 10) {
