@@ -59,31 +59,31 @@ public class ApiRestController {
 	@Autowired
 	private UserComponent userComponent;
 
-	@RequestMapping(value = "/rest/peliculas", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/peliculas", method = RequestMethod.GET)
 	@JsonView(Film.BasicInformation.class)
 	public Page<Film> getPeliculas(Pageable page) {
 		return filmRepository.findAll(page);
 	}
 
-	@RequestMapping(value = "/rest/libros", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/libros", method = RequestMethod.GET)
 	@JsonView(Book.BasicInformation.class)
 	public Page<Book> getLibros(Pageable page) {
 		return bookRepository.findAll(page);
 	}
 
-	@RequestMapping(value = "/rest/series", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/series", method = RequestMethod.GET)
 	@JsonView(Show.BasicInformation.class)
 	public Page<Show> getSeries(Pageable page) {
 		return showRepository.findAll(page);
 	}
 
-	@RequestMapping(value = "/rest/peliculas/mejorvaloradas", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/peliculas/mejorvaloradas", method = RequestMethod.GET)
 	@JsonView(Film.BasicInformation.class)
 	public Page<Film> getBestPointPeliculas(Pageable page) {
 		return filmRepository.findBestPointFilm(page);
 	}
 	
-	@RequestMapping(value = "/rest/peliculas/graficomejorvaloradas", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/peliculas/graficomejorvaloradas", method = RequestMethod.GET)
 	public List<Grafics> getBestPointFilms() {
 		List<Film> films = filmRepository.findBestPointFilm(new PageRequest(0, 10)).getContent();
 		List<PointFilm> listPoints;
@@ -108,13 +108,13 @@ public class ApiRestController {
 		return graficFilms;
 	}
 
-	@RequestMapping(value = "/rest/libros/mejorvalorados", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/libros/mejorvalorados", method = RequestMethod.GET)
 	@JsonView(Book.BasicInformation.class)
 	public Page<Book> getBestPointLibros(Pageable page) {
 		return bookRepository.findBestPointBook(page);
 	}
 	
-	@RequestMapping(value = "/rest/libros/graficomejorvaloradas", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/libros/graficomejorvaloradas", method = RequestMethod.GET)
 	public List<Grafics> getBestPointBooks() {
 		List<Book> books = bookRepository.findBestPointBook(new PageRequest(0, 10)).getContent();
 		List<PointBook> listPoints;
@@ -139,7 +139,7 @@ public class ApiRestController {
 		return graficShows;
 	}
 	
-	@RequestMapping(value = "/rest/series/graficomejorvaloradas", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/series/graficomejorvaloradas", method = RequestMethod.GET)
 	public List<Grafics> getBestPointShows() {
 		List<Show> shows = showRepository.findBestPointShow(new PageRequest(0, 10)).getContent();
 		List<PointShow> listPoints;
@@ -164,7 +164,7 @@ public class ApiRestController {
 		return graficShows;
 	}
 	
-	@RequestMapping(value = "/rest/graficogeneros", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/graficogeneros", method = RequestMethod.GET)
 	public List<NumberItemByGende> getGraphicGende() {
 		List<NumberItemByGende> listGende = new ArrayList<>();
 		
@@ -181,13 +181,13 @@ public class ApiRestController {
 		return listGende;		
 	}
 
-	@RequestMapping(value = "/rest/series/mejorvaloradas", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/series/mejorvaloradas", method = RequestMethod.GET)
 	@JsonView(Show.BasicInformation.class)
 	public Page<Show> getBestPointSeries(Pageable page) {
 		return showRepository.findBestPointShow(page);
 	}
 
-	@RequestMapping(value = "/rest/busqueda/{optionSearch}/series/{name}/page", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/busqueda/{optionSearch}/series/{name}/page", method = RequestMethod.GET)
 	@JsonView(Show.BasicInformation.class)
 	public Page<Show> getSearchSeries(Pageable page, @PathVariable String optionSearch, @PathVariable String name) {
 		if (optionSearch.equalsIgnoreCase("titulo")) {
@@ -197,7 +197,7 @@ public class ApiRestController {
 		}
 	}
 
-	@RequestMapping(value = "/rest/busqueda/{optionSearch}/peliculas/{name}/page", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/busqueda/{optionSearch}/peliculas/{name}/page", method = RequestMethod.GET)
 	@JsonView(Film.BasicInformation.class)
 	public Page<Film> getSearchPeliculas(Pageable page, @PathVariable String optionSearch, @PathVariable String name) {
 		if (optionSearch.equalsIgnoreCase("titulo")) {
@@ -207,7 +207,7 @@ public class ApiRestController {
 		}
 	}
 
-	@RequestMapping(value = "/rest/busqueda/{optionSearch}/libros/{name}/page", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/busqueda/{optionSearch}/libros/{name}/page", method = RequestMethod.GET)
 	@JsonView(Book.BasicInformation.class)
 	public Page<Book> getSearchLibros(Pageable page, @PathVariable String optionSearch, @PathVariable String name) {
 		if (optionSearch.equalsIgnoreCase("titulo")) {
@@ -217,7 +217,7 @@ public class ApiRestController {
 		}
 	}
 	
-	@RequestMapping(value = "/rest/listasusuario", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/listasusuario", method = RequestMethod.GET)
 	public List<Lists> getListsUser() {	
 		if(!userComponent.isLoggedUser()) {
 			return null;
@@ -228,7 +228,7 @@ public class ApiRestController {
 		}		
 	}
 
-	@RequestMapping(value = "/rest/agregarlista/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/agregarlista/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.PUT)
 	public boolean addedListInUser(@PathVariable String nameList,@PathVariable String typeContent , @PathVariable String nameContent) {
 		Lists listUser = listsRepository.findByName(nameList);
 		
@@ -259,7 +259,7 @@ public class ApiRestController {
 		return true;
 	}
 	
-	@RequestMapping(value = "/rest/borrarLista/{nameList}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/borrarLista/{nameList}", method = RequestMethod.DELETE)
 	public boolean deletedListInUser(@PathVariable String nameList) {
 		Lists listUser = listsRepository.findByName(nameList);
 		System.out.println(nameList);
@@ -268,7 +268,7 @@ public class ApiRestController {
 		return true;
 	}
 	
-	@RequestMapping(value = "/rest/borrarContenido/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/borrarContenido/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.DELETE)
 	public boolean deletedContentInList(@PathVariable String nameList,@PathVariable String typeContent, @PathVariable String nameContent) {
 		Lists listUser = listsRepository.findByName(nameList);
 		
@@ -289,7 +289,7 @@ public class ApiRestController {
 		return true;
 	}
 	
-	@RequestMapping(value = "/rest/comprobarusuario/{name}/", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/comprobarusuario/{name}/", method = RequestMethod.GET)
 	public boolean checkUser(@PathVariable String name) {
 		User user = userRepository.findByNameIgnoreCase(name);
 		
@@ -300,7 +300,7 @@ public class ApiRestController {
 		}
 	}
 	
-	@RequestMapping(value = "/rest/comprobaremail/{email}/", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/comprobaremail/{email}/", method = RequestMethod.GET)
 	public boolean checkEmail(@PathVariable String email) {
 		User user = userRepository.findByEmail(email);
 		

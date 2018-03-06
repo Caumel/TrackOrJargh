@@ -60,7 +60,7 @@ public class SearchController {
 		model.addAttribute("content", films);
 		model.addAttribute("typeFilm", true);
 		model.addAttribute("inputSearch", name);
-		model.addAttribute("typeSearch", "/rest/busqueda/" + optionSearch +"/peliculas/" + name + "/page");
+		model.addAttribute("typeSearch", "/api/busqueda/" + optionSearch +"/peliculas/" + name + "/page");
 		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
 		model.addAttribute("typePageAddList", "pelicula");
 		
@@ -99,7 +99,7 @@ public class SearchController {
 		model.addAttribute("content", shows);
 		model.addAttribute("typeShow", true);
 		model.addAttribute("inputSearch", name);
-		model.addAttribute("typeSearch", "/rest/busqueda/" + optionSearch +"/series/" + name + "/page");
+		model.addAttribute("typeSearch", "/api/busqueda/" + optionSearch +"/series/" + name + "/page");
 		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
 		model.addAttribute("typePageAddList", "serie");
 		
@@ -138,7 +138,7 @@ public class SearchController {
 		model.addAttribute("content", books);		
 		model.addAttribute("typeBook", true);
 		model.addAttribute("inputSearch", name);
-		model.addAttribute("typeSearch", "/rest/busqueda/" + optionSearch +"/libros/" + name + "/page");
+		model.addAttribute("typeSearch", "/api/busqueda/" + optionSearch +"/libros/" + name + "/page");
 		model.addAttribute("loggedUserJS", userComponent.isLoggedUser());
 		model.addAttribute("typePageAddList", "libro");
 		
