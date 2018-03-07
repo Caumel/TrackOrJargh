@@ -21,7 +21,7 @@ public class FacebookConnectionSignup implements ConnectionSignUp {
  
     @Override
     public String execute(Connection<?> connection) {
-        User user = new User(connection.getDisplayName(), connection.getKey().toString(), "", "", true, "ROLE_USER");
+        User user = new User(connection.getDisplayName(), connection.getKey().toString(), "", "/img/default-user.png", true, "ROLE_USER");
         userRepository.save(user);
         userComponent.setLoggedUser(user);
         
