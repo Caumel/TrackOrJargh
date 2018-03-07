@@ -46,8 +46,12 @@
 				aria-labelledby="users-tab">
 				{{^adminUser}}
 				<form action="/seleccionarUsuario" method="post">
-					<label for="user">Usuario a modificar:</label> <input type="text" class="form-control"
-						id="user" placeholder="Usuario a modificar" name="name" autofocus>
+					<label for="user">Usuario a modificar: </label>
+					<select name="name">
+						{{#users}}
+					  	<option value="{{name}}">{{name}}</option>
+					  	{{/users}}
+					</select>
 					<button type="submit" name="targetUser">Enviar</button>
 				</form>
 				{{/adminUser}} {{#adminUser}}
@@ -76,8 +80,12 @@
 				aria-labelledby="films-tab">
 				{{^adminFilm}}
 				<form action="/seleccionarPelicula" method="post">
-					<label for="film">Película a modificar:</label> <input type="text" class="form-control"
-						id="film" placeholder="Película a modificar" name="name" autofocus>
+				<label for="user">Película a modificar: </label>
+					<select name="name">
+						{{#films}}
+					  	<option value="{{name}}">{{name}}</option>
+					  	{{/films}}
+					</select>
 					<button type="submit" name="targetFilm">Enviar</button>
 				</form>
 				{{/adminFilm}} {{#adminFilm}}
@@ -113,8 +121,12 @@
 				aria-labelledby="shows-tab">
 				{{^adminShow}}
 				<form action="/seleccionarSerie" method="post">
-					<label for="film">Serie a modificar:</label> <input type="text" class="form-control" id="film"
-						placeholder="Película a modificar" name="name" autofocus>
+				<label for="user">Serie a modificar: </label>
+					<select name="name">
+						{{#shows}}
+					  	<option value="{{name}}">{{name}}</option>
+					  	{{/shows}}
+					</select>
 					<button type="submit" name="targetShow">Enviar</button>
 				</form>
 				{{/adminShow}} {{#adminShow}}
@@ -150,8 +162,12 @@
 				aria-labelledby="books-tab">
 				{{^adminBook}}
 				<form action="/seleccionarLibro" method="post">
-					<label for="book">Libro a modificar:</label> <input type="text" class="form-control" id="book"
-						placeholder="Libro a modificar" name="name" autofocus>
+				<label for="user">Libro a modificar: </label>
+					<select name="name">
+						{{#books}}
+					  	<option value="{{name}}">{{name}}</option>
+					  	{{/books}}
+					</select>
 					<button type="submit" name="targetBook">Enviar</button>
 				</form>
 				{{/adminBook}} {{#adminBook}}

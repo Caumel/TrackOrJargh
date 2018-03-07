@@ -620,7 +620,11 @@ public class PageController {
 	@RequestMapping("/administracion")
 	public String serveAdmin(Model model) {
 		model.addAttribute("adminActive", true);
-
+		model.addAttribute("users", userRepository.findAll());
+		model.addAttribute("films", filmRepository.findAll());
+		model.addAttribute("shows", showRepository.findAll());
+		model.addAttribute("books", bookRepository.findAll());
+		
 		return "administration";
 	}
 
