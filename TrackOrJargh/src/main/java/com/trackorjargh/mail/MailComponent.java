@@ -8,14 +8,24 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.trackorjargh.javaclass.User;
 
-@Component
+@Service
 public class MailComponent {
 	@Autowired
 	private JavaMailSender emailSender;
+	
+	private String to;
+	private String subject;
+	private String message;
+		
+	class SendSimpleEmail extends Thread {
+	    public void run() {
+	    		sendSimpleMimeMessage(to, subject, message);
+	    }
+	}
 
 	public void sendSimpleMessage(String to, String subject, String text) {
 		try {
@@ -46,20 +56,22 @@ public class MailComponent {
 	}
 
 	public void sendVerificationEmail(User user, String urlPage) {
-		String to = user.getEmail();
-		String subject = "Verificación del usuario " + user.getName() + " en TrackOrJargh";
-		String message = "<body><p>Por favor pinche en este <a href='" + urlPage
+		this.to = user.getEmail();
+		this.subject = "Verificación del usuario " + user.getName() + " en TrackOrJargh";
+		this.message = "<body><p>Por favor pinche en este <a href='" + urlPage
 				+ "'>enlace</a> para poder usar todas las ventajas de TrackOrJack</p></body>";
-
-		sendSimpleMimeMessage(to, subject, message);
+		
+		Thread sendEmail = new Thread( new SendSimpleEmail());
+		sendEmail.start();
 	}
 
 	public void sendChangePassEmail(User user, String urlPage) {
-		String to = user.getEmail();
-		String subject = "Cambio de contraseña TrackOrJargh";
-		String message = "<body><p>Ha solicitado un cambio de contraseña, por favor pinche en este <a href='" + urlPage
+		this.to = user.getEmail();
+		this.subject = "Cambio de contraseña TrackOrJargh";
+		this.message = "<body><p>Ha solicitado un cambio de contraseña, por favor pinche en este <a href='" + urlPage
 				+ "'>enlace</a> para cambiar su contraseña</p></body>";
 
-		sendSimpleMimeMessage(to, subject, message);
+		Thread sendEmail = new Thread( new SendSimpleEmail());
+		sendEmail.start();
 	}
 }
