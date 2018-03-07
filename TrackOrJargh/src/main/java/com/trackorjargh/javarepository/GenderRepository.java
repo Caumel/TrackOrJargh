@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.Gender;
-import com.trackorjargh.javaclass.Show;
+import com.trackorjargh.javaclass.Shows;
 
 public interface GenderRepository extends JpaRepository<Gender, Long> {
 
@@ -20,7 +20,7 @@ public interface GenderRepository extends JpaRepository<Gender, Long> {
 	@Query(value = "SELECT * FROM GENDER WHERE ID NOT IN (SELECT GENDERS_ID FROM FILM_GENDERS WHERE FILMS_ID = ?1)", nativeQuery = true)
 	List<Gender> findByNotInFilm(Long id);
 
-	List<Gender> findByShows(Show show);
+	List<Gender> findByShows(Shows show);
 
 	@Query(value = "SELECT * FROM GENDER WHERE ID NOT IN (SELECT GENDERS_ID FROM SHOW_GENDERS WHERE SHOWS_ID = ?1)", nativeQuery = true)
 	List<Gender> findByNotInShow(Long id);

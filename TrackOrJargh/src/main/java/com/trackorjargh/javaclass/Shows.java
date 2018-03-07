@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
-public class Show implements InterfaceMainItem{
+public class Shows implements InterfaceMainItem{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -53,10 +53,10 @@ public class Show implements InterfaceMainItem{
 	@OneToMany(mappedBy="show")
 	private List<PointShow> pointsShow = new ArrayList<>(); 
 
-	public Show() {
+	public Shows() {
 	}
 
-	public Show(String name, String actors, String directors, String synopsis, String image, String trailer, int year) {
+	public Shows(String name, String actors, String directors, String synopsis, String image, String trailer, int year) {
 		this.name = name;
 		this.actors = actors;
 		this.directors = directors;

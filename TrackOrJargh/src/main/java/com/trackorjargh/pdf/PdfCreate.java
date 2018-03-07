@@ -17,7 +17,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.Lists;
-import com.trackorjargh.javaclass.Show;
+import com.trackorjargh.javaclass.Shows;
 import com.trackorjargh.javaclass.User;
 
 @Controller
@@ -84,7 +84,7 @@ public class PdfCreate {
 					document.add(paragraph);
 				}
 				
-				for(Show s:list.getShows()) {
+				for(Shows s:list.getShows()) {
 					paragraph = new Paragraph();
 					paragraph.setTabSettings(new TabSettings(98f));
 					paragraph.add(Chunk.TABBING);

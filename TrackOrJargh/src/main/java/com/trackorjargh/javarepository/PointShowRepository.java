@@ -9,12 +9,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.trackorjargh.javaclass.PointShow;
-import com.trackorjargh.javaclass.Show;
+import com.trackorjargh.javaclass.Shows;
 import com.trackorjargh.javaclass.User;
 
 public interface PointShowRepository extends JpaRepository<PointShow, Long>{
-	PointShow findByUserAndShow(User user, Show show);
-	List<PointShow> findByShow(Show show);
+	PointShow findByUserAndShow(User user, Shows show);
+	List<PointShow> findByShow(Shows show);
 	
     @Modifying
     @Transactional

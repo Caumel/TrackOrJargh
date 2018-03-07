@@ -22,7 +22,7 @@ public class Gender {
 	private List<Film> films = new LinkedList<>();
 	
 	@ManyToMany(mappedBy="genders")
-	private List<Show> shows = new LinkedList<>();
+	private List<Shows> shows = new LinkedList<>();
 	
 	@ManyToMany(mappedBy="genders")
 	private List<Book> books = new LinkedList<>();
@@ -58,11 +58,11 @@ public class Gender {
 		this.films = films;
 	}
 
-	public List<Show> getShows() {
+	public List<Shows> getShows() {
 		return shows;
 	}
 
-	public void setShows(List<Show> shows) {
+	public void setShows(List<Shows> shows) {
 		this.shows = shows;
 	}
 

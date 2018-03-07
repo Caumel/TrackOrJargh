@@ -10,10 +10,10 @@ public class PreparateListsShow {
 	
 	private List<Film> films;
 	private List<Book> books;
-	private List<Show> shows;
+	private List<Shows> shows;
 	
 	public PreparateListsShow(String name, List<Film> films, List<Book> books,
-			List<Show> shows) {
+			List<Shows> shows) {
 		this.name = name;
 		this.films = films;
 		this.books = books;
@@ -54,11 +54,11 @@ public class PreparateListsShow {
 		this.books = books;
 	}
 
-	public List<Show> getShows() {
+	public List<Shows> getShows() {
 		return shows;
 	}
 
-	public void setShows(List<Show> shows) {
+	public void setShows(List<Shows> shows) {
 		this.shows = shows;
 	}
 	
@@ -67,7 +67,7 @@ public class PreparateListsShow {
 		for(Film f:films) 
 			this.printList.add(f);
 		
-		for(Show s:shows) 
+		for(Shows s:shows) 
 			this.printList.add(s);
 		
 		for(Book b:books) 

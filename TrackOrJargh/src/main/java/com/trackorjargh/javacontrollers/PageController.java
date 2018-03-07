@@ -43,7 +43,7 @@ import com.trackorjargh.javaclass.PointShow;
 import com.trackorjargh.javaclass.PreparateListsShow;
 import com.trackorjargh.javaclass.PreparateMessageShow;
 import com.trackorjargh.javaclass.RandomGenerate;
-import com.trackorjargh.javaclass.Show;
+import com.trackorjargh.javaclass.Shows;
 import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.CommentBookRepository;
@@ -151,7 +151,7 @@ public class PageController {
 
 	@RequestMapping({ "/series", "/series/mejorvaloradas" })
 	public String serveShowList(Model model, HttpServletRequest request) {
-		List<Show> shows = showRepository.findByLastAdded(5);
+		List<Shows> shows = showRepository.findByLastAdded(5);
 		shows.get(0).setFirstInList(true);
 
 		if (userComponent.isLoggedUser()) {
@@ -160,7 +160,7 @@ public class PageController {
 			model.addAttribute("userList", user.getLists());
 		}
 
-		Page<Show> showsPage;
+		Page<Shows> showsPage;
 		String typePage;
 		if (request.getServletPath().equalsIgnoreCase("/series")) {
 			showsPage = showRepository.findAll(new PageRequest(0, 10));
@@ -294,7 +294,7 @@ public class PageController {
 	@RequestMapping("/serie/{name}")
 	public String serveShowProfile(Model model, @PathVariable String name, @RequestParam Optional<String> messageSent,
 			@RequestParam Optional<String> pointsSent) {
-		Show show = showRepository.findByNameIgnoreCase(name);
+		Shows show = showRepository.findByNameIgnoreCase(name);
 
 		if (messageSent.isPresent()) {
 			CommentShow message = new CommentShow(messageSent.get());
@@ -672,7 +672,7 @@ public class PageController {
 	public ModelAndView showSelection(RedirectAttributes redir, @RequestParam String name) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/administracion");
-		Show show = showRepository.findByNameIgnoreCase(name);
+		Shows show = showRepository.findByNameIgnoreCase(name);
 		redir.addFlashAttribute("adminShow", true);
 		redir.addFlashAttribute("show", show);
 		redir.addFlashAttribute("genres", genderRepository.findByShows(show));
@@ -768,7 +768,7 @@ public class PageController {
 			@RequestParam MultipartFile imageShow, @RequestParam Optional<String[]> genreContent,
 			@RequestParam Optional<String[]> newGenres, @RequestParam String synopsis, @RequestParam String trailer,
 			@RequestParam String year) {
-		Show show = showRepository.findByNameIgnoreCase(name);
+		Shows show = showRepository.findByNameIgnoreCase(name);
 		if (confirmDelete.isPresent()) {
 			deleteElementsOfBBDD.deleteShow(show);
 		} else {
@@ -874,7 +874,7 @@ public class PageController {
 			image = "";
 		}
 		int yearInt = Integer.parseInt(year);
-		Show show = new Show(newName, actors, directors, synopsis, image, trailer, yearInt);
+		Shows show = new Shows(newName, actors, directors, synopsis, image, trailer, yearInt);
 		if (newGenres.isPresent()) {
 			for (String genre : newGenres.get()) {
 				show.getGenders().add(genderRepository.findByName(genre));

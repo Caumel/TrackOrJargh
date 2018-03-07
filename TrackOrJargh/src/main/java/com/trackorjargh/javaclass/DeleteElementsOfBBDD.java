@@ -83,7 +83,7 @@ public class DeleteElementsOfBBDD {
 		filmRepository.delete(film);
 	}
 	
-	public void deleteShow(Show show) {
+	public void deleteShow(Shows show) {
 		Long id = show.getId();
 		
 		genderRepository.removePointShowsByShowId(id);

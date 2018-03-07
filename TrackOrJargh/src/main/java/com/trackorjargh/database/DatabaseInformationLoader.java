@@ -15,7 +15,7 @@ import com.trackorjargh.javaclass.Lists;
 import com.trackorjargh.javaclass.PointBook;
 import com.trackorjargh.javaclass.PointFilm;
 import com.trackorjargh.javaclass.PointShow;
-import com.trackorjargh.javaclass.Show;
+import com.trackorjargh.javaclass.Shows;
 import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.CommentBookRepository;
@@ -508,7 +508,7 @@ public class DatabaseInformationLoader {
 		bookRepository.save(b21);
 
 		// Test Data Show
-		Show sh1 = new Show("The Big Bang Theory", "", "",
+		Shows sh1 = new Shows("The Big Bang Theory", "", "",
 				"La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.",
 				"/img/the_big_bang_theroy.jpg", "https://www.youtube.com/embed/_uQXxvZ3afQ", 2007);
 
@@ -516,7 +516,7 @@ public class DatabaseInformationLoader {
 		sh1.getGenders().add(g10);
 		showRepository.save(sh1);
 
-		Show sh2 = new Show("Narcos", "Pedro Pascal, Wagner Moura, Boyd Holbrook",
+		Shows sh2 = new Shows("Narcos", "Pedro Pascal, Wagner Moura, Boyd Holbrook",
 				"Carlo Bernard, Chris Brancato, Doug Miro",
 				"En esta exitosa serie nos adentraremos en la vida de Pablo Escobar, el lider de la droga de Colombia en los años 80 que aterrorizó al país durante años. Héroe para algunos, monstruo para otros, esta serie cuenta su historia lo mas fielmente posible",
 				"/img/shows/narcos.jpg", "https://www.youtube.com/embed/U7elNhHwgBU", 2015);
@@ -525,7 +525,7 @@ public class DatabaseInformationLoader {
 		sh2.getGenders().add(g11);
 		showRepository.save(sh2);
 
-		Show sh3 = new Show("Friends", "Jennifer Aniston, Courteney Cox, Lisa Kudrow", "David Crane, Marta Kauffman",
+		Shows sh3 = new Shows("Friends", "Jennifer Aniston, Courteney Cox, Lisa Kudrow", "David Crane, Marta Kauffman",
 				"En esta exitosa serie viviremos las divertidas desventuras de seis veinteañeros que se enfrentan a los obstáculos del trabajo, la vida y el amor en los 90 en Manhattan.",
 				"/img/shows/friends.jpg", "https://www.youtube.com/embed/V5hOm8_3mJA", 1994);
 
@@ -533,7 +533,7 @@ public class DatabaseInformationLoader {
 		sh3.getGenders().add(g3);
 		showRepository.save(sh3);
 
-		Show sh4 = new Show("Your lie in april", "Natsuki Hanae, Risa Taneda, Ayane Sakura", "Kyohei Ishiguro",
+		Shows sh4 = new Shows("Your lie in april", "Natsuki Hanae, Risa Taneda, Ayane Sakura", "Kyohei Ishiguro",
 				"Your lie in April trata de un prodigio del piano que no puede escuchar su música después de haber sufrido un trauma. Un día, a Kousei le presentan a una violinista llamada Kaori Miyazono. A pesar de que su primera impresión de ella fue terrible...",
 				"/img/shows/yourLieInAbril.jpg", "https://www.youtube.com/embed/3aL0gDZtFbE", 2014);
 
@@ -542,7 +542,7 @@ public class DatabaseInformationLoader {
 		sh4.getGenders().add(g3);
 		showRepository.save(sh4);
 
-		Show sh5 = new Show("Walking dead", " Andrew Lincoln, Norman Reedus, Melissa McBride", "Frank Darabont",
+		Shows sh5 = new Shows("Walking dead", " Andrew Lincoln, Norman Reedus, Melissa McBride", "Frank Darabont",
 				"Una serie americana en torno al drama, el terror y la ciencia ficción que narra cómo un grupo de personajes intenta sobrevivir en un mundo devastado por el apocalípsis zombie. La trama arranca cuando el protagonista, el sheriff Rick Grimes, se despierta en un hospital tras estar varios…",
 				"/img/shows/theWalkingDead.jpg", "https://www.youtube.com/embed/R1v0uFms68U ", 2010);
 
@@ -552,7 +552,7 @@ public class DatabaseInformationLoader {
 		sh5.getGenders().add(g13);
 		showRepository.save(sh5);
 
-		Show sh6 = new Show("Vikingos", " Gustaf Skarsgård, Katheryn Winnick, Alexander Ludwig", "Michael Hirst",
+		Shows sh6 = new Shows("Vikingos", " Gustaf Skarsgård, Katheryn Winnick, Alexander Ludwig", "Michael Hirst",
 				"La serie está basada en los relatos semilegendarios de Ragnar Lodbrok, reconocido como uno de los primeros reyes de Suecia y Dinamarca, durante el siglo VIII.",
 				"/img/shows/vkingos.jpg", "https://www.youtube.com/embed/5aASH8HMJbo ", 2013);
 
@@ -561,14 +561,14 @@ public class DatabaseInformationLoader {
 		sh6.getGenders().add(g1);
 		showRepository.save(sh6);
 
-		Show sh7 = new Show("One Tree Hill", "Mark Schwahn", "Chad Michael Murray, James Lafferty, Hilarie Burton",
+		Shows sh7 = new Shows("One Tree Hill", "Mark Schwahn", "Chad Michael Murray, James Lafferty, Hilarie Burton",
 				"La serie narraba la historia de un grupo de jóvenes y sus familias en un pueblo pequeño llamado Tree Hill, a través de la escuela secundaria y después de la universidad.",
 				"/img/shows/oneTreeHill.jpg", "https://www.youtube.com/embed/noDPlG88grk", 2003);
 
 		sh7.getGenders().add(g3);
 		showRepository.save(sh7);
 
-		Show sh8 = new Show("Once upon a time", "Adam Horowitz, Edward Kitsis",
+		Shows sh8 = new Shows("Once upon a time", "Adam Horowitz, Edward Kitsis",
 				"Ginnifer Goodwin, Jennifer Morrison, Lana Parrilla",
 				"La serie sigue a varios personajes de cuentos de hadas que fueron transportados al mundo real y robaron sus recuerdos originales mediante una poderosa maldición.",
 				"/img/shows/onceUponATime.jpg", "https://www.youtube.com/embed/Rga4rp4j5TY", 2011);
@@ -578,7 +578,7 @@ public class DatabaseInformationLoader {
 		sh8.getGenders().add(g3);
 		showRepository.save(sh8);
 
-		Show sh9 = new Show("Altered Carbon", "Joel Kinnaman, James Purefoy, Martha Higareda", "Laeta Kalogridis",
+		Shows sh9 = new Shows("Altered Carbon", "Joel Kinnaman, James Purefoy, Martha Higareda", "Laeta Kalogridis",
 				"Altered Carbon se desarrolla en medio del siglo XXV, una época en la que las personas ya no mueren, técnicamente, sino que sus mentes y consciencias son transferidas de un cuerpo a otro...",
 				"/img/shows/alteredCarbon.jpg", "https://www.youtube.com/embed/dhFM8akm9a4", 2018);
 
@@ -587,7 +587,7 @@ public class DatabaseInformationLoader {
 		sh9.getGenders().add(g3);
 		showRepository.save(sh9);
 
-		Show sh10 = new Show("Rick & Morty", "Dan Harmon, Justin Roiland",
+		Shows sh10 = new Shows("Rick & Morty", "Dan Harmon, Justin Roiland",
 				"Chris Parnell, Spencer Grammer, Sarah Chalke",
 				"Rick, un científico alcohólico, secuestra a su influenciable nieto, Morty, para vivir peligrosas aventuras a través de nuestro cosmos y universos paralelos.",
 				"/img/shows/rickYmorty.jpg", "www.youtube.com/embed/WNhH00OIPP0 ", 2013);
@@ -598,7 +598,7 @@ public class DatabaseInformationLoader {
 		sh10.getGenders().add(g10);
 		showRepository.save(sh10);
 
-		Show sh11 = new Show("Dr.Who", "Michael Ryan", "Peter McAllum, Kate Hardy, Richard Clark",
+		Shows sh11 = new Shows("Dr.Who", "Michael Ryan", "Peter McAllum, Kate Hardy, Richard Clark",
 				"Doctor Who es un programa de televisión que trata de las aventuras de un misterioso hombre conocido sólo como el Doctor. El Doctor viaja a través del espacio y el tiempo en una nave llamada TARDIS",
 				"/img/shows/doctorWho.jpg", "https://www.youtube.com/embed/SKAOzznX9zA ", 2012);
 
@@ -608,7 +608,7 @@ public class DatabaseInformationLoader {
 		sh11.getGenders().add(g2);
 		showRepository.save(sh11);
 
-		Show sh12 = new Show("Belzebub", "Shizuka Itô, Katsuyuki Konishi, Takahiro Mizushima", "Nobuhiro Takamoto",
+		Shows sh12 = new Shows("Belzebub", "Shizuka Itô, Katsuyuki Konishi, Takahiro Mizushima", "Nobuhiro Takamoto",
 				"La historia trata sobre el delincuente juvenil más fuerte, Oga Tatsumi, quien está en el primer año de la Escuela Ishiyama, la escuela para delincuentes. Pero un día mientras dormía cerca a un río, mira a un hombre flotar en el río, quien de repente se parte...",
 				"/img/shows/beelzebub.jpg", "https://www.youtube.com/embed/5lyYR7StfrQ", 2011);
 
@@ -618,7 +618,7 @@ public class DatabaseInformationLoader {
 		sh12.getGenders().add(g13);
 		showRepository.save(sh12);
 
-		Show sh13 = new Show("Mahouka Koukou no Rettousei", "Yûichi Nakamura, Saori Hayami, Yumi Uchiyama",
+		Shows sh13 = new Shows("Mahouka Koukou no Rettousei", "Yûichi Nakamura, Saori Hayami, Yumi Uchiyama",
 				"Manabu Ono",
 				"La Magia no es algo de las leyendas ni los cuentos de hadas, se convirtió en tecnología desde hace casi un siglo. El proceso mágico ha sido sistematizado y con ayuda de dispositivo llamado CAD, los procesos pueden ser acelerados significativamente y esto ...",
 				"/img/shows/mahouka.jpg", "https://www.youtube.com/embed/U-gkwdGooDU", 2015);
@@ -628,7 +628,7 @@ public class DatabaseInformationLoader {
 		sh13.getGenders().add(g1);
 		showRepository.save(sh13);
 
-		Show sh14 = new Show("Juego de Tronos", "George R.R.Martin",
+		Shows sh14 = new Shows("Juego de Tronos", "George R.R.Martin",
 				"Sean Bean, Emilia Clarke, Peter Dinklage, Kit Harington",
 				"La historia se desarrolla en un mundo ficticio de carácter medieval donde hay Siete Reinos. Hay tres líneas argumentales principales: la crónica de la guerra civil dinástica por el control de Poniente entre varias familias nobles que aspiran al Trono...",
 				"/img/shows/jdt.jpg", "https://www.youtube.com/embed/g1IICkElV0M", 2011);
@@ -638,7 +638,7 @@ public class DatabaseInformationLoader {
 		sh14.getGenders().add(g1);
 		showRepository.save(sh14);
 
-		Show sh15 = new Show("Daredevil", "Charlie Cox, Vincent D'Onofrio, Deborah Ann Woll", "Drew Goddard",
+		Shows sh15 = new Shows("Daredevil", "Charlie Cox, Vincent D'Onofrio, Deborah Ann Woll", "Drew Goddard",
 				"Matt Murdock es un abogado de la cocina del infierno que tuvo un accidente de pequeño con productos quimicos y ahora es un superheroe que castiga a los criminales que la justicia no castiga durante el dia, el lo hace por la noche contra las fuerzas del mal como La Mano",
 				"/img/shows/daredevil.jpg", "https://www.youtube.com/embed/KQzRs6UCbuI", 2015);
 
@@ -647,7 +647,7 @@ public class DatabaseInformationLoader {
 		sh15.getGenders().add(g1);
 		showRepository.save(sh15);
 
-		Show sh16 = new Show("Stranger Things", "Millie Bobby Brown, Finn Wolfhard, Winona Ryder",
+		Shows sh16 = new Shows("Stranger Things", "Millie Bobby Brown, Finn Wolfhard, Winona Ryder",
 				"Matt Duffer, Ross Duffer",
 				"Homenaje a los clásicos misterios sobrenaturales de los años 80 es la historia de un niño que desaparece en el pequeño pueblo de Hawkins, Indiana, sin dejar rastro en 1983. En su búsqueda desesperada, tanto sus amigos y familiares como el sheriff...",
 				"/img/shows/strangerThings.jpg", "https://www.youtube.com/embed/XWxyRG_tckY", 2016);
@@ -657,7 +657,7 @@ public class DatabaseInformationLoader {
 		sh16.getGenders().add(g5);
 		showRepository.save(sh16);
 
-		Show sh17 = new Show("Sherlock", "Benedict Cumberbach,John Wilson", "Arthur Conan Doyle",
+		Shows sh17 = new Shows("Sherlock", "Benedict Cumberbach,John Wilson", "Arthur Conan Doyle",
 				"Moderna actualización del mito de Sherlock Holmes, ambientado en el Londres del siglo XXI. Sus insuperables habilidades de deducción y su arrogante distanciamiento...",
 				"/img/shows/sherlock.jpg", "https://www.youtube.com/embed/Nj7ZSUkTTVI ", 2010);
 
@@ -666,7 +666,7 @@ public class DatabaseInformationLoader {
 		sh17.getGenders().add(g11);
 		showRepository.save(sh17);
 
-		Show sh18 = new Show("Fargo", "Billy Bob Thornton, Martin Freeman, Allison Tolman", "John Fargo",
+		Shows sh18 = new Shows("Fargo", "Billy Bob Thornton, Martin Freeman, Allison Tolman", "John Fargo",
 				"Lester Nygaard, un apocado vendedor de seguros de una pequeña población de Minnesota, ve cómo su mundo cambia por completo con la llegada de los nazis a minesota...",
 				"/img/shows/fargo.jpg", "https://www.youtube.com/embed/EB4PmbfG4bw", 2014);
 
@@ -674,7 +674,7 @@ public class DatabaseInformationLoader {
 		sh18.getGenders().add(g9);
 		showRepository.save(sh18);
 
-		Show sh19 = new Show("Los Simpson", " Dan Castellaneta, Nancy Cartwright, Julie Kavner",
+		Shows sh19 = new Shows("Los Simpson", " Dan Castellaneta, Nancy Cartwright, Julie Kavner",
 				" James L. Brooks, Matt Groening, Sam Simon",
 				"La afamada serie de television que cuenta las aventuras y desventuras de una familia que vive en Springfield, que no vamos a...",
 				"/img/shows/losSimpson.jpg", "https://www.youtube.com/embed/ypZPaxbP8g8", 1989);
@@ -682,7 +682,7 @@ public class DatabaseInformationLoader {
 		sh19.getGenders().add(g4);
 		showRepository.save(sh19);
 
-		Show sh20 = new Show("Sobrenatural", "Jared Padalecki,Jensen Ackles", "Eric Kripke",
+		Shows sh20 = new Shows("Sobrenatural", "Jared Padalecki,Jensen Ackles", "Eric Kripke",
 				"Un misterioso mensaje telefónico de su padre, que hace mucho tiempo que ha abandonado el hogar familiar, lleva a los hermanos Dean y Sam Winchester hasta California. Aunque no ...",
 				"/img/shows/sobrenatural.jpg", "https://www.youtube.com/embed/74WD8FUgS6g", 2005);
 
@@ -692,7 +692,7 @@ public class DatabaseInformationLoader {
 		sh20.getGenders().add(g6);
 		showRepository.save(sh20);
 
-		Show sh21 = new Show("The Flash", "Grant Gustin, Candice Patton, Danielle Panabaker",
+		Shows sh21 = new Shows("The Flash", "Grant Gustin, Candice Patton, Danielle Panabaker",
 				"Greg Berlanti, Geoff Johns, Andrew Kreisberg",
 				"Sigue las veloces aventuras de Barry Allen, un joven común y corriente con el deseo latente de ayudar a los demás. Cuando una...",
 				"/img/shows/theFlash.jpg", "https://www.youtube.com/embed/Yj0l7iGKh8g", 2005);
@@ -703,7 +703,7 @@ public class DatabaseInformationLoader {
 		sh21.getGenders().add(g8);
 		showRepository.save(sh21);
 
-		Show sh22 = new Show("Arrow", "Stephen Amell, Katie Cassidy, David Ramsey ",
+		Shows sh22 = new Shows("Arrow", "Stephen Amell, Katie Cassidy, David Ramsey ",
 				"Greg Berlanti, Marc Guggenheim, Andrew Kreisberg",
 				"Adaptación libre de un personaje de DC Comics, playboy de día, que, durante la noche, usa su arco y sus flechas contra el crimen. Tras haber desaparecido y haber sido dado por muerto en un violento...",
 				"/img/shows/arrow.jpg", "https://www.youtube.com/embed/uFdqDMxlx88", 2012);
@@ -713,7 +713,7 @@ public class DatabaseInformationLoader {
 		sh22.getGenders().add(g6);
 		showRepository.save(sh22);
 
-		Show sh23 = new Show("Smallville", "Tom Welling, Michael Rosenbaum, Allison Mack", "Alfred Gough, Miles Millar",
+		Shows sh23 = new Shows("Smallville", "Tom Welling, Michael Rosenbaum, Allison Mack", "Alfred Gough, Miles Millar",
 				"Serie que narra los inicios de Superman -Clark Kent- en su pueblo natal, Smallville. Allí vivía con sus padres, estudiaba en el instituto local y conoció a su primera novia, Lana Lang, y a su futuro rival, Lex Luthor.",
 				"/img/shows/smallville.jpg", "https://www.youtube.com/embed/AF4eljyAhVw ", 2001);
 

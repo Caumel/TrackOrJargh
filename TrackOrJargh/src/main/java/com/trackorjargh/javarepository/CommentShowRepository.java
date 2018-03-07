@@ -9,10 +9,10 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.trackorjargh.javaclass.CommentShow;
-import com.trackorjargh.javaclass.Show;
+import com.trackorjargh.javaclass.Shows;
 
 public interface CommentShowRepository extends JpaRepository<CommentShow, Long>{
-	List<CommentShow> findByShow(Show show);
+	List<CommentShow> findByShow(Shows show);
 	
     @Modifying
     @Transactional

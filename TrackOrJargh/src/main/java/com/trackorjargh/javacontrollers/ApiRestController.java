@@ -23,7 +23,7 @@ import com.trackorjargh.javaclass.Lists;
 import com.trackorjargh.javaclass.PointBook;
 import com.trackorjargh.javaclass.PointFilm;
 import com.trackorjargh.javaclass.PointShow;
-import com.trackorjargh.javaclass.Show;
+import com.trackorjargh.javaclass.Shows;
 import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.FilmRepository;
@@ -72,8 +72,8 @@ public class ApiRestController {
 	}
 
 	@RequestMapping(value = "/api/series", method = RequestMethod.GET)
-	@JsonView(Show.BasicInformation.class)
-	public Page<Show> getSeries(Pageable page) {
+	@JsonView(Shows.BasicInformation.class)
+	public Page<Shows> getSeries(Pageable page) {
 		return showRepository.findAll(page);
 	}
 
@@ -141,12 +141,12 @@ public class ApiRestController {
 	
 	@RequestMapping(value = "/api/series/graficomejorvaloradas", method = RequestMethod.GET)
 	public List<Grafics> getBestPointShows() {
-		List<Show> shows = showRepository.findBestPointShow(new PageRequest(0, 10)).getContent();
+		List<Shows> shows = showRepository.findBestPointShow(new PageRequest(0, 10)).getContent();
 		List<PointShow> listPoints;
 		List<Grafics> graficShows = new ArrayList<>();
 		double points;
 		
-		for(Show show : shows) {
+		for(Shows show : shows) {
 			points = 0;
 			
 			listPoints = pointShowRepository.findByShow(show);
@@ -182,14 +182,14 @@ public class ApiRestController {
 	}
 
 	@RequestMapping(value = "/api/series/mejorvaloradas", method = RequestMethod.GET)
-	@JsonView(Show.BasicInformation.class)
-	public Page<Show> getBestPointSeries(Pageable page) {
+	@JsonView(Shows.BasicInformation.class)
+	public Page<Shows> getBestPointSeries(Pageable page) {
 		return showRepository.findBestPointShow(page);
 	}
 
 	@RequestMapping(value = "/api/busqueda/{optionSearch}/series/{name}/page", method = RequestMethod.GET)
-	@JsonView(Show.BasicInformation.class)
-	public Page<Show> getSearchSeries(Pageable page, @PathVariable String optionSearch, @PathVariable String name) {
+	@JsonView(Shows.BasicInformation.class)
+	public Page<Shows> getSearchSeries(Pageable page, @PathVariable String optionSearch, @PathVariable String name) {
 		if (optionSearch.equalsIgnoreCase("titulo")) {
 			return showRepository.findByNameContainingIgnoreCase(name, page);
 		} else {
@@ -240,7 +240,7 @@ public class ApiRestController {
 			
 			listUser.getFilms().add(film);
 		}else if (typeContent.equalsIgnoreCase("serie")){
-			Show show = showRepository.findByNameIgnoreCase(nameContent);
+			Shows show = showRepository.findByNameIgnoreCase(nameContent);
 			if(listUser.getShows().contains(show)) {
 				return false;
 			}
@@ -277,7 +277,7 @@ public class ApiRestController {
 			listUser.getFilms().remove(film);
 			
 		}else if (typeContent.equalsIgnoreCase("serie")){
-			Show show = showRepository.findByNameIgnoreCase(nameContent);
+			Shows show = showRepository.findByNameIgnoreCase(nameContent);
 			listUser.getShows().remove(show);
 			
 		}else if(typeContent.equalsIgnoreCase("libro")){

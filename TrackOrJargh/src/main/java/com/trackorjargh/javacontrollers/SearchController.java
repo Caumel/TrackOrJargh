@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.javaclass.Book;
 import com.trackorjargh.javaclass.Film;
-import com.trackorjargh.javaclass.Show;
+import com.trackorjargh.javaclass.Shows;
 import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.FilmRepository;
@@ -84,7 +84,7 @@ public class SearchController {
 	
 	@RequestMapping("/busqueda/{optionSearch}/serie/{name}")
 	public String searchShows(Model model, @PathVariable String optionSearch, @PathVariable String name) {		
-		Page<Show> shows;
+		Page<Shows> shows;
 		
 		if(optionSearch.equalsIgnoreCase("titulo")) {
 			shows = showRepository.findByNameContainingIgnoreCase(name, new PageRequest(0, 10));

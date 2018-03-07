@@ -15,7 +15,7 @@ public class CommentShow {
 	private Long id;
 	
 	@ManyToOne
-	private Show show;
+	private Shows show;
 	
 	@OneToOne
 	private User user;
@@ -37,11 +37,11 @@ public class CommentShow {
 		this.id = id;
 	}
 
-	public Show getShow() {
+	public Shows getShow() {
 		return show;
 	}
 
-	public void setShow(Show show) {
+	public void setShow(Shows show) {
 		this.show = show;
 	}
 
