@@ -22,7 +22,7 @@ public interface GenderRepository extends JpaRepository<Gender, Long> {
 
 	List<Gender> findByShows(Shows show);
 
-	@Query(value = "SELECT * FROM GENDER WHERE ID NOT IN (SELECT GENDERS_ID FROM SHOW_GENDERS WHERE SHOWS_ID = ?1)", nativeQuery = true)
+	@Query(value = "SELECT * FROM GENDER WHERE ID NOT IN (SELECT GENDERS_ID FROM SHOWS_GENDERS WHERE SHOWS_ID = ?1)", nativeQuery = true)
 	List<Gender> findByNotInShow(Long id);
 
 	List<Gender> findByBooks(Book book);
@@ -44,7 +44,7 @@ public interface GenderRepository extends JpaRepository<Gender, Long> {
     
     @Modifying
     @Transactional
-	@Query(value = "DELETE FROM SHOW_GENDERS WHERE SHOWS_ID = ?1", nativeQuery = true)
+	@Query(value = "DELETE FROM SHOWS_GENDERS WHERE SHOWS_ID = ?1", nativeQuery = true)
 	void removePointShowsByShowId(long id);
     
     Gender findById(int id);
