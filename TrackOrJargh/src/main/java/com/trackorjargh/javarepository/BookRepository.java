@@ -16,7 +16,7 @@ public interface BookRepository extends JpaRepository<Book, Long>{
 	
 	
 	//SELECT TOP 10 * FROM FILM ORDER BY ID DESC
-	@Query(value="Select top ?1 * from Book order by id desc", nativeQuery=true)
+	@Query(value="Select * from Book order by id desc limit ?1", nativeQuery=true)
 	List<Book> findByLastAdded(int additions);
 	Page<Book> findByNameContainingIgnoreCase(String name, Pageable pageable);
 	
@@ -26,12 +26,12 @@ public interface BookRepository extends JpaRepository<Book, Long>{
     Page<Book> findBestPointBook(Pageable pageable);
     
     @Query(value = "SELECT BOOK.* FROM BOOK_GENDERS INNER JOIN BOOK ON BOOK_GENDERS.BOOKS_ID=BOOK.ID WHERE BOOK_GENDERS.GENDERS_ID IN (SELECT ID FROM GENDER WHERE LOWER(NAME) LIKE LOWER(?1)) \n-- #pageable\n",
-    		countQuery = "SELECT COUNT(BOOK.*) FROM BOOK_GENDERS INNER JOIN FILM ON BOOK_GENDERS.BOOKS_ID=FILM.ID WHERE BOOK_GENDERS.GENDERS_ID IN (SELECT ID FROM GENDER WHERE LOWER(NAME) LIKE LOWER(?1))",
+    		countQuery = "SELECT COUNT(BOOK.ID) FROM BOOK_GENDERS INNER JOIN BOOK ON BOOK_GENDERS.BOOKS_ID=BOOK.ID WHERE BOOK_GENDERS.GENDERS_ID IN (SELECT ID FROM GENDER WHERE LOWER(NAME) LIKE LOWER(?1))",
     		nativeQuery = true)
     Page<Book> findBooksByGender(String gender, Pageable pageable);
     
     @Query(value = "SELECT BOOK.* FROM BOOK_GENDERS INNER JOIN BOOK ON BOOK_GENDERS.BOOKS_ID=BOOK.ID WHERE BOOK_GENDERS.GENDERS_ID IN (SELECT GENDERS_ID FROM FILM_GENDERS WHERE FILMS_ID = ?1) AND BOOK.ID != ?1 \n-- #pageable\n",
-    		countQuery = "SELECT COUNT(BOOK.*) FROM BOOK_GENDERS INNER JOIN BOOK ON BOOK_GENDERS.BOOKS_ID=BOOK.ID WHERE BOOK_GENDERS.GENDERS_ID IN (SELECT GENDERS_ID FROM FILM_GENDERS WHERE FILMS_ID = ?1) AND BOOK.ID != ?1",
+    		countQuery = "SELECT COUNT(BOOK.ID) FROM BOOK_GENDERS INNER JOIN BOOK ON BOOK_GENDERS.BOOKS_ID=BOOK.ID WHERE BOOK_GENDERS.GENDERS_ID IN (SELECT GENDERS_ID FROM FILM_GENDERS WHERE FILMS_ID = ?1) AND BOOK.ID != ?1",
     		nativeQuery = true)
     Page<Book> findBooksRelationsById(long id, Pageable pageable);
     
