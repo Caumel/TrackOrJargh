@@ -1,4 +1,4 @@
-package com.trackorjargh.configurers;
+package com.trackorjargh.security;
 
 import org.springframework.security.authentication.BadCredentialsException;
 

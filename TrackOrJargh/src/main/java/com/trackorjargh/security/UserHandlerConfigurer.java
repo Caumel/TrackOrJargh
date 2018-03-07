@@ -1,4 +1,4 @@
-package com.trackorjargh.configurers;
+package com.trackorjargh.security;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

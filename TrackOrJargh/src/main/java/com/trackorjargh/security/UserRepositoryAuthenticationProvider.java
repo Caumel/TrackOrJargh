@@ -1,4 +1,4 @@
-package com.trackorjargh.configurers;
+package com.trackorjargh.security;
 
 import java.util.ArrayList;
 import java.util.List;

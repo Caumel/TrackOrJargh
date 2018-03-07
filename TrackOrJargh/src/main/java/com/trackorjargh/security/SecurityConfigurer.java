@@ -1,9 +1,10 @@
-package com.trackorjargh.configurers;
+package com.trackorjargh.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.social.connect.ConnectionFactoryLocator;
@@ -16,8 +17,8 @@ import com.trackorjargh.externallogin.FacebookConnectionSignup;
 import com.trackorjargh.externallogin.FacebookSignInAdapter;
 import com.trackorjargh.javarepository.UserRepository;
 
-
 @Configuration
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 	@Autowired
