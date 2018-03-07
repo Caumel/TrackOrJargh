@@ -15,19 +15,26 @@ import javax.persistence.OneToMany;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	public interface BasicInformation {}
+	
+	@JsonView(BasicInformation.class)
 	private String name;
 	private String password;
 	private String email;
 	private String image;
+	@JsonView(BasicInformation.class)
 	private boolean activatedUser;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
+	@JsonView(BasicInformation.class)
 	private List<String> roles;
 	
 	@OneToMany(mappedBy="user")
