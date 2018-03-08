@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -17,6 +21,10 @@ import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.grafics.Grafics;
 import com.trackorjargh.grafics.NumberItemByGende;
 import com.trackorjargh.javaclass.Book;
+import com.trackorjargh.javaclass.CommentBook;
+import com.trackorjargh.javaclass.CommentFilm;
+import com.trackorjargh.javaclass.CommentShow;
+import com.trackorjargh.javaclass.DeleteElementsOfBBDD;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.Gender;
 import com.trackorjargh.javaclass.Lists;
@@ -58,6 +66,8 @@ public class ApiRestController {
 	private GenderRepository genderRepository;
 	@Autowired
 	private UserComponent userComponent;
+	@Autowired
+	private DeleteElementsOfBBDD deleteElementofBBDD;
 
 	@RequestMapping(value = "/api/peliculas", method = RequestMethod.GET)
 	@JsonView(Film.BasicInformation.class)
@@ -310,4 +320,32 @@ public class ApiRestController {
 			return false;
 		}
 	}
+	
+	public interface basicInfoComentFilm extends CommentFilm.BasicInformation, User.BasicInformation{}
+	
+	@RequestMapping(value = "/api/pelicula/comentarios/{name}", method = RequestMethod.GET)
+	@JsonView(basicInfoComentFilm.class)
+	public List<CommentFilm> getCommentsFilm(@PathVariable String name) {
+		
+		return filmRepository.findByNameIgnoreCase(name).getCommentsFilm();
+	}
+	
+	public interface basicInfoComentShow extends CommentShow.BasicInformation, User.BasicInformation{}
+	
+	@RequestMapping(value = "/api/serie/comentarios/{name}", method = RequestMethod.GET)
+	@JsonView(basicInfoComentShow.class)
+	public List<CommentShow> getCommentsShow(@PathVariable String name) {
+		
+		return showRepository.findByNameIgnoreCase(name).getCommentsShow();
+	}
+	
+	public interface basicInfoComentBook extends CommentBook.BasicInformation, User.BasicInformation{}
+	
+	@RequestMapping(value = "/api/libro/comentarios/{name}", method = RequestMethod.GET)
+	@JsonView(basicInfoComentShow.class)
+	public List<CommentBook> getCommentsBook(@PathVariable String name) {
+		
+		return bookRepository.findByNameIgnoreCase(name).getCommentsBook();
+	}
+	
 }

@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.trackorjargh.javaclass.CommentFilm.BasicInformation;
+
 @Entity
 public class CommentBook {
 	
@@ -17,9 +20,13 @@ public class CommentBook {
 	@ManyToOne
 	private Book book;
 	
+	public interface BasicInformation {}
+	
 	@OneToOne
+	@JsonView(BasicInformation.class)
 	private User user;
 	
+	@JsonView(BasicInformation.class)
 	private String comment;
 
 	public CommentBook() {
