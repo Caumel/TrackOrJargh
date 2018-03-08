@@ -8,7 +8,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.trackorjargh.javaclass.CommentFilm.BasicInformation;
 
 @Entity
 public class CommentBook {

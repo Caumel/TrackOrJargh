@@ -321,6 +321,109 @@ public class ApiRestController {
 		}
 	}
 	
+	@RequestMapping(value = "/api/pelicula/{name}", method = RequestMethod.GET)
+	@JsonView(Film.BasicInformation.class)
+	public Film getFilm(@PathVariable String name) {
+			
+		return filmRepository.findByNameIgnoreCase(name);
+	}
+
+	@RequestMapping(value = "/api/libro/{name}", method = RequestMethod.GET)
+	@JsonView(Book.BasicInformation.class)
+	public Book getBook(@PathVariable String name) {
+			
+		return bookRepository.findByNameIgnoreCase(name);
+	}
+
+	@RequestMapping(value = "/api/agregarpelicula", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<Film> addFilm(@RequestBody Film film) {
+		if (filmRepository.findByNameIgnoreCase(film.getName())== null){
+			filmRepository.save(film);
+			return new ResponseEntity<>(film, HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.IM_USED);
+		}
+	}
+
+	@RequestMapping(value = "/api/agregarlibro", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<Book> addBook(@RequestBody Book book) {
+		if (bookRepository.findByNameIgnoreCase(book.getName())== null){
+			bookRepository.save(book);
+			return new ResponseEntity<>(book, HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.IM_USED);
+		}
+	}	
+
+	@RequestMapping(value = "/api/borrarpelicula/{name}", method = RequestMethod.DELETE)
+	@JsonView(Film.BasicInformation.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<Film> deleteFilm(@PathVariable String name){
+		if (filmRepository.findByNameIgnoreCase(name) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			Film deletedFilm = filmRepository.findByNameIgnoreCase(name);
+			deleteElementofBBDD.deleteFilm(filmRepository.findByNameIgnoreCase(name));
+			return new ResponseEntity<>(deletedFilm, HttpStatus.OK);
+		}
+	}
+
+		
+	@RequestMapping(value = "/api/borrarlibro/{name}", method = RequestMethod.DELETE)
+	@JsonView(Book.BasicInformation.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<Book> deleteBook(@PathVariable String name){
+		if (bookRepository.findByNameIgnoreCase(name) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			Book deletedBook = bookRepository.findByNameIgnoreCase(name);
+			deleteElementofBBDD.deleteBook(bookRepository.findByNameIgnoreCase(name));
+			return new ResponseEntity<>(deletedBook, HttpStatus.OK);
+		}
+	}
+
+	@RequestMapping(value = "/api/editarpelicula", method = RequestMethod.PUT)
+	@JsonView(Film.BasicInformation.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<Film> editFilm(@RequestBody Film film){
+		if (filmRepository.findByNameIgnoreCase(film.getName()) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			Film editedFilm = filmRepository.findByNameIgnoreCase(film.getName());		
+			editedFilm.setYear(film.getYear());				
+			editedFilm.setTrailer(film.getTrailer());				
+			editedFilm.setSynopsis(film.getSynopsis());				
+			editedFilm.setImage(film.getImage());				
+			editedFilm.setGenders(film.getGenders());				
+			editedFilm.setDirectors(film.getDirectors());				
+			editedFilm.setActors(film.getActors());
+
+			filmRepository.save(editedFilm);
+			return new ResponseEntity<>(editedFilm, HttpStatus.OK);
+		}
+	}
+
+	@RequestMapping(value = "/api/editarlibro", method = RequestMethod.PUT)
+	@JsonView(Book.BasicInformation.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<Book> editBook(@RequestBody Book book){
+		if(bookRepository.findByNameIgnoreCase(book.getName()) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			Book editedBook = bookRepository.findByNameIgnoreCase(book.getName());
+			editedBook.setYear(book.getYear());
+			editedBook.setSynopsis(book.getSynopsis());
+			editedBook.setImage(book.getImage());
+			editedBook.setGenders(book.getGenders());
+			editedBook.setAuthors(book.getAuthors());
+
+			bookRepository.save(editedBook);
+			return new ResponseEntity<>(editedBook, HttpStatus.OK);
+		}	
+	}
+	
 	public interface basicInfoComentFilm extends CommentFilm.BasicInformation, User.BasicInformation{}
 	
 	@RequestMapping(value = "/api/pelicula/comentarios/{name}", method = RequestMethod.GET)
@@ -347,5 +450,6 @@ public class ApiRestController {
 		
 		return bookRepository.findByNameIgnoreCase(name).getCommentsBook();
 	}
+	
 	
 }
