@@ -2,11 +2,13 @@ version: '3'
 
 services:
   db:
-    image: mysql/mysql-server:5.7.21
+    image: mysql/mysql-server:5.7
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=trackorjargh
+      - MYSQL_ROOT_HOST=%
     command: mysqld --lower_case_table_names=1
+
   trackorjargh-application:
     image: trackorjargh-spring
     depends_on:
