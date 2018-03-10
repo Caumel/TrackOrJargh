@@ -1,8 +1,6 @@
-
 .DS_Store
 /.metadata/
 /.metadata/
-<<<<<<< HEAD
 .recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/_1.fnm
 *.fdt
 *.fnm
@@ -14,9 +12,6 @@
 *.tis
 .recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/segments_2
 .recommenders/index/http___download_eclipse_org_recommenders_models_oxygen_/segments.gen
-=======
-.DS_Store
->>>>>>> 7aa492a4905dadadf6a7b3f598581498e35287f7
 /.recommenders/
 .recommenders/caches/identified-project-coordinates.json
 Docker/TrackOrJargh-0.0.1-SNAPSHOT.jar
