@@ -39,7 +39,7 @@ function loadContent() {
 								'</figure>' +
 								'<div class="portfolio-info">' +
 									'<h4>' + 
-										'<a name="nameFilm" href="item.url + item.name +">' + item.name + '</a>' +
+										'<a name="nameFilm" href="' + item.url + item.name +'">' + item.name + '</a>' +
 									'</h4>' + 
 									'<p>' + item.year + '</p>' +
 									addedLists + 
