@@ -506,7 +506,23 @@ public class DatabaseInformationLoader {
 		b21.getGenders().add(g8);
 		b21.getGenders().add(g1);
 		bookRepository.save(b21);
-
+		
+		Book b22 = new Book("La luna de Plutón", "Dross Rotzank","Mi nuevo libro, la luna de plutón, ya está a la venta en las mejores librerias de Uruguay, Paraguay, Argentina, Chile...",
+				"/img/books/lunaPluton.jpg",2010);
+		
+		b22.getGenders().add(g1);
+		b22.getGenders().add(g2);
+		b22.getGenders().add(g3);
+		b22.getGenders().add(g4);
+		b22.getGenders().add(g5);
+		b22.getGenders().add(g6);
+		b22.getGenders().add(g7);
+		b22.getGenders().add(g8);
+		b22.getGenders().add(g9);
+		b22.getGenders().add(g10);
+		bookRepository.save(b22);
+		
+				
 		// Test Data Show
 		Shows sh1 = new Shows("The Big Bang Theory", "", "",
 				"La serie comienza con la llegada de Penny, aspirante a actriz, al apartamento vecino, que comparten Sheldon y Leonard, dos físicos que trabajan en el Instituto Tecnológico de California (Caltech). Leonard se enamora desde el primer momento de Penny.",
@@ -1077,6 +1093,11 @@ public class DatabaseInformationLoader {
 		cb21.setBook(b21);
 		cb21.setUser(u1);
 		commentBookRepository.save(cb21);
+		
+		CommentBook cb22 = new CommentBook("MEJOR LIBRO DEL MUNDO");
+		cb22.setBook(b22);
+		cb22.setUser(u2);
+		commentBookRepository.save(cb22);
 
 		// Test Data Point Film
 		PointFilm pf1 = new PointFilm((double) 5);
@@ -1420,6 +1441,11 @@ public class DatabaseInformationLoader {
 		pb21.setBook(b21);
 		pb21.setUser(u1);
 		pointBookRepository.save(pb21);
+		
+		PointBook pb22 = new PointBook((double) 5);
+		pb22.setBook(b22);
+		pb22.setUser(u1);
+		pointBookRepository.save(pb22);
 
 	}
 }
