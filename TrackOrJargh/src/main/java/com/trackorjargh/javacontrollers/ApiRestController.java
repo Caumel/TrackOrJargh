@@ -321,6 +321,28 @@ public class ApiRestController {
 		}
 	}
 	
+	@RequestMapping(value = "/api/serie/{name}")
+	@JsonView(Shows.BasicInformation.class)
+	public ResponseEntity<Shows> getShow(@PathVariable("name") String name) {
+	  Shows show = showRepository.findByNameIgnoreCase(name);
+	  if(show == null) {
+	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	  }else {
+	    return new ResponseEntity<Shows>(show, HttpStatus.OK);
+	  }
+	}
+	
+	@RequestMapping(value = "/api/usuario/{name}", method = RequestMethod.GET)
+	@JsonView(User.BasicInformation.class)
+	public ResponseEntity<User> getUser(@PathVariable String name) {
+	  User user = userRepository.findByNameIgnoreCase(name);
+	  if(user == null) {
+	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	  }else {
+	    return new ResponseEntity<User>(user, HttpStatus.OK);
+	  }
+	}
+	
 	@RequestMapping(value = "/api/pelicula/{name}", method = RequestMethod.GET)
 	@JsonView(Film.BasicInformation.class)
 	public Film getFilm(@PathVariable String name) {
@@ -334,6 +356,36 @@ public class ApiRestController {
 			
 		return bookRepository.findByNameIgnoreCase(name);
 	}
+	
+	@RequestMapping(value = "/api/agregarususario", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<User> addUser(@RequestBody User user) {
+	  if (userRepository.findByNameIgnoreCase(user.getName()) == null) {
+	    userRepository.save(user);
+
+	    return new ResponseEntity<>(user, HttpStatus.OK);
+	  } else {
+	    return new ResponseEntity<>(user, HttpStatus.IM_USED);
+	  }
+
+	}
+	
+
+
+@RequestMapping(value = "/api/agregarserie", method = RequestMethod.POST)
+@ResponseStatus(HttpStatus.CREATED)
+public ResponseEntity<Shows> addShow(@RequestBody Shows show) {
+  if (showRepository.findByNameIgnoreCase(show.getName()) == null) {
+    showRepository.save(show);
+
+    return new ResponseEntity<>(show, HttpStatus.OK);
+  } else {
+    return new ResponseEntity<>(show, HttpStatus.IM_USED);
+  }
+
+}
+
+
 
 	@RequestMapping(value = "/api/agregarpelicula", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
@@ -356,6 +408,33 @@ public class ApiRestController {
 			return new ResponseEntity<>(HttpStatus.IM_USED);
 		}
 	}	
+	
+	@RequestMapping(value = "/api/borrarusuario/{name}", method = RequestMethod.DELETE)
+	@JsonView(User.BasicInformation.class)
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<User> deleteUser(@PathVariable("name") String name){
+	  User user = userRepository.findByNameIgnoreCase(name);
+	  if(user == null) {
+	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	  }else {
+	    deleteElementofBBDD.deleteUser(user);
+	    return new ResponseEntity<User>(user, HttpStatus.OK);
+	  }
+	}
+
+	@RequestMapping(value = "/api/borrarserie/{name}", method = RequestMethod.DELETE)
+	@JsonView(Shows.BasicInformation.class)
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<Shows> deleteShow(@PathVariable("name") String name){
+	  Shows show = showRepository.findByNameIgnoreCase(name);
+	  if(show == null) {
+	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	  }else{
+	    deleteElementofBBDD.deleteShow(show);
+	    return new ResponseEntity<Shows>(show, HttpStatus.OK);
+	  }
+	  
+	}
 
 	@RequestMapping(value = "/api/borrarpelicula/{name}", method = RequestMethod.DELETE)
 	@JsonView(Film.BasicInformation.class)
@@ -383,6 +462,18 @@ public class ApiRestController {
 			return new ResponseEntity<>(deletedBook, HttpStatus.OK);
 		}
 	}
+	
+	/*
+	@RequestMapping(value = "/api/editarserie", method = RequestMethod.PUT)
+	@JsonView(Shows.BasicInformation.class)
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<Shows> editShow(@RequestBody Shows show){
+	  if(showRepository.findByNameIgnoreCase(show.getName())!=null) { //if the film already exists, then i modify the parameters
+	    
+	  }else {
+	    return new ResponseEntity<Shows>(show,HttpStatus.NOT_FOUND);
+	  }
+	  */
 
 	@RequestMapping(value = "/api/editarpelicula", method = RequestMethod.PUT)
 	@JsonView(Film.BasicInformation.class)
