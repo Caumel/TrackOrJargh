@@ -35,6 +35,9 @@ import com.trackorjargh.javaclass.PointShow;
 import com.trackorjargh.javaclass.Shows;
 import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.BookRepository;
+import com.trackorjargh.javarepository.CommentBookRepository;
+import com.trackorjargh.javarepository.CommentFilmRepository;
+import com.trackorjargh.javarepository.CommentShowRepository;
 import com.trackorjargh.javarepository.FilmRepository;
 import com.trackorjargh.javarepository.GenderRepository;
 import com.trackorjargh.javarepository.ListsRepository;
@@ -71,6 +74,12 @@ public class ApiRestController {
 	private UserComponent userComponent;
 	@Autowired
 	private DeleteElementsOfBBDD deleteElementofBBDD;
+	@Autowired
+	private CommentFilmRepository commentFilmRepository;
+	@Autowired
+	private CommentShowRepository commentShowRepository;
+	@Autowired
+	private CommentBookRepository commentBookRepository;
 
 	@RequestMapping(value = "/api/peliculas", method = RequestMethod.GET)
 	@JsonView(Film.BasicInformation.class)
@@ -545,34 +554,115 @@ public class ApiRestController {
 		}
 	}
 
-	public interface basicInfoComentFilm extends CommentFilm.BasicInformation, User.BasicInformation {
+	public interface basicInfoCommentFilm extends CommentFilm.BasicInformation, User.BasicInformation {
 	}
 
 	@RequestMapping(value = "/api/pelicula/comentarios/{name}", method = RequestMethod.GET)
-	@JsonView(basicInfoComentFilm.class)
+	@JsonView(basicInfoCommentFilm.class)
 	public List<CommentFilm> getCommentsFilm(@PathVariable String name) {
 
 		return filmRepository.findByNameIgnoreCase(name).getCommentsFilm();
 	}
 
-	public interface basicInfoComentShow extends CommentShow.BasicInformation, User.BasicInformation {
+	public interface basicInfoCommentShow extends CommentShow.BasicInformation, User.BasicInformation {
 	}
 
 	@RequestMapping(value = "/api/serie/comentarios/{name}", method = RequestMethod.GET)
-	@JsonView(basicInfoComentShow.class)
+	@JsonView(basicInfoCommentShow.class)
 	public List<CommentShow> getCommentsShow(@PathVariable String name) {
 
 		return showRepository.findByNameIgnoreCase(name).getCommentsShow();
 	}
 
-	public interface basicInfoComentBook extends CommentBook.BasicInformation, User.BasicInformation {
+	public interface basicInfoCommentBook extends CommentBook.BasicInformation, User.BasicInformation {
 	}
 
 	@RequestMapping(value = "/api/libro/comentarios/{name}", method = RequestMethod.GET)
-	@JsonView(basicInfoComentShow.class)
+	@JsonView(basicInfoCommentShow.class)
 	public List<CommentBook> getCommentsBook(@PathVariable String name) {
 
 		return bookRepository.findByNameIgnoreCase(name).getCommentsBook();
 	}
-
+	
+	@RequestMapping(value = "/api/pelicula/{name}/agregarcomentario", method = RequestMethod.POST)
+	@JsonView(basicInfoCommentFilm.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<CommentFilm> addComentFilm(@PathVariable String name, @RequestBody CommentFilm comment) {
+		if (filmRepository.findByNameIgnoreCase(name) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			comment.setUser(userComponent.getLoggedUser());
+			comment.setFilm(filmRepository.findByNameIgnoreCase(name));
+			commentFilmRepository.save(comment);
+			return new ResponseEntity<>(comment, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/api/serie/{name}/agregarcomentario", method = RequestMethod.POST)
+	@JsonView(basicInfoCommentShow.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<CommentShow> addComentShow(@PathVariable String name, @RequestBody CommentShow comment) {
+		if (showRepository.findByNameIgnoreCase(name) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			comment.setUser(userComponent.getLoggedUser());
+			comment.setShow(showRepository.findByNameIgnoreCase(name));
+			commentShowRepository.save(comment);
+			return new ResponseEntity<>(comment, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/api/libro/{name}/agregarcomentario", method = RequestMethod.POST)
+	@JsonView(basicInfoCommentBook.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<CommentBook> addComentBook(@PathVariable String name, @RequestBody CommentBook comment) {
+		if (bookRepository.findByNameIgnoreCase(name) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			comment.setUser(userComponent.getLoggedUser());
+			comment.setBook(bookRepository.findByNameIgnoreCase(name));
+			commentBookRepository.save(comment);
+			return new ResponseEntity<>(comment, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/api/pelicula/borrarcomentario/{id}", method = RequestMethod.DELETE)
+	@JsonView(basicInfoCommentFilm.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<CommentFilm> deleteFilmComent(@PathVariable Long id){
+		if (commentFilmRepository.findById(id) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			CommentFilm deleteComment = commentFilmRepository.findById(id);
+			commentFilmRepository.delete(commentFilmRepository.findById(id));
+			return new ResponseEntity<>(deleteComment, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/api/serie/borrarcomentario/{id}", method = RequestMethod.DELETE)
+	@JsonView(basicInfoCommentShow.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<CommentShow> deleteShowComent(@PathVariable Long id){
+		if (commentShowRepository.findById(id) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			CommentShow deleteComment = commentShowRepository.findById(id);
+			commentShowRepository.delete(commentShowRepository.findById(id));
+			return new ResponseEntity<>(deleteComment, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/api/libro/borrarcomentario/{id}", method = RequestMethod.DELETE)
+	@JsonView(basicInfoCommentBook.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<CommentBook> deleteBookComent(@PathVariable Long id){
+		if (commentBookRepository.findById(id) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			CommentBook deleteComment = commentBookRepository.findById(id);
+			commentBookRepository.delete(commentBookRepository.findById(id));
+			return new ResponseEntity<>(deleteComment, HttpStatus.OK);
+		}
+	}
 }
+
