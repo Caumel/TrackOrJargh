@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+
 @Entity
 public class PointFilm {
 	
@@ -14,12 +17,17 @@ public class PointFilm {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	public interface BasicInformation {}
+	
+	@JsonView(BasicInformation.class)
 	@ManyToOne
 	private Film film;
 	
+	@JsonView(BasicInformation.class)
 	@OneToOne
 	private User user;
 	
+	@JsonView(BasicInformation.class)
 	private double points;
 
 	public PointFilm() {

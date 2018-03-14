@@ -664,5 +664,13 @@ public class ApiRestController {
 			return new ResponseEntity<>(deleteComment, HttpStatus.OK);
 		}
 	}
+	
+	public interface basicInfoPointFilm extends PointFilm.BasicInformation, Film.NameFilmInfo, User.NameUserInfo {}
+	
+	@RequestMapping(value = "/api/puntuaciones/pelicula/{name}", method = RequestMethod.GET)
+	@JsonView(basicInfoPointFilm.class)
+	public List<PointFilm> getPointFilm(@PathVariable String name){
+		return filmRepository.findByNameIgnoreCase(name).getPointsFilm();
+	}
 }
 

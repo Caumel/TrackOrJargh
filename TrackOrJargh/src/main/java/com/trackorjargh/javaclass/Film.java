@@ -27,8 +27,9 @@ public class Film implements InterfaceMainItem{
 	private String url = "/pelicula/";
 	
 	public interface BasicInformation {}
+	public interface NameFilmInfo {}
 	
-	@JsonView(BasicInformation.class)
+	@JsonView({BasicInformation.class, NameFilmInfo.class})
 	private String name;
 	@JsonView(BasicInformation.class)
 	@Column(columnDefinition = "TEXT")

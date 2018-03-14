@@ -24,8 +24,9 @@ public class User {
 	private Long id;
 	
 	public interface BasicInformation {}
+	public interface NameUserInfo {}
 	
-	@JsonView(BasicInformation.class)
+	@JsonView({BasicInformation.class, NameUserInfo.class})
 	private String name;
 	private String password;
 	private String email;
