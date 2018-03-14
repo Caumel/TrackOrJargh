@@ -27,8 +27,10 @@ public class Shows implements InterfaceMainItem{
 	private String url = "/serie/";
 	
 	public interface BasicInformation {}
+	public interface NameShowInfo {}
+
 	
-	@JsonView(BasicInformation.class)
+	@JsonView({BasicInformation.class, NameShowInfo.class})
 	private String name;
 	@JsonView(BasicInformation.class)
 	@Column(columnDefinition = "TEXT")

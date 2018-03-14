@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+
 @Entity
 public class Book implements InterfaceMainItem{
 	@Id
@@ -25,8 +26,9 @@ public class Book implements InterfaceMainItem{
 	private String url = "/libro/";
 	
 	public interface BasicInformation {}
+	public interface NameBookInfo {}
 	
-	@JsonView(BasicInformation.class)
+	@JsonView({BasicInformation.class, NameBookInfo.class})
 	private String name;
 	@JsonView(BasicInformation.class)
 	@Column(columnDefinition = "TEXT")

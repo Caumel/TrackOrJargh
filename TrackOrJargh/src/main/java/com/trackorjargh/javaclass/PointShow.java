@@ -7,19 +7,27 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class PointShow {
 	
+	public interface BasicInformation {}
+	
+	@JsonView(BasicInformation.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+		
 	@ManyToOne
+	@JsonView(BasicInformation.class)
 	private Shows show;
 	
 	@OneToOne
+	@JsonView(BasicInformation.class)
 	private User user;
 	
+	@JsonView(BasicInformation.class)
 	private double points;
 
 	public PointShow() {

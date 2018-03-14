@@ -25,4 +25,6 @@ public interface PointBookRepository extends JpaRepository<PointBook, Long>{
     @Transactional
 	@Query(value = "DELETE FROM POINT_BOOK WHERE BOOK_ID = ?1", nativeQuery = true)
 	void removePointsBooksByBookId(long id);
+    
+    PointBook findById(Long id);
 }

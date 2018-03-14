@@ -665,12 +665,121 @@ public class ApiRestController {
 		}
 	}
 	
-	public interface basicInfoPointFilm extends PointFilm.BasicInformation, Film.NameFilmInfo, User.NameUserInfo {}
 	
-	@RequestMapping(value = "/api/puntuaciones/pelicula/{name}", method = RequestMethod.GET)
-	@JsonView(basicInfoPointFilm.class)
-	public List<PointFilm> getPointFilm(@PathVariable String name){
+	
+	public interface joinedPointBookUserInfo extends PointBook.BasicInformation, Book.NameBookInfo , User.NameUserInfo {
+	}
+	
+	@RequestMapping(value ="/api/libro/borrarpuntosl/{id}", method = RequestMethod.DELETE)
+	@JsonView(joinedPointBookUserInfo.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<PointBook> deteleBookPoint(@PathVariable Long id){
+		if (bookRepository.findById(id) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			PointBook deleteBookPoints = pointBookRepository.findById(id);
+			pointBookRepository.delete(pointBookRepository.findById(id));
+
+			return new ResponseEntity<>(deleteBookPoints, HttpStatus.OK);
+		}
+	}
+	
+	public interface joinedPointFilmUserInfo extends PointFilm.BasicInformation, Film.NameFilmInfo, User.NameUserInfo {
+	}
+	
+	@RequestMapping(value ="/api/pelicula/borrarpuntosp/{id}", method = RequestMethod.DELETE)
+	@JsonView(joinedPointFilmUserInfo.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<PointFilm> deteleFilmPoint(@PathVariable Long id){
+		if (pointFilmRepository.findById(id) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			PointFilm deleteFilmPoints = pointFilmRepository.findById(id);
+			pointFilmRepository.delete(pointFilmRepository.findById(id));
+
+			return new ResponseEntity<>(deleteFilmPoints, HttpStatus.OK);
+		}
+	}
+	
+	public interface joinedPointShowUserInfo extends PointShow.BasicInformation, Shows.NameShowInfo , User.NameUserInfo {
+	}
+	
+	@RequestMapping(value ="/api/serie/borrarpuntoss/{id}", method = RequestMethod.DELETE)
+	@JsonView(joinedPointShowUserInfo.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<PointShow> deteleShowPoint(@PathVariable Long id){
+		if (pointShowRepository.findById(id) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			PointShow deleteShowPoints = pointShowRepository.findById(id);
+			pointShowRepository.delete(pointShowRepository.findById(id));
+
+			return new ResponseEntity<>(deleteShowPoints, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/api/libro/{name}/agregarpuntosl", method = RequestMethod.POST)
+	@JsonView(joinedPointBookUserInfo.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<PointBook> addBookPoint(@PathVariable String name, @RequestBody PointBook bookPoint) {
+		if (bookRepository.findByNameIgnoreCase(name) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			bookPoint.setUser(userComponent.getLoggedUser());
+			bookPoint.setBook(bookRepository.findByNameIgnoreCase(name));
+			pointBookRepository.save(bookPoint);
+			return new ResponseEntity<>(bookPoint, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/api/pelicula/{name}/agregarpuntosp", method = RequestMethod.POST)
+	@JsonView(joinedPointFilmUserInfo.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<PointFilm> addfilmPoint(@PathVariable String name, @RequestBody PointFilm filmPoint) {
+		if (filmRepository.findByNameIgnoreCase(name) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			filmPoint.setUser(userComponent.getLoggedUser());
+			filmPoint.setFilm(filmRepository.findByNameIgnoreCase(name));
+			pointFilmRepository.save(filmPoint);
+			return new ResponseEntity<>(filmPoint, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/api/serie/{name}/agregarpuntoss", method = RequestMethod.POST)
+	@JsonView(joinedPointShowUserInfo.class)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<PointShow> addShowPoint(@PathVariable String name, @RequestBody PointShow showPoint) {
+		if (showRepository.findByNameIgnoreCase(name) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			showPoint.setUser(userComponent.getLoggedUser());
+			showPoint.setShow(showRepository.findByNameIgnoreCase(name));
+			pointShowRepository.save(showPoint);
+			return new ResponseEntity<>(showPoint, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/api/obtenerpuntosl/libro/{name}", method = RequestMethod.GET)
+	@JsonView(joinedPointBookUserInfo.class)
+	public List<PointBook> getBookPoint(@PathVariable String name) {
+
+		return bookRepository.findByNameIgnoreCase(name).getPointsBook();
+	}
+	
+	@RequestMapping(value = "/api/obtenerpuntosp/pelicula/{name}", method = RequestMethod.GET)
+	@JsonView(joinedPointFilmUserInfo.class)
+	public List<PointFilm> getFilmPoint(@PathVariable String name) {
+
 		return filmRepository.findByNameIgnoreCase(name).getPointsFilm();
 	}
+	
+	@RequestMapping(value = "/api/obtenerpuntoss/serie/{name}", method = RequestMethod.GET)
+	@JsonView(joinedPointShowUserInfo.class)
+	public List<PointShow> getShowPoint(@PathVariable String name) {
+
+		return showRepository.findByNameIgnoreCase(name).getPointsShow();
+	}
+	
 }
 

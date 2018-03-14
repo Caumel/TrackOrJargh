@@ -12,12 +12,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class PointFilm {
+	public interface BasicInformation {}
 	
+	@JsonView(BasicInformation.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	public interface BasicInformation {}
 	
 	@JsonView(BasicInformation.class)
 	@ManyToOne

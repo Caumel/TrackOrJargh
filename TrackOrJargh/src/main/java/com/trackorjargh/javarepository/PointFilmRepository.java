@@ -25,4 +25,6 @@ public interface PointFilmRepository extends JpaRepository<PointFilm, Long>{
     @Transactional
 	@Query(value = "DELETE FROM POINT_FILM WHERE FILM_ID = ?1", nativeQuery = true)
 	void removePointsFilmsByFilmId(long id);
+    
+    PointFilm findById (Long id);
 }

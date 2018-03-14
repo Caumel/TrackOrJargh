@@ -25,4 +25,6 @@ public interface PointShowRepository extends JpaRepository<PointShow, Long>{
     @Transactional
 	@Query(value = "DELETE FROM POINT_SHOW WHERE SHOW_ID = ?1", nativeQuery = true)
 	void removePointsShowsByShowId(long id);
+    
+    PointShow findById (Long id);
 }
