@@ -95,6 +95,8 @@ public class PageController {
 	private ListsRepository listsRepository;
 	@Autowired
 	private DeleteElementsOfBBDD deleteElementsOfBBDD;
+	@Autowired
+	private CommonCode commonCode;
 
 	@RequestMapping("/")
 	public String serveIndex(Model model) {
@@ -233,26 +235,12 @@ public class PageController {
 		Film film = filmRepository.findByNameIgnoreCase(name);
 
 		if (messageSent.isPresent()) {
-			CommentFilm message = new CommentFilm(messageSent.get());
-			message.setFilm(film);
-			message.setUser(userComponent.getLoggedUser());
-
-			commentFilmRepository.save(message);
+			commonCode.addCommentFilm(film, messageSent.get());
 		}
 
 		if (pointsSent.isPresent()) {
 			double points = Double.parseDouble(pointsSent.get());
-			PointFilm pointFilm = pointFilmRepository.findByUserAndFilm(userComponent.getLoggedUser(), film);
-
-			if (pointFilm == null) {
-				pointFilm = new PointFilm(points);
-				pointFilm.setFilm(film);
-				pointFilm.setUser(userComponent.getLoggedUser());
-			} else {
-				pointFilm.setPoints(points);
-			}
-
-			pointFilmRepository.save(pointFilm);
+			commonCode.updatePointsFilm(film, points);
 		}
 
 		List<PreparateMessageShow> listMessages = new LinkedList<>();
@@ -297,26 +285,12 @@ public class PageController {
 		Shows show = showRepository.findByNameIgnoreCase(name);
 
 		if (messageSent.isPresent()) {
-			CommentShow message = new CommentShow(messageSent.get());
-			message.setShow(show);
-			message.setUser(userComponent.getLoggedUser());
-
-			commentShowRepository.save(message);
+			commonCode.addCommentShow(show, messageSent.get());
 		}
 
 		if (pointsSent.isPresent()) {
 			double points = Double.parseDouble(pointsSent.get());
-			PointShow pointShow = pointShowRepository.findByUserAndShow(userComponent.getLoggedUser(), show);
-
-			if (pointShow == null) {
-				pointShow = new PointShow(points);
-				pointShow.setShow(show);
-				pointShow.setUser(userComponent.getLoggedUser());
-			} else {
-				pointShow.setPoints(points);
-			}
-
-			pointShowRepository.save(pointShow);
+			commonCode.updatePointsShow(show, points);
 		}
 
 		List<PreparateMessageShow> listMessages = new LinkedList<>();
@@ -362,26 +336,12 @@ public class PageController {
 		Book book = bookRepository.findByNameIgnoreCase(name);
 
 		if (messageSent.isPresent()) {
-			CommentBook message = new CommentBook(messageSent.get());
-			message.setBook(book);
-			message.setUser(userComponent.getLoggedUser());
-
-			commentBookRepository.save(message);
+			commonCode.addCommentBook(book, messageSent.get());
 		}
 
 		if (pointsSent.isPresent()) {
 			double points = Double.parseDouble(pointsSent.get());
-			PointBook pointBook = pointBookRepository.findByUserAndBook(userComponent.getLoggedUser(), book);
-
-			if (pointBook == null) {
-				pointBook = new PointBook(points);
-				pointBook.setBook(book);
-				pointBook.setUser(userComponent.getLoggedUser());
-			} else {
-				pointBook.setPoints(points);
-			}
-
-			pointBookRepository.save(pointBook);
+			commonCode.updatePointsBook(book, points);
 		}
 
 		List<PreparateMessageShow> listMessages = new LinkedList<>();
@@ -423,24 +383,21 @@ public class PageController {
 
 	@RequestMapping("/pelicula/borrarcomentario/{id}/{name}")
 	public String deleteCommentFilm(Model model, @PathVariable int id, @PathVariable String name) {
-		CommentFilm comment = commentFilmRepository.findById(new Long(id));
-		commentFilmRepository.delete(comment);
+		commonCode.deleteCommentFilm(new Long(id));
 
 		return "redirect:/pelicula/" + name;
 	}
 
 	@RequestMapping("/serie/borrarcomentario/{id}/{name}")
 	public String deleteCommentShow(Model model, @PathVariable int id, @PathVariable String name) {
-		CommentShow comment = commentShowRepository.findById(new Long(id));
-		commentShowRepository.delete(comment);
+		commonCode.deleteCommentShow(new Long(id));
 
 		return "redirect:/serie/" + name;
 	}
 
 	@RequestMapping("/libro/borrarcomentario/{id}/{name}")
 	public String deleteCommentBook(Model model, @PathVariable int id, @PathVariable String name) {
-		CommentBook comment = commentBookRepository.findById(new Long(id));
-		commentBookRepository.delete(comment);
+		commonCode.deleteCommentBook(new Long(id));
 
 		return "redirect:/libro/" + name;
 	}

@@ -80,6 +80,8 @@ public class ApiRestController {
 	private CommentShowRepository commentShowRepository;
 	@Autowired
 	private CommentBookRepository commentBookRepository;
+	@Autowired
+	private CommonCode commonCode;
 
 	@RequestMapping(value = "/api/peliculas", method = RequestMethod.GET)
 	@JsonView(Film.BasicInformation.class)
@@ -591,10 +593,7 @@ public class ApiRestController {
 		if (filmRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			comment.setUser(userComponent.getLoggedUser());
-			comment.setFilm(filmRepository.findByNameIgnoreCase(name));
-			commentFilmRepository.save(comment);
-			return new ResponseEntity<>(comment, HttpStatus.OK);
+			return new ResponseEntity<>(commonCode.addCommentFilm(filmRepository.findByNameIgnoreCase(name), comment.getComment()), HttpStatus.OK);
 		}
 	}
 	
@@ -605,10 +604,7 @@ public class ApiRestController {
 		if (showRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			comment.setUser(userComponent.getLoggedUser());
-			comment.setShow(showRepository.findByNameIgnoreCase(name));
-			commentShowRepository.save(comment);
-			return new ResponseEntity<>(comment, HttpStatus.OK);
+			return new ResponseEntity<>(commonCode.addCommentShow(showRepository.findByNameIgnoreCase(name), comment.getComment()), HttpStatus.OK);
 		}
 	}
 	
@@ -619,10 +615,7 @@ public class ApiRestController {
 		if (bookRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			comment.setUser(userComponent.getLoggedUser());
-			comment.setBook(bookRepository.findByNameIgnoreCase(name));
-			commentBookRepository.save(comment);
-			return new ResponseEntity<>(comment, HttpStatus.OK);
+			return new ResponseEntity<>(commonCode.addCommentBook(bookRepository.findByNameIgnoreCase(name), comment.getComment()), HttpStatus.OK);
 		}
 	}
 	
@@ -633,9 +626,7 @@ public class ApiRestController {
 		if (commentFilmRepository.findById(id) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			CommentFilm deleteComment = commentFilmRepository.findById(id);
-			commentFilmRepository.delete(commentFilmRepository.findById(id));
-			return new ResponseEntity<>(deleteComment, HttpStatus.OK);
+			return new ResponseEntity<>(commonCode.deleteCommentFilm(id), HttpStatus.OK);
 		}
 	}
 	
@@ -646,9 +637,7 @@ public class ApiRestController {
 		if (commentShowRepository.findById(id) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			CommentShow deleteComment = commentShowRepository.findById(id);
-			commentShowRepository.delete(commentShowRepository.findById(id));
-			return new ResponseEntity<>(deleteComment, HttpStatus.OK);
+			return new ResponseEntity<>(commonCode.deleteCommentShow(id), HttpStatus.OK);
 		}
 	}
 	
@@ -659,9 +648,7 @@ public class ApiRestController {
 		if (commentBookRepository.findById(id) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			CommentBook deleteComment = commentBookRepository.findById(id);
-			commentBookRepository.delete(commentBookRepository.findById(id));
-			return new ResponseEntity<>(deleteComment, HttpStatus.OK);
+			return new ResponseEntity<>(commonCode.deleteCommentBook(id), HttpStatus.OK);
 		}
 	}
 
@@ -676,10 +663,7 @@ public class ApiRestController {
 		if (bookRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			bookPoint.setUser(userComponent.getLoggedUser());
-			bookPoint.setBook(bookRepository.findByNameIgnoreCase(name));
-			pointBookRepository.save(bookPoint);
-			return new ResponseEntity<>(bookPoint, HttpStatus.OK);
+			return new ResponseEntity<>(commonCode.updatePointsBook(bookRepository.findByNameIgnoreCase(name), bookPoint.getPoints()), HttpStatus.OK);
 		}
 	}
 	
@@ -693,10 +677,7 @@ public class ApiRestController {
 		if (filmRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			filmPoint.setUser(userComponent.getLoggedUser());
-			filmPoint.setFilm(filmRepository.findByNameIgnoreCase(name));
-			pointFilmRepository.save(filmPoint);
-			return new ResponseEntity<>(filmPoint, HttpStatus.OK);
+			return new ResponseEntity<>(commonCode.updatePointsFilm(filmRepository.findByNameIgnoreCase(name), filmPoint.getPoints()), HttpStatus.OK);
 		}
 	}
 	
@@ -710,10 +691,7 @@ public class ApiRestController {
 		if (showRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			showPoint.setUser(userComponent.getLoggedUser());
-			showPoint.setShow(showRepository.findByNameIgnoreCase(name));
-			pointShowRepository.save(showPoint);
-			return new ResponseEntity<>(showPoint, HttpStatus.OK);
+			return new ResponseEntity<>(commonCode.updatePointsShow(showRepository.findByNameIgnoreCase(name), showPoint.getPoints()), HttpStatus.OK);
 		}
 	}
 	
