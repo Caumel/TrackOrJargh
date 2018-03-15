@@ -70,6 +70,10 @@ public class PointBook {
 	}
 
 	public void setPoints(double points) {
-		this.points = points;
+		if(points >= 5) {
+			this.points = 5;
+		}else {
+			this.points = points;
+		}
 	}
 }
