@@ -12,14 +12,15 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 public class CommentFilm {
 	
+	public interface BasicInformation {}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(BasicInformation.class)
 	private Long id;
 	
 	@ManyToOne
 	private Film film;
-	
-	public interface BasicInformation {}
 
 	@OneToOne
 	@JsonView(BasicInformation.class)

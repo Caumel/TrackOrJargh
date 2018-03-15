@@ -664,58 +664,9 @@ public class ApiRestController {
 			return new ResponseEntity<>(deleteComment, HttpStatus.OK);
 		}
 	}
-	
-	
+
 	
 	public interface joinedPointBookUserInfo extends PointBook.BasicInformation, Book.NameBookInfo , User.NameUserInfo {
-	}
-	
-	@RequestMapping(value ="/api/libro/borrarpuntos/{id}", method = RequestMethod.DELETE)
-	@JsonView(joinedPointBookUserInfo.class)
-	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<PointBook> deteleBookPoint(@PathVariable Long id){
-		if (bookRepository.findById(id) == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		} else {
-			PointBook deleteBookPoints = pointBookRepository.findById(id);
-			pointBookRepository.delete(pointBookRepository.findById(id));
-
-			return new ResponseEntity<>(deleteBookPoints, HttpStatus.OK);
-		}
-	}
-	
-	public interface joinedPointFilmUserInfo extends PointFilm.BasicInformation, Film.NameFilmInfo, User.NameUserInfo {
-	}
-	
-	@RequestMapping(value ="/api/pelicula/borrarpuntos/{id}", method = RequestMethod.DELETE)
-	@JsonView(joinedPointFilmUserInfo.class)
-	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<PointFilm> deteleFilmPoint(@PathVariable Long id){
-		if (pointFilmRepository.findById(id) == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		} else {
-			PointFilm deleteFilmPoints = pointFilmRepository.findById(id);
-			pointFilmRepository.delete(pointFilmRepository.findById(id));
-
-			return new ResponseEntity<>(deleteFilmPoints, HttpStatus.OK);
-		}
-	}
-	
-	public interface joinedPointShowUserInfo extends PointShow.BasicInformation, Shows.NameShowInfo , User.NameUserInfo {
-	}
-	
-	@RequestMapping(value ="/api/serie/borrarpuntos/{id}", method = RequestMethod.DELETE)
-	@JsonView(joinedPointShowUserInfo.class)
-	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<PointShow> deteleShowPoint(@PathVariable Long id){
-		if (pointShowRepository.findById(id) == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		} else {
-			PointShow deleteShowPoints = pointShowRepository.findById(id);
-			pointShowRepository.delete(pointShowRepository.findById(id));
-
-			return new ResponseEntity<>(deleteShowPoints, HttpStatus.OK);
-		}
 	}
 	
 	@RequestMapping(value = "/api/libro/agregarpuntos/{name}", method = RequestMethod.POST)
@@ -732,6 +683,9 @@ public class ApiRestController {
 		}
 	}
 	
+	public interface joinedPointFilmUserInfo extends PointFilm.BasicInformation, Film.NameFilmInfo, User.NameUserInfo {
+	}
+	
 	@RequestMapping(value = "/api/pelicula/agregarpuntos/{name}", method = RequestMethod.POST)
 	@JsonView(joinedPointFilmUserInfo.class)
 	@ResponseStatus(HttpStatus.CREATED)
@@ -744,6 +698,9 @@ public class ApiRestController {
 			pointFilmRepository.save(filmPoint);
 			return new ResponseEntity<>(filmPoint, HttpStatus.OK);
 		}
+	}
+	
+	public interface joinedPointShowUserInfo extends PointShow.BasicInformation, Shows.NameShowInfo , User.NameUserInfo {
 	}
 	
 	@RequestMapping(value = "/api/serie/agregarpuntos/{name}", method = RequestMethod.POST)

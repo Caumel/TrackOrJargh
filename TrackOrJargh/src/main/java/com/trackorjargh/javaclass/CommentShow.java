@@ -12,14 +12,15 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 public class CommentShow {
 	
+	public interface BasicInformation {}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(BasicInformation.class)
 	private Long id;
 	
 	@ManyToOne
 	private Shows show;
-	
-	public interface BasicInformation {}
 	
 	@OneToOne
 	@JsonView(BasicInformation.class)
