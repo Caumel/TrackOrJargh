@@ -309,9 +309,9 @@ public class DatabaseInformationLoader {
 		f20.getGenders().add(g10);
 		filmRepository.save(f20);
 
-		Film f21 = new Film("Buscando a nemo", " Albert Brooks, Ellen DeGeneres, Alexander Gould",
+		Film f21 = new Film("Buscando al memo", " Albert Brooks, Ellen DeGeneres, Alexander Gould",
 				" Andrew Stanton, Lee Unkrich",
-				"El pequeño Nemo, un pececillo hijo único que perdió a su madre antes de nacer, es muy querido y excesivamente protegido por su padre. Nemo ha sido pescado y sacadi de la gran barrera del arrecife australiano y ahora vive en una pequeña pecera en la oficina de un dentista de Sidney. El tímido padre de Nemo se embarcará en una peligrosa aventura donde conoce Dory. Juntos vane...",
+				"El pequeño Alfonso, un pececillo hijo único que perdió a su madre antes de nacer, es muy querido y excesivamente protegido por su padre. Nemo ha sido pescado y sacadi de la gran barrera del arrecife australiano y ahora vive en una pequeña pecera en la oficina de un dentista de Sidney. El tímido padre de Nemo se embarcará en una peligrosa aventura donde conoce Dory. Juntos vane...",
 				"/img/films/buscandoAnemo.jpg", "https://www.youtube.com/embed/wZdpNglLbt8", 2003);
 
 		f21.getGenders().add(g1);
