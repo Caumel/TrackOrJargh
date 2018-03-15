@@ -584,7 +584,7 @@ public class ApiRestController {
 		return bookRepository.findByNameIgnoreCase(name).getCommentsBook();
 	}
 	
-	@RequestMapping(value = "/api/pelicula/{name}/agregarcomentario", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/pelicula/agregarcomentario/{name}", method = RequestMethod.POST)
 	@JsonView(basicInfoCommentFilm.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<CommentFilm> addComentFilm(@PathVariable String name, @RequestBody CommentFilm comment) {
@@ -598,7 +598,7 @@ public class ApiRestController {
 		}
 	}
 	
-	@RequestMapping(value = "/api/serie/{name}/agregarcomentario", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/serie/agregarcomentario/{name}", method = RequestMethod.POST)
 	@JsonView(basicInfoCommentShow.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<CommentShow> addComentShow(@PathVariable String name, @RequestBody CommentShow comment) {
@@ -612,7 +612,7 @@ public class ApiRestController {
 		}
 	}
 	
-	@RequestMapping(value = "/api/libro/{name}/agregarcomentario", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/libro/agregarcomentario/{name}", method = RequestMethod.POST)
 	@JsonView(basicInfoCommentBook.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<CommentBook> addComentBook(@PathVariable String name, @RequestBody CommentBook comment) {
@@ -670,7 +670,7 @@ public class ApiRestController {
 	public interface joinedPointBookUserInfo extends PointBook.BasicInformation, Book.NameBookInfo , User.NameUserInfo {
 	}
 	
-	@RequestMapping(value ="/api/libro/borrarpuntosl/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value ="/api/libro/borrarpuntos/{id}", method = RequestMethod.DELETE)
 	@JsonView(joinedPointBookUserInfo.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<PointBook> deteleBookPoint(@PathVariable Long id){
@@ -687,7 +687,7 @@ public class ApiRestController {
 	public interface joinedPointFilmUserInfo extends PointFilm.BasicInformation, Film.NameFilmInfo, User.NameUserInfo {
 	}
 	
-	@RequestMapping(value ="/api/pelicula/borrarpuntosp/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value ="/api/pelicula/borrarpuntos/{id}", method = RequestMethod.DELETE)
 	@JsonView(joinedPointFilmUserInfo.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<PointFilm> deteleFilmPoint(@PathVariable Long id){
@@ -704,7 +704,7 @@ public class ApiRestController {
 	public interface joinedPointShowUserInfo extends PointShow.BasicInformation, Shows.NameShowInfo , User.NameUserInfo {
 	}
 	
-	@RequestMapping(value ="/api/serie/borrarpuntoss/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value ="/api/serie/borrarpuntos/{id}", method = RequestMethod.DELETE)
 	@JsonView(joinedPointShowUserInfo.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<PointShow> deteleShowPoint(@PathVariable Long id){
@@ -746,7 +746,7 @@ public class ApiRestController {
 		}
 	}
 	
-	@RequestMapping(value = "/api/serie/{name}/agregarpuntoss", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/serie/agregarpuntos/{name}", method = RequestMethod.POST)
 	@JsonView(joinedPointShowUserInfo.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<PointShow> addShowPoint(@PathVariable String name, @RequestBody PointShow showPoint) {
@@ -760,21 +760,21 @@ public class ApiRestController {
 		}
 	}
 	
-	@RequestMapping(value = "/api/obtenerpuntosl/libro/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/libro/obtenerpuntos/{name}", method = RequestMethod.GET)
 	@JsonView(joinedPointBookUserInfo.class)
 	public List<PointBook> getBookPoint(@PathVariable String name) {
 
 		return bookRepository.findByNameIgnoreCase(name).getPointsBook();
 	}
 	
-	@RequestMapping(value = "/api/obtenerpuntosp/pelicula/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/pelicula/obtenerpuntos/{name}", method = RequestMethod.GET)
 	@JsonView(joinedPointFilmUserInfo.class)
 	public List<PointFilm> getFilmPoint(@PathVariable String name) {
 
 		return filmRepository.findByNameIgnoreCase(name).getPointsFilm();
 	}
 	
-	@RequestMapping(value = "/api/obtenerpuntoss/serie/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/serie/obtenerpuntos/{name}", method = RequestMethod.GET)
 	@JsonView(joinedPointShowUserInfo.class)
 	public List<PointShow> getShowPoint(@PathVariable String name) {
 
