@@ -469,28 +469,6 @@ public class ApiRestController {
 		}
 	}
 
-	@RequestMapping(value = "/api/editarserie", method = RequestMethod.PUT)
-	@JsonView(Shows.BasicInformation.class)
-	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Shows> editShow(@RequestBody Shows show) {
-		if (showRepository.findByNameIgnoreCase(show.getName()) == null) { // if the film does not exists, then i return
-																			// a not found statement
-			return new ResponseEntity<Shows>(show, HttpStatus.NOT_FOUND);
-		} else { // if it exists, then i modify the item
-			Shows editedShow = showRepository.findByNameIgnoreCase(show.getName());
-			editedShow.setActors(show.getActors());
-			editedShow.setDirectors(show.getDirectors());
-			editedShow.setYear(show.getYear());
-			editedShow.setGenders(show.getGenders());
-			editedShow.setImage(show.getImage());
-			editedShow.setTrailer(show.getTrailer());
-			editedShow.setSynopsis(show.getSynopsis());
-
-			showRepository.save(editedShow);
-			return new ResponseEntity<>(editedShow, HttpStatus.OK);
-		}
-	}
-
 	@RequestMapping(value = "/api/editarusuario", method = RequestMethod.PUT)
 	@JsonView(Shows.BasicInformation.class)
 	@ResponseStatus(HttpStatus.OK)
@@ -511,6 +489,28 @@ public class ApiRestController {
 				return new ResponseEntity<>(editedUser, HttpStatus.OK);
 			}
 
+		}
+	}
+	
+	@RequestMapping(value = "/api/editarserie", method = RequestMethod.PUT)
+	@JsonView(Shows.BasicInformation.class)
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<Shows> editShow(@RequestBody Shows show) {
+		if (showRepository.findByNameIgnoreCase(show.getName()) == null) { // if the film does not exists, then i return
+																			// a not found statement
+			return new ResponseEntity<Shows>(show, HttpStatus.NOT_FOUND);
+		} else { // if it exists, then i modify the item
+			Shows editedShow = showRepository.findByNameIgnoreCase(show.getName());
+			editedShow.setActors(show.getActors());
+			editedShow.setDirectors(show.getDirectors());
+			editedShow.setYear(show.getYear());
+			editedShow.setGenders(show.getGenders());
+			editedShow.setImage(show.getImage());
+			editedShow.setTrailer(show.getTrailer());
+			editedShow.setSynopsis(show.getSynopsis());
+
+			showRepository.save(editedShow);
+			return new ResponseEntity<>(editedShow, HttpStatus.OK);
 		}
 	}
 
@@ -718,7 +718,7 @@ public class ApiRestController {
 		}
 	}
 	
-	@RequestMapping(value = "/api/libro/{name}/agregarpuntosl", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/libro/agregarpuntos/{name}", method = RequestMethod.POST)
 	@JsonView(joinedPointBookUserInfo.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<PointBook> addBookPoint(@PathVariable String name, @RequestBody PointBook bookPoint) {
@@ -732,7 +732,7 @@ public class ApiRestController {
 		}
 	}
 	
-	@RequestMapping(value = "/api/pelicula/{name}/agregarpuntosp", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/pelicula/agregarpuntos/{name}", method = RequestMethod.POST)
 	@JsonView(joinedPointFilmUserInfo.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<PointFilm> addfilmPoint(@PathVariable String name, @RequestBody PointFilm filmPoint) {
