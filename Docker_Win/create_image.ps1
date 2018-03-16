@@ -9,5 +9,5 @@ docker run -it --rm --name trackorjargh -v ${pathProject}:/usr/src/mymaven -w /u
 mv ${pathJar}/TrackOrJargh-0.0.1-SNAPSHOT.jar .
 
 #Create image 
-docker build -t trackorjargh-spring .
+docker build -t trackorjargh .
 
