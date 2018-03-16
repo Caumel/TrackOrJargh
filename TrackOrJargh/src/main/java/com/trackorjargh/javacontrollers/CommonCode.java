@@ -1,5 +1,7 @@
 package com.trackorjargh.javacontrollers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,16 +11,23 @@ import com.trackorjargh.javaclass.CommentBook;
 import com.trackorjargh.javaclass.CommentFilm;
 import com.trackorjargh.javaclass.CommentShow;
 import com.trackorjargh.javaclass.Film;
+import com.trackorjargh.javaclass.Gender;
 import com.trackorjargh.javaclass.PointBook;
 import com.trackorjargh.javaclass.PointFilm;
 import com.trackorjargh.javaclass.PointShow;
 import com.trackorjargh.javaclass.Shows;
+import com.trackorjargh.javaclass.User;
+import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.CommentBookRepository;
 import com.trackorjargh.javarepository.CommentFilmRepository;
 import com.trackorjargh.javarepository.CommentShowRepository;
+import com.trackorjargh.javarepository.FilmRepository;
 import com.trackorjargh.javarepository.PointBookRepository;
 import com.trackorjargh.javarepository.PointFilmRepository;
 import com.trackorjargh.javarepository.PointShowRepository;
+import com.trackorjargh.javarepository.ShowRepository;
+import com.trackorjargh.javarepository.UserRepository;
+
 
 @Service
 public class CommonCode {
@@ -37,6 +46,14 @@ public class CommonCode {
 	private CommentShowRepository commentShowRepository;
 	@Autowired
 	private CommentBookRepository commentBookRepository;
+	@Autowired
+	private FilmRepository filmRepository;
+	@Autowired
+	private ShowRepository showRepository;
+	@Autowired
+	private BookRepository bookRepository;
+	@Autowired
+	private UserRepository userRepository;
 	
 	public PointFilm updatePointsFilm(Film film, double points) {
 		PointFilm pointFilm = pointFilmRepository.findByUserAndFilm(userComponent.getLoggedUser(), film);
@@ -129,6 +146,77 @@ public class CommonCode {
 		commentBookRepository.delete(comment);
 		
 		return comment;
+	}
+	
+	public Film editFilm(Film film, String newName, String actors, String directors, String imageFilm,
+		List<Gender> genders, String synopsis, String trailer, int year) {
+		film.setName(newName);
+		film.setActors(actors);
+		film.setDirectors(directors);
+		film.setSynopsis(synopsis);
+		film.setTrailer(trailer);
+		film.setYear(year);
+		film.setGenders(genders);
+		if (!imageFilm.isEmpty()) {
+			film.setImage(imageFilm);
+		}
+		
+		filmRepository.save(film);
+		return film;
+	}
+	
+	public Shows editShow(Shows show, String newName, String actors, String directors, String imageShow,
+		List<Gender> genders, String synopsis, String trailer, int year) {
+		if(!newName.equals(" ")) {
+			show.setName(newName);
+		}
+		if(!actors.equals(" ")) {
+			show.setActors(actors);
+		}
+		if(!directors.equals(" ")) {
+			show.setDirectors(directors);
+		}
+		if(!synopsis.equals(" ")) {
+			show.setSynopsis(synopsis);
+		}
+		if(!trailer.equals(" ")) {
+			show.setTrailer(trailer);
+		}
+		if(!(year == 0)) {
+			show.setYear(year);
+		}
+		if(!genders.equals(" ")) {
+			show.setGenders(genders);
+		}
+		if(!imageShow.equals(" ")) {
+			show.setImage(imageShow);
+		}
+		showRepository.save(show);
+		return show;
+	}
+	
+	public Book editBook(Book book, String newName, String authors, String imageBook,
+		List<Gender> genders, String synopsis, int year) {
+		book.setName(newName);
+		book.setAuthors(authors);
+		book.setSynopsis(synopsis);
+		book.setYear(year);
+		book.setGenders(genders);
+		book.setImage(imageBook);
+		bookRepository.save(book);
+		return book;
+	}
+	
+	public User editUser(User user, String email,String password, List<String> roles, String imageUser) {
+
+		user.setEmail(email);
+		if(!password.equals("false")) {
+			user.setPassword(password);
+		}
+		user.setRoles(roles);
+		user.setImage(imageUser);
+		userRepository.save(user);
+		return user;
 	}
 	
 }

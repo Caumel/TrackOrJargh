@@ -34,6 +34,7 @@ import com.trackorjargh.javaclass.CommentShow;
 import com.trackorjargh.javaclass.DeleteElementsOfBBDD;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.ForgotPassword;
+import com.trackorjargh.javaclass.Gender;
 import com.trackorjargh.javaclass.GenerateURLPage;
 import com.trackorjargh.javaclass.InterfaceMainItem;
 import com.trackorjargh.javaclass.Lists;
@@ -667,7 +668,6 @@ public class PageController {
 		if (confirmDelete.isPresent()) {
 			deleteElementsOfBBDD.deleteUser(user);
 		} else {
-			user.setEmail(email);
 			user.setRoles(new LinkedList<String>());
 			if (userType.equals("Usuario")) {
 				user.setRoles(new LinkedList<String>());
@@ -682,7 +682,7 @@ public class PageController {
 					user.getRoles().add("ROLE_ADMIN");
 				}
 			}
-			userRepository.save(user);
+			user = commonCode.editUser(user, email, "false", user.getRoles(), user.getImage());
 			if (user.getName().equals(userComponent.getLoggedUser().getName())) {
 				userComponent.setLoggedUser(user);
 			}
@@ -701,28 +701,23 @@ public class PageController {
 		if (confirmDelete.isPresent()) {
 			deleteElementsOfBBDD.deleteFilm(film);
 		} else {
-			film.setName(newName);
-			film.setActors(actors);
-			film.setDirectors(directors);
-			film.setSynopsis(synopsis);
-			film.setTrailer(trailer);
 			int yearInt = Integer.parseInt(year);
-			film.setYear(yearInt);
+			List<Gender> genders = new LinkedList<>();
 			if (genreContent.isPresent()) {
 				for (String genre : genreContent.get()) {
-					film.getGenders().clear();
-					film.getGenders().add(genderRepository.findByName(genre));
+					genders.add(genderRepository.findByName(genre));					
 				}
 			}
 			if (newGenres.isPresent()) {
 				for (String genre : newGenres.get()) {
-					film.getGenders().add(genderRepository.findByName(genre));
+					genders.add(genderRepository.findByName(genre));
 				}
 			}
 			if (!imageFilm.isEmpty()) {
 				film.setImage(uploadImage(film.getName(), imageFilm));
 			}
-			filmRepository.save(film);
+			
+			commonCode.editFilm(film, newName, actors, directors, film.getImage(), genders, synopsis, trailer, yearInt);
 		}
 
 		return "redirect:/administracion";
@@ -738,29 +733,23 @@ public class PageController {
 		if (confirmDelete.isPresent()) {
 			deleteElementsOfBBDD.deleteShow(show);
 		} else {
-			show.setName(newName);
-			show.setActors(actors);
-			show.setDirectors(directors);
-			show.setSynopsis(synopsis);
-			show.setTrailer(trailer);
 			int yearInt = Integer.parseInt(year);
-			show.setYear(yearInt);
+			List<Gender> genders = new LinkedList<>();
 			if (genreContent.isPresent()) {
 				for (String genre : genreContent.get()) {
-					show.getGenders().clear();
-					show.getGenders().add(genderRepository.findByName(genre));
+					genders.add(genderRepository.findByName(genre));					
 				}
 			}
 			if (newGenres.isPresent()) {
 				for (String genre : newGenres.get()) {
-					show.getGenders().add(genderRepository.findByName(genre));
+					genders.add(genderRepository.findByName(genre));
 				}
 			}
-
 			if (!imageShow.isEmpty()) {
 				show.setImage(uploadImage(show.getName(), imageShow));
 			}
-			showRepository.save(show);
+			
+			commonCode.editShow(show, newName, actors, directors, show.getImage(), genders, synopsis, trailer, yearInt);
 		}
 
 		return "redirect:/administracion";
@@ -775,27 +764,23 @@ public class PageController {
 		if (confirmDelete.isPresent()) {
 			deleteElementsOfBBDD.deleteBook(book);
 		} else {
-			book.setName(newName);
-			book.setAuthors(authors);
-			book.setSynopsis(synopsis);
 			int yearInt = Integer.parseInt(year);
-			book.setYear(yearInt);
+			List<Gender> genders = new LinkedList<>();
 			if (genreContent.isPresent()) {
 				for (String genre : genreContent.get()) {
-					book.getGenders().clear();
-					book.getGenders().add(genderRepository.findByName(genre));
+					genders.add(genderRepository.findByName(genre));					
 				}
 			}
 			if (newGenres.isPresent()) {
 				for (String genre : newGenres.get()) {
-					book.getGenders().add(genderRepository.findByName(genre));
+					genders.add(genderRepository.findByName(genre));
 				}
 			}
-
 			if (!imageBook.isEmpty()) {
 				book.setImage(uploadImage(book.getName(), imageBook));
 			}
-			bookRepository.save(book);
+			
+			commonCode.editBook(book, newName, authors, book.getImage(), genders, synopsis, yearInt);
 		}
 
 		return "redirect:/administracion";

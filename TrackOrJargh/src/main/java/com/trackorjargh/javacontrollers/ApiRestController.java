@@ -47,8 +47,6 @@ import com.trackorjargh.javarepository.PointShowRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
 
-
-
 @RestController
 public class ApiRestController {
 
@@ -479,80 +477,56 @@ public class ApiRestController {
 			return new ResponseEntity<User>(user, HttpStatus.NOT_FOUND);
 		} else {
 			User editedUser = userRepository.findByNameIgnoreCase(user.getName());
-			editedUser.setEmail(user.getEmail());
-			editedUser.setId(user.getId());
-			editedUser.setImage(user.getImage());
-			editedUser.setPassword(user.getPassword());
-			if (request.isUserInRole("ADMIN") == false) { //Permition request
-				return new ResponseEntity<User>(user, HttpStatus.UNAUTHORIZED);
-			} else {
-				editedUser.setRoles(user.getRoles());
-				userRepository.save(editedUser);
-				return new ResponseEntity<>(editedUser, HttpStatus.OK);
-			}
 
+			return new ResponseEntity<>(commonCode.editUser(editedUser, user.getEmail(), user.getPassword(),
+					user.getRoles(), user.getImage()), HttpStatus.OK);
 		}
 	}
-	
-	@RequestMapping(value = "/api/editarserie", method = RequestMethod.PUT)
+
+	@RequestMapping(value = "/api/editarserie/{name}", method = RequestMethod.PUT)
 	@JsonView(Shows.BasicInformation.class)
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Shows> editShow(@RequestBody Shows show) {
-		if (showRepository.findByNameIgnoreCase(show.getName()) == null) { // if the film does not exists, then i return
+	public ResponseEntity<Shows> editShow(@PathVariable String name, @RequestBody Shows show) {
+		if (showRepository.findByNameIgnoreCase(name) == null) { // if the film does not exists, then i return
 																			// a not found statement
 			return new ResponseEntity<Shows>(show, HttpStatus.NOT_FOUND);
 		} else { // if it exists, then i modify the item
-			Shows editedShow = showRepository.findByNameIgnoreCase(show.getName());
-			editedShow.setActors(show.getActors());
-			editedShow.setDirectors(show.getDirectors());
-			editedShow.setYear(show.getYear());
-			editedShow.setGenders(show.getGenders());
-			editedShow.setImage(show.getImage());
-			editedShow.setTrailer(show.getTrailer());
-			editedShow.setSynopsis(show.getSynopsis());
+			Shows editedShow = showRepository.findByNameIgnoreCase(name);
 
-			showRepository.save(editedShow);
-			return new ResponseEntity<>(editedShow, HttpStatus.OK);
+			return new ResponseEntity<>(
+					commonCode.editShow(editedShow, show.getName(), show.getActors(), show.getDirectors(),
+							show.getImage(), show.getGenders(), show.getSynopsis(), show.getTrailer(), show.getYear()),
+					HttpStatus.OK);
 		}
 	}
 
-	@RequestMapping(value = "/api/editarpelicula", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/editarpelicula/{name}", method = RequestMethod.PUT)
 	@JsonView(Film.BasicInformation.class)
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Film> editFilm(@RequestBody Film film) {
-		if (filmRepository.findByNameIgnoreCase(film.getName()) == null) {
+	public ResponseEntity<Film> editFilm(@PathVariable String name, @RequestBody Film film) {
+		if (filmRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			Film editedFilm = filmRepository.findByNameIgnoreCase(film.getName());
-			editedFilm.setYear(film.getYear());
-			editedFilm.setTrailer(film.getTrailer());
-			editedFilm.setSynopsis(film.getSynopsis());
-			editedFilm.setImage(film.getImage());
-			editedFilm.setGenders(film.getGenders());
-			editedFilm.setDirectors(film.getDirectors());
-			editedFilm.setActors(film.getActors());
+			Film editedFilm = filmRepository.findByNameIgnoreCase(name);
 
-			filmRepository.save(editedFilm);
-			return new ResponseEntity<>(editedFilm, HttpStatus.OK);
+			return new ResponseEntity<>(
+					commonCode.editFilm(editedFilm, film.getName(), film.getActors(), film.getDirectors(),
+							film.getImage(), film.getGenders(), film.getSynopsis(), film.getTrailer(), film.getYear()),
+					HttpStatus.OK);
 		}
 	}
 
-	@RequestMapping(value = "/api/editarlibro", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/editarlibro/{name}", method = RequestMethod.PUT)
 	@JsonView(Book.BasicInformation.class)
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Book> editBook(@RequestBody Book book) {
-		if (bookRepository.findByNameIgnoreCase(book.getName()) == null) {
+	public ResponseEntity<Book> editBook(@PathVariable String name, @RequestBody Book book) {
+		if (bookRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			Book editedBook = bookRepository.findByNameIgnoreCase(book.getName());
-			editedBook.setYear(book.getYear());
-			editedBook.setSynopsis(book.getSynopsis());
-			editedBook.setImage(book.getImage());
-			editedBook.setGenders(book.getGenders());
-			editedBook.setAuthors(book.getAuthors());
+			Book editedBook = bookRepository.findByNameIgnoreCase(name);
 
-			bookRepository.save(editedBook);
-			return new ResponseEntity<>(editedBook, HttpStatus.OK);
+			return new ResponseEntity<>(commonCode.editBook(editedBook, book.getName(), book.getAuthors(),
+					book.getImage(), book.getGenders(), book.getSynopsis(), book.getYear()), HttpStatus.OK);
 		}
 	}
 
@@ -585,136 +559,146 @@ public class ApiRestController {
 
 		return bookRepository.findByNameIgnoreCase(name).getCommentsBook();
 	}
-	
+
 	@RequestMapping(value = "/api/pelicula/agregarcomentario/{name}", method = RequestMethod.POST)
 	@JsonView(basicInfoCommentFilm.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<CommentFilm> addComentFilm(@PathVariable String name, @RequestBody CommentFilm comment) {
 		if (filmRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}else {
-			return new ResponseEntity<>(commonCode.addCommentFilm(filmRepository.findByNameIgnoreCase(name), comment.getComment()), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(
+					commonCode.addCommentFilm(filmRepository.findByNameIgnoreCase(name), comment.getComment()),
+					HttpStatus.OK);
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/serie/agregarcomentario/{name}", method = RequestMethod.POST)
 	@JsonView(basicInfoCommentShow.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<CommentShow> addComentShow(@PathVariable String name, @RequestBody CommentShow comment) {
 		if (showRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}else {
-			return new ResponseEntity<>(commonCode.addCommentShow(showRepository.findByNameIgnoreCase(name), comment.getComment()), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(
+					commonCode.addCommentShow(showRepository.findByNameIgnoreCase(name), comment.getComment()),
+					HttpStatus.OK);
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/libro/agregarcomentario/{name}", method = RequestMethod.POST)
 	@JsonView(basicInfoCommentBook.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<CommentBook> addComentBook(@PathVariable String name, @RequestBody CommentBook comment) {
 		if (bookRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}else {
-			return new ResponseEntity<>(commonCode.addCommentBook(bookRepository.findByNameIgnoreCase(name), comment.getComment()), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(
+					commonCode.addCommentBook(bookRepository.findByNameIgnoreCase(name), comment.getComment()),
+					HttpStatus.OK);
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/pelicula/borrarcomentario/{id}", method = RequestMethod.DELETE)
 	@JsonView(basicInfoCommentFilm.class)
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<CommentFilm> deleteFilmComent(@PathVariable Long id){
+	public ResponseEntity<CommentFilm> deleteFilmComent(@PathVariable Long id) {
 		if (commentFilmRepository.findById(id) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}else {
+		} else {
 			return new ResponseEntity<>(commonCode.deleteCommentFilm(id), HttpStatus.OK);
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/serie/borrarcomentario/{id}", method = RequestMethod.DELETE)
 	@JsonView(basicInfoCommentShow.class)
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<CommentShow> deleteShowComent(@PathVariable Long id){
+	public ResponseEntity<CommentShow> deleteShowComent(@PathVariable Long id) {
 		if (commentShowRepository.findById(id) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}else {
+		} else {
 			return new ResponseEntity<>(commonCode.deleteCommentShow(id), HttpStatus.OK);
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/libro/borrarcomentario/{id}", method = RequestMethod.DELETE)
 	@JsonView(basicInfoCommentBook.class)
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<CommentBook> deleteBookComent(@PathVariable Long id){
+	public ResponseEntity<CommentBook> deleteBookComent(@PathVariable Long id) {
 		if (commentBookRepository.findById(id) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}else {
+		} else {
 			return new ResponseEntity<>(commonCode.deleteCommentBook(id), HttpStatus.OK);
 		}
 	}
 
-	
-	public interface joinedPointBookUserInfo extends PointBook.BasicInformation, Book.NameBookInfo , User.NameUserInfo {
+	public interface joinedPointBookUserInfo extends PointBook.BasicInformation, Book.NameBookInfo, User.NameUserInfo {
 	}
-	
+
 	@RequestMapping(value = "/api/libro/agregarpuntos/{name}", method = RequestMethod.POST)
 	@JsonView(joinedPointBookUserInfo.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<PointBook> addBookPoint(@PathVariable String name, @RequestBody PointBook bookPoint) {
 		if (bookRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}else {
-			return new ResponseEntity<>(commonCode.updatePointsBook(bookRepository.findByNameIgnoreCase(name), bookPoint.getPoints()), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(
+					commonCode.updatePointsBook(bookRepository.findByNameIgnoreCase(name), bookPoint.getPoints()),
+					HttpStatus.OK);
 		}
 	}
-	
+
 	public interface joinedPointFilmUserInfo extends PointFilm.BasicInformation, Film.NameFilmInfo, User.NameUserInfo {
 	}
-	
+
 	@RequestMapping(value = "/api/pelicula/agregarpuntos/{name}", method = RequestMethod.POST)
 	@JsonView(joinedPointFilmUserInfo.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<PointFilm> addfilmPoint(@PathVariable String name, @RequestBody PointFilm filmPoint) {
 		if (filmRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}else {
-			return new ResponseEntity<>(commonCode.updatePointsFilm(filmRepository.findByNameIgnoreCase(name), filmPoint.getPoints()), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(
+					commonCode.updatePointsFilm(filmRepository.findByNameIgnoreCase(name), filmPoint.getPoints()),
+					HttpStatus.OK);
 		}
 	}
-	
-	public interface joinedPointShowUserInfo extends PointShow.BasicInformation, Shows.NameShowInfo , User.NameUserInfo {
+
+	public interface joinedPointShowUserInfo extends PointShow.BasicInformation, Shows.NameShowInfo, User.NameUserInfo {
 	}
-	
+
 	@RequestMapping(value = "/api/serie/agregarpuntos/{name}", method = RequestMethod.POST)
 	@JsonView(joinedPointShowUserInfo.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<PointShow> addShowPoint(@PathVariable String name, @RequestBody PointShow showPoint) {
 		if (showRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}else {
-			return new ResponseEntity<>(commonCode.updatePointsShow(showRepository.findByNameIgnoreCase(name), showPoint.getPoints()), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(
+					commonCode.updatePointsShow(showRepository.findByNameIgnoreCase(name), showPoint.getPoints()),
+					HttpStatus.OK);
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/libro/obtenerpuntos/{name}", method = RequestMethod.GET)
 	@JsonView(joinedPointBookUserInfo.class)
 	public List<PointBook> getBookPoint(@PathVariable String name) {
 
 		return bookRepository.findByNameIgnoreCase(name).getPointsBook();
 	}
-	
+
 	@RequestMapping(value = "/api/pelicula/obtenerpuntos/{name}", method = RequestMethod.GET)
 	@JsonView(joinedPointFilmUserInfo.class)
 	public List<PointFilm> getFilmPoint(@PathVariable String name) {
 
 		return filmRepository.findByNameIgnoreCase(name).getPointsFilm();
 	}
-	
+
 	@RequestMapping(value = "/api/serie/obtenerpuntos/{name}", method = RequestMethod.GET)
 	@JsonView(joinedPointShowUserInfo.class)
 	public List<PointShow> getShowPoint(@PathVariable String name) {
 
 		return showRepository.findByNameIgnoreCase(name).getPointsShow();
 	}
-	
-}
 
+}
