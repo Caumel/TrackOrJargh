@@ -10,7 +10,7 @@ services:
     command: mysqld --lower_case_table_names=1
 
   trackorjargh-application:
-    image: trackorjargh-spring
+    image: oscarsotosanchez/trackorjargh-spring
     entrypoint: ["./wait-for-it.sh", "db:3306", "--", "java", "-jar", "TrackOrJargh-0.0.1-SNAPSHOT.jar"]
     depends_on:
       - db
