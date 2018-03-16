@@ -37,10 +37,9 @@ import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
 import com.trackorjargh.mail.MailComponent;
 
-
 @Service
 public class CommonCode {
-	
+
 	@Autowired
 	private UserComponent userComponent;
 	@Autowired
@@ -65,7 +64,7 @@ public class CommonCode {
 	private UserRepository userRepository;
 	@Autowired
 	private MailComponent mailComponent;
-	
+
 	public PointFilm updatePointsFilm(Film film, double points) {
 		PointFilm pointFilm = pointFilmRepository.findByUserAndFilm(userComponent.getLoggedUser(), film);
 
@@ -80,7 +79,7 @@ public class CommonCode {
 		pointFilmRepository.save(pointFilm);
 		return pointFilm;
 	}
-	
+
 	public PointShow updatePointsShow(Shows show, double points) {
 		PointShow pointShow = pointShowRepository.findByUserAndShow(userComponent.getLoggedUser(), show);
 
@@ -95,7 +94,7 @@ public class CommonCode {
 		pointShowRepository.save(pointShow);
 		return pointShow;
 	}
-	
+
 	public PointBook updatePointsBook(Book book, double points) {
 		PointBook pointBook = pointBookRepository.findByUserAndBook(userComponent.getLoggedUser(), book);
 
@@ -110,7 +109,7 @@ public class CommonCode {
 		pointBookRepository.save(pointBook);
 		return pointBook;
 	}
-	
+
 	public CommentFilm addCommentFilm(Film film, String messageUser) {
 		CommentFilm message = new CommentFilm(messageUser);
 		message.setFilm(film);
@@ -119,7 +118,7 @@ public class CommonCode {
 		commentFilmRepository.save(message);
 		return message;
 	}
-	
+
 	public CommentShow addCommentShow(Shows show, String messageUser) {
 		CommentShow message = new CommentShow(messageUser);
 		message.setShow(show);
@@ -128,7 +127,7 @@ public class CommonCode {
 		commentShowRepository.save(message);
 		return message;
 	}
-	
+
 	public CommentBook addCommentBook(Book book, String messageUser) {
 		CommentBook message = new CommentBook(messageUser);
 		message.setBook(book);
@@ -137,123 +136,156 @@ public class CommonCode {
 		commentBookRepository.save(message);
 		return message;
 	}
-	
+
 	public CommentFilm deleteCommentFilm(Long id) {
 		CommentFilm comment = commentFilmRepository.findById(new Long(id));
 		commentFilmRepository.delete(comment);
-		
+
 		return comment;
 	}
-	
+
 	public CommentShow deleteCommentShow(Long id) {
 		CommentShow comment = commentShowRepository.findById(new Long(id));
 		commentShowRepository.delete(comment);
-		
+
 		return comment;
 	}
-	
+
 	public CommentBook deleteCommentBook(Long id) {
 		CommentBook comment = commentBookRepository.findById(new Long(id));
 		commentBookRepository.delete(comment);
-		
+
 		return comment;
 	}
-	
+
 	public Film editFilm(Film film, String newName, String actors, String directors, String imageFilm,
-		List<Gender> genders, String synopsis, String trailer, int year) {
-		film.setName(newName);
-		film.setActors(actors);
-		film.setDirectors(directors);
-		film.setSynopsis(synopsis);
-		film.setTrailer(trailer);
-		film.setYear(year);
-		film.setGenders(genders);
-		if (!imageFilm.isEmpty()) {
+			List<Gender> genders, String synopsis, String trailer, int year) {
+		if (newName != null) {
+			film.setName(newName);
+		}
+		if (actors != null) {
+			film.setActors(actors);
+		}
+		if (directors != null) {
+			film.setDirectors(directors);
+		}
+		if (synopsis != null) {
+			film.setSynopsis(synopsis);
+		}
+		if (trailer != null) {
+			film.setTrailer(trailer);
+		}
+		if ((year >= 0)) {
+			film.setYear(year);
+		}
+		if (!genders.isEmpty()) {
+			film.setGenders(genders);
+		}
+		if (imageFilm != null) {
 			film.setImage(imageFilm);
 		}
-		
+
 		filmRepository.save(film);
 		return film;
 	}
-	
+
 	public Shows editShow(Shows show, String newName, String actors, String directors, String imageShow,
-		List<Gender> genders, String synopsis, String trailer, int year) {
-		if(!newName.equals(" ")) {
+			List<Gender> genders, String synopsis, String trailer, int year) {
+		if (newName != null) {
 			show.setName(newName);
 		}
-		if(!actors.equals(" ")) {
+		if (actors != null) {
 			show.setActors(actors);
 		}
-		if(!directors.equals(" ")) {
+		if (directors != null) {
 			show.setDirectors(directors);
 		}
-		if(!synopsis.equals(" ")) {
+		if (synopsis != null) {
 			show.setSynopsis(synopsis);
 		}
-		if(!trailer.equals(" ")) {
+		if (trailer != null) {
 			show.setTrailer(trailer);
 		}
-		if(!(year == 0)) {
+		if ((year >= 0)) {
 			show.setYear(year);
 		}
-		if(!genders.equals(" ")) {
+		if (!genders.isEmpty()) {
 			show.setGenders(genders);
 		}
-		if(!imageShow.equals(" ")) {
+		if (imageShow != null) {
 			show.setImage(imageShow);
 		}
 		showRepository.save(show);
 		return show;
 	}
-	
-	public Book editBook(Book book, String newName, String authors, String imageBook,
-		List<Gender> genders, String synopsis, int year) {
-		book.setName(newName);
-		book.setAuthors(authors);
-		book.setSynopsis(synopsis);
-		book.setYear(year);
-		book.setGenders(genders);
-		book.setImage(imageBook);
+
+	public Book editBook(Book book, String newName, String authors, String imageBook, List<Gender> genders,
+			String synopsis, int year) {
+		if (newName != null) {
+			book.setName(newName);
+		}
+		if (authors != null) {
+			book.setAuthors(authors);
+		}
+		if (synopsis != null) {
+			book.setSynopsis(synopsis);
+		}
+		if (year >= 0) {
+			book.setYear(year);
+		}
+		if (!genders.isEmpty()) {
+			book.setGenders(genders);
+		}
+		if (imageBook != null) {
+			book.setImage(imageBook);
+		}
 		bookRepository.save(book);
 		return book;
 	}
-	
-	public User editUser(User user, String email,String password, List<String> roles, String imageUser) {
 
-		user.setEmail(email);
-		if(!password.equals("false")) {
+	public User editUser(User user, String email, String password, List<String> roles, String imageUser) {
+		if(email != null) {
+			user.setEmail(email);
+		}
+		if (password != null) {
 			user.setPassword(password);
 		}
-		user.setRoles(roles);
-		user.setImage(imageUser);
+		if(!roles.isEmpty()) {
+			user.setRoles(roles);
+		}
+		if(imageUser != null) {
+			user.setImage(imageUser);
+		}
 		userRepository.save(user);
 		return user;
 	}
-	
+
 	public User newUser(User user, HttpServletRequest request) {
-		return newUser(request, user.getName(), user.getPassword(), user.getEmail(), user.getImage(), user.isActivatedUser(), user.getRoles().toString());
+		return newUser(request, user.getName(), user.getPassword(), user.getEmail(), user.getImage(),
+				user.isActivatedUser(), user.getRoles().toString());
 	}
-	
-	public User newUser(HttpServletRequest request, String name, String pass, String email, String image, boolean activate, String... role) {
-		if(image != null) {
-			if(image.equals("")) {
+
+	public User newUser(HttpServletRequest request, String name, String pass, String email, String image,
+			boolean activate, String... role) {
+		if (image != null) {
+			if (image.equals("")) {
 				image = "/img/default-user.png";
 			}
 		} else {
 			image = "/img/default-user.png";
 		}
-		
+
 		User newUser = new User(name, pass, email, image, activate, role);
-		
-		if(!activate) {	
+
+		if (!activate) {
 			GenerateURLPage url = new GenerateURLPage(request);
 			mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount(newUser));
 		}
-		
-		userRepository.save(newUser);		
+
+		userRepository.save(newUser);
 		return newUser;
 	}
-	
+
 	public String uploadImage(String imageName, MultipartFile file) {
 		Path FILES_FOLDER = Paths.get(System.getProperty("user.dir"), "files");
 		String fileName = "image-" + imageName + ".jpg";

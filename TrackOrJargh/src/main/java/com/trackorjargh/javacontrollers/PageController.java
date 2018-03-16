@@ -677,7 +677,7 @@ public class PageController {
 					user.getRoles().add("ROLE_ADMIN");
 				}
 			}
-			user = commonCode.editUser(user, email, "false", user.getRoles(), user.getImage());
+			user = commonCode.editUser(user, email, "", user.getRoles(), user.getImage());
 			if (user.getName().equals(userComponent.getLoggedUser().getName())) {
 				userComponent.setLoggedUser(user);
 			}

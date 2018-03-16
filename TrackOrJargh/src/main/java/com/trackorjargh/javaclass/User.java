@@ -29,6 +29,7 @@ public class User {
 	@JsonView({BasicInformation.class, NameUserInfo.class})
 	private String name;
 	private String password;
+	@JsonView(BasicInformation.class)
 	private String email;
 	private String image;
 	@JsonView(BasicInformation.class)

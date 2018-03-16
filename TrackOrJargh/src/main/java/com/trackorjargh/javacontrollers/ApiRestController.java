@@ -479,14 +479,14 @@ public class ApiRestController {
 		}
 	}
 
-	@RequestMapping(value = "/api/editarusuario", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/editarusuario/{name}", method = RequestMethod.PUT)
 	@JsonView(Shows.BasicInformation.class)
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<User> editUser(@RequestBody User user, HttpServletRequest request) {
-		if (userRepository.findByNameIgnoreCase(user.getName()) == null) {
+	public ResponseEntity<User> editUser(@PathVariable String name, @RequestBody User user, HttpServletRequest request) {
+		if (userRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<User>(user, HttpStatus.NOT_FOUND);
 		} else {
-			User editedUser = userRepository.findByNameIgnoreCase(user.getName());
+			User editedUser = userRepository.findByNameIgnoreCase(name);
 
 			return new ResponseEntity<>(commonCode.editUser(editedUser, user.getEmail(), user.getPassword(),
 					user.getRoles(), user.getImage()), HttpStatus.OK);
