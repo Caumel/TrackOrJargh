@@ -1,6 +1,5 @@
 package com.trackorjargh.javacontrollers;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -416,7 +415,7 @@ public class PageController {
 			}
 
 			if (imageShow.isPresent()) {
-				String image = uploadImage("userImage", imageShow.get());
+				String image = commonCode.uploadImage("userImage", imageShow.get());
 				userComponent.getLoggedUser().setImage(image);
 			}
 			userRepository.save(userComponent.getLoggedUser());
@@ -482,12 +481,8 @@ public class PageController {
 			@RequestParam String name, @RequestParam String email, @RequestParam String pass) {
 
 		if (!name.equals("")) {
-			User newUser = new User(name, pass, email, "/img/default-user.png", false, "ROLE_USER");
-			GenerateURLPage url = new GenerateURLPage(request);
-			mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount(newUser));
-
+			commonCode.newUser(request, name, pass, email, "/img/default-user.png", false, "ROLE_USER");
 			redir.addFlashAttribute("registered", true);
-			userRepository.save(newUser);
 		}
 
 		return "redirect:/login";
@@ -714,7 +709,7 @@ public class PageController {
 				}
 			}
 			if (!imageFilm.isEmpty()) {
-				film.setImage(uploadImage(film.getName(), imageFilm));
+				film.setImage(commonCode.uploadImage(film.getName(), imageFilm));
 			}
 			
 			commonCode.editFilm(film, newName, actors, directors, film.getImage(), genders, synopsis, trailer, yearInt);
@@ -746,7 +741,7 @@ public class PageController {
 				}
 			}
 			if (!imageShow.isEmpty()) {
-				show.setImage(uploadImage(show.getName(), imageShow));
+				show.setImage(commonCode.uploadImage(show.getName(), imageShow));
 			}
 			
 			commonCode.editShow(show, newName, actors, directors, show.getImage(), genders, synopsis, trailer, yearInt);
@@ -777,7 +772,7 @@ public class PageController {
 				}
 			}
 			if (!imageBook.isEmpty()) {
-				book.setImage(uploadImage(book.getName(), imageBook));
+				book.setImage(commonCode.uploadImage(book.getName(), imageBook));
 			}
 			
 			commonCode.editBook(book, newName, authors, book.getImage(), genders, synopsis, yearInt);
@@ -798,7 +793,7 @@ public class PageController {
 			@RequestParam String synopsis, @RequestParam String trailer, @RequestParam String year) {
 		String image;
 		if (imageFilm.isPresent()) {
-			image = uploadImage(newName, imageFilm.get());
+			image = commonCode.uploadImage(newName, imageFilm.get());
 		} else {
 			image = "";
 		}
@@ -820,7 +815,7 @@ public class PageController {
 			@RequestParam String synopsis, @RequestParam String trailer, @RequestParam String year) {
 		String image;
 		if (imageShow.isPresent()) {
-			image = uploadImage(newName, imageShow.get());
+			image = commonCode.uploadImage(newName, imageShow.get());
 		} else {
 			image = "";
 		}
@@ -842,7 +837,7 @@ public class PageController {
 			@RequestParam String year) {
 		String image;
 		if (imageBook.isPresent()) {
-			image = uploadImage(newName, imageBook.get());
+			image = commonCode.uploadImage(newName, imageBook.get());
 		} else {
 			image = "";
 		}
@@ -856,29 +851,6 @@ public class PageController {
 		bookRepository.save(book);
 		String name = book.getName();
 		return "redirect:/libro/" + name;
-	}
-
-	public String uploadImage(String imageName, MultipartFile file) {
-		Path FILES_FOLDER = Paths.get(System.getProperty("user.dir"), "files");
-		String fileName = "image-" + imageName + ".jpg";
-
-		if (!file.isEmpty()) {
-			try {
-				if (!Files.exists(FILES_FOLDER)) {
-					Files.createDirectories(FILES_FOLDER);
-				}
-
-				File uploadedFile = new File(FILES_FOLDER.toFile(), fileName);
-				file.transferTo(uploadedFile);
-
-				return "/imagen/" + fileName;
-
-			} catch (Exception e) {
-				return "Error Upload";
-			}
-		} else {
-			return "Empty File";
-		}
 	}
 
 	@RequestMapping("/imagen/{fileName:.+}")

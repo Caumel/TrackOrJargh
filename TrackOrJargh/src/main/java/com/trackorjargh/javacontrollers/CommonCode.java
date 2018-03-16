@@ -1,9 +1,16 @@
 package com.trackorjargh.javacontrollers;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.javaclass.Book;
@@ -12,6 +19,7 @@ import com.trackorjargh.javaclass.CommentFilm;
 import com.trackorjargh.javaclass.CommentShow;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.Gender;
+import com.trackorjargh.javaclass.GenerateURLPage;
 import com.trackorjargh.javaclass.PointBook;
 import com.trackorjargh.javaclass.PointFilm;
 import com.trackorjargh.javaclass.PointShow;
@@ -27,6 +35,7 @@ import com.trackorjargh.javarepository.PointFilmRepository;
 import com.trackorjargh.javarepository.PointShowRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
+import com.trackorjargh.mail.MailComponent;
 
 
 @Service
@@ -54,6 +63,8 @@ public class CommonCode {
 	private BookRepository bookRepository;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private MailComponent mailComponent;
 	
 	public PointFilm updatePointsFilm(Film film, double points) {
 		PointFilm pointFilm = pointFilmRepository.findByUserAndFilm(userComponent.getLoggedUser(), film);
@@ -219,4 +230,50 @@ public class CommonCode {
 		return user;
 	}
 	
+	public User newUser(User user, HttpServletRequest request) {
+		return newUser(request, user.getName(), user.getPassword(), user.getEmail(), user.getImage(), user.isActivatedUser(), user.getRoles().toString());
+	}
+	
+	public User newUser(HttpServletRequest request, String name, String pass, String email, String image, boolean activate, String... role) {
+		if(image != null) {
+			if(image.equals("")) {
+				image = "/img/default-user.png";
+			}
+		} else {
+			image = "/img/default-user.png";
+		}
+		
+		User newUser = new User(name, pass, email, image, activate, role);
+		
+		if(!activate) {	
+			GenerateURLPage url = new GenerateURLPage(request);
+			mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount(newUser));
+		}
+		
+		userRepository.save(newUser);		
+		return newUser;
+	}
+	
+	public String uploadImage(String imageName, MultipartFile file) {
+		Path FILES_FOLDER = Paths.get(System.getProperty("user.dir"), "files");
+		String fileName = "image-" + imageName + ".jpg";
+
+		if (!file.isEmpty()) {
+			try {
+				if (!Files.exists(FILES_FOLDER)) {
+					Files.createDirectories(FILES_FOLDER);
+				}
+
+				File uploadedFile = new File(FILES_FOLDER.toFile(), fileName);
+				file.transferTo(uploadedFile);
+
+				return "/imagen/" + fileName;
+
+			} catch (Exception e) {
+				return "Error Upload";
+			}
+		} else {
+			return "Empty File";
+		}
+	}
 }

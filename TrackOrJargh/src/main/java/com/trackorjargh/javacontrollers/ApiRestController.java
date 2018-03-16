@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.trackorjargh.component.UserComponent;
@@ -248,66 +249,78 @@ public class ApiRestController {
 	}
 
 	@RequestMapping(value = "/api/agregarlista/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.PUT)
-	public boolean addedListInUser(@PathVariable String nameList, @PathVariable String typeContent,
-			@PathVariable String nameContent) {
-		Lists listUser = listsRepository.findByName(nameList);
+	public ResponseEntity<Boolean> addedListInUser(@PathVariable String nameList, @PathVariable String typeContent,
+	    @PathVariable String nameContent) {
+	  Lists listUser = listsRepository.findByName(nameList);
+	  
+	  if(!listUser.getUser().getName().equals(userComponent.getLoggedUser().getName())) {
+	    return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+	  }
 
-		if (typeContent.equalsIgnoreCase("pelicula")) {
-			Film film = filmRepository.findByNameIgnoreCase(nameContent);
-			if (listUser.getFilms().contains(film)) {
-				return false;
-			}
+	  if (typeContent.equalsIgnoreCase("pelicula")) {
+	    Film film = filmRepository.findByNameIgnoreCase(nameContent);
+	    if (listUser.getFilms().contains(film)) {
+	      return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	    }
 
-			listUser.getFilms().add(film);
-		} else if (typeContent.equalsIgnoreCase("serie")) {
-			Shows show = showRepository.findByNameIgnoreCase(nameContent);
-			if (listUser.getShows().contains(show)) {
-				return false;
-			}
+	    listUser.getFilms().add(film);
+	  } else if (typeContent.equalsIgnoreCase("serie")) {
+	    Shows show = showRepository.findByNameIgnoreCase(nameContent);
+	    if (listUser.getShows().contains(show)) {
+	      return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	    }
 
-			listUser.getShows().add(show);
-		} else if (typeContent.equalsIgnoreCase("libro")) {
-			Book book = bookRepository.findByNameIgnoreCase(nameContent);
-			if (listUser.getBooks().contains(book)) {
-				return false;
-			}
+	    listUser.getShows().add(show);
+	  } else if (typeContent.equalsIgnoreCase("libro")) {
+	    Book book = bookRepository.findByNameIgnoreCase(nameContent);
+	    if (listUser.getBooks().contains(book)) {
+	      return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	    }
 
-			listUser.getBooks().add(book);
-		}
+	    listUser.getBooks().add(book);
+	  }
 
-		listsRepository.save(listUser);
-		return true;
+	  listsRepository.save(listUser);
+	  return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/api/borrarLista/{nameList}", method = RequestMethod.DELETE)
-	public boolean deletedListInUser(@PathVariable String nameList) {
-		Lists listUser = listsRepository.findByName(nameList);
-		System.out.println(nameList);
-		listsRepository.delete(listUser);
+	public ResponseEntity<Boolean> deletedListInUser(@PathVariable String nameList) {
+	  Lists listUser = listsRepository.findByName(nameList);
+	  
+	  if(!listUser.getUser().getName().equals(userComponent.getLoggedUser().getName())) {
+	    return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+	  }
+	  
+	  listsRepository.delete(listUser);
 
-		return true;
+	  return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/api/borrarContenido/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.DELETE)
-	public boolean deletedContentInList(@PathVariable String nameList, @PathVariable String typeContent,
-			@PathVariable String nameContent) {
-		Lists listUser = listsRepository.findByName(nameList);
+	public ResponseEntity<Boolean> deletedContentInList(@PathVariable String nameList, @PathVariable String typeContent,
+	    @PathVariable String nameContent) {
+	  Lists listUser = listsRepository.findByName(nameList);
+	  
+	  if(!listUser.getUser().getName().equals(userComponent.getLoggedUser().getName())) {
+	    return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+	  }
+	  
+	  if (typeContent.equalsIgnoreCase("pelicula")) {
+	    Film film = filmRepository.findByNameIgnoreCase(nameContent);
+	    listUser.getFilms().remove(film);
 
-		if (typeContent.equalsIgnoreCase("pelicula")) {
-			Film film = filmRepository.findByNameIgnoreCase(nameContent);
-			listUser.getFilms().remove(film);
+	  } else if (typeContent.equalsIgnoreCase("serie")) {
+	    Shows show = showRepository.findByNameIgnoreCase(nameContent);
+	    listUser.getShows().remove(show);
 
-		} else if (typeContent.equalsIgnoreCase("serie")) {
-			Shows show = showRepository.findByNameIgnoreCase(nameContent);
-			listUser.getShows().remove(show);
+	  } else if (typeContent.equalsIgnoreCase("libro")) {
+	    Book book = bookRepository.findByNameIgnoreCase(nameContent);
+	    listUser.getBooks().remove(book);
+	  }
 
-		} else if (typeContent.equalsIgnoreCase("libro")) {
-			Book book = bookRepository.findByNameIgnoreCase(nameContent);
-			listUser.getBooks().remove(book);
-		}
-
-		listsRepository.save(listUser);
-		return true;
+	  listsRepository.save(listUser);
+	  return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/api/comprobarusuario/{name}/", method = RequestMethod.GET)
@@ -370,15 +383,12 @@ public class ApiRestController {
 
 	@RequestMapping(value = "/api/agregarususario", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<User> addUser(@RequestBody User user) {
+	public ResponseEntity<User> addUser(HttpServletRequest request, @RequestBody User user) {
 		if (userRepository.findByNameIgnoreCase(user.getName()) == null) {
-			userRepository.save(user);
-
-			return new ResponseEntity<>(user, HttpStatus.OK);
+			return new ResponseEntity<>(commonCode.newUser(user, request), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(user, HttpStatus.IM_USED);
 		}
-
 	}
 
 	@RequestMapping(value = "/api/agregarserie", method = RequestMethod.POST)
@@ -700,5 +710,9 @@ public class ApiRestController {
 
 		return showRepository.findByNameIgnoreCase(name).getPointsShow();
 	}
-
+	
+	@RequestMapping(value = "/api/subirimagen", method = RequestMethod.POST, headers = {"content-type=multipart/mixed","content-type=multipart/form-data"})
+	public String putUpload(MultipartFile image) {
+	  return commonCode.uploadImage(image.getOriginalFilename().substring(0, image.getOriginalFilename().lastIndexOf('.')), image);
+	}
 }
