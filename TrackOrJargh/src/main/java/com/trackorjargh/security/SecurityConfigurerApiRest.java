@@ -30,10 +30,15 @@ public class SecurityConfigurerApiRest extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/pelicula/borrarcomentario/**").hasAnyRole("MODERATOR", "ADMIN");	
 		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/libro/borrarcomentario/**").hasAnyRole("MODERATOR", "ADMIN");
 		
-		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/editarserie").hasAnyRole("ADMIN");
-		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/editarpelicula").hasAnyRole("ADMIN");	
-		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/editarlibro").hasAnyRole("ADMIN");
-		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/editarusuario").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/editarserie/**").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/editarpelicula/**").hasAnyRole("ADMIN");	
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/editarlibro/**").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/editarusuario/**").hasAnyRole("ADMIN");
+		
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/borrarContenido/**").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/borrarLista/**").hasAnyRole("USER");	
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/agregarlista/**").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/listasusuario").hasAnyRole("USER");
 		
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/agregarserie").hasAnyRole("ADMIN");
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/agregarpelicula").hasAnyRole("ADMIN");	

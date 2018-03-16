@@ -480,7 +480,7 @@ public class ApiRestController {
 	}
 
 	@RequestMapping(value = "/api/editarusuario/{name}", method = RequestMethod.PUT)
-	@JsonView(Shows.BasicInformation.class)
+	@JsonView(User.BasicInformation.class)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<User> editUser(@PathVariable String name, @RequestBody User user, HttpServletRequest request) {
 		if (userRepository.findByNameIgnoreCase(name) == null) {
