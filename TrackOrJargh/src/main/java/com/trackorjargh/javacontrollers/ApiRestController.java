@@ -270,28 +270,28 @@ public class ApiRestController {
 	  if (typeContent.equalsIgnoreCase("pelicula")) {
 	    Film film = filmRepository.findByNameIgnoreCase(nameContent);
 	    if (listUser.getFilms().contains(film)) {
-	      return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	      return new ResponseEntity<>(false, HttpStatus.OK);
 	    }
 
 	    listUser.getFilms().add(film);
 	  } else if (typeContent.equalsIgnoreCase("serie")) {
 	    Shows show = showRepository.findByNameIgnoreCase(nameContent);
 	    if (listUser.getShows().contains(show)) {
-	      return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	      return new ResponseEntity<>(false, HttpStatus.OK);
 	    }
 
 	    listUser.getShows().add(show);
 	  } else if (typeContent.equalsIgnoreCase("libro")) {
 	    Book book = bookRepository.findByNameIgnoreCase(nameContent);
 	    if (listUser.getBooks().contains(book)) {
-	      return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	      return new ResponseEntity<>(false, HttpStatus.OK);
 	    }
 
 	    listUser.getBooks().add(book);
 	  }
 
 	  listsRepository.save(listUser);
-	  return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+	  return new ResponseEntity<>(true, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/api/borrarLista/{nameList}", method = RequestMethod.DELETE)
@@ -304,7 +304,7 @@ public class ApiRestController {
 	  
 	  listsRepository.delete(listUser);
 
-	  return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+	  return new ResponseEntity<>(true, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/api/borrarContenido/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.DELETE)
@@ -330,7 +330,7 @@ public class ApiRestController {
 	  }
 
 	  listsRepository.save(listUser);
-	  return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+	  return new ResponseEntity<>(true, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/api/comprobarusuario/{name}/", method = RequestMethod.GET)
@@ -362,7 +362,7 @@ public class ApiRestController {
 		if (show == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			return new ResponseEntity<Shows>(show, HttpStatus.OK);
+			return new ResponseEntity<>(show, HttpStatus.OK);
 		}
 	}
 
@@ -373,7 +373,7 @@ public class ApiRestController {
 		if (user == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			return new ResponseEntity<User>(user, HttpStatus.OK);
+			return new ResponseEntity<>(user, HttpStatus.OK);
 		}
 	}
 
@@ -397,7 +397,7 @@ public class ApiRestController {
 		if (userRepository.findByNameIgnoreCase(user.getName()) == null) {
 			return new ResponseEntity<>(commonCode.newUser(user, request), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(user, HttpStatus.IM_USED);
+			return new ResponseEntity<>(HttpStatus.IM_USED);
 		}
 	}
 
@@ -409,7 +409,7 @@ public class ApiRestController {
 
 			return new ResponseEntity<>(show, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(show, HttpStatus.IM_USED);
+			return new ResponseEntity<>(HttpStatus.IM_USED);
 		}
 
 	}
@@ -445,7 +445,7 @@ public class ApiRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
 			deleteElementofBBDD.deleteUser(user);
-			return new ResponseEntity<User>(user, HttpStatus.OK);
+			return new ResponseEntity<>(user, HttpStatus.OK);
 		}
 	}
 
@@ -458,7 +458,7 @@ public class ApiRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
 			deleteElementofBBDD.deleteShow(show);
-			return new ResponseEntity<Shows>(show, HttpStatus.OK);
+			return new ResponseEntity<>(show, HttpStatus.OK);
 		}
 
 	}
@@ -494,7 +494,7 @@ public class ApiRestController {
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<User> editUser(@PathVariable String name, @RequestBody User user, HttpServletRequest request) {
 		if (userRepository.findByNameIgnoreCase(name) == null) {
-			return new ResponseEntity<User>(user, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
 			User editedUser = userRepository.findByNameIgnoreCase(name);
 
@@ -509,7 +509,7 @@ public class ApiRestController {
 	public ResponseEntity<Shows> editShow(@PathVariable String name, @RequestBody Shows show) {
 		if (showRepository.findByNameIgnoreCase(name) == null) { // if the film does not exists, then i return
 																			// a not found statement
-			return new ResponseEntity<Shows>(show, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else { // if it exists, then i modify the item
 			Shows editedShow = showRepository.findByNameIgnoreCase(name);
 
