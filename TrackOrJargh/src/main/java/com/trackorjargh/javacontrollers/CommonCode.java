@@ -20,6 +20,7 @@ import com.trackorjargh.javaclass.CommentShow;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.Gender;
 import com.trackorjargh.javaclass.GenerateURLPage;
+import com.trackorjargh.javaclass.Lists;
 import com.trackorjargh.javaclass.PointBook;
 import com.trackorjargh.javaclass.PointFilm;
 import com.trackorjargh.javaclass.PointShow;
@@ -30,6 +31,7 @@ import com.trackorjargh.javarepository.CommentBookRepository;
 import com.trackorjargh.javarepository.CommentFilmRepository;
 import com.trackorjargh.javarepository.CommentShowRepository;
 import com.trackorjargh.javarepository.FilmRepository;
+import com.trackorjargh.javarepository.ListsRepository;
 import com.trackorjargh.javarepository.PointBookRepository;
 import com.trackorjargh.javarepository.PointFilmRepository;
 import com.trackorjargh.javarepository.PointShowRepository;
@@ -64,6 +66,8 @@ public class CommonCode {
 	private UserRepository userRepository;
 	@Autowired
 	private MailComponent mailComponent;
+	@Autowired
+	private ListsRepository listsRepository;
 
 	public PointFilm updatePointsFilm(Film film, double points) {
 		PointFilm pointFilm = pointFilmRepository.findByUserAndFilm(userComponent.getLoggedUser(), film);
@@ -307,5 +311,13 @@ public class CommonCode {
 		} else {
 			return "Empty File";
 		}
+	}
+	
+	public Lists addEmptyListInUser(String name) {
+		Lists listUser = new Lists(name);
+		listUser.setUser(userComponent.getLoggedUser());
+		listsRepository.save(listUser);
+		
+		return listUser;
 	}
 }

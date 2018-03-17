@@ -247,10 +247,14 @@ public class ApiRestController {
 			return user.getLists();
 		}
 	}
+	
+	@RequestMapping(value = "/api/agregarlistausuario/{name}", method = RequestMethod.POST)
+	public ResponseEntity<Lists> addEmptyListInUser(@PathVariable String name){	
+		return new ResponseEntity<>(commonCode.addEmptyListInUser(name),HttpStatus.OK);		
+	}
 
 	@RequestMapping(value = "/api/agregarlista/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.PUT)
-	public ResponseEntity<Boolean> addedListInUser(@PathVariable String nameList, @PathVariable String typeContent,
-	    @PathVariable String nameContent) {
+	public ResponseEntity<Boolean> addedListInUser(@PathVariable String nameList, @PathVariable String typeContent, @PathVariable String nameContent) {
 	  Lists listUser = listsRepository.findByName(nameList);
 	  
 	  if(!listUser.getUser().getName().equals(userComponent.getLoggedUser().getName())) {

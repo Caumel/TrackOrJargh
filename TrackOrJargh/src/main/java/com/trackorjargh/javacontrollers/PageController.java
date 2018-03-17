@@ -445,9 +445,7 @@ public class PageController {
 	// create empty list
 	@RequestMapping("/listaNueva")
 	public String modProfile(Model model, @RequestParam String listName) {
-		Lists listUser = new Lists(listName);
-		listUser.setUser(userComponent.getLoggedUser());
-		listsRepository.save(listUser);
+		commonCode.addEmptyListInUser(listName);
 
 		return "redirect:/miperfil";
 	}
