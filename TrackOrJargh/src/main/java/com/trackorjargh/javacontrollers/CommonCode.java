@@ -248,16 +248,16 @@ public class CommonCode {
 	}
 
 	public User editUser(User user, String email, String password, List<String> roles, String imageUser) {
-		if(email != null) {
+		if (email != null) {
 			user.setEmail(email);
 		}
 		if (password != null) {
 			user.setPassword(password);
 		}
-		if(!roles.isEmpty()) {
+		if (!roles.isEmpty()) {
 			user.setRoles(roles);
 		}
-		if(imageUser != null) {
+		if (imageUser != null) {
 			user.setImage(imageUser);
 		}
 		userRepository.save(user);
@@ -312,12 +312,16 @@ public class CommonCode {
 			return "Empty File";
 		}
 	}
-	
+
 	public Lists addEmptyListInUser(String name) {
-		Lists listUser = new Lists(name);
-		listUser.setUser(userComponent.getLoggedUser());
-		listsRepository.save(listUser);
-		
-		return listUser;
+		if (listsRepository.findByUserAndName(userComponent.getLoggedUser(), name) == null) {
+			Lists listUser = new Lists(name);
+			listUser.setUser(userComponent.getLoggedUser());
+			listsRepository.save(listUser);
+
+			return listUser;
+		} else {
+			return null;
+		}
 	}
 }

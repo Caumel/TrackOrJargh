@@ -16,8 +16,9 @@ public interface ListsRepository extends JpaRepository<Lists, Long>{
 		Lists findById(Long id);
 		Lists findByName(String name);
 		List<Lists> findByUser(User user);
-		
-	    @Modifying
+		Lists findByUserAndName(User user, String name);
+	    
+		@Modifying
 	    @Transactional
 		@Query(value = "DELETE FROM LISTS WHERE USER_ID = ?1", nativeQuery = true)
 		void removeListsByUserId(long id);

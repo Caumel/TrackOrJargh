@@ -249,14 +249,20 @@ public class ApiRestController {
 	}
 	
 	@RequestMapping(value = "/api/agregarlistausuario/{name}", method = RequestMethod.POST)
-	public ResponseEntity<Lists> addEmptyListInUser(@PathVariable String name){	
-		return new ResponseEntity<>(commonCode.addEmptyListInUser(name),HttpStatus.OK);		
+	public ResponseEntity<Lists> addEmptyListInUser(@PathVariable String name){		
+		Lists listUser = commonCode.addEmptyListInUser(name);
+		
+		if(listUser == null) {
+			return new ResponseEntity<>(HttpStatus.IM_USED);
+		} else {
+			return new ResponseEntity<>(commonCode.addEmptyListInUser(name),HttpStatus.OK);				
+		}	
 	}
 
 	@RequestMapping(value = "/api/agregarlista/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.PUT)
 	public ResponseEntity<Boolean> addedListInUser(@PathVariable String nameList, @PathVariable String typeContent, @PathVariable String nameContent) {
-	  Lists listUser = listsRepository.findByName(nameList);
-	  
+	  Lists listUser = listsRepository.findByUserAndName(userComponent.getLoggedUser(), nameList);
+	  	  
 	  if(!listUser.getUser().getName().equals(userComponent.getLoggedUser().getName())) {
 	    return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 	  }
@@ -290,7 +296,7 @@ public class ApiRestController {
 
 	@RequestMapping(value = "/api/borrarLista/{nameList}", method = RequestMethod.DELETE)
 	public ResponseEntity<Boolean> deletedListInUser(@PathVariable String nameList) {
-	  Lists listUser = listsRepository.findByName(nameList);
+	  Lists listUser = listsRepository.findByUserAndName(userComponent.getLoggedUser(), nameList);
 	  
 	  if(!listUser.getUser().getName().equals(userComponent.getLoggedUser().getName())) {
 	    return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -304,7 +310,7 @@ public class ApiRestController {
 	@RequestMapping(value = "/api/borrarContenido/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.DELETE)
 	public ResponseEntity<Boolean> deletedContentInList(@PathVariable String nameList, @PathVariable String typeContent,
 	    @PathVariable String nameContent) {
-	  Lists listUser = listsRepository.findByName(nameList);
+	  Lists listUser = listsRepository.findByUserAndName(userComponent.getLoggedUser(), nameList);
 	  
 	  if(!listUser.getUser().getName().equals(userComponent.getLoggedUser().getName())) {
 	    return new ResponseEntity<>(HttpStatus.FORBIDDEN);
