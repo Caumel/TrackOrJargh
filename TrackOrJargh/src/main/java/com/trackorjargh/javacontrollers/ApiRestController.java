@@ -394,7 +394,7 @@ public class ApiRestController {
 	@RequestMapping(value = "/api/agregarususario", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<User> addUser(HttpServletRequest request, @RequestBody User user) {
-		if (userRepository.findByNameIgnoreCase(user.getName()) == null) {
+		if (userRepository.findByNameIgnoreCase(user.getName()) == null && userRepository.findByEmail(user.getEmail()) == null) {
 			return new ResponseEntity<>(commonCode.newUser(user, request), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.IM_USED);
