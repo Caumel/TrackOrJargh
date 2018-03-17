@@ -135,7 +135,7 @@ public class DatabaseInformationLoader {
 		filmRepository.save(f2);
 
 		Film f3 = new Film("Insidious", "Patrick Wilson, Rose Byrne, Barbara Hershey", "James Wan",
-				"La historia se centra en una pareja cuyo hijo inexplicablemente entra en estado de coma y se convierte en un recipiente para fantasmas en una dimensión astral que quiere habitar su cuerpo",
+				"La historia se centra en una pareja cuyo hijo, Óscar, inexplicablemente entra en estado de coma y se convierte en un recipiente para fantasmas en una dimensión astral que quiere habitar su cuerpo",
 				"/img/films/insidious.jpg", "https://www.youtube.com/embed/FRW3K0LlsD0", 2010);
 
 		f3.getGenders().add(g2);
@@ -145,7 +145,7 @@ public class DatabaseInformationLoader {
 		Film f4 = new Film("Mi gran boda Griega",
 				"Nia Vardalos, Christina Eleusiniotis, John Corbett, Michael Constantine, Lainie Kazan, Andrea Martin",
 				" Joel Zwick",
-				"La trama gira alrededor de Toula Portokalos, una mujer de ascendencia griego-americana, que se enamora de un chico estadounidense llamado Ian Miller. En el transcurso de la película, los protagonistas tienen que luchar por vencer las diferencias culturales",
+				"La trama gira alrededor de Jesús Portokalos, una mujer de ascendencia griego-vallecana, que se enamora de un chico fuenlabreño llamado Óscar Miller. En el transcurso de la película, los protagonistas tienen que luchar por vencer las diferencias culturales",
 				"/img/films/miGranBodaGriega.jpg", "https://www.youtube.com/embed/nnVMh3uDwwE", 2002);
 
 		f4.getGenders().add(g3);
@@ -282,9 +282,9 @@ public class DatabaseInformationLoader {
 		f17.getGenders().add(g6);
 		filmRepository.save(f17);
 
-		Film f18 = new Film("El rey leon", "Matthew Broderick, Jeremy Irons, James Earl Jones",
+		Film f18 = new Film("El rey huevón", "Matthew Broderick, Jeremy Irons, James Earl Jones",
 				"Roger Allers, Rob Minkoff",
-				"Simba es un león, hijo del rey de la selva Mufasa. Cierto día, jugando al backet con amigos unos tipos del barrio le metieron en un lio, y su padre le decia una y otra vez con tu tio y con tu tia te irás a Bel-Air",
+				"Óscar es un león, hijo del rey de la selva Mufasa. Cierto día, jugando al bascket con amigos unos tipos del barrio le metieron en un lio, y su padre le decia una y otra vez con tu tio y con tu tia te irás a Bel-Air",
 				"/img/films/reyLeon.jpg", "https://www.youtube.com/embed/4sj1MT05lAA", 1994);
 
 		f18.getGenders().add(g1);
@@ -319,7 +319,7 @@ public class DatabaseInformationLoader {
 		filmRepository.save(f21);
 
 		// Test Data Book
-		Book b1 = new Book("Los Juegos del Hambre", "",
+		Book b1 = new Book("Los Juegos del Fiambre", "",
 				"Los juegos del hambre se desarrolla en un país llamado Panem, lo que es en realidad una civilización postapocalíptica ubicada en lo que antes era América del Norte.",
 				"/img/los_juegos_del_hambre.jpg", 2008);
 		b1.getGenders().add(g1);
