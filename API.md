@@ -1,21 +1,21 @@
 ## RELEVANT INFORMATION
 Every API search must be preceded by /api
 
-## Pagination 
-If you have a method that can be paginated, at the end of the URL you must put this: 
+## Pagination
+If you have a method that can be paginated, at the end of the URL you must put this:
 
 `?page=XXX&size=XXX`
 
 Where `page` represents the page you want to show and `size` represents the number of items the page will have.
 
-For example: 
+For example:
 
 `/api/peliculas?page=0&size=5`
 
-That will return a pagination from the first page, in groups of 5 items. 
+That will return a pagination from the first page, in groups of 5 items.
 
 ## Item Searches
-Now we show the searches refered to book, film or show. 
+Now we show the searches refered to book, film or show.
 
 
 
@@ -26,15 +26,15 @@ Obtain every book, show or film in the db
 * ##### URL
 
   ``/api/peliculas``
-  
+
   ``/api/libros``
-  
+
   ``/api/series``
 
 * ##### Method:
 
 	`GET`
- 
+
 * ##### Success Response:
 
 200 OK
@@ -78,11 +78,11 @@ Obtain every book, show or film in the db
 
 ...etc
 ```
-        
+
 * ##### Error Response:
 
 404 NOT FOUND
-  
+
 ### OBTAIN A FILM/BOOK/SHOW IN PARTICULAR
 Look for a particular film, show or book given a name
 
@@ -99,7 +99,7 @@ Look for a particular film, show or book given a name
 	* Required:
 
 		`name=[String]`
-    
+
 * ##### Success Response:
 
 200 OK
@@ -117,7 +117,7 @@ Look for a particular film, show or book given a name
 ```
 
 ### ADD FILM/SHOW/BOOK
-Adds a particular film/show/book to the db, given an admin. 
+Adds a particular film/show/book to the db, given an admin.
 
 * ##### URL
 
@@ -141,11 +141,11 @@ Adds a particular film/show/book to the db, given an admin.
 }
 
 ```
-    
+
 * ##### Success Response:
 
 200 OK
-  
+
 ```json
 {
     "id": 23,
@@ -164,9 +164,9 @@ Adds a particular film/show/book to the db, given an admin.
 In case the name you put is the same of any item in the db
 
 226 IM USED
-  
+
 ### DELETE A FILM/BOOK/SHOW IN PARTICULAR
-Look for a particular film, show or book given a name, and delete it. You must be an admin to do so. 
+Look for a particular film, show or book given a name, and delete it. You must be an admin to do so.
 
 * ##### URL
 
@@ -181,7 +181,7 @@ Look for a particular film, show or book given a name, and delete it. You must b
 	* Required:
 
 		`name=[String]`
-    
+
 * ##### Success Response:
 
 200 OK
@@ -204,9 +204,9 @@ Look for a particular film, show or book given a name, and delete it. You must b
   In case the name you put does not exist in the db
 
 404 NOT FOUND
-  
+
 ### MODIFY A FILM/BOOK/SHOW IN PARTICULAR
-Look for a particular film, show or book given a name, and delete it. You must be an admin to do so. 
+Look for a particular film, show or book given a name, and delete it. You must be an admin to do so.
 
 * ##### URL
 
@@ -221,7 +221,7 @@ Look for a particular film, show or book given a name, and delete it. You must b
 	* Required:
 
 		`name=[String]`
-   
+
 * ##### Data Params
 ```json
 {
@@ -233,7 +233,7 @@ Look for a particular film, show or book given a name, and delete it. You must b
 }
 ```
 
-    
+
 * ##### Success Response:
 
 200 OK
@@ -255,24 +255,24 @@ Look for a particular film, show or book given a name, and delete it. You must b
   In case the name you put does not exist in the db
 
 404 NOT FOUND
-  
-### OBTAIN THE BEST RATED FILM/BOOK/SHOW 
-You obtain a list sorted by best ratings of the items you were looking for (books, films or shows) 
+
+### OBTAIN THE BEST RATED FILM/BOOK/SHOW
+You obtain a list sorted by best ratings of the items you were looking for (books, films or shows)
 
 * ##### URL
 
 	``/api/peliculas/mejorvaloradas``
-   
+
    	``/api/libros/mejorvalorados``
-   
+
    	``/api/series/mejorvaloradas``
-   
+
 
 * ##### Method:
 
 	`GET`
 
-    
+
 * ##### Success Response:
 
 200 OK
@@ -312,7 +312,7 @@ You obtain a list sorted by best ratings of the items you were looking for (book
 
 404 NOT FOUND
 
-### SPECIFIC CONTENT SEARCH 
+### SPECIFIC CONTENT SEARCH
 Look for a particular film, show or book by genre or title
 
 * ##### URL
@@ -332,12 +332,12 @@ Look for a particular film, show or book by genre or title
 
 		`name=[String]`
 		`optionSearch["titulo","genero"]`
-    
+
 * ##### Success Response:
 	* URL Example:
 	``/api/busqueda/titulo/peliculas/venga/page``
-	
-200 OK 
+
+200 OK
 
 ```json
 {
@@ -375,10 +375,10 @@ Look for a particular film, show or book by genre or title
 In case any params introduced were found in the db
 
 404 NOT FOUND
-	
+
 
 ## Graphic Searches
-Every method related to the information collect for the graphics 
+Every method related to the information collect for the graphics
 
 ### OBTAIN THE GRAPHIC'S INFORMATION
 Api used to return an array with the best rated book/show/film information and not every field, just the neccesary, in order to show them in the graphics.   
@@ -386,16 +386,16 @@ Api used to return an array with the best rated book/show/film information and n
 * ##### URL
 
 	 ``/api/peliculas/graficomejorvaloradas``
-	 
+
 	``/api/libros/graficomejorvaloradas``
-	
+
 	``/api/series/graficomejorvaloradas``
 
 
 * ##### Method:
 
 	`GET`
-    
+
 * ##### Success Response:
 
 200 OK
@@ -456,10 +456,10 @@ Obtains the graphic's necessary information by genre
 * ##### URL
 
 	`/api/graficogeneros`
-	
+
 * ##### Success Response:
 
-200 OK 
+200 OK
 
 ```json
 [
@@ -517,9 +517,9 @@ Obtains the graphic's necessary information by genre
     }
 ]
 ```
-	
-* ##### Error Response:	
-		
+
+* ##### Error Response:
+
 404 NOT FOUND
 
 
@@ -529,7 +529,7 @@ Obtains the graphic's necessary information by genre
 Every Search related to Users
 
 ### OBTAIN A USER
-Returns the user, given the name. Only an Admin can do this action. 
+Returns the user, given the name. Only an Admin can do this action.
 
 * ##### URL
 
@@ -544,7 +544,7 @@ Returns the user, given the name. Only an Admin can do this action.
 	* Required:
 
 		`name=[String]`
-    
+
 * ##### Success Response:
 	* URL Example:
 	``/api/usuario/oscar``
@@ -567,12 +567,12 @@ Returns the user, given the name. Only an Admin can do this action.
 
 404 NOT FOUND
 
-### ADD USER 
+### ADD USER
 Adds an user in the db
 
 * ##### URL
 
-	 /api/agregarusuario 
+	 /api/agregarusuario
 
 * ##### Method:
 
@@ -589,7 +589,7 @@ Adds an user in the db
     "roles": [
         "ROLE_USER"
     ]
-}	
+}
 ```		
 
 
@@ -611,16 +611,16 @@ Adds an user in the db
 ```
 
 * ##### Error Response:
-If an user with the same name already exists 
+If an user with the same name already exists
 
-226 IM USED 
+226 IM USED
 
-### DELETE USER 
-Deletes an specific user from the db. This action can only do it an admin. 
+### DELETE USER
+Deletes an specific user from the db. This action can only do it an admin.
 
 * ##### URL
 
-	 `/api/borrarusuario/{name}` 
+	 `/api/borrarusuario/{name}`
 
 * ##### Method:
 
@@ -631,9 +631,9 @@ Deletes an specific user from the db. This action can only do it an admin.
 	* Required:
 
 		`name=[String]`
-    
+
 * ##### Success Response:
-	
+
 200 OK
 
 ```json
@@ -650,16 +650,16 @@ Deletes an specific user from the db. This action can only do it an admin.
 ```
 
 * ##### Error Response:
-In case the user is not found, which means, it does not exist an user with that name. 
+In case the user is not found, which means, it does not exist an user with that name.
 
 404 NOT FOUND
 
-### EDIT USER 
-Changes the user's parameters given that user's name. This can only do it an admin. 
+### EDIT USER
+Changes the user's parameters given that user's name. This can only do it an admin.
 
 * ##### URL
 
-	 `/api/editarusuario/{name}` 
+	 `/api/editarusuario/{name}`
 
 * ##### Method:
 
@@ -670,7 +670,7 @@ Changes the user's parameters given that user's name. This can only do it an adm
 	* Required:
 
 		`name=[String]`
-		
+
 * ##### Data Params
 
 ```json
@@ -709,12 +709,12 @@ In case does not exist a user with that name.
 404 NOT FOUND
 
 ### CHECK USER/EMAIL
-Checks if exists a user given a name, returning true or false depending if exists or not or the email is being used or not. 
+Checks if exists a user given a name, returning true or false depending if exists or not or the email is being used or not.
 
 * ##### URL
 
-	 `/api/comprobarusuario/{name}` 
-	 
+	 `/api/comprobarusuario/{name}`
+
 	 `/api/comprobarusuario/{email}`
 
 * ##### Method:
@@ -726,7 +726,7 @@ Checks if exists a user given a name, returning true or false depending if exist
 	* Required:
 
 		`name=[String]` / `email=[String]`
-    
+
 * ##### Success Response:
 	* URL Example:
 	``/api/comprobarusuario/oscar`
@@ -739,16 +739,16 @@ Checks if exists a user given a name, returning true or false depending if exist
 
 404 NOT FOUND
 
-### OBTAIN USER'S LISTS 
-Returns the lists of a logged user. Its necessary being an user to do this action. 
+### OBTAIN USER'S LISTS
+Returns the lists of a logged user. Its necessary being an user to do this action.
 * ##### URL
 
-	 `/api/listasusuario` 
+	 `/api/listasusuario`
 
 * ##### Method:
 
 	`GET`
-    
+
 * ##### Success Response:
 
 200 OK
@@ -771,11 +771,11 @@ Returns the lists of a logged user. Its necessary being an user to do this actio
 404 NOT FOUND
 
 ### ADD A CREATED LIST MADE BY THE USER
-Creates an empty list with a specific name for the logged user 
+Creates an empty list with a specific name for the logged user
 
 * ##### URL
 
-	 `Look for a particular film, show or book given a name` 
+	 `Look for a particular film, show or book given a name`
 
 * ##### Method:
 
@@ -786,7 +786,7 @@ Creates an empty list with a specific name for the logged user
 	* Required:
 
 		`name=[String]`
-    
+
 * ##### Success Response:
 
 200 OK
@@ -802,7 +802,7 @@ Creates an empty list with a specific name for the logged user
 ```
 
 * ##### Error Response:
-In case you try to create a list with the same name 
+In case you try to create a list with the same name
 
 226 IM USED
 
@@ -811,7 +811,7 @@ Adds a show/film/book in a list previously created. It returns tru or false depe
 
 * ##### URL
 
-	 `/api/agregarcontenidolista/{nameList}/{typeContent}/{nameContent}` 
+	 `/api/agregarcontenidolista/{nameList}/{typeContent}/{nameContent}`
 
 * ##### Method:
 
@@ -820,29 +820,29 @@ Adds a show/film/book in a list previously created. It returns tru or false depe
 * ##### URL Params
 
 	* Required:		
-		`nameList=[String]`  List name where you want to add 
+		`nameList=[String]`  List name where you want to add
 		`typeContent=[String]` Content type {pelicula, serie, libro}
 		`nameContent={String}` Film/show/book  title you want to add
-    
+
 * ##### Success Response:
 	*URL Example:
 	`/api/agregarcontenidolista/Lista Nueva/pelicula/gladiator`
-	
+
 200 OK
 
 `true`
 
 * ##### Error Response:
-In case the name of the list is not found 
+In case the name of the list is not found
 
 404 NOT FOUND
 
 ### DELETE USER'S LIST
-Delete the list given a name's list, wich belongs to a user. Returns true or false if the deleting was succesful or not. It is necessary to be an user to do so. 
+Delete the list given a name's list, wich belongs to a user. Returns true or false if the deleting was succesful or not. It is necessary to be an user to do so.
 
 * ##### URL
 
-	 `/api/borrarlista/{nameList}` 
+	 `/api/borrarlista/{nameList}`
 
 * ##### Method:
 
@@ -853,7 +853,7 @@ Delete the list given a name's list, wich belongs to a user. Returns true or fal
 	* Required:
 
 		`nameList=[String] `
-    
+
 * ##### Success Response:
 
 200 OK
@@ -865,12 +865,12 @@ Delete the list given a name's list, wich belongs to a user. Returns true or fal
 404 NOT FOUND
 
 ### DELETE USER'S LIST CONTENT
-Delete an item from a specific list. Returns true or false depending the content was deleted successfuly or not. You must be a user to do so. 
+Delete an item from a specific list. Returns true or false depending the content was deleted successfuly or not. You must be a user to do so.
 
 * ##### URL
 
 	 `/api/borrarcontenido/{nameList}/{typeContent}/{nameContent}
-` 
+`
 
 * ##### Method:
 
@@ -884,7 +884,7 @@ Delete an item from a specific list. Returns true or false depending the content
 		`typeContent=[String]` Type of content you want to delete {pelicula, serie, libro}
 		`nameContent={String}` Item name you want to delete
 
-    
+
 * ##### Success Response:
 
 200 OK
@@ -896,9 +896,9 @@ There is no content in the list you want to substract something
 
 404 NOT FOUND
 
-## Comment Searches 
+## Comment Searches
 
-### SHOW COMMENTS 
+### SHOW COMMENTS
 
 * ##### URL
 
@@ -906,10 +906,10 @@ There is no content in the list you want to substract something
 	`/api/serie/comentarios/{name}`
 	`/api/libro/comentarios/{name}`
 
-* ##### Method: 
-	
+* ##### Method:
+
 	`GET`
-	
+
 * ##### URL Params
 
 	* Required:
@@ -939,7 +939,7 @@ There is no content in the list you want to substract something
 ```
 
 * ##### Error Response:
-There is no such item or comment 
+There is no such item or comment
 
 404 NOT FOUND
 
@@ -948,10 +948,10 @@ Look for a particular film, show or book given a name
 
 * ##### URL
 
-	 `/api/pelicula/agregarcomentario/{name}` 
+	 `/api/pelicula/agregarcomentario/{name}`
 	 `/api/serie/agregarcomentario/{name}`
 	 `/api/libro/agregarcomentario/{name}`
-	 
+
 * ##### Method:
 
 	`POST`
@@ -961,7 +961,7 @@ Look for a particular film, show or book given a name
 	* Required:
 
 		`name=[String] `
-    
+
 * ##### Data Params:
 
 ```json
@@ -988,7 +988,7 @@ The item you put does not exist
 404 NOT FOUND
 
 ### DELETE COMMENT
-Deletes the comment given an id. You must be admin or mod to do it. 
+Deletes the comment given an id. You must be admin or mod to do it.
 
 * ##### URL
 
@@ -1006,7 +1006,7 @@ Deletes the comment given an id. You must be admin or mod to do it.
 	* Required:
 
 		`name=[Long]`
-    
+
 * ##### Success Response:
 
 200 OK
@@ -1028,22 +1028,22 @@ Deletes the comment given an id. You must be admin or mod to do it.
 ```
 
 * ##### Error Response:
-There is no comment with such id 
+There is no comment with such id
 
 404 NOT FOUND
 
-## Rate Searches 
-Searches related with the rate in every item (book, shows or films) 
+## Rate Searches
+Searches related with the rate in every item (book, shows or films)
 
 ### OBTAIN RATE
-Obtains the rate of a specific book/show/film 
+Obtains the rate of a specific book/show/film
 
 * ##### URL
 
 	 `/api/pelicula/obtenerpuntos/{name}`
 	 `/api/serie/obtenerpuntos/{name}`
 	 `/api/libro/obtenerpuntos/{name}`
-	 
+
 * ##### Method:
 
 	`GET`
@@ -1053,7 +1053,7 @@ Obtains the rate of a specific book/show/film
 	* Required:
 
 		`name=[String]`
-    
+
 * ##### Success Response:
 
 200 OK
@@ -1105,12 +1105,12 @@ Obtains the rate of a specific book/show/film
 ```
 
 * ##### Error Response:
-There is no such an item with that name 
+There is no such an item with that name
 
 404 NOT FOUND
 
 ### ADD RATE
-Adds a rate to an item. If you have already rated this api it will modify the rate instead. 
+Adds a rate to an item. If you have already rated this api it will modify the rate instead.
 
 * ##### URL
 
@@ -1128,7 +1128,7 @@ Adds a rate to an item. If you have already rated this api it will modify the ra
 	* Required:
 
 		`name=[String]`
-    
+
 * ##### Data Params:
 {    
         "points": 5
@@ -1152,19 +1152,19 @@ Adds a rate to an item. If you have already rated this api it will modify the ra
 ```
 
 * ##### Error Response:
-There is no such item with that name 
+There is no such item with that name
 
 404 NOT FOUND
 
 
-## Images 
+## Images
 
-### Upload images 
+### Upload images
 Upload a imagen to the db and returns the URL
 
 * ##### URL
 
-	 `/api/subirimagen` 
+	 `/api/subirimagen`
 
 * ##### Method:
 
@@ -1172,7 +1172,7 @@ Upload a imagen to the db and returns the URL
 
 * ##### Data Params:
 
-	`value upload file`
+	`key image value upload file`
 
     
 * ##### Success Response:
@@ -1188,4 +1188,3 @@ Upload a imagen to the db and returns the URL
 * ##### Error Response:
 
 404 NOT FOUND
-
