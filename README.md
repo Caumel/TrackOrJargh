@@ -125,3 +125,5 @@ Here you can add a new list, delete a created list and also create a PDF with al
 
 
 [Docker usage](DOCKER.md)
+
+[API](API.md)
