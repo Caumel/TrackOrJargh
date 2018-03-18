@@ -4,17 +4,29 @@ Every API search must be preceded by /api
 ## Searches
 Now we show the searches refered to book, film or show. 
 
+## Pagination 
+If you have a method that can be paginated, at the end of the URL you must put this: 
+
+`?page=XXX&size=XXX`
+
+Where `page` represents the page you want to show and `size` represents the number of items the page will have.
+
+For example: 
+
+`/api/peliculas?page=0&size=5`
+That will return a pagination from the first page, in groups of 5 items. 
+
 ### OBTAIN EVERY BOOK/SHOW/FILM
 
 Obtain every book, show or film in the db
 
 * ##### URL
 
-  /api/peliculas
+  ``/api/peliculas``
   
-  /api/libros
+  ``/api/libros``
   
-  /api/series
+  ``/api/series``
 
 * ##### Method:
 
@@ -66,14 +78,14 @@ Obtain every book, show or film in the db
         
 * ##### Error Response:
 
-	404 NOT FOUND
+404 NOT FOUND
   
 ### OBTAIN A FILM/BOOK/SHOW IN PARTICULAR
 Look for a particular film, show or book given a name
 
 * ##### URL
 
-	 /api/pelicula/{name} 
+	 ``/api/pelicula/{name} ``
 
 * ##### Method:
 
@@ -106,7 +118,7 @@ Adds a particular film/show/book to the db, given an admin.
 
 * ##### URL
 
-	 /api/agregarpelicula
+	`` /api/agregarpelicula``
 
 * ##### Method:
 
@@ -129,7 +141,7 @@ Adds a particular film/show/book to the db, given an admin.
     
 * ##### Success Response:
 
-  200 OK
+200 OK
   
 ```json
 {
@@ -146,16 +158,16 @@ Adds a particular film/show/book to the db, given an admin.
 ```
 
 * ##### Error Response:
-  In case the name you put is the same of any item in the db
+In case the name you put is the same of any item in the db
 
-	226 IM USED
+226 IM USED
   
 ### DELETE A FILM/BOOK/SHOW IN PARTICULAR
 Look for a particular film, show or book given a name, and delete it. You must be an admin to do so. 
 
 * ##### URL
 
-	 /api/borrarpelicula/{name} 
+	 ``/api/borrarpelicula/{name} ``
 
 * ##### Method:
 
@@ -169,7 +181,7 @@ Look for a particular film, show or book given a name, and delete it. You must b
     
 * ##### Success Response:
 
-  200 OK
+200 OK
 
 ```json
 {
@@ -188,14 +200,14 @@ Look for a particular film, show or book given a name, and delete it. You must b
 * ##### Error Response:
   In case the name you put does not exist in the db
 
-	404 NOT FOUND
+404 NOT FOUND
   
 ### MODIFY A FILM/BOOK/SHOW IN PARTICULAR
 Look for a particular film, show or book given a name, and delete it. You must be an admin to do so. 
 
 * ##### URL
 
-	 /api/editarpelicula/{name} 
+	 ``/api/editarpelicula/{name} ``
 
 * ##### Method:
 
@@ -221,7 +233,7 @@ Look for a particular film, show or book given a name, and delete it. You must b
     
 * ##### Success Response:
 
-  200 OK
+200 OK
 
 ```json
 
@@ -239,18 +251,18 @@ Look for a particular film, show or book given a name, and delete it. You must b
 * ##### Error Response:
   In case the name you put does not exist in the db
 
-	404 NOT FOUND
+404 NOT FOUND
   
 ### OBTAIN THE BEST RATED FILM/BOOK/SHOW 
 You obtain a list sorted by best ratings of the items you were looking for (books, films or shows) 
 
 * ##### URL
 
-	 /api/peliculas/mejorvaloradas
+	``/api/peliculas/mejorvaloradas``
    
-   /api/libros/mejorvalorados
+   	``/api/libros/mejorvalorados``
    
-   /api/series/mejorvaloradas
+   	``/api/series/mejorvaloradas``
    
 
 * ##### Method:
@@ -295,6 +307,450 @@ You obtain a list sorted by best ratings of the items you were looking for (book
 
 * ##### Error Response:
 
-	404 NOT FOUND
+404 NOT FOUND
+	
 
+### OBTAIN THE GRAPHIC'S INFORMATION
+Api used to return an array with the best rated book/show/film information and not every field, just the neccesary, in order to show them in the graphics.   
+
+* ##### URL
+
+	 ``/api/peliculas/graficomejorvaloradas``
+	 
+	``/api/libros/graficomejorvaloradas``
+	
+	``/api/series/graficomejorvaloradas``
+
+
+* ##### Method:
+
+	`GET`
+    
+* ##### Success Response:
+
+200 OK
+
+```json
+[
+    {
+        "name": "Sherlock Holmes: la liga de los pelirojos",
+        "points": 5
+    },
+    {
+        "name": "La luna de Plutón",
+        "points": 5
+    },
+    {
+        "name": "Los pilares de la Tierra",
+        "points": 4.5
+    },
+    {
+        "name": "El clan del oso cavernario: Los Hijos de la Tierra",
+        "points": 4.5
+    },
+    {
+        "name": "Cronicas de la dragonlance: la reina de la oscuridad",
+        "points": 4.1
+    },
+    {
+        "name": "Crepúsculo",
+        "points": 4
+    },
+    {
+        "name": "Arthas: El Ascenso de El Rey Exánime",
+        "points": 4
+    },
+    {
+        "name": "El bosque de los arboles muertos",
+        "points": 3.9
+    },
+    {
+        "name": "La biblioteca de los muertos",
+        "points": 3.8
+    },
+    {
+        "name": "El retorno del rey",
+        "points": 3.5
+    }
+]
+
+```
+
+* ##### Error Response:
+
+404 NOT FOUND
+
+### SPECIFIC CONTENT SEARCH 
+Look for a particular film, show or book by genre or title
+
+* ##### URL
+
+	``/api/busqueda/{optionSearch}/peliculas/{name}/page``
+	``/api/busqueda/{optionSearch}/series/{name}/page``
+	``/api/busqueda/{optionSearch}/libros/{name}/page``
+
+
+* ##### Method:
+
+	`GET`
+
+* ##### URL Params
+
+	* Required:
+
+		`name=[String]`
+		`optionSearch["titulo","genero"]`
+    
+* ##### Success Response:
+	* URL Example:
+	``/api/busqueda/titulo/peliculas/venga/page``
+	
+200 OK 
+
+```json
+{
+    "content": [
+        {
+            "url": "/pelicula/",
+            "name": "Star Wars La venganza de los Sith",
+            "synopsis": "Último capítulo de la trilogía de precuelas de Star Wars, en el que Anakin Skywalker definitivamente se pasa al lado oscuro. En el Episodio III aparece el General Grievous, un ser implacable mitad-alien mitad-robot, el líder del ejército separatista Droid. Los Sith son los amos del lado oscuro de la Fuerza y los enemigos de los Jedi. Fueron prácticamente exterminados por los...",
+            "image": "/img/films/starWars3.jpg",
+            "trailer": "https://www.youtube.com/embed/kqkfjBKmWc4",
+            "year": 2005
+        },
+        {
+            "url": "/pelicula/",
+            "name": "Los vengadores",
+            "synopsis": "Cuando un enemigo inesperado surge como una gran amenaza para la seguridad mundial, Nick Fury, director de la Agencia SHIELD, decide reclutar a un equipo para salvar al mundo de un desastre casi seguro. Adaptación del cómic de Marvel \"Los Vengadores\", el legendario grupo de superhéroes formado por Ironman, Hulk, Thor y el Capitán América entre otros.",
+            "image": "/img/films/losVengadores.jpg",
+            "trailer": "https://www.youtube.com/embed/HQIiYqOVTWo",
+            "year": 2012
+        }
+    ],
+    "last": true,
+    "totalElements": 2,
+    "totalPages": 1,
+    "size": 20,
+    "number": 0,
+    "sort": null,
+    "first": true,
+    "numberOfElements": 2
+}
+
+```
+
+* ##### Error Response:
+In case any params introduced were found in the db
+
+404 NOT FOUND
+
+
+### OBTAIN A USER
+Returns the user, given the name. Only an Admin can do this action. 
+
+* ##### URL
+
+	 `/api/usuario/{name}`
+
+* ##### Method:
+
+	`GET`
+
+* ##### URL Params
+
+	* Required:
+
+		`name=[String]`
+    
+* ##### Success Response:
+	* URL Example:
+	``/api/usuario/oscar``
+
+200 OK
+```json
+{
+    "name": "oscar",
+    "email": "oscarmola@gmail.com",
+    "activatedUser": true,
+    "roles": [
+        "ROLE_USER"
+    ]
+}
+
+
+```
+
+* ##### Error Response:
+
+404 NOT FOUND
+
+### ADD USER 
+Adds an user in the db
+
+* ##### URL
+
+	 /api/agregarusuario 
+
+* ##### Method:
+
+	`POST`
+
+* ##### Data Params
+
+```json
+{
+    "name": "pedro",
+    "password": "1234",
+    "email": "oscarsotosanchez@gmail.com",
+    "activatedUser": false,
+    "roles": [
+        "ROLE_USER"
+    ]
+}	
+```		
+
+
+* ##### Success Response:
+200 OK
+
+```json
+{
+    "id": 4,
+    "name": "pedro",
+    "password": "$2a$10$fhvz6XUF4up.Z7r5GrC9IunqHRXB/f2KlFpjnAfStXrx7D7jq2K96",
+    "email": "oscarsotosanchez@gmail.com",
+    "image": "/img/default-user.png",
+    "activatedUser": false,
+    "roles": [
+        "[ROLE_USER]"
+    ]
+}
+```
+
+* ##### Error Response:
+If an user with the same name already exists 
+
+226 IM USED 
+
+### DELETE USER 
+Deletes an specific user from the db. This action can only do it an admin. 
+
+* ##### URL
+
+	 `/api/borrarusuario/{name}` 
+
+* ##### Method:
+
+	`DELETE`
+
+* ##### URL Params
+
+	* Required:
+
+		`name=[String]`
+    
+* ##### Success Response:
+	
+200 OK
+
+```json
+{
+    "name": "oscar",
+    "email": "oscarmola@gmail.com",
+    "activatedUser": true,
+    "roles": [
+        "ROLE_USER"
+    ]
+}
+
+
+```
+
+* ##### Error Response:
+In case the user is not found, which means, it does not exist an user with that name. 
+
+404 NOT FOUND
+
+### OBTAIN A FILM/BOOK/SHOW IN PARTICULAR
+Changes the user's parameters given that user's name. This can only do it an admin. 
+
+* ##### URL
+
+	 `/api/editarusuario/{name}` 
+
+* ##### Method:
+
+	`PUT`
+
+* ##### URL Params
+
+	* Required:
+
+		`name=[String]`
+		
+* ##### Data Params
+
+```json
+{
+    "name": "oscar",
+    "password": "12345",
+    "email": "oscarsotosanchez@gmail.com",
+    "activatedUser": true,
+    "roles": [
+        "ROLE_USER",
+        "ROLE_ADMIN"
+    ]
+}
+```
+
+* ##### Success Response:
+	* URL Example:
+	``/api/editarusuario/oscar``
+200 OK
+
+```json
+{
+    "name": "oscar",
+    "email": "oscarsotosanchez@gmail.com",
+    "activatedUser": true,
+    "roles": [
+        "ROLE_USER",
+        "ROLE_ADMIN"
+    ]
+}
+```
+
+* ##### Error Response:
+In case does not exist a user with that name.
+
+404 NOT FOUND
+
+### CHECK USER/EMAIL
+Checks if exists a user given a name, returning true or false depending if exists or not or the email is being used or not. 
+
+* ##### URL
+
+	 `/api/comprobarusuario/{name}` 
+	 
+	 `/api/comprobarusuario/{email}`
+
+* ##### Method:
+
+	`GET`
+
+* ##### URL Params
+
+	* Required:
+
+		`name=[String]` / `email=[String]`
+    
+* ##### Success Response:
+	* URL Example:
+	``/api/comprobarusuario/oscar`
+
+200 OK
+
+`true`
+
+* ##### Error Response:
+
+404 NOT FOUND
+
+### OBTAIN USER'S LISTS 
+Returns the lists of a logged user. Its necessary being an user to do this action. 
+* ##### URL
+
+	 `/api/listasusuario` 
+
+* ##### Method:
+
+	`GET`
+    
+* ##### Success Response:
+
+200 OK
+
+```json
+[
+    {
+        "id": 2,
+        "name": "roto"
+    },
+    {
+        "id": 3,
+        "name": "hola"
+    }
+]
+```
+
+* ##### Error Response:
+
+404 NOT FOUND
+
+### ADD A CREATED LIST MADE BY THE USER
+Creates an empty list with a specific name for the logged user 
+
+* ##### URL
+
+	 `Look for a particular film, show or book given a name` 
+
+* ##### Method:
+
+	`POST`
+
+* ##### URL Params
+
+	* Required:
+
+		`name=[String]`
+    
+* ##### Success Response:
+
+200 OK
+
+```json
+[
+    {
+        "id": 4,
+        "name": "Lista nueva"
+    }
+]
+
+```
+
+* ##### Error Response:
+In case you try to create a list with the same name 
+
+226 IM USED
+
+### ADD CONTENT TO A LIST
+Adds a show/film/book in a list previously created. It returns tru or false depending if it adds or not the item. It is necessary to be a user to do so.  
+
+* ##### URL
+
+	 `/api/agregarcontenidolista/{nameList}/{typeContent}/{nameContent}` 
+
+* ##### Method:
+
+	`PUT`
+
+* ##### URL Params
+
+	* Required:		
+		`nameList=[String]`  List name where you want to add 
+		`typeContent=[String]` Content type {pelicula, serie, libro}
+		`nameContent={String}` Film/show/book  title you want to add
+    
+* ##### Success Response:
+	*URL Example:
+	`/api/agregarcontenidolista/Lista Nueva/pelicula/gladiator`
+	
+200 OK
+
+`true`
+
+* ##### Error Response:
+In case the name of the list is not found 
+
+404 NOT FOUND
 
