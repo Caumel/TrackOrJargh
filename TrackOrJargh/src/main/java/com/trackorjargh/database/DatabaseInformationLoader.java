@@ -342,8 +342,8 @@ public class DatabaseInformationLoader {
 		b3.getGenders().add(g13);
 		bookRepository.save(b3);
 
-		Book b4 = new Book("Los pilares de la Tierra", "Ken Follet",
-				"El gran maestro de la narrativa de acción y suspense nos transporta a la Edad Media, a un fascinante mundo de reyes, damas, caballeros, pugnas feudales, castillos y ciudades amuralladas. El amor y la muerte se entrecruzan vibrantemente en este magistral tapiz cuyo centro es la construcción de una catedral gótica. La historia se inicia con el ahorcamiento público de ...",
+		Book b4 = new Book("Los pilares de la Tierra", "Ken Folleti",
+				"El gran maestro de la narrativa erótica y suspense nos transporta a la Edad Media, a un fascinante mundo de orgías, damas, caballeros, pugnas eróticas , profilácticos y ciudades con látex. El amor y el sexo se entrecruzan vibrantemente en este magistral tapiz cuyo centro es la construcción de un sex shop. La historia se inicia con el ahorcamiento público de Óscar...",
 				"/img/books/losPilaresDeLaTierra.jpg", 1989);
 
 		b4.getGenders().add(g5);
