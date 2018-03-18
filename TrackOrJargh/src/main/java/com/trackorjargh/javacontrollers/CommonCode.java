@@ -321,7 +321,7 @@ public class CommonCode {
 
 			return listUser;
 		} else {
-			return null;
+			return new Lists("hola");
 		}
 	}
 }
