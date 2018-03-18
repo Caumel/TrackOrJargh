@@ -10,17 +10,23 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Lists {
+	public interface BasicInformation {}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(BasicInformation.class)
 	private Long id;
 	
+	@JsonView(BasicInformation.class)
 	private String name;
 	
 	@ManyToOne
 	@JsonIgnore
+	@JsonView(BasicInformation.class)
 	private User user;
 	
 	@ManyToMany

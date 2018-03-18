@@ -238,6 +238,7 @@ public class ApiRestController {
 	}
 
 	@RequestMapping(value = "/api/listasusuario", method = RequestMethod.GET)
+	@JsonView(Lists.BasicInformation.class)
 	public List<Lists> getListsUser() {
 		if (!userComponent.isLoggedUser()) {
 			return null;
