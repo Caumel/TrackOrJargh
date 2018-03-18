@@ -1,9 +1,6 @@
 ## RELEVANT INFORMATION
 Every API search must be preceded by /api
 
-## Item Searches
-Now we show the searches refered to book, film or show. 
-
 ## Pagination 
 If you have a method that can be paginated, at the end of the URL you must put this: 
 
@@ -14,7 +11,13 @@ Where `page` represents the page you want to show and `size` represents the numb
 For example: 
 
 `/api/peliculas?page=0&size=5`
+
 That will return a pagination from the first page, in groups of 5 items. 
+
+## Item Searches
+Now we show the searches refered to book, film or show. 
+
+
 
 ### OBTAIN EVERY BOOK/SHOW/FILM
 
@@ -890,6 +893,299 @@ Delete an item from a specific list. Returns true or false depending the content
 
 * ##### Error Response:
 There is no content in the list you want to substract something
+
+404 NOT FOUND
+
+## Comment Searches 
+
+### SHOW COMMENTS 
+
+* ##### URL
+
+	`/api/pelicula/comentarios/{name}`
+	`/api/serie/comentarios/{name}`
+	`/api/libro/comentarios/{name}`
+
+* ##### Method: 
+	
+	`GET`
+	
+* ##### URL Params
+
+	* Required:
+
+		`name=[String] `
+
+
+* ##### Success Response:
+
+200 OK
+
+```json
+[
+    {
+        "id": 1,
+        "user": {
+            "name": "oscar",
+            "email": "oscarmola@gmail.com",
+            "activatedUser": true,
+            "roles": [
+                "ROLE_USER"
+            ]
+        },
+        "comment": "Esta pelicula es muy buena"
+    }
+]
+```
+
+* ##### Error Response:
+There is no such item or comment 
+
+404 NOT FOUND
+
+### ADD COMMENT
+Look for a particular film, show or book given a name
+
+* ##### URL
+
+	 `/api/pelicula/agregarcomentario/{name}` 
+	 `/api/serie/agregarcomentario/{name}`
+	 `/api/libro/agregarcomentario/{name}`
+	 
+* ##### Method:
+
+	`POST`
+
+* ##### URL Params
+
+	* Required:
+
+		`name=[String] `
+    
+* ##### Data Params:
+
+```json
+{
+  "comment": "Esta pelicula es muy buena"
+}
+´´´
+
+* ##### Success Response:
+
+200 OK
+
+```json
+{
+    "id": 26,
+    "comment": "Esta pelicula es muy buena"
+}
+
+```
+
+* ##### Error Response:
+The item you put does not exist
+
+404 NOT FOUND
+
+### DELETE COMMENT
+Deletes the comment given an id. You must be admin or mod to do it. 
+
+* ##### URL
+
+	 `/api/pelicula/borrarcomentario/{id}`
+	 `/api/serie/borrarcomentario/{id}`
+	 `/api/libro/borrarcomentario/{id}`
+
+
+* ##### Method:
+
+	`DELETE`
+
+* ##### URL Params
+
+	* Required:
+
+		`name=[Long]`
+    
+* ##### Success Response:
+
+200 OK
+
+```json
+{
+    "id": 1,
+    "user": {
+        "name": "oscar",
+        "email": "oscarmola@gmail.com",
+        "activatedUser": true,
+        "roles": [
+            "ROLE_USER"
+        ]
+    },
+    "comment": "Esta pelicula es muy buena"
+}
+
+```
+
+* ##### Error Response:
+There is no comment with such id 
+
+404 NOT FOUND
+
+## Rate Searches 
+Searches related with the rate in every item (book, shows or films) 
+
+### OBTAIN RATE
+Obtains the rate of a specific book/show/film 
+
+* ##### URL
+
+	 `/api/pelicula/obtenerpuntos/{name}`
+	 `/api/serie/obtenerpuntos/{name}`
+	 `/api/libro/obtenerpuntos/{name}`
+	 
+* ##### Method:
+
+	`GET`
+
+* ##### URL Params
+
+	* Required:
+
+		`name=[String]`
+    
+* ##### Success Response:
+
+200 OK
+
+```json
+[
+    {
+        "id": 1,
+        "film": {
+            "name": "Guardianes de la Galaxia 2"
+        },
+        "user": {
+            "name": "oscar"
+        },
+        "points": 5
+    },
+    {
+        "id": 2,
+        "film": {
+            "name": "Guardianes de la Galaxia 2"
+        },
+        "user": {
+            "name": "oscar"
+        },
+        "points": 2.3
+    },
+    {
+        "id": 3,
+        "film": {
+            "name": "Guardianes de la Galaxia 2"
+        },
+        "user": {
+            "name": "jesus"
+        },
+        "points": 2.3
+    },
+    {
+        "id": 4,
+        "film": {
+            "name": "Guardianes de la Galaxia 2"
+        },
+        "user": {
+            "name": "alfonso"
+        },
+        "points": 5
+    }
+]
+
+```
+
+* ##### Error Response:
+There is no such an item with that name 
+
+404 NOT FOUND
+
+### ADD RATE
+Adds a rate to an item. If you have already rated this api it will modify the rate instead. 
+
+* ##### URL
+
+	`/api/pelicula/agregarpuntos/{name}`
+	`/api/serie/agregarpuntos/{name}`
+	`/api/libro/agregarpuntos/{name}`
+
+
+* ##### Method:
+
+	`POST`
+
+* ##### URL Params
+
+	* Required:
+
+		`name=[String]`
+    
+* ##### Data Params:
+{    
+        "points": 5
+}
+
+* ##### Success Response:
+200 OK
+
+```json
+{
+    "id": 3,
+    "film": {
+        "name": "Guardianes de la Galaxia 2"
+    },
+    "user": {
+        "name": "jesus"
+    },
+    "points": 5
+}
+
+```
+
+* ##### Error Response:
+There is no such item with that name 
+
+404 NOT FOUND
+
+
+## Images 
+
+### Upload images 
+Upload a imagen to the db and returns the URL
+
+* ##### URL
+
+	 `/api/subirimagen` 
+
+* ##### Method:
+
+	`POST`
+
+* ##### Data Params:
+
+	`value upload file`
+
+    
+* ##### Success Response:
+
+200 OK
+
+```json
+
+/imagen/image-Captura.jpg
+
+```
+
+* ##### Error Response:
 
 404 NOT FOUND
 
