@@ -1,6 +1,5 @@
 package com.trackorjargh.javacontrollers;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -34,6 +33,7 @@ import com.trackorjargh.javaclass.CommentShow;
 import com.trackorjargh.javaclass.DeleteElementsOfBBDD;
 import com.trackorjargh.javaclass.Film;
 import com.trackorjargh.javaclass.ForgotPassword;
+import com.trackorjargh.javaclass.Gender;
 import com.trackorjargh.javaclass.GenerateURLPage;
 import com.trackorjargh.javaclass.InterfaceMainItem;
 import com.trackorjargh.javaclass.Lists;
@@ -415,7 +415,7 @@ public class PageController {
 			}
 
 			if (imageShow.isPresent()) {
-				String image = uploadImage("userImage", imageShow.get());
+				String image = commonCode.uploadImage("userImage", imageShow.get());
 				userComponent.getLoggedUser().setImage(image);
 			}
 			userRepository.save(userComponent.getLoggedUser());
@@ -445,9 +445,7 @@ public class PageController {
 	// create empty list
 	@RequestMapping("/listaNueva")
 	public String modProfile(Model model, @RequestParam String listName) {
-		Lists listUser = new Lists(listName);
-		listUser.setUser(userComponent.getLoggedUser());
-		listsRepository.save(listUser);
+		commonCode.addEmptyListInUser(listName);
 
 		return "redirect:/miperfil";
 	}
@@ -481,12 +479,8 @@ public class PageController {
 			@RequestParam String name, @RequestParam String email, @RequestParam String pass) {
 
 		if (!name.equals("")) {
-			User newUser = new User(name, pass, email, "/img/default-user.png", false, "ROLE_USER");
-			GenerateURLPage url = new GenerateURLPage(request);
-			mailComponent.sendVerificationEmail(newUser, url.generateURLActivateAccount(newUser));
-
+			commonCode.newUser(request, name, pass, email, "/img/default-user.png", false, "ROLE_USER");
 			redir.addFlashAttribute("registered", true);
-			userRepository.save(newUser);
 		}
 
 		return "redirect:/login";
@@ -667,7 +661,6 @@ public class PageController {
 		if (confirmDelete.isPresent()) {
 			deleteElementsOfBBDD.deleteUser(user);
 		} else {
-			user.setEmail(email);
 			user.setRoles(new LinkedList<String>());
 			if (userType.equals("Usuario")) {
 				user.setRoles(new LinkedList<String>());
@@ -682,7 +675,7 @@ public class PageController {
 					user.getRoles().add("ROLE_ADMIN");
 				}
 			}
-			userRepository.save(user);
+			user = commonCode.editUser(user, email, "", user.getRoles(), user.getImage());
 			if (user.getName().equals(userComponent.getLoggedUser().getName())) {
 				userComponent.setLoggedUser(user);
 			}
@@ -701,28 +694,23 @@ public class PageController {
 		if (confirmDelete.isPresent()) {
 			deleteElementsOfBBDD.deleteFilm(film);
 		} else {
-			film.setName(newName);
-			film.setActors(actors);
-			film.setDirectors(directors);
-			film.setSynopsis(synopsis);
-			film.setTrailer(trailer);
 			int yearInt = Integer.parseInt(year);
-			film.setYear(yearInt);
+			List<Gender> genders = new LinkedList<>();
 			if (genreContent.isPresent()) {
 				for (String genre : genreContent.get()) {
-					film.getGenders().clear();
-					film.getGenders().add(genderRepository.findByName(genre));
+					genders.add(genderRepository.findByName(genre));					
 				}
 			}
 			if (newGenres.isPresent()) {
 				for (String genre : newGenres.get()) {
-					film.getGenders().add(genderRepository.findByName(genre));
+					genders.add(genderRepository.findByName(genre));
 				}
 			}
 			if (!imageFilm.isEmpty()) {
-				film.setImage(uploadImage(film.getName(), imageFilm));
+				film.setImage(commonCode.uploadImage(film.getName(), imageFilm));
 			}
-			filmRepository.save(film);
+			
+			commonCode.editFilm(film, newName, actors, directors, film.getImage(), genders, synopsis, trailer, yearInt);
 		}
 
 		return "redirect:/administracion";
@@ -738,29 +726,23 @@ public class PageController {
 		if (confirmDelete.isPresent()) {
 			deleteElementsOfBBDD.deleteShow(show);
 		} else {
-			show.setName(newName);
-			show.setActors(actors);
-			show.setDirectors(directors);
-			show.setSynopsis(synopsis);
-			show.setTrailer(trailer);
 			int yearInt = Integer.parseInt(year);
-			show.setYear(yearInt);
+			List<Gender> genders = new LinkedList<>();
 			if (genreContent.isPresent()) {
 				for (String genre : genreContent.get()) {
-					show.getGenders().clear();
-					show.getGenders().add(genderRepository.findByName(genre));
+					genders.add(genderRepository.findByName(genre));					
 				}
 			}
 			if (newGenres.isPresent()) {
 				for (String genre : newGenres.get()) {
-					show.getGenders().add(genderRepository.findByName(genre));
+					genders.add(genderRepository.findByName(genre));
 				}
 			}
-
 			if (!imageShow.isEmpty()) {
-				show.setImage(uploadImage(show.getName(), imageShow));
+				show.setImage(commonCode.uploadImage(show.getName(), imageShow));
 			}
-			showRepository.save(show);
+			
+			commonCode.editShow(show, newName, actors, directors, show.getImage(), genders, synopsis, trailer, yearInt);
 		}
 
 		return "redirect:/administracion";
@@ -775,27 +757,23 @@ public class PageController {
 		if (confirmDelete.isPresent()) {
 			deleteElementsOfBBDD.deleteBook(book);
 		} else {
-			book.setName(newName);
-			book.setAuthors(authors);
-			book.setSynopsis(synopsis);
 			int yearInt = Integer.parseInt(year);
-			book.setYear(yearInt);
+			List<Gender> genders = new LinkedList<>();
 			if (genreContent.isPresent()) {
 				for (String genre : genreContent.get()) {
-					book.getGenders().clear();
-					book.getGenders().add(genderRepository.findByName(genre));
+					genders.add(genderRepository.findByName(genre));					
 				}
 			}
 			if (newGenres.isPresent()) {
 				for (String genre : newGenres.get()) {
-					book.getGenders().add(genderRepository.findByName(genre));
+					genders.add(genderRepository.findByName(genre));
 				}
 			}
-
 			if (!imageBook.isEmpty()) {
-				book.setImage(uploadImage(book.getName(), imageBook));
+				book.setImage(commonCode.uploadImage(book.getName(), imageBook));
 			}
-			bookRepository.save(book);
+			
+			commonCode.editBook(book, newName, authors, book.getImage(), genders, synopsis, yearInt);
 		}
 
 		return "redirect:/administracion";
@@ -813,7 +791,7 @@ public class PageController {
 			@RequestParam String synopsis, @RequestParam String trailer, @RequestParam String year) {
 		String image;
 		if (imageFilm.isPresent()) {
-			image = uploadImage(newName, imageFilm.get());
+			image = commonCode.uploadImage(newName, imageFilm.get());
 		} else {
 			image = "";
 		}
@@ -835,7 +813,7 @@ public class PageController {
 			@RequestParam String synopsis, @RequestParam String trailer, @RequestParam String year) {
 		String image;
 		if (imageShow.isPresent()) {
-			image = uploadImage(newName, imageShow.get());
+			image = commonCode.uploadImage(newName, imageShow.get());
 		} else {
 			image = "";
 		}
@@ -857,7 +835,7 @@ public class PageController {
 			@RequestParam String year) {
 		String image;
 		if (imageBook.isPresent()) {
-			image = uploadImage(newName, imageBook.get());
+			image = commonCode.uploadImage(newName, imageBook.get());
 		} else {
 			image = "";
 		}
@@ -871,29 +849,6 @@ public class PageController {
 		bookRepository.save(book);
 		String name = book.getName();
 		return "redirect:/libro/" + name;
-	}
-
-	public String uploadImage(String imageName, MultipartFile file) {
-		Path FILES_FOLDER = Paths.get(System.getProperty("user.dir"), "files");
-		String fileName = "image-" + imageName + ".jpg";
-
-		if (!file.isEmpty()) {
-			try {
-				if (!Files.exists(FILES_FOLDER)) {
-					Files.createDirectories(FILES_FOLDER);
-				}
-
-				File uploadedFile = new File(FILES_FOLDER.toFile(), fileName);
-				file.transferTo(uploadedFile);
-
-				return "/imagen/" + fileName;
-
-			} catch (Exception e) {
-				return "Error Upload";
-			}
-		} else {
-			return "Empty File";
-		}
 	}
 
 	@RequestMapping("/imagen/{fileName:.+}")

@@ -1,7 +1,7 @@
 # TrackOrJargh
 Desarrollo de Aplicaciones Web - URJC (Móstoles) - 2017/2018
 
-# 1st PHASE
+# 1st & 2nd PHASE
 
 ### 1.Authors:
 - Óscar Soto Sánchez o.sotos@alumnos.urjc.es [OscarSotoSanchez](https://github.com/OscarSotoSanchez)
@@ -52,7 +52,7 @@ Pdf generation on user's demand with a list of the viewed content.
 
 Facebook account login.
 
-# 2nd PHASE
+# 3rd PHASE
 
 ### 1. Screenshots
 #### NON-REGISTERED USERS
@@ -119,9 +119,11 @@ Here you can add a new list, delete a created list and also create a PDF with al
 #### NAVIGATION DIAGRAM
 ![navigationDiagram](/TrackOrJargh/src/main/resources/static/img/documentation/nav.jpg)
 #### JAVA CLASSES DIAGRAM
-![javaDiagram](/TrackOrJargh/src/main/resources/static/img/documentation/JavaClasses.jpg)
+![javaDiagram](/TrackOrJargh/src/main/resources/static/img/documentation/javaclassNEW.jpg)
 #### DB DIAGRAM
 ![dbDiagram](/TrackOrJargh/src/main/resources/static/img/documentation/dbDiagram.jpg)
 
 
 [Docker usage](DOCKER.md)
+
+[API](API.md)
