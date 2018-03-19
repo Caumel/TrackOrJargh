@@ -238,6 +238,7 @@ public class ApiRestController {
 	}
 
 	@RequestMapping(value = "/api/listasusuario", method = RequestMethod.GET)
+	@JsonView(Lists.BasicInformation.class)
 	public List<Lists> getListsUser() {
 		if (!userComponent.isLoggedUser()) {
 			return null;
@@ -247,90 +248,91 @@ public class ApiRestController {
 			return user.getLists();
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/agregarlistausuario/{name}", method = RequestMethod.POST)
-	public ResponseEntity<Lists> addEmptyListInUser(@PathVariable String name){		
-		Lists listUser = commonCode.addEmptyListInUser(name);
-		
-		if(listUser == null) {
-			return new ResponseEntity<>(HttpStatus.IM_USED);
+	public ResponseEntity<Lists> addEmptyListInUser(@PathVariable String name) {
+		Lists listUser = listsRepository.findByUserAndName(userComponent.getLoggedUser(), name);
+
+		if (listUser == null) {
+			return new ResponseEntity<>(commonCode.addEmptyListInUser(name), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(commonCode.addEmptyListInUser(name),HttpStatus.OK);				
-		}	
+			return new ResponseEntity<>(HttpStatus.IM_USED);
+		}
 	}
 
-	@RequestMapping(value = "/api/agregarlista/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.PUT)
-	public ResponseEntity<Boolean> addedListInUser(@PathVariable String nameList, @PathVariable String typeContent, @PathVariable String nameContent) {
-	  Lists listUser = listsRepository.findByUserAndName(userComponent.getLoggedUser(), nameList);
-	  	  
-	  if(!listUser.getUser().getName().equals(userComponent.getLoggedUser().getName())) {
-	    return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-	  }
+	@RequestMapping(value = "/api/agregarcontenidolista/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.PUT)
+	public ResponseEntity<Boolean> addedListInUser(@PathVariable String nameList, @PathVariable String typeContent,
+			@PathVariable String nameContent) {
+		Lists listUser = listsRepository.findByUserAndName(userComponent.getLoggedUser(), nameList);
 
-	  if (typeContent.equalsIgnoreCase("pelicula")) {
-	    Film film = filmRepository.findByNameIgnoreCase(nameContent);
-	    if (listUser.getFilms().contains(film)) {
-	      return new ResponseEntity<>(false, HttpStatus.OK);
-	    }
+		if (!listUser.getUser().getName().equals(userComponent.getLoggedUser().getName())) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 
-	    listUser.getFilms().add(film);
-	  } else if (typeContent.equalsIgnoreCase("serie")) {
-	    Shows show = showRepository.findByNameIgnoreCase(nameContent);
-	    if (listUser.getShows().contains(show)) {
-	      return new ResponseEntity<>(false, HttpStatus.OK);
-	    }
+		if (typeContent.equalsIgnoreCase("pelicula")) {
+			Film film = filmRepository.findByNameIgnoreCase(nameContent);
+			if (listUser.getFilms().contains(film)) {
+				return new ResponseEntity<>(false, HttpStatus.OK);
+			}
 
-	    listUser.getShows().add(show);
-	  } else if (typeContent.equalsIgnoreCase("libro")) {
-	    Book book = bookRepository.findByNameIgnoreCase(nameContent);
-	    if (listUser.getBooks().contains(book)) {
-	      return new ResponseEntity<>(false, HttpStatus.OK);
-	    }
+			listUser.getFilms().add(film);
+		} else if (typeContent.equalsIgnoreCase("serie")) {
+			Shows show = showRepository.findByNameIgnoreCase(nameContent);
+			if (listUser.getShows().contains(show)) {
+				return new ResponseEntity<>(false, HttpStatus.OK);
+			}
 
-	    listUser.getBooks().add(book);
-	  }
+			listUser.getShows().add(show);
+		} else if (typeContent.equalsIgnoreCase("libro")) {
+			Book book = bookRepository.findByNameIgnoreCase(nameContent);
+			if (listUser.getBooks().contains(book)) {
+				return new ResponseEntity<>(false, HttpStatus.OK);
+			}
 
-	  listsRepository.save(listUser);
-	  return new ResponseEntity<>(true, HttpStatus.OK);
+			listUser.getBooks().add(book);
+		}
+
+		listsRepository.save(listUser);
+		return new ResponseEntity<>(true, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/api/borrarLista/{nameList}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/borrarlista/{nameList}", method = RequestMethod.DELETE)
 	public ResponseEntity<Boolean> deletedListInUser(@PathVariable String nameList) {
-	  Lists listUser = listsRepository.findByUserAndName(userComponent.getLoggedUser(), nameList);
-	  
-	  if(!listUser.getUser().getName().equals(userComponent.getLoggedUser().getName())) {
-	    return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-	  }
-	  
-	  listsRepository.delete(listUser);
+		Lists listUser = listsRepository.findByUserAndName(userComponent.getLoggedUser(), nameList);
 
-	  return new ResponseEntity<>(true, HttpStatus.OK);
+		if (!listUser.getUser().getName().equals(userComponent.getLoggedUser().getName())) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
+
+		listsRepository.delete(listUser);
+
+		return new ResponseEntity<>(true, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/api/borrarContenido/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/borrarcontenido/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.DELETE)
 	public ResponseEntity<Boolean> deletedContentInList(@PathVariable String nameList, @PathVariable String typeContent,
-	    @PathVariable String nameContent) {
-	  Lists listUser = listsRepository.findByUserAndName(userComponent.getLoggedUser(), nameList);
-	  
-	  if(!listUser.getUser().getName().equals(userComponent.getLoggedUser().getName())) {
-	    return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-	  }
-	  
-	  if (typeContent.equalsIgnoreCase("pelicula")) {
-	    Film film = filmRepository.findByNameIgnoreCase(nameContent);
-	    listUser.getFilms().remove(film);
+			@PathVariable String nameContent) {
+		Lists listUser = listsRepository.findByUserAndName(userComponent.getLoggedUser(), nameList);
 
-	  } else if (typeContent.equalsIgnoreCase("serie")) {
-	    Shows show = showRepository.findByNameIgnoreCase(nameContent);
-	    listUser.getShows().remove(show);
+		if (!listUser.getUser().getName().equals(userComponent.getLoggedUser().getName())) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
 
-	  } else if (typeContent.equalsIgnoreCase("libro")) {
-	    Book book = bookRepository.findByNameIgnoreCase(nameContent);
-	    listUser.getBooks().remove(book);
-	  }
+		if (typeContent.equalsIgnoreCase("pelicula")) {
+			Film film = filmRepository.findByNameIgnoreCase(nameContent);
+			listUser.getFilms().remove(film);
 
-	  listsRepository.save(listUser);
-	  return new ResponseEntity<>(true, HttpStatus.OK);
+		} else if (typeContent.equalsIgnoreCase("serie")) {
+			Shows show = showRepository.findByNameIgnoreCase(nameContent);
+			listUser.getShows().remove(show);
+
+		} else if (typeContent.equalsIgnoreCase("libro")) {
+			Book book = bookRepository.findByNameIgnoreCase(nameContent);
+			listUser.getBooks().remove(book);
+		}
+
+		listsRepository.save(listUser);
+		return new ResponseEntity<>(true, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/api/comprobarusuario/{name}/", method = RequestMethod.GET)
@@ -394,7 +396,8 @@ public class ApiRestController {
 	@RequestMapping(value = "/api/agregarususario", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<User> addUser(HttpServletRequest request, @RequestBody User user) {
-		if (userRepository.findByNameIgnoreCase(user.getName()) == null && userRepository.findByEmail(user.getEmail()) == null) {
+		if (userRepository.findByNameIgnoreCase(user.getName()) == null
+				&& userRepository.findByEmail(user.getEmail()) == null) {
 			return new ResponseEntity<>(commonCode.newUser(user, request), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.IM_USED);
@@ -492,7 +495,8 @@ public class ApiRestController {
 	@RequestMapping(value = "/api/editarusuario/{name}", method = RequestMethod.PUT)
 	@JsonView(User.BasicInformation.class)
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<User> editUser(@PathVariable String name, @RequestBody User user, HttpServletRequest request) {
+	public ResponseEntity<User> editUser(@PathVariable String name, @RequestBody User user,
+			HttpServletRequest request) {
 		if (userRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
@@ -508,7 +512,7 @@ public class ApiRestController {
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Shows> editShow(@PathVariable String name, @RequestBody Shows show) {
 		if (showRepository.findByNameIgnoreCase(name) == null) { // if the film does not exists, then i return
-																			// a not found statement
+																	// a not found statement
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else { // if it exists, then i modify the item
 			Shows editedShow = showRepository.findByNameIgnoreCase(name);
@@ -720,9 +724,11 @@ public class ApiRestController {
 
 		return showRepository.findByNameIgnoreCase(name).getPointsShow();
 	}
-	
-	@RequestMapping(value = "/api/subirimagen", method = RequestMethod.POST, headers = {"content-type=multipart/mixed","content-type=multipart/form-data"})
+
+	@RequestMapping(value = "/api/subirimagen", method = RequestMethod.POST, headers = { "content-type=multipart/mixed",
+			"content-type=multipart/form-data" })
 	public String putUpload(MultipartFile image) {
-	  return commonCode.uploadImage(image.getOriginalFilename().substring(0, image.getOriginalFilename().lastIndexOf('.')), image);
+		return commonCode.uploadImage(
+				image.getOriginalFilename().substring(0, image.getOriginalFilename().lastIndexOf('.')), image);
 	}
 }

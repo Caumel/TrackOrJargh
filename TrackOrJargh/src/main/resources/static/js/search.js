@@ -64,7 +64,7 @@ function addFilmToList(){
 	var nameFilm = $(this).parents(".portfolio-info").find("[name='nameFilm']").text();
 	
 	$.ajax({
-	    url: "/api/agregarlista/"+nameList+"/"+typePageAddList+"/"+nameFilm,
+	    url: "/api/agregarcontenidolista/"+nameList+"/"+typePageAddList+"/"+nameFilm,
 	    type: 'PUT',
 	    success: function(result) {
 	    	if (result == true){
