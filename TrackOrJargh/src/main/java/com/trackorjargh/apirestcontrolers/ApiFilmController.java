@@ -56,9 +56,14 @@ public class ApiFilmController {
 	
 	@RequestMapping(value = "/peliculas/{name}", method = RequestMethod.GET)
 	@JsonView(Film.BasicInformation.class)
-	public Film getFilm(@PathVariable String name) {
-
-		return filmRepository.findByNameIgnoreCase(name);
+	public ResponseEntity<Film> getFilm(@PathVariable String name) {
+		Film film = filmRepository.findByNameIgnoreCase(name);
+		
+		if(film != null) {
+			 return new ResponseEntity<>(film, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@RequestMapping(value = "/peliculas/mejorvaloradas", method = RequestMethod.GET)
@@ -134,7 +139,19 @@ public class ApiFilmController {
 	public interface basicInfoCommentFilm extends CommentFilm.BasicInformation, User.BasicInformation {
 	}
 	
-	@RequestMapping(value = "/peliculas/comentario/{name}", method = RequestMethod.POST)
+	@RequestMapping(value = "/peliculas/comentarios/{name}", method = RequestMethod.GET)
+	@JsonView(basicInfoCommentFilm.class)
+	public ResponseEntity<List<CommentFilm>> getCommentsFilm(@PathVariable String name) {
+		Film film = filmRepository.findByNameIgnoreCase(name);
+		
+		if(film != null) {
+			return new ResponseEntity<>(film.getCommentsFilm(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@RequestMapping(value = "/peliculas/comentarios/{name}", method = RequestMethod.POST)
 	@JsonView(basicInfoCommentFilm.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<CommentFilm> addComentFilm(@PathVariable String name, @RequestBody CommentFilm comment) {
@@ -147,7 +164,7 @@ public class ApiFilmController {
 		}
 	}
 	
-	@RequestMapping(value = "/peliculas/comentario/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/peliculas/comentarios/{id}", method = RequestMethod.DELETE)
 	@JsonView(basicInfoCommentFilm.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<CommentFilm> deleteFilmComent(@PathVariable Long id) {
@@ -163,8 +180,14 @@ public class ApiFilmController {
 	
 	@RequestMapping(value = "/peliculas/puntos/{name}", method = RequestMethod.GET)
 	@JsonView(joinedPointFilmUserInfo.class)
-	public List<PointFilm> getFilmPoint(@PathVariable String name) {
-		return filmRepository.findByNameIgnoreCase(name).getPointsFilm();
+	public ResponseEntity<List<PointFilm>> getFilmPoint(@PathVariable String name) {
+		Film film = filmRepository.findByNameIgnoreCase(name);
+		
+		if(film != null) {
+			return new ResponseEntity<>(film.getPointsFilm(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);  
+		}	
 	}
 
 	@RequestMapping(value = "/peliculas/puntos/{name}", method = RequestMethod.POST)

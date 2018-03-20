@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.trackorjargh.commoncode.CommonCodeUser;
@@ -16,6 +17,8 @@ import com.trackorjargh.javaclass.DeleteElementsOfBBDD;
 import com.trackorjargh.javaclass.User;
 import com.trackorjargh.javarepository.UserRepository;
 
+@RestController
+@RequestMapping("/api")
 public class ApiUserController {
 	private final UserRepository userRepository;
 	private final CommonCodeUser commonCodeUser;
@@ -28,30 +31,8 @@ public class ApiUserController {
 		this.commonCodeUser = commonCodeUser;
 		this.deleteElementofBBDD = deleteElementofBBDD;
 	}
-
-	@RequestMapping(value = "/api/comprobarusuario/{name}/", method = RequestMethod.GET)
-	public boolean checkUser(@PathVariable String name) {
-		User user = userRepository.findByNameIgnoreCase(name);
-
-		if (user != null) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 	
-	@RequestMapping(value = "/api/comprobaremail/{email}/", method = RequestMethod.GET)
-	public boolean checkEmail(@PathVariable String email) {
-		User user = userRepository.findByEmail(email);
-
-		if (user != null) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	@RequestMapping(value = "/api/usuario/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "/usuarios/{name}", method = RequestMethod.GET)
 	@JsonView(User.BasicInformation.class)
 	public ResponseEntity<User> getUser(@PathVariable String name) {
 		User user = userRepository.findByNameIgnoreCase(name);
@@ -62,7 +43,7 @@ public class ApiUserController {
 		}
 	}
 	
-	@RequestMapping(value = "/api/agregarususario", method = RequestMethod.POST)
+	@RequestMapping(value = "/usuarios", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<User> addUser(HttpServletRequest request, @RequestBody User user) {
 		if (userRepository.findByNameIgnoreCase(user.getName()) == null
@@ -73,20 +54,7 @@ public class ApiUserController {
 		}
 	}
 	
-	@RequestMapping(value = "/api/borrarusuario/{name}", method = RequestMethod.DELETE)
-	@JsonView(User.BasicInformation.class)
-	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<User> deleteUser(@PathVariable("name") String name) {
-		User user = userRepository.findByNameIgnoreCase(name);
-		if (user == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		} else {
-			deleteElementofBBDD.deleteUser(user);
-			return new ResponseEntity<>(user, HttpStatus.OK);
-		}
-	}
-	
-	@RequestMapping(value = "/api/editarusuario/{name}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/usuarios/{name}", method = RequestMethod.PUT)
 	@JsonView(User.BasicInformation.class)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<User> editUser(@PathVariable String name, @RequestBody User user,
@@ -98,6 +66,41 @@ public class ApiUserController {
 
 			return new ResponseEntity<>(commonCodeUser.editUser(editedUser, user.getEmail(), user.getPassword(),
 					user.getRoles(), user.getImage()), HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/usuarios/{name}", method = RequestMethod.DELETE)
+	@JsonView(User.BasicInformation.class)
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<User> deleteUser(@PathVariable("name") String name) {
+		User user = userRepository.findByNameIgnoreCase(name);
+		if (user == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			deleteElementofBBDD.deleteUser(user);
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		}
+	}
+
+	@RequestMapping(value = "/acomprobarusuario/{name}/", method = RequestMethod.GET)
+	public boolean checkUser(@PathVariable String name) {
+		User user = userRepository.findByNameIgnoreCase(name);
+
+		if (user != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@RequestMapping(value = "/comprobaremail/{email}/", method = RequestMethod.GET)
+	public boolean checkEmail(@PathVariable String email) {
+		User user = userRepository.findByEmail(email);
+
+		if (user != null) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
