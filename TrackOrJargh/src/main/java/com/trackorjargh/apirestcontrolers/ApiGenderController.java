@@ -5,11 +5,14 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.trackorjargh.grafics.NumberItemByGende;
 import com.trackorjargh.javaclass.Gender;
 import com.trackorjargh.javarepository.GenderRepository;
 
+@RestController
+@RequestMapping("/api")
 public class ApiGenderController {
 	
 	private final GenderRepository genderRepository;
@@ -20,7 +23,7 @@ public class ApiGenderController {
 	}
 
 
-	@RequestMapping(value = "/api/graficogeneros", method = RequestMethod.GET)
+	@RequestMapping(value = "/generos/grafico", method = RequestMethod.GET)
 	public List<NumberItemByGende> getGraphicGende() {
 		List<NumberItemByGende> listGende = new ArrayList<>();
 
