@@ -57,9 +57,14 @@ public class ApiBookController {
 	
 	@RequestMapping(value = "/libros/{name}", method = RequestMethod.GET)
 	@JsonView(Book.BasicInformation.class)
-	public Book getBook(@PathVariable String name) {
-
-		return bookRepository.findByNameIgnoreCase(name);
+	public ResponseEntity<Book> getBook(@PathVariable String name) {
+		Book book = bookRepository.findByNameIgnoreCase(name);
+		
+		if (book == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(book, HttpStatus.OK);
+		}
 	}
 	
 	@RequestMapping(value = "/libros/mejorvalorados", method = RequestMethod.GET)
@@ -135,9 +140,14 @@ public class ApiBookController {
 
 	@RequestMapping(value = "/libros/comentarios/{name}", method = RequestMethod.GET)
 	@JsonView(basicInfoCommentBook.class)
-	public List<CommentBook> getCommentsBook(@PathVariable String name) {
-
-		return bookRepository.findByNameIgnoreCase(name).getCommentsBook();
+	public ResponseEntity<List<CommentBook>> getCommentsBook(@PathVariable String name) {
+		Book book = bookRepository.findByNameIgnoreCase(name);
+		
+		if (book == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(book.getCommentsBook(), HttpStatus.OK);
+		}
 	}
 	
 	@RequestMapping(value = "/libros/comentarios/{name}", method = RequestMethod.POST)
@@ -182,9 +192,14 @@ public class ApiBookController {
 	
 	@RequestMapping(value = "/libros/puntos/{name}", method = RequestMethod.GET)
 	@JsonView(joinedPointBookUserInfo.class)
-	public List<PointBook> getBookPoint(@PathVariable String name) {
-
-		return bookRepository.findByNameIgnoreCase(name).getPointsBook();
+	public ResponseEntity<List<PointBook>> getBookPoint(@PathVariable String name) {
+		Book book = bookRepository.findByNameIgnoreCase(name);
+		
+		if(book == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(book.getPointsBook(),HttpStatus.OK);
+		}
 	}
 	
 	@RequestMapping(value = "/busqueda/{optionSearch}/libros/{name}/page", method = RequestMethod.GET)

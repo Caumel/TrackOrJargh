@@ -57,6 +57,7 @@ public class ApiShowController {
 	@JsonView(Shows.BasicInformation.class)
 	public ResponseEntity<Shows> getShow(@PathVariable("name") String name) {
 		Shows show = showRepository.findByNameIgnoreCase(name);
+		
 		if (show == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
@@ -143,9 +144,14 @@ public class ApiShowController {
 	
 	@RequestMapping(value = "/series/comentarios/{name}", method = RequestMethod.GET)
 	@JsonView(basicInfoCommentShow.class)
-	public List<CommentShow> getCommentsShow(@PathVariable String name) {
-
-		return showRepository.findByNameIgnoreCase(name).getCommentsShow();
+	public ResponseEntity<List<CommentShow>> getCommentsShow(@PathVariable String name) {
+		Shows show = showRepository.findByNameIgnoreCase(name);
+		
+		if (show == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(show.getCommentsShow(), HttpStatus.OK);
+		}
 	}
 	
 	@RequestMapping(value = "/series/comentarios/{name}", method = RequestMethod.POST)
@@ -190,9 +196,14 @@ public class ApiShowController {
 	
 	@RequestMapping(value = "/series/puntos/{name}", method = RequestMethod.GET)
 	@JsonView(joinedPointShowUserInfo.class)
-	public List<PointShow> getShowPoint(@PathVariable String name) {
-
-		return showRepository.findByNameIgnoreCase(name).getPointsShow();
+	public ResponseEntity<List<PointShow>> getShowPoint(@PathVariable String name) {
+		Shows show = showRepository.findByNameIgnoreCase(name);
+		
+		if (show == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(show.getPointsShow(), HttpStatus.OK);
+		}
 	}
 	
 	@RequestMapping(value = "/api/busqueda/{optionSearch}/series/{name}/page", method = RequestMethod.GET)
