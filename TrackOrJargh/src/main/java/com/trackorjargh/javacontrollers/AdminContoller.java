@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,7 @@ import com.trackorjargh.javarepository.GenderRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
 
+@Controller
 public class AdminContoller {
 	private final FilmRepository filmRepository;
 	private final ShowRepository showRepository;
@@ -44,7 +46,7 @@ public class AdminContoller {
 	private final CommonCodeBook commonCodeBook;
 	private final CommonCodeUser commonCodeUser;
 	private final CommonCodeImages commonCodeImages;
-	
+
 	@Autowired
 	public AdminContoller(FilmRepository filmRepository, ShowRepository showRepository, BookRepository bookRepository,
 			GenderRepository genderRepository, UserRepository userRepository, UserComponent userComponent,
@@ -67,19 +69,25 @@ public class AdminContoller {
 	@RequestMapping("/administracion")
 	public String serveAdmin(Model model) {
 		model.addAttribute("adminActive", true);
-		
-		List<User> users = userRepository.findAll();	
+
+		List<User> users = userRepository.findAll();
 		User userRemove = userRepository.findByNameIgnoreCase(userComponent.getLoggedUser().getName());
 		users.remove(userRemove);
-		
+
 		model.addAttribute("users", users);
 		model.addAttribute("films", filmRepository.findAll());
 		model.addAttribute("shows", showRepository.findAll());
 		model.addAttribute("books", bookRepository.findAll());
-		
+
 		return "administration";
 	}
-	
+
+	@RequestMapping("/subirContenido")
+	public String newContent(Model model) {
+		model.addAttribute("genres", genderRepository.findAll());
+		return "newContent";
+	}
+
 	@RequestMapping("/seleccionarPelicula")
 	public ModelAndView filmSelection(RedirectAttributes redir, @RequestParam String name) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -92,7 +100,7 @@ public class AdminContoller {
 
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("/seleccionarSerie")
 	public ModelAndView showSelection(RedirectAttributes redir, @RequestParam String name) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -135,7 +143,7 @@ public class AdminContoller {
 		redir.addFlashAttribute("user", user);
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("editarContenido/{type}/{name}")
 	public ModelAndView editContent(RedirectAttributes redir, @PathVariable String type, @PathVariable String name) {
 		switch (type) {
@@ -194,7 +202,7 @@ public class AdminContoller {
 			List<Gender> genders = new LinkedList<>();
 			if (genreContent.isPresent()) {
 				for (String genre : genreContent.get()) {
-					genders.add(genderRepository.findByName(genre));					
+					genders.add(genderRepository.findByName(genre));
 				}
 			}
 			if (newGenres.isPresent()) {
@@ -205,8 +213,9 @@ public class AdminContoller {
 			if (!imageFilm.isEmpty()) {
 				film.setImage(commonCodeImages.uploadImage(film.getName(), imageFilm));
 			}
-			
-			commonCodeFilm.editFilm(film, newName, actors, directors, film.getImage(), genders, synopsis, trailer, yearInt);
+
+			commonCodeFilm.editFilm(film, newName, actors, directors, film.getImage(), genders, synopsis, trailer,
+					yearInt);
 		}
 
 		return "redirect:/administracion";
@@ -226,7 +235,7 @@ public class AdminContoller {
 			List<Gender> genders = new LinkedList<>();
 			if (genreContent.isPresent()) {
 				for (String genre : genreContent.get()) {
-					genders.add(genderRepository.findByName(genre));					
+					genders.add(genderRepository.findByName(genre));
 				}
 			}
 			if (newGenres.isPresent()) {
@@ -237,8 +246,9 @@ public class AdminContoller {
 			if (!imageShow.isEmpty()) {
 				show.setImage(commonCodeImages.uploadImage(show.getName(), imageShow));
 			}
-			
-			commonCodeShow.editShow(show, newName, actors, directors, show.getImage(), genders, synopsis, trailer, yearInt);
+
+			commonCodeShow.editShow(show, newName, actors, directors, show.getImage(), genders, synopsis, trailer,
+					yearInt);
 		}
 
 		return "redirect:/administracion";
@@ -257,7 +267,7 @@ public class AdminContoller {
 			List<Gender> genders = new LinkedList<>();
 			if (genreContent.isPresent()) {
 				for (String genre : genreContent.get()) {
-					genders.add(genderRepository.findByName(genre));					
+					genders.add(genderRepository.findByName(genre));
 				}
 			}
 			if (newGenres.isPresent()) {
@@ -268,7 +278,7 @@ public class AdminContoller {
 			if (!imageBook.isEmpty()) {
 				book.setImage(commonCodeImages.uploadImage(book.getName(), imageBook));
 			}
-			
+
 			commonCodeBook.editBook(book, newName, authors, book.getImage(), genders, synopsis, yearInt);
 		}
 
