@@ -1,4 +1,4 @@
-package com.trackorjargh.javacontrollers;
+package com.trackorjargh.apirestcontrolers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.trackorjargh.commoncode.CommonCodeMOMENTANEOHAYQUEBORRAR;
 import com.trackorjargh.component.UserComponent;
 import com.trackorjargh.grafics.Grafics;
 import com.trackorjargh.grafics.NumberItemByGende;
@@ -49,7 +50,7 @@ import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
 
 @RestController
-public class ApiRestController {
+public class ApiRestControllerMOMENTANIOHAYQUEREFACTORIZAR {
 
 	@Autowired
 	private FilmRepository filmRepository;
@@ -80,7 +81,7 @@ public class ApiRestController {
 	@Autowired
 	private CommentBookRepository commentBookRepository;
 	@Autowired
-	private CommonCode commonCode;
+	private CommonCodeMOMENTANEOHAYQUEBORRAR commonCode;
 
 	@RequestMapping(value = "/api/peliculas", method = RequestMethod.GET)
 	@JsonView(Film.BasicInformation.class)

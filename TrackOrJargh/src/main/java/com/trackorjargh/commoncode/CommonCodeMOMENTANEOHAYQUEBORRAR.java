@@ -1,4 +1,4 @@
-package com.trackorjargh.javacontrollers;
+package com.trackorjargh.commoncode;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -40,7 +40,7 @@ import com.trackorjargh.javarepository.UserRepository;
 import com.trackorjargh.mail.MailComponent;
 
 @Service
-public class CommonCode {
+public class CommonCodeMOMENTANEOHAYQUEBORRAR {
 
 	@Autowired
 	private UserComponent userComponent;
