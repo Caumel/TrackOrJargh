@@ -63,8 +63,7 @@ public class UserController {
 			if (!passUser.get().equals("")) {
 				userComponent.getLoggedUser().setPassword(passUser.get());
 			}
-
-			if (imageShow.isPresent()) {
+			if (imageShow.isPresent() && imageShow.get().getSize() != 0) {
 				String image = commonCodeImages.uploadImage("userImage", imageShow.get());
 				userComponent.getLoggedUser().setImage(image);
 			}

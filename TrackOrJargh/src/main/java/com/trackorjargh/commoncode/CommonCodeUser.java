@@ -21,7 +21,7 @@ public class CommonCodeUser {
 	private final ListsRepository listsRepository;
 	private final MailComponent mailComponent;
 	private final UserComponent userComponent;
-	
+
 	@Autowired
 	public CommonCodeUser(UserRepository userRepository, ListsRepository listsRepository, MailComponent mailComponent,
 			UserComponent userComponent) {
@@ -43,12 +43,16 @@ public class CommonCodeUser {
 		}
 	}
 
-	public User editUser(User user, String email, String password, List<String> roles, String imageUser) {
+	public User editUser(User user, String email, String password, List<String> roles, String imageUser, boolean api) {
 		if (email != null) {
 			user.setEmail(email);
 		}
 		if (password != null) {
-			user.setPassword(password);
+			if (api) {
+				user.setPasswordCodificate(password);
+			} else {
+				user.setPassword(password);
+			}
 		}
 		if (!roles.isEmpty()) {
 			user.setRoles(roles);

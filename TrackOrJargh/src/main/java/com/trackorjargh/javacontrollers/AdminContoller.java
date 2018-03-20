@@ -179,7 +179,7 @@ public class AdminContoller {
 					user.getRoles().add("ROLE_ADMIN");
 				}
 			}
-			user = commonCodeUser.editUser(user, email, "", user.getRoles(), user.getImage());
+			user = commonCodeUser.editUser(user, email, "", user.getRoles(), user.getImage(), false);
 			if (user.getName().equals(userComponent.getLoggedUser().getName())) {
 				userComponent.setLoggedUser(user);
 			}

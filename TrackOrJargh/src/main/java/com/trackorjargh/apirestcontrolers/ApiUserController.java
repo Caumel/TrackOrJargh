@@ -64,7 +64,7 @@ public class ApiUserController {
 			User editedUser = userRepository.findByNameIgnoreCase(name);
 
 			return new ResponseEntity<>(commonCodeUser.editUser(editedUser, user.getEmail(), user.getPassword(),
-					user.getRoles(), user.getImage()), HttpStatus.OK);
+					user.getRoles(), user.getImage(), true), HttpStatus.OK);
 		}
 	}
 	
