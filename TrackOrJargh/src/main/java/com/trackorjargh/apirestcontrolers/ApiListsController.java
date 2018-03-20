@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.trackorjargh.commoncode.CommonCodeUser;
@@ -23,7 +25,9 @@ import com.trackorjargh.javarepository.ListsRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 import com.trackorjargh.javarepository.UserRepository;
 
-public class ApiListsController {	
+@RestController
+@RequestMapping("/api")
+public class ApiListsController {
 	private final ListsRepository listsRepository;
 	private final UserRepository userRepository;
 	private final UserComponent userComponent;
@@ -31,7 +35,7 @@ public class ApiListsController {
 	private final FilmRepository filmRepository;
 	private final ShowRepository showRepository;
 	private final BookRepository bookRepository;
-		
+
 	@Autowired
 	public ApiListsController(ListsRepository listsRepository, UserRepository userRepository,
 			UserComponent userComponent, CommonCodeUser commonCodeUser, FilmRepository filmRepository,
@@ -45,19 +49,19 @@ public class ApiListsController {
 		this.bookRepository = bookRepository;
 	}
 
-	@RequestMapping(value = "/api/listasusuario", method = RequestMethod.GET)
+	@RequestMapping(value = "/listas", method = RequestMethod.GET)
 	@JsonView(Lists.BasicInformation.class)
-	public List<Lists> getListsUser() {
+	public ResponseEntity<List<Lists>> getListsUser() {
 		if (!userComponent.isLoggedUser()) {
-			return null;
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		} else {
 			User user = userRepository.findByNameIgnoreCase(userComponent.getLoggedUser().getName());
-
-			return user.getLists();
+			return new ResponseEntity<>(user.getLists(), HttpStatus.OK);
 		}
 	}
 
-	@RequestMapping(value = "/api/agregarlistausuario/{name}", method = RequestMethod.POST)
+	@RequestMapping(value = "/listas/{name}", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Lists> addEmptyListInUser(@PathVariable String name) {
 		Lists listUser = listsRepository.findByUserAndName(userComponent.getLoggedUser(), name);
 
@@ -67,8 +71,8 @@ public class ApiListsController {
 			return new ResponseEntity<>(HttpStatus.IM_USED);
 		}
 	}
-	
-	@RequestMapping(value = "/api/agregarcontenidolista/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.PUT)
+
+	@RequestMapping(value = "/listas/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.PUT)
 	public ResponseEntity<Boolean> addedListInUser(@PathVariable String nameList, @PathVariable String typeContent,
 			@PathVariable String nameContent) {
 		Lists listUser = listsRepository.findByUserAndName(userComponent.getLoggedUser(), nameList);
@@ -103,21 +107,20 @@ public class ApiListsController {
 		listsRepository.save(listUser);
 		return new ResponseEntity<>(true, HttpStatus.OK);
 	}
-	
-	@RequestMapping(value = "/api/borrarlista/{nameList}", method = RequestMethod.DELETE)
+
+	@RequestMapping(value = "/listas/{nameList}", method = RequestMethod.DELETE)
 	public ResponseEntity<Boolean> deletedListInUser(@PathVariable String nameList) {
 		Lists listUser = listsRepository.findByUserAndName(userComponent.getLoggedUser(), nameList);
 
 		if (!listUser.getUser().getName().equals(userComponent.getLoggedUser().getName())) {
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		} else {
+			listsRepository.delete(listUser);
+			return new ResponseEntity<>(true, HttpStatus.OK);
 		}
-
-		listsRepository.delete(listUser);
-
-		return new ResponseEntity<>(true, HttpStatus.OK);
 	}
-	
-	@RequestMapping(value = "/api/borrarcontenido/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.DELETE)
+
+	@RequestMapping(value = "/listas/{nameList}/{typeContent}/{nameContent}", method = RequestMethod.DELETE)
 	public ResponseEntity<Boolean> deletedContentInList(@PathVariable String nameList, @PathVariable String typeContent,
 			@PathVariable String nameContent) {
 		Lists listUser = listsRepository.findByUserAndName(userComponent.getLoggedUser(), nameList);

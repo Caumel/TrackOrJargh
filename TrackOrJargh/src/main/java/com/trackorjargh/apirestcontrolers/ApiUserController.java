@@ -56,7 +56,6 @@ public class ApiUserController {
 	
 	@RequestMapping(value = "/usuarios/{name}", method = RequestMethod.PUT)
 	@JsonView(User.BasicInformation.class)
-	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<User> editUser(@PathVariable String name, @RequestBody User user,
 			HttpServletRequest request) {
 		if (userRepository.findByNameIgnoreCase(name) == null) {
@@ -71,7 +70,6 @@ public class ApiUserController {
 	
 	@RequestMapping(value = "/usuarios/{name}", method = RequestMethod.DELETE)
 	@JsonView(User.BasicInformation.class)
-	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<User> deleteUser(@PathVariable("name") String name) {
 		User user = userRepository.findByNameIgnoreCase(name);
 		if (user == null) {
