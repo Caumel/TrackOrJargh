@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.trackorjargh.commoncode.CommonCodeBook;
@@ -26,6 +27,8 @@ import com.trackorjargh.javarepository.BookRepository;
 import com.trackorjargh.javarepository.CommentBookRepository;
 import com.trackorjargh.javarepository.PointBookRepository;
 
+@RestController
+@RequestMapping("/api")
 public class ApiBookController {
 	
 	private final BookRepository bookRepository;
@@ -46,19 +49,26 @@ public class ApiBookController {
 	}
 
 	
-	@RequestMapping(value = "/api/libros", method = RequestMethod.GET)
+	@RequestMapping(value = "/libros", method = RequestMethod.GET)
 	@JsonView(Book.BasicInformation.class)
 	public Page<Book> getLibros(Pageable page) {
 		return bookRepository.findAll(page);
 	}
 	
-	@RequestMapping(value = "/api/libros/mejorvalorados", method = RequestMethod.GET)
+	@RequestMapping(value = "/libros/{name}", method = RequestMethod.GET)
+	@JsonView(Book.BasicInformation.class)
+	public Book getBook(@PathVariable String name) {
+
+		return bookRepository.findByNameIgnoreCase(name);
+	}
+	
+	@RequestMapping(value = "/libros/mejorvalorados", method = RequestMethod.GET)
 	@JsonView(Book.BasicInformation.class)
 	public Page<Book> getBestPointLibros(Pageable page) {
 		return bookRepository.findBestPointBook(page);
 	}
 	
-	@RequestMapping(value = "/api/libros/graficomejorvaloradas", method = RequestMethod.GET)
+	@RequestMapping(value = "/libros/grafico", method = RequestMethod.GET)
 	public List<Grafics> getBestPointBooks() {
 		List<Book> books = bookRepository.findBestPointBook(new PageRequest(0, 10)).getContent();
 		List<PointBook> listPoints;
@@ -82,24 +92,7 @@ public class ApiBookController {
 		return graficShows;
 	}
 	
-	@RequestMapping(value = "/api/busqueda/{optionSearch}/libros/{name}/page", method = RequestMethod.GET)
-	@JsonView(Book.BasicInformation.class)
-	public Page<Book> getSearchLibros(Pageable page, @PathVariable String optionSearch, @PathVariable String name) {
-		if (optionSearch.equalsIgnoreCase("titulo")) {
-			return bookRepository.findByNameContainingIgnoreCase(name, page);
-		} else {
-			return bookRepository.findBooksByGender("%" + name + "%", page);
-		}
-	}
-	
-	@RequestMapping(value = "/api/libro/{name}", method = RequestMethod.GET)
-	@JsonView(Book.BasicInformation.class)
-	public Book getBook(@PathVariable String name) {
-
-		return bookRepository.findByNameIgnoreCase(name);
-	}
-	
-	@RequestMapping(value = "/api/agregarlibro", method = RequestMethod.POST)
+	@RequestMapping(value = "/libros", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Book> addBook(@RequestBody Book book) {
 		if (bookRepository.findByNameIgnoreCase(book.getName()) == null) {
@@ -110,7 +103,7 @@ public class ApiBookController {
 		}
 	}
 	
-	@RequestMapping(value = "/api/borrarlibro/{name}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/libros/{name}", method = RequestMethod.DELETE)
 	@JsonView(Book.BasicInformation.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Book> deleteBook(@PathVariable String name) {
@@ -123,7 +116,7 @@ public class ApiBookController {
 		}
 	}
 	
-	@RequestMapping(value = "/api/editarlibro/{name}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/libros/{name}", method = RequestMethod.PUT)
 	@JsonView(Book.BasicInformation.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Book> editBook(@PathVariable String name, @RequestBody Book book) {
@@ -140,14 +133,14 @@ public class ApiBookController {
 	public interface basicInfoCommentBook extends CommentBook.BasicInformation, User.BasicInformation {
 	}
 
-	@RequestMapping(value = "/api/libro/comentarios/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "/libros/comentarios/{name}", method = RequestMethod.GET)
 	@JsonView(basicInfoCommentBook.class)
 	public List<CommentBook> getCommentsBook(@PathVariable String name) {
 
 		return bookRepository.findByNameIgnoreCase(name).getCommentsBook();
 	}
 	
-	@RequestMapping(value = "/api/libro/agregarcomentario/{name}", method = RequestMethod.POST)
+	@RequestMapping(value = "/libros/comentarios/{name}", method = RequestMethod.POST)
 	@JsonView(basicInfoCommentBook.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<CommentBook> addComentBook(@PathVariable String name, @RequestBody CommentBook comment) {
@@ -160,7 +153,7 @@ public class ApiBookController {
 		}
 	}
 	
-	@RequestMapping(value = "/api/libro/borrarcomentario/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/libros/comentarios/{id}", method = RequestMethod.DELETE)
 	@JsonView(basicInfoCommentBook.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<CommentBook> deleteBookComent(@PathVariable Long id) {
@@ -174,7 +167,7 @@ public class ApiBookController {
 	public interface joinedPointBookUserInfo extends PointBook.BasicInformation, Book.NameBookInfo, User.NameUserInfo {
 	}
 
-	@RequestMapping(value = "/api/libro/agregarpuntos/{name}", method = RequestMethod.POST)
+	@RequestMapping(value = "/libros/puntos/{name}", method = RequestMethod.POST)
 	@JsonView(joinedPointBookUserInfo.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<PointBook> addBookPoint(@PathVariable String name, @RequestBody PointBook bookPoint) {
@@ -187,13 +180,21 @@ public class ApiBookController {
 		}
 	}
 	
-	@RequestMapping(value = "/api/libro/obtenerpuntos/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "/libros/puntos/{name}", method = RequestMethod.GET)
 	@JsonView(joinedPointBookUserInfo.class)
 	public List<PointBook> getBookPoint(@PathVariable String name) {
 
 		return bookRepository.findByNameIgnoreCase(name).getPointsBook();
 	}
 	
-	
+	@RequestMapping(value = "/busqueda/{optionSearch}/libros/{name}/page", method = RequestMethod.GET)
+	@JsonView(Book.BasicInformation.class)
+	public Page<Book> getSearchLibros(Pageable page, @PathVariable String optionSearch, @PathVariable String name) {
+		if (optionSearch.equalsIgnoreCase("titulo")) {
+			return bookRepository.findByNameContainingIgnoreCase(name, page);
+		} else {
+			return bookRepository.findBooksByGender("%" + name + "%", page);
+		}
+	}
 
 }

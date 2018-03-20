@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.trackorjargh.commoncode.CommonCodeShow;
@@ -27,6 +28,8 @@ import com.trackorjargh.javarepository.CommentShowRepository;
 import com.trackorjargh.javarepository.PointShowRepository;
 import com.trackorjargh.javarepository.ShowRepository;
 
+@RestController
+@RequestMapping("/api")
 public class ApiShowController {
 	
 	private final ShowRepository showRepository;
@@ -44,13 +47,30 @@ public class ApiShowController {
 		this.commentShowRepository = commentShowRepository;
 	}
 	
-	@RequestMapping(value = "/api/series", method = RequestMethod.GET)
+	@RequestMapping(value = "/series", method = RequestMethod.GET)
 	@JsonView(Shows.BasicInformation.class)
 	public Page<Shows> getSeries(Pageable page) {
 		return showRepository.findAll(page);
 	}
 	
-	@RequestMapping(value = "/api/series/graficomejorvaloradas", method = RequestMethod.GET)
+	@RequestMapping(value = "/series/{name}")
+	@JsonView(Shows.BasicInformation.class)
+	public ResponseEntity<Shows> getShow(@PathVariable("name") String name) {
+		Shows show = showRepository.findByNameIgnoreCase(name);
+		if (show == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(show, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/series/mejorvaloradas", method = RequestMethod.GET)
+	@JsonView(Shows.BasicInformation.class)
+	public Page<Shows> getBestPointSeries(Pageable page) {
+		return showRepository.findBestPointShow(page);
+	}
+	
+	@RequestMapping(value = "/series/grafico", method = RequestMethod.GET)
 	public List<Grafics> getBestPointShows() {
 		List<Shows> shows = showRepository.findBestPointShow(new PageRequest(0, 10)).getContent();
 		List<PointShow> listPoints;
@@ -74,34 +94,7 @@ public class ApiShowController {
 		return graficShows;
 	}
 	
-	@RequestMapping(value = "/api/series/mejorvaloradas", method = RequestMethod.GET)
-	@JsonView(Shows.BasicInformation.class)
-	public Page<Shows> getBestPointSeries(Pageable page) {
-		return showRepository.findBestPointShow(page);
-	}
-	
-	@RequestMapping(value = "/api/busqueda/{optionSearch}/series/{name}/page", method = RequestMethod.GET)
-	@JsonView(Shows.BasicInformation.class)
-	public Page<Shows> getSearchSeries(Pageable page, @PathVariable String optionSearch, @PathVariable String name) {
-		if (optionSearch.equalsIgnoreCase("titulo")) {
-			return showRepository.findByNameContainingIgnoreCase(name, page);
-		} else {
-			return showRepository.findShowsByGender("%" + name + "%", page);
-		}
-	}
-	
-	@RequestMapping(value = "/api/serie/{name}")
-	@JsonView(Shows.BasicInformation.class)
-	public ResponseEntity<Shows> getShow(@PathVariable("name") String name) {
-		Shows show = showRepository.findByNameIgnoreCase(name);
-		if (show == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		} else {
-			return new ResponseEntity<>(show, HttpStatus.OK);
-		}
-	}
-	
-	@RequestMapping(value = "/api/agregarserie", method = RequestMethod.POST)
+	@RequestMapping(value = "/series", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Shows> addShow(@RequestBody Shows show) {
 		if (showRepository.findByNameIgnoreCase(show.getName()) == null) {
@@ -114,7 +107,7 @@ public class ApiShowController {
 
 	}
 	
-	@RequestMapping(value = "/api/borrarserie/{name}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/series/{name}", method = RequestMethod.DELETE)
 	@JsonView(Shows.BasicInformation.class)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Shows> deleteShow(@PathVariable("name") String name) {
@@ -128,7 +121,7 @@ public class ApiShowController {
 
 	}
 	
-	@RequestMapping(value = "/api/editarserie/{name}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/series/{name}", method = RequestMethod.PUT)
 	@JsonView(Shows.BasicInformation.class)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Shows> editShow(@PathVariable String name, @RequestBody Shows show) {
@@ -148,14 +141,14 @@ public class ApiShowController {
 	public interface basicInfoCommentShow extends CommentShow.BasicInformation, User.BasicInformation {
 	}
 	
-	@RequestMapping(value = "/api/serie/comentarios/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "/series/comentarios/{name}", method = RequestMethod.GET)
 	@JsonView(basicInfoCommentShow.class)
 	public List<CommentShow> getCommentsShow(@PathVariable String name) {
 
 		return showRepository.findByNameIgnoreCase(name).getCommentsShow();
 	}
 	
-	@RequestMapping(value = "/api/serie/agregarcomentario/{name}", method = RequestMethod.POST)
+	@RequestMapping(value = "/series/comentarios/{name}", method = RequestMethod.POST)
 	@JsonView(basicInfoCommentShow.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<CommentShow> addComentShow(@PathVariable String name, @RequestBody CommentShow comment) {
@@ -168,7 +161,7 @@ public class ApiShowController {
 		}
 	}
 	
-	@RequestMapping(value = "/api/serie/borrarcomentario/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/series/comentarios/{id}", method = RequestMethod.DELETE)
 	@JsonView(basicInfoCommentShow.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<CommentShow> deleteShowComent(@PathVariable Long id) {
@@ -182,7 +175,7 @@ public class ApiShowController {
 	public interface joinedPointShowUserInfo extends PointShow.BasicInformation, Shows.NameShowInfo, User.NameUserInfo {
 	}
 	
-	@RequestMapping(value = "/api/serie/agregarpuntos/{name}", method = RequestMethod.POST)
+	@RequestMapping(value = "/series/puntos/{name}", method = RequestMethod.POST)
 	@JsonView(joinedPointShowUserInfo.class)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<PointShow> addShowPoint(@PathVariable String name, @RequestBody PointShow showPoint) {
@@ -195,11 +188,21 @@ public class ApiShowController {
 		}
 	}
 	
-	@RequestMapping(value = "/api/serie/obtenerpuntos/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "/series/puntos/{name}", method = RequestMethod.GET)
 	@JsonView(joinedPointShowUserInfo.class)
 	public List<PointShow> getShowPoint(@PathVariable String name) {
 
 		return showRepository.findByNameIgnoreCase(name).getPointsShow();
+	}
+	
+	@RequestMapping(value = "/api/busqueda/{optionSearch}/series/{name}/page", method = RequestMethod.GET)
+	@JsonView(Shows.BasicInformation.class)
+	public Page<Shows> getSearchSeries(Pageable page, @PathVariable String optionSearch, @PathVariable String name) {
+		if (optionSearch.equalsIgnoreCase("titulo")) {
+			return showRepository.findByNameContainingIgnoreCase(name, page);
+		} else {
+			return showRepository.findShowsByGender("%" + name + "%", page);
+		}
 	}
 
 }
