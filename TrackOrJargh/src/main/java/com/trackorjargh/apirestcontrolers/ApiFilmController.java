@@ -122,7 +122,6 @@ public class ApiFilmController {
 	
 	@RequestMapping(value = "/peliculas/{name}", method = RequestMethod.PUT)
 	@JsonView(Film.BasicInformation.class)
-	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Film> editFilm(@PathVariable String name, @RequestBody Film film) {
 		if (filmRepository.findByNameIgnoreCase(name) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -166,7 +165,6 @@ public class ApiFilmController {
 	
 	@RequestMapping(value = "/peliculas/comentarios/{id}", method = RequestMethod.DELETE)
 	@JsonView(basicInfoCommentFilm.class)
-	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<CommentFilm> deleteFilmComent(@PathVariable Long id) {
 		if (commentFilmRepository.findById(id) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
