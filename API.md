@@ -19,7 +19,7 @@ Now we show the searches refered to book, film or show.
 
 
 
-### OBTAIN EVERY BOOK/SHOW/FILM
+### OBTAIN EVERY BOOK/SHOW/FILM (PAGEABLE)
 
 Obtain every book, show or film in the db
 
@@ -86,7 +86,9 @@ Look for a particular film, show or book given a name
 
 * ##### URL
 
-	 ``/api/pelicula/{name} ``
+	 ``/api/peliculas/{name} ``
+	 ``/api/libros/{name} ``
+	 ``/api/series/{name} ``
 
 * ##### Method:
 
@@ -119,7 +121,9 @@ Adds a particular film/show/book to the db, given an admin.
 
 * ##### URL
 
-	`` /api/agregarpelicula``
+	`` /api/peliculas``
+	`` /api/series``
+	`` /api/libros``
 
 * ##### Method:
 
@@ -168,7 +172,9 @@ Look for a particular film, show or book given a name, and delete it. You must b
 
 * ##### URL
 
-	 ``/api/borrarpelicula/{name} ``
+	 ``/api/peliculas/{name} ``
+	 ``/api/series/{name} ``
+	 ``/api/libros/{name} ``
 
 * ##### Method:
 
@@ -208,7 +214,9 @@ Look for a particular film, show or book given a name, and delete it. You must b
 
 * ##### URL
 
-	 ``/api/editarpelicula/{name} ``
+	 ``/api/peliculas/{name} ``
+	 ``/api/series/{name} ``
+	 ``/api/libros/{name} ``
 
 * ##### Method:
 
@@ -310,7 +318,7 @@ You obtain a list sorted by best ratings of the items you were looking for (book
 
 404 NOT FOUND
 
-### SPECIFIC CONTENT SEARCH
+### SPECIFIC CONTENT SEARCH (PAGEABLE)
 Look for a particular film, show or book by genre or title
 
 * ##### URL
@@ -383,11 +391,11 @@ Api used to return an array with the best rated book/show/film information and n
 
 * ##### URL
 
-	 ``/api/peliculas/graficomejorvaloradas``
+	 ``/api/peliculas/grafico``
 
-	``/api/libros/graficomejorvaloradas``
+	``/api/libros/grafico``
 
-	``/api/series/graficomejorvaloradas``
+	``/api/series/grafico``
 
 
 * ##### Method:
@@ -453,7 +461,7 @@ Obtains the graphic's necessary information by genre
 
 * ##### URL
 
-	`/api/graficogeneros`
+	`/api/generos/grafico`
 
 * ##### Success Response:
 
@@ -531,7 +539,7 @@ Returns the user, given the name. Only an Admin can do this action.
 
 * ##### URL
 
-	 `/api/usuario/{name}`
+	 `/api/usuarios/{name}`
 
 * ##### Method:
 
@@ -570,7 +578,7 @@ Adds an user in the db
 
 * ##### URL
 
-	 /api/agregarusuario
+	 `/api/usuarios`
 
 * ##### Method:
 
@@ -618,7 +626,7 @@ Deletes an specific user from the db. This action can only do it an admin.
 
 * ##### URL
 
-	 `/api/borrarusuario/{name}`
+	 `/api/usuarios/{name}`
 
 * ##### Method:
 
@@ -657,7 +665,7 @@ Changes the user's parameters given that user's name. This can only do it an adm
 
 * ##### URL
 
-	 `/api/editarusuario/{name}`
+	 `/api/usuarios/{name}`
 
 * ##### Method:
 
@@ -686,7 +694,7 @@ Changes the user's parameters given that user's name. This can only do it an adm
 
 * ##### Success Response:
 	* URL Example:
-	``/api/editarusuario/oscar``
+	``/api/usuarios/oscar``
 200 OK
 
 ```json
@@ -741,7 +749,7 @@ Checks if exists a user given a name, returning true or false depending if exist
 Returns the lists of a logged user. Its necessary being an user to do this action.
 * ##### URL
 
-	 `/api/listasusuario`
+	 `/api/listas`
 
 * ##### Method:
 
@@ -773,7 +781,7 @@ Creates an empty list with a specific name for the logged user
 
 * ##### URL
 
-	 `Look for a particular film, show or book given a name`
+	 `/api/listas/{name}`
 
 * ##### Method:
 
@@ -809,7 +817,7 @@ Adds a show/film/book in a list previously created. It returns tru or false depe
 
 * ##### URL
 
-	 `/api/agregarcontenidolista/{nameList}/{typeContent}/{nameContent}`
+	 `/api/listas/{nameList}/{typeContent}/{nameContent}`
 
 * ##### Method:
 
@@ -824,7 +832,7 @@ Adds a show/film/book in a list previously created. It returns tru or false depe
 
 * ##### Success Response:
 	*URL Example:
-	`/api/agregarcontenidolista/Lista Nueva/pelicula/gladiator`
+	`/api/listas/Lista Nueva/pelicula/gladiator`
 
 200 OK
 
@@ -840,7 +848,7 @@ Delete the list given a name's list, wich belongs to a user. Returns true or fal
 
 * ##### URL
 
-	 `/api/borrarlista/{nameList}`
+	 `/api/listas/{nameList}`
 
 * ##### Method:
 
@@ -867,7 +875,7 @@ Delete an item from a specific list. Returns true or false depending the content
 
 * ##### URL
 
-	 `/api/borrarcontenido/{nameList}/{typeContent}/{nameContent}
+	 `/api/listas/{nameList}/{typeContent}/{nameContent}
 `
 
 * ##### Method:
@@ -900,9 +908,9 @@ There is no content in the list you want to substract something
 
 * ##### URL
 
-	`/api/pelicula/comentarios/{name}`
-	`/api/serie/comentarios/{name}`
-	`/api/libro/comentarios/{name}`
+	`/api/peliculas/comentarios/{name}`
+	`/api/series/comentarios/{name}`
+	`/api/libros/comentarios/{name}`
 
 * ##### Method:
 
@@ -946,9 +954,9 @@ Look for a particular film, show or book given a name
 
 * ##### URL
 
-	 `/api/pelicula/agregarcomentario/{name}`
-	 `/api/serie/agregarcomentario/{name}`
-	 `/api/libro/agregarcomentario/{name}`
+	 `/api/peliculas/comentarios/{name}`
+	 `/api/series/comentarios/{name}`
+	 `/api/libros/comentarios/{name}`
 
 * ##### Method:
 
@@ -990,9 +998,9 @@ Deletes the comment given an id. You must be admin or mod to do it.
 
 * ##### URL
 
-	 `/api/pelicula/borrarcomentario/{id}`
-	 `/api/serie/borrarcomentario/{id}`
-	 `/api/libro/borrarcomentario/{id}`
+	 `/api/peliculas/comentarios/{id}`
+	 `/api/series/comentarios/{id}`
+	 `/api/libros/comentarios/{id}`
 
 
 * ##### Method:
@@ -1038,9 +1046,9 @@ Obtains the rate of a specific book/show/film
 
 * ##### URL
 
-	 `/api/pelicula/obtenerpuntos/{name}`
-	 `/api/serie/obtenerpuntos/{name}`
-	 `/api/libro/obtenerpuntos/{name}`
+	 `/api/peliculas/puntos/{name}`
+	 `/api/series/puntos/{name}`
+	 `/api/libros/puntos/{name}`
 
 * ##### Method:
 
@@ -1112,9 +1120,9 @@ Adds a rate to an item. If you have already rated this api it will modify the ra
 
 * ##### URL
 
-	`/api/pelicula/agregarpuntos/{name}`
-	`/api/serie/agregarpuntos/{name}`
-	`/api/libro/agregarpuntos/{name}`
+	`/api/peliculas/puntos/{name}`
+	`/api/series/puntos/{name}`
+	`/api/libros/puntos/{name}`
 
 
 * ##### Method:
