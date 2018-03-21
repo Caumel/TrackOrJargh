@@ -21,40 +21,45 @@ public class SecurityConfigurerApiRest extends WebSecurityConfigurerAdapter {
 
 		http.antMatcher("/api/**");	
 		
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/usuario/**").hasAnyRole("ADMIN");
+		//Security Films
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/peliculas").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/peliculas/comentarios/**").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/peliculas/puntos/**").hasAnyRole("ADMIN");
+
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/peliculas/**").hasAnyRole("ADMIN");
+
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/peliculas/**").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/peliculas/comentarios/**").hasAnyRole("MODERATOR", "ADMIN");
+
+		//Security Books
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/libros").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/libros/comentarios/**").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/libros/puntos/**").hasAnyRole("ADMIN");
+
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/libros/**").hasAnyRole("ADMIN");
+
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/libros/**").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/libros/comentarios/**").hasAnyRole("MODERATOR", "ADMIN");
+	
+		//Security Shows
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/series").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/series/comentarios/**").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/series/puntos/**").hasAnyRole("ADMIN");
+
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/series/**").hasAnyRole("ADMIN");
+
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/series/**").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/series/comentarios/**").hasAnyRole("MODERATOR", "ADMIN");
 		
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/borrarserie/**").hasAnyRole("ADMIN");
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/borrarpelicula/**").hasAnyRole("ADMIN");	
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/borrarlibro/**").hasAnyRole("ADMIN");
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/borrarusuario/**").hasAnyRole("ADMIN");
+		//Security Users
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/usuarios/**").hasAnyRole("ADMIN");
 		
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/serie/borrarcomentario/**").hasAnyRole("MODERATOR", "ADMIN");
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/pelicula/borrarcomentario/**").hasAnyRole("MODERATOR", "ADMIN");	
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/libro/borrarcomentario/**").hasAnyRole("MODERATOR", "ADMIN");
-		
-		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/editarserie/**").hasAnyRole("ADMIN");
-		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/editarpelicula/**").hasAnyRole("ADMIN");	
-		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/editarlibro/**").hasAnyRole("ADMIN");
-		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/editarusuario/**").hasAnyRole("ADMIN");
-		
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/borrarContenido/**").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/borrarLista/**").hasAnyRole("USER");	
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/agregarlista/**").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/listasusuario").hasAnyRole("USER");
-		
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/agregarserie").hasAnyRole("ADMIN");
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/agregarpelicula").hasAnyRole("ADMIN");	
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/agregarlibro").hasAnyRole("ADMIN");
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/agregarusuario").hasAnyRole("ADMIN");
-		
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/serie/agregarcomentario/**").hasRole("USER");	
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/pelicula/agregarcomentario/**").hasRole("USER");	
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/libro/agregarcomentario/**").hasRole("USER");	
-		
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/serie/agregarpuntos/**").hasRole("USER");	
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/pelicula/agregarpuntos/**").hasRole("USER");	
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/libro/agregarpuntos/**").hasRole("USER");	
-		
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/usuarios").hasAnyRole("ADMIN");
+
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/usuarios/**").hasAnyRole("ADMIN");
+
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/usuarios/**").hasAnyRole("ADMIN");
+			
 		// Other URLs can be accessed without authentication
 		http.authorizeRequests().anyRequest().permitAll();
 
