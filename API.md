@@ -65,7 +65,7 @@ Obtain every book, show or film in the db
             "image": "/img/Guardianes2.jpg",
             "trailer": "https://www.youtube.com/embed/dzj4P11Yr6E",
             "year": 2008
-        },
+        }],
     "last": false,
     "totalElements": 22,
     "totalPages": 2,
@@ -76,10 +76,6 @@ Obtain every book, show or film in the db
     "numberOfElements": 20
 }
 ```
-
-* ##### Error Response:
-
-404 NOT FOUND
 
 ### OBTAIN A FILM/BOOK/SHOW IN PARTICULAR
 Look for a particular film, show or book given a name
@@ -115,6 +111,10 @@ Look for a particular film, show or book given a name
 }
 
 ```
+
+* ##### Error Response:
+
+404 NOT FOUND
 
 ### ADD FILM/SHOW/BOOK
 Adds a particular film/show/book to the db, given an admin.
@@ -301,7 +301,7 @@ You obtain a list sorted by best ratings of the items you were looking for (book
             "image": "/img/films/gladiador.jpg",
             "trailer": "https://www.youtube.com/embed/s6v-bUY_wS8",
             "year": 2000
-        },
+        }],
     "last": true,
     "totalElements": 20,
     "totalPages": 1,
