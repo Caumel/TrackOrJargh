@@ -65,7 +65,7 @@ Obtain every book, show or film in the db
             "image": "/img/Guardianes2.jpg",
             "trailer": "https://www.youtube.com/embed/dzj4P11Yr6E",
             "year": 2008
-        },,
+        },
     "last": false,
     "totalElements": 22,
     "totalPages": 2,
@@ -75,8 +75,6 @@ Obtain every book, show or film in the db
     "first": true,
     "numberOfElements": 20
 }
-
-...etc
 ```
 
 * ##### Error Response:
