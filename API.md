@@ -83,7 +83,9 @@ Look for a particular film, show or book given a name
 * ##### URL
 
 	 ``/api/peliculas/{name} ``
+	 
 	 ``/api/libros/{name} ``
+	 
 	 ``/api/series/{name} ``
 
 * ##### Method:
@@ -122,7 +124,9 @@ Adds a particular film/show/book to the db, given an admin.
 * ##### URL
 
 	`` /api/peliculas``
+	
 	`` /api/series``
+	
 	`` /api/libros``
 
 * ##### Method:
@@ -173,7 +177,9 @@ Look for a particular film, show or book given a name, and delete it. You must b
 * ##### URL
 
 	 ``/api/peliculas/{name} ``
+	 
 	 ``/api/series/{name} ``
+	 
 	 ``/api/libros/{name} ``
 
 * ##### Method:
@@ -215,7 +221,9 @@ Look for a particular film, show or book given a name, and delete it. You must b
 * ##### URL
 
 	 ``/api/peliculas/{name} ``
+	 
 	 ``/api/series/{name} ``
+	 
 	 ``/api/libros/{name} ``
 
 * ##### Method:
@@ -324,7 +332,9 @@ Look for a particular film, show or book by genre or title
 * ##### URL
 
 	``/api/busqueda/{optionSearch}/peliculas/{name}/page``
+	
 	``/api/busqueda/{optionSearch}/series/{name}/page``
+	
 	``/api/busqueda/{optionSearch}/libros/{name}/page``
 
 
@@ -391,7 +401,7 @@ Api used to return an array with the best rated book/show/film information and n
 
 * ##### URL
 
-	 ``/api/peliculas/grafico``
+	``/api/peliculas/grafico``
 
 	``/api/libros/grafico``
 
@@ -719,9 +729,9 @@ Checks if exists a user given a name, returning true or false depending if exist
 
 * ##### URL
 
-	 `/api/comprobarusuario/{name}`
+	 ``/api/comprobarusuario/{name}``
 
-	 `/api/comprobarusuario/{email}`
+	 ``/api/comprobarusuario/{email}``
 
 * ##### Method:
 
@@ -908,9 +918,11 @@ There is no content in the list you want to substract something
 
 * ##### URL
 
-	`/api/peliculas/comentarios/{name}`
-	`/api/series/comentarios/{name}`
-	`/api/libros/comentarios/{name}`
+	``/api/peliculas/comentarios/{name}``
+	
+	``/api/series/comentarios/{name}``
+	
+	``/api/libros/comentarios/{name}``
 
 * ##### Method:
 
@@ -954,9 +966,11 @@ Look for a particular film, show or book given a name
 
 * ##### URL
 
-	 `/api/peliculas/comentarios/{name}`
-	 `/api/series/comentarios/{name}`
-	 `/api/libros/comentarios/{name}`
+	 ``/api/peliculas/comentarios/{name}``
+	 
+	 ``/api/series/comentarios/{name}``
+	 
+	 ``/api/libros/comentarios/{name}``
 
 * ##### Method:
 
@@ -998,10 +1012,11 @@ Deletes the comment given an id. You must be admin or mod to do it.
 
 * ##### URL
 
-	 `/api/peliculas/comentarios/{id}`
-	 `/api/series/comentarios/{id}`
-	 `/api/libros/comentarios/{id}`
-
+	 ``/api/peliculas/comentarios/{id}``
+	 
+	 ``/api/series/comentarios/{id}``
+	 
+	 ``/api/libros/comentarios/{id}``
 
 * ##### Method:
 
@@ -1046,9 +1061,11 @@ Obtains the rate of a specific book/show/film
 
 * ##### URL
 
-	 `/api/peliculas/puntos/{name}`
-	 `/api/series/puntos/{name}`
-	 `/api/libros/puntos/{name}`
+	 ``/api/peliculas/puntos/{name}``
+	 
+	 ``/api/series/puntos/{name}``
+	 
+	 ``/api/libros/puntos/{name}``
 
 * ##### Method:
 
@@ -1120,11 +1137,12 @@ Adds a rate to an item. If you have already rated this api it will modify the ra
 
 * ##### URL
 
-	`/api/peliculas/puntos/{name}`
-	`/api/series/puntos/{name}`
-	`/api/libros/puntos/{name}`
-
-
+	``/api/peliculas/puntos/{name}``
+	
+	``/api/series/puntos/{name}``
+	
+	``/api/libros/puntos/{name}``
+	
 * ##### Method:
 
 	`POST`
